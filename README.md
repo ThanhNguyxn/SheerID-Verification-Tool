@@ -63,6 +63,8 @@ Before you start, prepare:
 ---
 
 ## 🔗 References
+
+**Note:** If you cannot verify student status via Telegram, you can refer to this website: [SheerID Verification Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
 - [Google One AI Premium](https://one.google.com)
 - [Gemini Help Center](https://support.google.com/gemini)
 
@@ -119,6 +121,8 @@ Trước khi bắt đầu, bạn cần chuẩn bị:
 ---
 
 ## 🔗 Tham khảo
+
+**Note:** Nếu bạn không thể xác minh sinh viên bằng Telegram, bạn có thể tham khảo trang web này: [SheerID Verification Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
 - [Google One AI Premium](https://one.google.com)
 - [Gemini Help Center](https://support.google.com/gemini)
 
@@ -175,6 +179,8 @@ Antes de comenzar, prepara:
 ---
 
 ## 🔗 Referencias
+
+**Note:** Si no puedes verificar el estado de estudiante a través de Telegram, puedes consultar este sitio web: [SheerID Verification Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
 - [Google One AI Premium](https://one.google.com)
 - [Gemini Help Center](https://support.google.com/gemini)
 
@@ -231,6 +237,8 @@ Avant de commencer, préparez :
 ---
 
 ## 🔗 Références
+
+**Note:** Si vous ne pouvez pas vérifier le statut étudiant via Telegram, vous pouvez consulter ce site web : [SheerID Verification Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
 - [Google One AI Premium](https://one.google.com)
 - [Gemini Help Center](https://support.google.com/gemini)
 
@@ -287,6 +295,8 @@ Vor dem Start bereiten Sie vor:
 ---
 
 ## 🔗 Referenzen
+
+**Note:** Wenn Sie den Studentenstatus nicht über Telegram verifizieren können, können Sie diese Website besuchen: [SheerID Verification Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
 - [Google One AI Premium](https://one.google.com)
 - [Gemini Help Center](https://support.google.com/gemini)
 
@@ -342,7 +352,9 @@ Vor dem Start bereiten Sie vor:
 
 ---
 
-## 🔗 参考资料
+## 🔗 参考
+
+**Note:** 如果您无法通过 Telegram 验证学生身份，可以参考此网站: [SheerID Verification Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)资料
 - [Google One AI Premium](https://one.google.com)
 - [Gemini 帮助中心](https://support.google.com/gemini)
 

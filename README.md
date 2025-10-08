@@ -33,6 +33,7 @@ Before you start, prepare:
 
 ### 3. Verify student status via Telegram
 - Open Telegram and access bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+- Backup bot (if the main bot fails): Search for @SheerID_VIP_Bot.
 - Send command: `/verify <link>` with the copied link
 - Example command: `/verify https://services.sheerid.com/verify/***`
 - Wait for bot to verify successfully.
@@ -91,6 +92,7 @@ Trước khi bắt đầu, bạn cần chuẩn bị:
 
 ### 3. Xác minh sinh viên qua Telegram
 - Mở Telegram và truy cập bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+- Bot dự phòng (nếu bot chính lỗi): Tìm @SheerID_VIP_Bot.
 - Gửi lệnh: `/verify <link>` với link vừa sao chép
 - Ví dụ lệnh : `/verify https://services.sheerid.com/verify/*** `
 - Chờ bot xác minh thành công.
@@ -149,6 +151,7 @@ Antes de comenzar, prepara:
 
 ### 3. Verificar estado de estudiante vía Telegram
 - Abre Telegram y accede al bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+- Bot de respaldo (si el bot principal falla): Busca @SheerID_VIP_Bot.
 - Envía el comando: `/verify <link>` con el enlace copiado
 - Ejemplo de comando: `/verify https://services.sheerid.com/verify/***`
 - Espera a que el bot verifique correctamente.
@@ -207,6 +210,7 @@ Avant de commencer, préparez :
 
 ### 3. Vérifier le statut étudiant via Telegram
 - Ouvrez Telegram et accédez au bot : [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+- Bot de secours (si le bot principal échoue) : Recherchez @SheerID_VIP_Bot.
 - Envoyez la commande : `/verify <link>` avec le lien copié
 - Exemple de commande : `/verify https://services.sheerid.com/verify/***`
 - Attendez la vérification réussie par le bot.
@@ -265,6 +269,7 @@ Vor dem Start bereiten Sie vor:
 
 ### 3. Studentenstatus über Telegram verifizieren
 - Öffnen Sie Telegram und greifen Sie auf den Bot zu: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+- Backup-Bot (falls der Hauptbot ausfällt): Suche nach @SheerID_VIP_Bot.
 - Senden Sie den Befehl: `/verify <link>` mit dem kopierten Link
 - Beispielbefehl: `/verify https://services.sheerid.com/verify/***`
 - Warten Sie, bis der Bot erfolgreich verifiziert.
@@ -323,6 +328,7 @@ Vor dem Start bereiten Sie vor:
 
 ### 3. 通过 Telegram 验证学生身份
 - 打开 Telegram 并访问机器人：[SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+- 备用机器人（如果主机器人失效）：搜索 @SheerID_VIP_Bot。
 - 发送命令：`/verify <link>`，附上复制的链接
 - 命令示例：`/verify https://services.sheerid.com/verify/***`
 - 等待机器人验证成功。

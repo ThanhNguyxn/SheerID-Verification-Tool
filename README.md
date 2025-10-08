@@ -5,7 +5,7 @@ Trước khi bắt đầu, bạn cần chuẩn bị:
 - 1 tài khoản **Telegram**
 - 1 tài khoản **Google** (nên tạo mới, năm sinh từ 2000–2007, độ tuổi sinh viên)
 - 1 phương thức thanh toán hợp lệ cho quốc gia của bạn (thẻ ngân hàng hoặc ví điện tử)
-- Cài đặt **VPN** (ví dụ: Urban VPN) và chuyển vùng sang **UK or VN or các quốc gia đang đc chính sách free cho sinh viên**
+- Cài đặt **VPN** (ví dụ: Urban VPN) và chuyển vùng sang **UK or VN or các quốc gia đang đc chính sách free cho sinh viên** ( nếu bạn đã thuộc những khu vực đang trong chính sách miễn phí thì không cần )
 
 ---
 
@@ -21,6 +21,7 @@ Trước khi bắt đầu, bạn cần chuẩn bị:
 ### 3. Xác minh sinh viên qua Telegram
 - Mở Telegram và truy cập bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
 - Gửi lệnh: `/verify <link>` với link vừa sao chép
+- Ví dụ lệnh : `/verify https://services.sheerid.com/verify/*** `
 - Chờ bot xác minh thành công.
 
 ### 4. Kích hoạt gói Gemini Advanced

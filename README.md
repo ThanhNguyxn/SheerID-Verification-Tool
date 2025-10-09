@@ -1,6 +1,6 @@
 # 🌐 Multilingual Guide: Get Gemini Free for Students
 
-## Table of Contents
+## 📚 Table of Contents
 - [English](#english)
 - [Tiếng Việt](#tiếng-việt)
 - [Español](#español)
@@ -10,7 +10,8 @@
 
 ---
 
-## English
+
+## 🇬🇧 English
 # Guide to Get Gemini Free for Students
 
 ## ✅ Usage Requirements
@@ -22,6 +23,7 @@ Before you start, prepare:
 
 ---
 
+
 ## ✅ Steps to Perform
 
 ### 1. Create a new browser profile
@@ -32,7 +34,7 @@ Before you start, prepare:
 - Click **Join Student Program** to get verification link.
 
 ### 3. Verify student status via Telegram
-- Open Telegram and access bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+- Open Telegram and access bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) or [SheerID VIP Bot](https://t.me/@SheerID_VIP_Bot)
 - Send command: `/verify <link>` with the copied link
 - Example command: `/verify https://services.sheerid.com/verify/***`
 - Wait for bot to verify successfully.
@@ -47,6 +49,7 @@ Before you start, prepare:
 
 ---
 
+
 ## ✅ Benefits upon completion
 - **Gemini Advanced** free for 12 months
 - **2TB Google Drive**
@@ -55,6 +58,7 @@ Before you start, prepare:
 
 ---
 
+
 ## ⚠️ Security Notes
 - Only use trusted bot sources.
 - Do not share payment info with third parties.
@@ -62,13 +66,14 @@ Before you start, prepare:
 
 ---
 
+
 ## 🔗 References
 
 **Note:** If you cannot verify student status via Telegram, you can refer to this website: [SheerID Verification Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
 - [Google One AI Premium](https://one.google.com)
 - [Gemini Help Center](https://support.google.com/gemini)
 
-## Tiếng Việt
+## 🇻🇳 Tiếng Việt
 # Hướng dẫn nhận Gemini miễn phí dành cho sinh viên
 
 ## ✅ Điều kiện sử dụng
@@ -80,6 +85,7 @@ Trước khi bắt đầu, bạn cần chuẩn bị:
 
 ---
 
+
 ## ✅ Các bước thực hiện
 
 ### 1. Tạo hồ sơ trình duyệt mới
@@ -90,7 +96,7 @@ Trước khi bắt đầu, bạn cần chuẩn bị:
 - Nhấn **Tham gia chương trình sinh viên** để lấy link xác minh.
 
 ### 3. Xác minh sinh viên qua Telegram
-- Mở Telegram và truy cập bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+- Mở Telegram và truy cập bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) hoặc [SheerID VIP Bot](https://t.me/@SheerID_VIP_Bot)
 - Gửi lệnh: `/verify <link>` với link vừa sao chép
 - Ví dụ lệnh : `/verify https://services.sheerid.com/verify/*** `
 - Chờ bot xác minh thành công.
@@ -105,6 +111,7 @@ Trước khi bắt đầu, bạn cần chuẩn bị:
 
 ---
 
+
 ## ✅ Quyền lợi khi hoàn tất
 - **Gemini Advanced** miễn phí 12 tháng
 - **2TB Google Drive**
@@ -113,6 +120,7 @@ Trước khi bắt đầu, bạn cần chuẩn bị:
 
 ---
 
+
 ## ⚠️ Lưu ý bảo mật
 - Chỉ thực hiện với nguồn bot uy tín.
 - Không chia sẻ thông tin thanh toán cho bên thứ ba.
@@ -120,13 +128,14 @@ Trước khi bắt đầu, bạn cần chuẩn bị:
 
 ---
 
+
 ## 🔗 Tham khảo
 
 **Note:** Nếu bạn không thể xác minh sinh viên bằng Telegram, bạn có thể tham khảo trang web này: [SheerID Verification Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
 - [Google One AI Premium](https://one.google.com)
 - [Gemini Help Center](https://support.google.com/gemini)
 
-## Español
+## 🇪🇸 Español
 # Guía para obtener Gemini gratis para estudiantes
 
 ## ✅ Requisitos de uso
@@ -138,6 +147,7 @@ Antes de comenzar, prepara:
 
 ---
 
+
 ## ✅ Pasos a seguir
 
 ### 1. Crear un nuevo perfil de navegador
@@ -148,7 +158,7 @@ Antes de comenzar, prepara:
 - Haz clic en **Unirse al programa para estudiantes** para obtener el enlace de verificación.
 
 ### 3. Verificar estado de estudiante vía Telegram
-- Abre Telegram y accede al bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+- Abre Telegram y accede al bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) o [SheerID VIP Bot](https://t.me/@SheerID_VIP_Bot)
 - Envía el comando: `/verify <link>` con el enlace copiado
 - Ejemplo de comando: `/verify https://services.sheerid.com/verify/***`
 - Espera a que el bot verifique correctamente.
@@ -163,6 +173,7 @@ Antes de comenzar, prepara:
 
 ---
 
+
 ## ✅ Beneficios al completar
 - **Gemini Advanced** gratis por 12 meses
 - **2TB Google Drive**
@@ -171,6 +182,7 @@ Antes de comenzar, prepara:
 
 ---
 
+
 ## ⚠️ Notas de seguridad
 - Usa solo bots confiables.
 - No compartas información de pago con terceros.
@@ -178,13 +190,14 @@ Antes de comenzar, prepara:
 
 ---
 
+
 ## 🔗 Referencias
 
 **Note:** Si no puedes verificar el estado de estudiante a través de Telegram, puedes consultar este sitio web: [SheerID Verification Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
 - [Google One AI Premium](https://one.google.com)
 - [Gemini Help Center](https://support.google.com/gemini)
 
-## Français
+## 🇫🇷 Français
 # Guide pour obtenir Gemini gratuitement pour les étudiants
 
 ## ✅ Conditions d'utilisation
@@ -196,6 +209,7 @@ Avant de commencer, préparez :
 
 ---
 
+
 ## ✅ Étapes à suivre
 
 ### 1. Créer un nouveau profil de navigateur
@@ -206,7 +220,7 @@ Avant de commencer, préparez :
 - Cliquez sur **Rejoindre le programme étudiant** pour obtenir le lien de vérification.
 
 ### 3. Vérifier le statut étudiant via Telegram
-- Ouvrez Telegram et accédez au bot : [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+- Ouvrez Telegram et accédez au bot : [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) ou [SheerID VIP Bot](https://t.me/@SheerID_VIP_Bot)
 - Envoyez la commande : `/verify <link>` avec le lien copié
 - Exemple de commande : `/verify https://services.sheerid.com/verify/***`
 - Attendez la vérification réussie par le bot.
@@ -221,6 +235,7 @@ Avant de commencer, préparez :
 
 ---
 
+
 ## ✅ Avantages après validation
 - **Gemini Advanced** gratuit pendant 12 mois
 - **2TB Google Drive**
@@ -229,6 +244,7 @@ Avant de commencer, préparez :
 
 ---
 
+
 ## ⚠️ Notes de sécurité
 - Utilisez uniquement des bots fiables.
 - Ne partagez pas vos informations de paiement avec des tiers.
@@ -236,13 +252,14 @@ Avant de commencer, préparez :
 
 ---
 
+
 ## 🔗 Références
 
 **Note:** Si vous ne pouvez pas vérifier le statut étudiant via Telegram, vous pouvez consulter ce site web : [SheerID Verification Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
 - [Google One AI Premium](https://one.google.com)
 - [Gemini Help Center](https://support.google.com/gemini)
 
-## Deutsch
+## 🇩🇪 Deutsch
 # Anleitung zum kostenlosen Erhalt von Gemini für Studenten
 
 ## ✅ Nutzungsbedingungen
@@ -254,6 +271,7 @@ Vor dem Start bereiten Sie vor:
 
 ---
 
+
 ## ✅ Schritte zur Durchführung
 
 ### 1. Neues Browserprofil erstellen
@@ -264,7 +282,7 @@ Vor dem Start bereiten Sie vor:
 - Klicken Sie auf **Am Studentenprogramm teilnehmen**, um den Verifizierungslink zu erhalten.
 
 ### 3. Studentenstatus über Telegram verifizieren
-- Öffnen Sie Telegram und greifen Sie auf den Bot zu: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+- Öffnen Sie Telegram und greifen Sie auf den Bot zu: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) oder [SheerID VIP Bot](https://t.me/@SheerID_VIP_Bot)
 - Senden Sie den Befehl: `/verify <link>` mit dem kopierten Link
 - Beispielbefehl: `/verify https://services.sheerid.com/verify/***`
 - Warten Sie, bis der Bot erfolgreich verifiziert.
@@ -279,6 +297,7 @@ Vor dem Start bereiten Sie vor:
 
 ---
 
+
 ## ✅ Vorteile nach Abschluss
 - **Gemini Advanced** 12 Monate kostenlos
 - **2TB Google Drive**
@@ -287,6 +306,7 @@ Vor dem Start bereiten Sie vor:
 
 ---
 
+
 ## ⚠️ Sicherheitshinweise
 - Nur vertrauenswürdige Bots verwenden.
 - Keine Zahlungsinformationen an Dritte weitergeben.
@@ -294,13 +314,14 @@ Vor dem Start bereiten Sie vor:
 
 ---
 
+
 ## 🔗 Referenzen
 
 **Note:** Wenn Sie den Studentenstatus nicht über Telegram verifizieren können, können Sie diese Website besuchen: [SheerID Verification Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
 - [Google One AI Premium](https://one.google.com)
 - [Gemini Help Center](https://support.google.com/gemini)
 
-## 中文
+## 🇨🇳 中文
 # 学生免费获取 Gemini 指南
 
 ## ✅ 使用条件
@@ -312,6 +333,7 @@ Vor dem Start bereiten Sie vor:
 
 ---
 
+
 ## ✅ 操作步骤
 
 ### 1. 创建新的浏览器配置文件
@@ -322,7 +344,7 @@ Vor dem Start bereiten Sie vor:
 - 点击 **加入学生计划** 获取验证链接。
 
 ### 3. 通过 Telegram 验证学生身份
-- 打开 Telegram 并访问机器人：[SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+- 打开 Telegram 并访问机器人：[SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) 或 [SheerID VIP Bot](https://t.me/@SheerID_VIP_Bot)
 - 发送命令：`/verify <link>`，附上复制的链接
 - 命令示例：`/verify https://services.sheerid.com/verify/***`
 - 等待机器人验证成功。
@@ -337,6 +359,7 @@ Vor dem Start bereiten Sie vor:
 
 ---
 
+
 ## ✅ 完成后权益
 - **Gemini Advanced** 免费使用 12 个月
 - **2TB Google Drive**
@@ -345,12 +368,14 @@ Vor dem Start bereiten Sie vor:
 
 ---
 
+
 ## ⚠️ 安全提示
 - 仅使用可信的机器人来源。
 - 不要与第三方共享支付信息。
 - 12 个月后，如果未取消，套餐将变为付费。
 
 ---
+
 
 ## 🔗 参考
 

@@ -34,7 +34,7 @@ Before you start, prepare:
 - Click **Join Student Program** to get verification link.
 
 ### 3. Verify student status via Telegram
-- Open Telegram and access bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) or [SheerID VIP Bot](https://t.me/@SheerID_VIP_Bot)
+- Open Telegram and access bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) or [SheerID VIP Bot](https://t.me/SheerIDAutoVerifyBot?start=ref_REF001124)
 - Send command: `/verify <link>` with the copied link
 - Example command: `/verify https://services.sheerid.com/verify/***`
 - Wait for bot to verify successfully.
@@ -96,7 +96,7 @@ Trước khi bắt đầu, bạn cần chuẩn bị:
 - Nhấn **Tham gia chương trình sinh viên** để lấy link xác minh.
 
 ### 3. Xác minh sinh viên qua Telegram
-- Mở Telegram và truy cập bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) hoặc [SheerID VIP Bot](https://t.me/@SheerID_VIP_Bot)
+- Mở Telegram và truy cập bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) hoặc [SheerID VIP Bot](https://t.me/SheerIDAutoVerifyBot?start=ref_REF001124)
 - Gửi lệnh: `/verify <link>` với link vừa sao chép
 - Ví dụ lệnh : `/verify https://services.sheerid.com/verify/*** `
 - Chờ bot xác minh thành công.
@@ -158,7 +158,7 @@ Antes de comenzar, prepara:
 - Haz clic en **Unirse al programa para estudiantes** para obtener el enlace de verificación.
 
 ### 3. Verificar estado de estudiante vía Telegram
-- Abre Telegram y accede al bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) o [SheerID VIP Bot](https://t.me/@SheerID_VIP_Bot)
+- Abre Telegram y accede al bot: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) o [SheerID VIP Bot](https://t.me/SheerIDAutoVerifyBot?start=ref_REF001124)
 - Envía el comando: `/verify <link>` con el enlace copiado
 - Ejemplo de comando: `/verify https://services.sheerid.com/verify/***`
 - Espera a que el bot verifique correctamente.
@@ -220,7 +220,7 @@ Avant de commencer, préparez :
 - Cliquez sur **Rejoindre le programme étudiant** pour obtenir le lien de vérification.
 
 ### 3. Vérifier le statut étudiant via Telegram
-- Ouvrez Telegram et accédez au bot : [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) ou [SheerID VIP Bot](https://t.me/@SheerID_VIP_Bot)
+- Ouvrez Telegram et accédez au bot : [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) ou [SheerID VIP Bot](https://t.me/SheerIDAutoVerifyBot?start=ref_REF001124)
 - Envoyez la commande : `/verify <link>` avec le lien copié
 - Exemple de commande : `/verify https://services.sheerid.com/verify/***`
 - Attendez la vérification réussie par le bot.
@@ -282,7 +282,7 @@ Vor dem Start bereiten Sie vor:
 - Klicken Sie auf **Am Studentenprogramm teilnehmen**, um den Verifizierungslink zu erhalten.
 
 ### 3. Studentenstatus über Telegram verifizieren
-- Öffnen Sie Telegram und greifen Sie auf den Bot zu: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) oder [SheerID VIP Bot](https://t.me/@SheerID_VIP_Bot)
+- Öffnen Sie Telegram und greifen Sie auf den Bot zu: [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) oder [SheerID VIP Bot](https://t.me/SheerIDAutoVerifyBot?start=ref_REF001124)
 - Senden Sie den Befehl: `/verify <link>` mit dem kopierten Link
 - Beispielbefehl: `/verify https://services.sheerid.com/verify/***`
 - Warten Sie, bis der Bot erfolgreich verifiziert.
@@ -344,7 +344,7 @@ Vor dem Start bereiten Sie vor:
 - 点击 **加入学生计划** 获取验证链接。
 
 ### 3. 通过 Telegram 验证学生身份
-- 打开 Telegram 并访问机器人：[SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) 或 [SheerID VIP Bot](https://t.me/@SheerID_VIP_Bot)
+- 打开 Telegram 并访问机器人：[SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789) 或 [SheerID VIP Bot](https://t.me/SheerIDAutoVerifyBot?start=ref_REF001124)
 - 发送命令：`/verify <link>`，附上复制的链接
 - 命令示例：`/verify https://services.sheerid.com/verify/***`
 - 等待机器人验证成功。

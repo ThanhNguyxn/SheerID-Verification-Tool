@@ -16,28 +16,28 @@
   </script>
   <script type="text/javascript">
     window.CONFIG = {
-      serverUrl: "https://api.1key.me", // 修改为你的 API
+      serverUrl: "https://api.1key.me", // Change to your API
       hcaptcha: { sitekey: "d134e850-e5e0-4344-8084-3132818e7580" }
     };
   </script>
   <style>
     :root {
       --sun: #FFD27F;
-      /* 日光 */
+      /* Sunlight */
       --sand: #F6E1B3;
-      /* 海滩 */
+      /* Beach */
       --foam: #EAF8F9;
-      /* 海泡 */
+      /* Sea Foam */
       --sea1: #A7D0E5;
-      /* 近海蓝 */
+      /* Offshore Blue */
       --sea2: #6FB1D6;
-      /* 深海蓝 */
+      /* Deep Sea Blue */
       --coral: #FF9AA2;
-      /* 珊瑚粉 */
+      /* Coral Pink */
       --ink: #0E3A5D;
-      /* 深墨蓝 */
+      /* Dark Ink Blue */
       --marine: #0F4C81;
-      /* 按钮主色 */
+      /* Main Button Color */
       --glass: rgba(255, 255, 255, .65);
     }
 
@@ -114,7 +114,7 @@
     .badge-turbo {
       position: relative;
       top: -0.6em;
-      /* 上飘，像上标 */
+      /* Superscript-like floating */
       font-size: .58em;
       font-weight: 800;
       letter-spacing: .5px;
@@ -128,7 +128,7 @@
       will-change: transform, filter;
     }
 
-    /* 为 Turbo 增添些微闪烁高光 */
+    /* Add subtle highlight shimmer for Turbo */
     .badge-turbo::after {
       content: "";
       position: absolute;
@@ -228,7 +228,7 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
     }
 
-    /* 适配低动效偏好 */
+    /* Adapt to low motion preference */
     @media (prefers-reduced-motion: reduce) {
       .badge-turbo {
         transition: none;
@@ -1352,7 +1352,7 @@
 </head>
 
 <body data-new-gr-c-s-check-loaded="14.1256.0" data-gr-ext-installed="">
-  <!-- 背景画布：动态海浪 -->
+  <!-- Background canvas: dynamic ocean waves -->
   <canvas id="bg-canvas" aria-hidden="true" width="1447" height="988" style="width: 1158px; height: 791px;"></canvas>
 
   <div class="container">
@@ -1398,14 +1398,14 @@
     <div id="captchaCard">
       <div style="font-weight:800;margin-bottom:8px;color:var(--ink)">
         <font dir="auto" style="vertical-align: inherit;">
-          <font dir="auto" style="vertical-align: inherit;">Vui lòng hoàn tất xác minh giữa người và máy</font>
+          <font dir="auto" style="vertical-align: inherit;">Please complete the human verification</font>
         </font>
       </div>
       <div id="hcaptcha-container" style="display:flex;justify-content:center"></div>
       <div style="margin-top:10px;text-align:right"><button
           onclick="if (!window.__cfRLUnblockHandlers) return false; closeCaptcha()">
           <font dir="auto" style="vertical-align: inherit;">
-            <font dir="auto" style="vertical-align: inherit;">đóng cửa</font>
+            <font dir="auto" style="vertical-align: inherit;">Close</font>
           </font>
         </button></div>
     </div>
@@ -1426,13 +1426,16 @@
 
 
     async function doLinuxDoOAuth() {
+      // Failed to get authorization link (original: Failed to get authorization link)
       const r = await fetch(`${CONFIG.serverUrl}/api/oauth/start`, { credentials: 'include' });
-      if (!r.ok) { throw new Error('获取授权链接失败'); }
+      if (!r.ok) { throw new Error('Failed to get authorization link'); }
       const { authUrl } = await r.json();
       const w = window.open(authUrl, 'linuxdo_oauth', 'width=520,height=720');
-      if (!w) throw new Error('弹窗被拦截，请允许弹窗');
+      // Popup was blocked, please allow popups (original: 弹窗被拦截，请允许弹窗)
+      if (!w) throw new Error('Popup was blocked, please allow popups');
       return await new Promise((resolve, reject) => {
-        const to = setTimeout(() => { try { w.close() } catch { }; reject(new Error('登录超时')); }, 2 * 60 * 1000);
+        const to = setTimeout(() => { try { w.close() } catch { }; reject(new Error('Login timed out')); }, 2 * 60 * 1000);
+        // Login timed out (original: 登录超时)
         function onMsg(ev) {
           const d = ev.data || {};
           if (d.type !== 'linuxdo_oauth') return;

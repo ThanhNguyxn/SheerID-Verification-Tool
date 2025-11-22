@@ -1454,23 +1454,23 @@
       if (me.loggedIn) return me;
       await doLinuxDoOAuth();
       me = await fetchMe();
-      if (!me.loggedIn) throw new Error('OAuth 登录失败或被取消');
+      if (!me.loggedIn) throw new Error('OAuth login failed or cancelled');
       return me;
     }
 
     async function start() {
       const url = $('urlInput').value.trim();
-      if (!url) { log('请输入验证URL'); return; }
+      if (!url) { log('Please enter verification URL'); return; }
       const m = url.match(/verificationId=([a-f0-9]+)/i);
-      if (!m) { log('无效的验证ID格式'); return; }
+      if (!m) { log('Invalid verification ID format'); return; }
       const verificationId = m[1];
 
-      // 先过一次 hcaptcha（初次）
+      // First pass hcaptcha (initial)
       const token = await showCaptcha();
 
-      // 确保已登录 Linux Do（服务端会话 + CSRF）
+      // Ensure logged into Linux Do (server session + CSRF)
       const me = await ensureLogin();
-      log(`已登录 Linux Do：${(me.user && (me.user.username || me.user.id)) || 'unknown'}`);
+      log(`Logged into Linux Do: ${(me.user && (me.user.username || me.user.id)) || 'unknown'}`);
 
       const payload = { verificationId, hcaptchaToken: token || '' };
       const enc = await encrypt(payload, '0DWb9ZMkN0s9Ks9EBsXExYUtPYr6YTAB');
@@ -1482,9 +1482,9 @@
         credentials: 'include'
       });
       const data = await r.json().catch(() => ({}));
-      if (!r.ok) { log('提交失败: ' + (data.error || r.status)); return; }
+      if (!r.ok) { log('Submission failed: ' + (data.error || r.status)); return; }
       jobId = data.jobId;
-      log('已入队, JobID: ' + jobId);
+      log('Queued, JobID: ' + jobId);
       openES(jobId);
       scheduleNextPing(true);
     }
@@ -1494,8 +1494,8 @@
       es = new EventSource(`${CONFIG.serverUrl}/api/queue/stream?id=${encodeURIComponent(id)}`);
       es.addEventListener('status', ev => { log(`[STATUS] ${ev.data}`); if (ev.data === 'done' || ev.data === 'failed' || ev.data === 'removed') { clearPing(); } });
       es.addEventListener('log', ev => log(ev.data));
-      es.addEventListener('result', ev => { log('✅ 成功，跳转URL: ' + ev.data); });
-      es.addEventListener('error', ev => { log('❌ 错误: ' + ev.data); });
+      es.addEventListener('result', ev => { log('✅ Success, redirect URL: ' + ev.data); });
+      es.addEventListener('error', ev => { log('❌ Error: ' + ev.data); });
       es.addEventListener('end', ev => { log('=== Stream closed ==='); es.close(); clearPing(); });
       es.addEventListener('metrics', ev => {
         try {
@@ -1508,13 +1508,13 @@
       es.addEventListener('captcha', async ev => {
         const o = JSON.parse(ev.data || '{}');
         currentChallengeId = o.challengeId || '';
-        log('收到 captcha 复验请求，challenge=' + currentChallengeId);
+        log('Received captcha re-verification request, challenge=' + currentChallengeId);
         try {
           const token = await showCaptcha();
           await submitCaptcha(token, currentChallengeId);
-          log('captcha 复验已提交');
+          log('Captcha re-verification submitted');
         } catch (e) {
-          log('captcha 复验取消/失败：' + e.message);
+          log('Captcha re-verification cancelled/failed: ' + e.message);
         }
       });
     }
@@ -1525,7 +1525,7 @@
       });
       if (!r.ok) {
         const j = await r.json().catch(() => ({}));
-        log('captcha 提交失败: ' + (j.error || r.status));
+        log('Captcha submission failed: ' + (j.error || r.status));
       }
     }
 
@@ -1538,7 +1538,7 @@
     async function doPing() {
       const now = Date.now();
       const delta = now - lastPingAt;
-      // 客户端也做防抖：若 <5s，延后到 5.5s
+      // Client-side debounce: if < 5s, delay to 5.5s
       if (lastPingAt && delta < 5000) {
         const pad = 5500 - delta;
         setTimeout(doPing, pad);
@@ -1549,11 +1549,11 @@
         const r = await fetch(`${CONFIG.serverUrl}/api/queue/ping?id=${encodeURIComponent(jobId)}`, { method: 'POST' });
         if (!r.ok) {
           const j = await r.json().catch(() => ({}));
-          log('ping 失败: ' + (j.error || r.status));
+          log('Ping failed: ' + (j.error || r.status));
           clearPing();
           return;
         }
-      } catch (e) { log('ping 网络错误: ' + e.message); clearPing(); return; }
+      } catch (e) { log('Ping network error: ' + e.message); clearPing(); return; }
       scheduleNextPing();
     }
 
@@ -1588,7 +1588,7 @@
 
     $('btnStart').onclick = start;
 
-    // ====== 海浪动画 ======
+    // ====== Ocean Wave Animation ======
     const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
@@ -1614,16 +1614,16 @@
     function drawWaves(t) {
       ctx.clearRect(0, 0, W, H);
 
-      // 天际与海面的大色块
+      // Sky and ocean large color blocks
       const g = ctx.createLinearGradient(0, 0, 0, H);
-      g.addColorStop(0, '#ffe8b8'); // 亮日光
+      g.addColorStop(0, '#ffe8b8'); // Bright sunlight
       g.addColorStop(.35, '#f7f2df');
       g.addColorStop(.55, '#eaf8f9');
       g.addColorStop(.78, '#a7d0e5');
       g.addColorStop(1, '#6fb1d6');
       ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
 
-      // 叠加波带
+      // Overlay wave bands
       bands.forEach((b, i) => {
         const baseY = H * b.base;
         const amp = b.amp * DPR * (1 + 0.15 * Math.sin(t * 0.7 + i));
@@ -1667,21 +1667,6 @@
       sunG.addColorStop(.65, 'rgba(255,154,162,.18)');
       sunG.addColorStop(1, 'rgba(255,154,162,0)');
       ctx.fillStyle = sunG; ctx.fillRect(0, 0, W, H);
-    }
-
-    // Lissajous 小幅路径
-    const turbo = document.getElementById('turboSup');
-    function animateTurbo(t) {
-      const s = t * 0.001; // 秒
-      const dx = Math.sin(s * 1.7) * 4;   // x 振幅
-      const dy = Math.cos(s * 1.9) * 3;   // y 振幅
-      const rot = Math.sin(s * 1.3) * 2;   // 轻微旋转
-      turbo.style.transform = `translate(${dx}px, ${-dy}px) rotate(${rot}deg)`;
-      turbo.style.filter = `drop-shadow(0 2px 4px rgba(15,76,129,${0.2 + 0.1 * Math.max(0, Math.sin(s * 2))}))`;
-    }
-
-    let rafId;
-    function loop(t) {
       const sec = t * 0.001;
       if (!reduceMotion) {
         drawWaves(sec);

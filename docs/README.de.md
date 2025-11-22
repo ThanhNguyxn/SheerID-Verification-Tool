@@ -120,7 +120,7 @@ Wenn Sie diese Anleitung hilfreich finden, erwägen Sie bitte, sie zu unterstüt
 
 ## 🌐 Andere Sprachen
 
-- [🇬🇧 English](README.md)
+- [🇬🇧 English](../README.md)
 - [🇻🇳 Tiếng Việt](README.vi.md)
 - [🇪🇸 Español](README.es.md)
 - [🇫🇷 Français](README.fr.md)

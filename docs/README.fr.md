@@ -120,7 +120,7 @@ Si vous trouvez ce guide utile, pensez à le soutenir pour aider à maintenir et
 
 ## 🌐 Autres Langues
 
-- [🇬🇧 English](README.md)
+- [🇬🇧 English](../README.md)
 - [🇻🇳 Tiếng Việt](README.vi.md)
 - [🇪🇸 Español](README.es.md)
 - [🇩🇪 Deutsch](README.de.md)

@@ -120,7 +120,7 @@
 
 ## 🌐 其他语言
 
-- [🇬🇧 English](README.md)
+- [🇬🇧 English](../README.md)
 - [🇻🇳 Tiếng Việt](README.vi.md)
 - [🇪🇸 Español](README.es.md)
 - [🇫🇷 Français](README.fr.md)

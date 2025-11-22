@@ -1,0 +1,147 @@
+<div align="center">
+
+# 🔐 SheerID Verification Tool
+
+[![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/network/members)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**Un guide multilingue complet pour aider les étudiants à obtenir Gemini Advanced gratuitement via le Programme Étudiant Google.**
+
+[🌐 Outil en direct](https://thanhnguyxn.github.io/SheerID-Verification-Tool/) | [📖 Documentation](#-table-des-matières) | [🐛 Signaler un Bug](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues)
+
+</div>
+
+---
+
+## 📖 À propos du Projet
+
+**SheerID Verification Tool** fournit un guide étape par étape pour que les étudiants du monde entier accèdent gratuitement à la plateforme IA Gemini Advanced de Google. Cet outil simplifie le processus de vérification en utilisant le système de vérification d'étudiants SheerID, permettant aux étudiants de débloquer des fonctionnalités premium incluant Gemini Advanced, 2TB de stockage Google Drive, NotebookLM Pro et des crédits de création vidéo IA.
+
+### ✨ Fonctionnalités
+
+- 🌍 **Support Multilingue** - Disponible en anglais, vietnamien, espagnol, français, allemand et chinois
+- 📋 **Guide Étape par Étape** - Instructions claires pour l'ensemble du processus de vérification
+- 🔒 **Axé sur la Sécurité** - Met l'accent sur les pratiques sûres et les sources fiables
+- 🎁 **Avantages Premium** - Accès à Gemini Advanced, 2TB de stockage et plus pendant 12 mois
+- 🤖 **Intégration Bot Telegram** - Vérification automatisée via des bots Telegram sécurisés
+- 🆓 **Complètement Gratuit** - Aucun coût caché pendant la période étudiante gratuite
+
+---
+
+## 📚 Table des Matières
+
+- [📋 Conditions](#-conditions)
+- [🚀 Installation et Utilisation](#-installation-et-utilisation)
+- [🎁 Avantages](#-avantages)
+- [⚠️ Notes de Sécurité](#️-notes-de-sécurité)
+- [🔗 Ressources Supplémentaires](#-ressources-supplémentaires)
+- [💖 Soutenir le Projet](#-soutenir-le-projet)
+- [📄 Licence](#-licence)
+
+---
+
+## 📋 Conditions
+
+Avant de commencer, assurez-vous d'avoir:
+
+- ✅ **Compte Telegram** - Pour la vérification par bot
+- ✅ **Compte Google** - De préférence nouveau, année de naissance 2000–2007 (âge étudiant)
+- ✅ **Méthode de paiement valide** - Carte bancaire ou portefeuille électronique (aucun frais pour le forfait gratuit)
+- ✅ **VPN** - (par ex. Urban VPN) pour changer de région vers UK, VN ou autres pays éligibles si nécessaire
+
+## 🚀 Installation et Utilisation
+
+### Étape 1: Créer un nouveau profil de navigateur
+
+Pour éviter les conflits de données, créez un nouveau profil de navigateur ou utilisez le mode incognito.
+
+### Étape 2: Accéder au programme étudiant
+
+1. Visitez le programme étudiant de Google: [https://gemini.google/students](https://gemini.google/students)
+2. Cliquez sur **Rejoindre le programme étudiant** pour recevoir votre lien de vérification
+
+### Étape 3: Vérifier le statut étudiant via Telegram
+
+1. Ouvrez Telegram et accédez à l'un de ces bots:
+   - [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
+
+2. Envoyez la commande de vérification:
+   ```
+   /verify https://services.sheerid.com/verify/***
+   ```
+   *(Remplacez l'URL par votre lien de vérification réel)*
+
+3. Attendez que le bot confirme la vérification réussie
+
+### Étape 4: Activer Gemini Advanced
+
+1. Après la vérification, inscrivez-vous à **Google One AI Premium**
+2. Ajoutez votre méthode de paiement (vous ne serez pas facturé pendant la période gratuite)
+3. Complétez le processus d'inscription
+
+### Étape 5: Gérer votre abonnement
+
+Visitez [Google Play Subscriptions](https://play.google.com/store/account/subscriptions) pour annuler si vous ne souhaitez pas être facturé après la période gratuite de 12 mois.
+
+## 🎁 Avantages
+
+Après avoir réussi, vous recevrez:
+
+- ✨ **Gemini Advanced** - Gratuit pendant 12 mois
+- 💾 **2TB Google Drive** - Grand espace de stockage cloud
+- 📝 **NotebookLM Pro** - Capacités avancées de prise de notes
+- 🎥 **1,000 crédits vidéo IA** - Créez des vidéos avec VEO3
+
+## ⚠️ Notes de Sécurité
+
+- 🔐 Utilisez uniquement les sources de bots fiables listées dans ce guide
+- 🚫 Ne partagez jamais vos informations de paiement avec des tiers
+- ⏰ Après 12 mois, le forfait deviendra payant s'il n'est pas annulé
+
+## 🔗 Ressources Supplémentaires
+
+**Vérification alternative:** Si vous ne pouvez pas vérifier via Telegram, utilisez l'[SheerID Verification Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
+
+**Liens officiels:**
+- [Google One AI Premium](https://one.google.com)
+- [Gemini Help Center](https://support.google.com/gemini)
+
+---
+
+## 💖 Soutenir le Projet
+
+Si vous trouvez ce guide utile, pensez à le soutenir pour aider à maintenir et améliorer le projet:
+
+<a href="https://buymeacoffee.com/thanhnguyxn" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+---
+
+## 🌐 Autres Langues
+
+- [🇬🇧 English](README.md)
+- [🇻🇳 Tiếng Việt](README.vi.md)
+- [🇪🇸 Español](README.es.md)
+- [🇩🇪 Deutsch](README.de.md)
+- [🇨🇳 中文](README.zh.md)
+
+---
+
+## 📄 Licence
+
+Ce projet est sous licence MIT - consultez le fichier [LICENSE](LICENSE) pour plus de détails.
+
+Copyright (c) 2025 SheerID Verification Tool Contributors
+
+---
+
+<div align="center">
+
+**Fait avec ❤️ pour les étudiants du monde entier**
+
+Si vous avez trouvé ce guide utile, veuillez considérer lui donner une ⭐ sur [GitHub](https://github.com/ThanhNguyxn/SheerID-Verification-Tool)!
+
+[⬆ Retour en haut](#-sheerid-verification-tool)
+
+</div>

@@ -1,0 +1,147 @@
+<div align="center">
+
+# 🔐 SheerID Verification Tool
+
+[![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/network/members)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**Ein umfassender mehrsprachiger Leitfaden, um Studenten zu helfen, Gemini Advanced kostenlos über das Google-Studentenprogramm zu erhalten.**
+
+[🌐 Live-Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/) | [📖 Dokumentation](#-inhaltsverzeichnis) | [🐛 Bug melden](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues)
+
+</div>
+
+---
+
+## 📖 Über das Projekt
+
+**SheerID Verification Tool** bietet eine Schritt-für-Schritt-Anleitung für Studenten weltweit, um kostenlos Zugang zur Google Gemini Advanced KI-Plattform zu erhalten. Dieses Tool vereinfacht den Verifizierungsprozess unter Verwendung des SheerID-Studentenverifizierungssystems und ermöglicht es Studenten, Premium-Funktionen freizuschalten, darunter Gemini Advanced, 2TB Google Drive-Speicher, NotebookLM Pro und KI-Videoerstellungs-Credits.
+
+### ✨ Funktionen
+
+- 🌍 **Mehrsprachiger Support** - Verfügbar auf Englisch, Vietnamesisch, Spanisch, Französisch, Deutsch und Chinesisch
+- 📋 **Schritt-für-Schritt-Anleitung** - Klare Anweisungen für den gesamten Verifizierungsprozess
+- 🔒 **Sicherheitsorientiert** - Betont sichere Praktiken und vertrauenswürdige Quellen
+- 🎁 **Premium-Vorteile** - Zugang zu Gemini Advanced, 2TB Speicher und mehr für 12 Monate
+- 🤖 **Telegram Bot Integration** - Automatisierte Verifizierung über sichere Telegram-Bots
+- 🆓 **Völlig Kostenlos** - Keine versteckten Kosten während der kostenlosen Studentenperiode
+
+---
+
+## 📚 Inhaltsverzeichnis
+
+- [📋 Anforderungen](#-anforderungen)
+- [🚀 Installation und Verwendung](#-installation-und-verwendung)
+- [🎁 Vorteile](#-vorteile)
+- [⚠️ Sicherheitshinweise](#️-sicherheitshinweise)
+- [🔗 Zusätzliche Ressourcen](#-zusätzliche-ressourcen)
+- [💖 Projekt Unterstützen](#-projekt-unterstützen)
+- [📄 Lizenz](#-lizenz)
+
+---
+
+## 📋 Anforderungen
+
+Bevor Sie beginnen, stellen Sie sicher, dass Sie haben:
+
+- ✅ **Telegram-Konto** - Für Bot-Verifizierung
+- ✅ **Google-Konto** - Vorzugsweise neu, Geburtsjahr 2000–2007 (Studentenalter)
+- ✅ **Gültige Zahlungsmethode** - Bankkarte oder E-Wallet (keine Gebühr für kostenloses Paket)
+- ✅ **VPN** - (z.B. Urban VPN) zum Wechseln der Region nach UK, VN oder andere berechtigte Länder falls erforderlich
+
+## 🚀 Installation und Verwendung
+
+### Schritt 1: Neues Browserprofil erstellen
+
+Um Datenkonflikte zu vermeiden, erstellen Sie ein neues Browserprofil oder verwenden Sie den Inkognito-Modus.
+
+### Schritt 2: Zugriff auf das Studentenprogramm
+
+1. Besuchen Sie das Google-Studentenprogramm: [https://gemini.google/students](https://gemini.google/students)
+2. Klicken Sie auf **Am Studentenprogramm teilnehmen**, um Ihren Verifizierungslink zu erhalten
+
+### Schritt 3: Studentenstatus über Telegram verifizieren
+
+1. Öffnen Sie Telegram und greifen Sie auf einen dieser Bots zu:
+   - [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
+
+2. Senden Sie den Verifizierungsbefehl:
+   ```
+   /verify https://services.sheerid.com/verify/***
+   ```
+   *(Ersetzen Sie die URL durch Ihren tatsächlichen Verifizierungslink)*
+
+3. Warten Sie, bis der Bot die erfolgreiche Verifizierung bestätigt
+
+### Schritt 4: Gemini Advanced aktivieren
+
+1. Nach der Verifizierung registrieren Sie sich für **Google One AI Premium**
+2. Fügen Sie Ihre Zahlungsmethode hinzu (Sie werden während der kostenlosen Periode nicht belastet)
+3. Schließen Sie den Registrierungsprozess ab
+
+### Schritt 5: Ihr Abonnement verwalten
+
+Besuchen Sie [Google Play Subscriptions](https://play.google.com/store/account/subscriptions), um zu kündigen, wenn Sie nach der 12-monatigen kostenlosen Periode nicht belastet werden möchten.
+
+## 🎁 Vorteile
+
+Bei erfolgreichem Abschluss erhalten Sie:
+
+- ✨ **Gemini Advanced** - 12 Monate kostenlos
+- 💾 **2TB Google Drive** - Großer Cloud-Speicher
+- 📝 **NotebookLM Pro** - Erweiterte Notizfunktionen
+- 🎥 **1,000 KI-Video-Credits** - Erstellen Sie Videos mit VEO3
+
+## ⚠️ Sicherheitshinweise
+
+- 🔐 Verwenden Sie nur vertrauenswürdige Bot-Quellen, die in diesem Leitfaden aufgeführt sind
+- 🚫 Teilen Sie niemals Zahlungsinformationen mit Dritten
+- ⏰ Nach 12 Monaten wird das Paket kostenpflichtig, wenn es nicht gekündigt wird
+
+## 🔗 Zusätzliche Ressourcen
+
+**Alternative Verifizierung:** Wenn Sie nicht über Telegram verifizieren können, verwenden Sie das [SheerID Verification Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
+
+**Offizielle Links:**
+- [Google One AI Premium](https://one.google.com)
+- [Gemini Help Center](https://support.google.com/gemini)
+
+---
+
+## 💖 Projekt Unterstützen
+
+Wenn Sie diese Anleitung hilfreich finden, erwägen Sie bitte, sie zu unterstützen, um das Projekt zu pflegen und zu verbessern:
+
+<a href="https://buymeacoffee.com/thanhnguyxn" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+---
+
+## 🌐 Andere Sprachen
+
+- [🇬🇧 English](README.md)
+- [🇻🇳 Tiếng Việt](README.vi.md)
+- [🇪🇸 Español](README.es.md)
+- [🇫🇷 Français](README.fr.md)
+- [🇨🇳 中文](README.zh.md)
+
+---
+
+## 📄 Lizenz
+
+Dieses Projekt ist unter der MIT-Lizenz lizenziert - siehe die Datei [LICENSE](LICENSE) für Details.
+
+Copyright (c) 2025 SheerID Verification Tool Contributors
+
+---
+
+<div align="center">
+
+**Mit ❤️ für Studenten weltweit gemacht**
+
+Wenn Sie diese Anleitung hilfreich fanden, geben Sie ihr bitte einen ⭐ auf [GitHub](https://github.com/ThanhNguyxn/SheerID-Verification-Tool)!
+
+[⬆ Zurück nach oben](#-sheerid-verification-tool)
+
+</div>

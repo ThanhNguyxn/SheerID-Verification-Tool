@@ -52,38 +52,48 @@ Trước khi bắt đầu, bạn cần chuẩn bị:
 
 ## 🚀 Cài đặt & Sử dụng
 
-### Bước 1: Tạo hồ sơ trình duyệt mới
+### 🌐 Bước 1: Tạo Hồ sơ Trình duyệt Mới
 
-Để tránh xung đột dữ liệu, hãy tạo một hồ sơ trình duyệt mới hoặc dùng chế độ ẩn danh.
+Tạo một hồ sơ trình duyệt mới hoặc sử dụng chế độ ẩn danh để tránh xung đột dữ liệu.
 
-### Bước 2: Truy cập chương trình sinh viên
+### 🎓 Bước 2: Truy cập Chương trình Sinh viên
 
-1. Vào chương trình sinh viên của Google: [https://gemini.google/students](https://gemini.google/students)
-2. Nhấn **Tham gia chương trình sinh viên** để nhận link xác minh
+1. Truy cập [https://gemini.google/students](https://gemini.google/students)
+2. Nhấn **Join Student Program** để nhận liên kết xác minh của bạn
 
-### Bước 3: Xác minh sinh viên qua Telegram
+> [!IMPORTANT]
+> **Điều kiện Quốc gia:** Nếu quốc gia của bạn không được hỗ trợ, hãy sử dụng VPN (xem [Yêu cầu](#-điều-kiện-sử-dụng)) để chuyển sang quốc gia đủ điều kiện (Anh, Việt Nam, v.v.).
+> 
+> **💡 Mẹo:** Tìm kiếm "Google Student Program supported countries" trên mạng hoặc hỏi AI để biết các khu vực đủ điều kiện mới nhất.
+
+### 📱 Bước 3: Xác minh Trạng thái Sinh viên qua Telegram
 
 1. Mở Telegram và truy cập một trong các bot sau:
    - [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
 
-2. Gửi lệnh xác minh:
+2. Gửi lệnh này:
    ```
    /verify https://services.sheerid.com/verify/***
    ```
-   *(Thay thế URL bằng link xác minh thực tế của bạn)*
+   *(Thay thế bằng liên kết xác minh của bạn)*
 
-3. Chờ bot xác nhận xác minh thành công
+3. Chờ bot xác nhận
 
-### Bước 4: Kích hoạt Gemini Advanced
+### ✨ Bước 4: Kích hoạt Gemini Advanced
 
-1. Sau khi xác minh, đăng ký gói **Google One AI Premium**
-2. Thêm phương thức thanh toán (sẽ không bị trừ tiền trong thời gian miễn phí)
+1. Sau khi xác minh, đăng ký **Google One AI Premium**
+2. Thêm phương thức thanh toán (không tính phí trong thời gian miễn phí)
 3. Hoàn tất đăng ký
 
-### Bước 5: Quản lý đăng ký của bạn
+> [!NOTE]
+> **Người dùng VPN:** Sau khi xác minh, hãy ngắt kết nối VPN và tải lại trang trước khi thêm phương thức thanh toán. Điều này đảm bảo tương thích với các tùy chọn thanh toán tại quốc gia của bạn.
 
-Truy cập [Google Play Subscriptions](https://play.google.com/store/account/subscriptions) để hủy gói nếu không muốn bị tính phí sau thời gian miễn phí 12 tháng.
+### ⚙️ Bước 5: Quản lý Đăng ký của Bạn
+
+Truy cập [Google Play Subscriptions](https://play.google.com/store/account/subscriptions) để hủy trước khi kết thúc thời hạn 12 tháng.
+
+**⏰ Mẹo:** Đặt nhắc nhở lịch để tránh bị tính phí tự động gia hạn!
 
 ## 🎁 Quyền lợi
 

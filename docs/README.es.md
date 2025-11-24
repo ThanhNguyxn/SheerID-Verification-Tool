@@ -52,38 +52,48 @@ Antes de comenzar, asegúrate de tener:
 
 ## 🚀 Instalación y Uso
 
-### Paso 1: Crear un nuevo perfil de navegador
+### 🌐 Paso 1: Crear un Nuevo Perfil de Navegador
 
-Para evitar conflictos de datos, crea un nuevo perfil de navegador o usa el modo incógnito.
+Crea un nuevo perfil de navegador o usa el modo incógnito para evitar conflictos de datos.
 
-### Paso 2: Acceder al programa para estudiantes
+### 🎓 Paso 2: Acceder al Programa para Estudiantes
 
-1. Visita el programa para estudiantes de Google: [https://gemini.google/students](https://gemini.google/students)
-2. Haz clic en **Unirse al programa para estudiantes** para recibir tu enlace de verificación
+1. Visita [https://gemini.google/students](https://gemini.google/students)
+2. Haz clic en **Join Student Program** para recibir tu enlace de verificación
 
-### Paso 3: Verificar estado de estudiante vía Telegram
+> [!IMPORTANT]
+> **Elegibilidad del País:** Si tu país no es compatible, usa una VPN (ver [Requisitos](#-requisitos)) para cambiar a un país elegible (Reino Unido, Vietnam, etc.).
+> 
+> **💡 Consejo:** Busca "Google Student Program supported countries" en línea o pregunta a una IA por las regiones elegibles más recientes.
+
+### 📱 Paso 3: Verificar Estado de Estudiante vía Telegram
 
 1. Abre Telegram y accede a uno de estos bots:
    - [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
 
-2. Envía el comando de verificación:
+2. Envía este comando:
    ```
    /verify https://services.sheerid.com/verify/***
    ```
-   *(Reemplaza la URL con tu enlace de verificación real)*
+   *(Reemplaza con tu enlace de verificación)*
 
-3. Espera a que el bot confirme la verificación exitosa
+3. Espera la confirmación del bot
 
-### Paso 4: Activar Gemini Advanced
+### ✨ Paso 4: Activar Gemini Advanced
 
 1. Después de la verificación, regístrate en **Google One AI Premium**
-2. Agrega tu método de pago (no se te cobrará durante el período gratuito)
-3. Completa el proceso de registro
+2. Agrega tu método de pago (sin cargo durante el período gratuito)
+3. Completa el registro
 
-### Paso 5: Gestionar tu suscripción
+> [!NOTE]
+> **Usuarios de VPN:** Después de la verificación, desconecta la VPN y recarga la página antes de añadir el método de pago. Esto asegura la compatibilidad con las opciones de pago de tu país.
 
-Visita [Google Play Subscriptions](https://play.google.com/store/account/subscriptions) para cancelar si no deseas que se te cobre después del período gratuito de 12 meses.
+### ⚙️ Paso 5: Gestionar tu Suscripción
+
+Visita [Suscripciones de Google Play](https://play.google.com/store/account/subscriptions) para cancelar antes de que termine el período de 12 meses.
+
+**⏰ Consejo:** ¡Configura un recordatorio en el calendario para evitar cargos de renovación automática!
 
 ## 🎁 Beneficios
 

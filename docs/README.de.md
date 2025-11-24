@@ -52,38 +52,48 @@ Bevor Sie beginnen, stellen Sie sicher, dass Sie haben:
 
 ## 🚀 Installation und Verwendung
 
-### Schritt 1: Neues Browserprofil erstellen
+### 🌐 Schritt 1: Neues Browser-Profil erstellen
 
-Um Datenkonflikte zu vermeiden, erstellen Sie ein neues Browserprofil oder verwenden Sie den Inkognito-Modus.
+Erstellen Sie ein neues Browser-Profil oder nutzen Sie den Inkognito-Modus, um Datenkonflikte zu vermeiden.
 
-### Schritt 2: Zugriff auf das Studentenprogramm
+### 🎓 Schritt 2: Zugang zum Studentenprogramm
 
-1. Besuchen Sie das Google-Studentenprogramm: [https://gemini.google/students](https://gemini.google/students)
-2. Klicken Sie auf **Am Studentenprogramm teilnehmen**, um Ihren Verifizierungslink zu erhalten
+1. Besuchen Sie [https://gemini.google/students](https://gemini.google/students)
+2. Klicken Sie auf **Join Student Program**, um Ihren Verifizierungslink zu erhalten
 
-### Schritt 3: Studentenstatus über Telegram verifizieren
+> [!IMPORTANT]
+> **Länderberechtigung:** Wenn Ihr Land nicht unterstützt wird, nutzen Sie ein VPN (siehe [Anforderungen](#-anforderungen)), um zu einem berechtigten Land zu wechseln (UK, Vietnam, etc.).
+> 
+> **💡 Tipp:** Suchen Sie online nach "Google Student Program supported countries" oder fragen Sie eine KI nach den aktuell berechtigten Regionen.
 
-1. Öffnen Sie Telegram und greifen Sie auf einen dieser Bots zu:
+### 📱 Schritt 3: Studentenstatus über Telegram verifizieren
+
+1. Öffnen Sie Telegram und nutzen Sie einen dieser Bots:
    - [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
 
-2. Senden Sie den Verifizierungsbefehl:
+2. Senden Sie diesen Befehl:
    ```
    /verify https://services.sheerid.com/verify/***
    ```
-   *(Ersetzen Sie die URL durch Ihren tatsächlichen Verifizierungslink)*
+   *(Ersetzen Sie dies durch Ihren Verifizierungslink)*
 
-3. Warten Sie, bis der Bot die erfolgreiche Verifizierung bestätigt
+3. Warten Sie auf die Bestätigung des Bots
 
-### Schritt 4: Gemini Advanced aktivieren
+### ✨ Schritt 4: Gemini Advanced aktivieren
 
-1. Nach der Verifizierung registrieren Sie sich für **Google One AI Premium**
-2. Fügen Sie Ihre Zahlungsmethode hinzu (Sie werden während der kostenlosen Periode nicht belastet)
-3. Schließen Sie den Registrierungsprozess ab
+1. Registrieren Sie sich nach der Verifizierung für **Google One AI Premium**
+2. Fügen Sie Ihre Zahlungsmethode hinzu (keine Kosten während des kostenlosen Zeitraums)
+3. Schließen Sie die Registrierung ab
 
-### Schritt 5: Ihr Abonnement verwalten
+> [!NOTE]
+> **VPN-Nutzer:** Trennen Sie nach der Verifizierung die VPN-Verbindung und laden Sie die Seite neu, bevor Sie die Zahlungsmethode hinzufügen. Dies stellt die Kompatibilität mit den Zahlungsoptionen Ihres Landes sicher.
 
-Besuchen Sie [Google Play Subscriptions](https://play.google.com/store/account/subscriptions), um zu kündigen, wenn Sie nach der 12-monatigen kostenlosen Periode nicht belastet werden möchten.
+### ⚙️ Schritt 5: Abonnement verwalten
+
+Besuchen Sie [Google Play Abos](https://play.google.com/store/account/subscriptions), um vor Ablauf der 12 Monate zu kündigen.
+
+**⏰ Tipp:** Stellen Sie eine Kalendererinnerung ein, um automatische Verlängerungskosten zu vermeiden!
 
 ## 🎁 Vorteile
 

@@ -52,38 +52,48 @@ Avant de commencer, assurez-vous d'avoir:
 
 ## 🚀 Installation et Utilisation
 
-### Étape 1: Créer un nouveau profil de navigateur
+### 🌐 Étape 1 : Créer un Nouveau Profil de Navigateur
 
-Pour éviter les conflits de données, créez un nouveau profil de navigateur ou utilisez le mode incognito.
+Créez un nouveau profil de navigateur ou utilisez le mode incognito pour éviter les conflits de données.
 
-### Étape 2: Accéder au programme étudiant
+### 🎓 Étape 2 : Accéder au Programme Étudiant
 
-1. Visitez le programme étudiant de Google: [https://gemini.google/students](https://gemini.google/students)
-2. Cliquez sur **Rejoindre le programme étudiant** pour recevoir votre lien de vérification
+1. Visitez [https://gemini.google/students](https://gemini.google/students)
+2. Cliquez sur **Join Student Program** pour recevoir votre lien de vérification
 
-### Étape 3: Vérifier le statut étudiant via Telegram
+> [!IMPORTANT]
+> **Éligibilité du Pays :** Si votre pays n'est pas pris en charge, utilisez un VPN (voir [Conditions](#-conditions)) pour passer à un pays éligible (Royaume-Uni, Vietnam, etc.).
+> 
+> **💡 Conseil :** Recherchez "Google Student Program supported countries" en ligne ou demandez à une IA pour connaître les dernières régions éligibles.
 
-1. Ouvrez Telegram et accédez à l'un de ces bots:
+### 📱 Étape 3 : Vérifier le Statut Étudiant via Telegram
+
+1. Ouvrez Telegram et accédez à l'un de ces bots :
    - [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
 
-2. Envoyez la commande de vérification:
+2. Envoyez cette commande :
    ```
    /verify https://services.sheerid.com/verify/***
    ```
-   *(Remplacez l'URL par votre lien de vérification réel)*
+   *(Remplacez par votre lien de vérification)*
 
-3. Attendez que le bot confirme la vérification réussie
+3. Attendez la confirmation du bot
 
-### Étape 4: Activer Gemini Advanced
+### ✨ Étape 4 : Activer Gemini Advanced
 
-1. Après la vérification, inscrivez-vous à **Google One AI Premium**
-2. Ajoutez votre méthode de paiement (vous ne serez pas facturé pendant la période gratuite)
-3. Complétez le processus d'inscription
+1. Après vérification, inscrivez-vous à **Google One AI Premium**
+2. Ajoutez votre méthode de paiement (aucun frais pendant la période gratuite)
+3. Terminez l'inscription
 
-### Étape 5: Gérer votre abonnement
+> [!NOTE]
+> **Utilisateurs VPN :** Après vérification, déconnectez le VPN et rechargez la page avant d'ajouter le mode de paiement. Cela garantit la compatibilité avec les options de paiement de votre pays.
 
-Visitez [Google Play Subscriptions](https://play.google.com/store/account/subscriptions) pour annuler si vous ne souhaitez pas être facturé après la période gratuite de 12 mois.
+### ⚙️ Étape 5 : Gérer Votre Abonnement
+
+Visitez [Abonnements Google Play](https://play.google.com/store/account/subscriptions) pour annuler avant la fin de la période de 12 mois.
+
+**⏰ Conseil :** Définissez un rappel de calendrier pour éviter les frais de renouvellement automatique !
 
 ## 🎁 Avantages
 

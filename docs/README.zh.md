@@ -52,38 +52,48 @@
 
 ## 🚀 安装和使用
 
-### 步骤1: 创建新的浏览器配置文件
+### 🌐 步骤 1：创建新的浏览器配置文件
 
-为避免数据冲突，请创建新的浏览器配置文件或使用隐身模式。
+创建一个新的浏览器配置文件或使用隐身模式以避免数据冲突。
 
-### 步骤2: 访问学生计划
+### 🎓 步骤 2：访问学生计划
 
-1. 访问Google学生计划：[https://gemini.google/students](https://gemini.google/students)
-2. 点击**加入学生计划**以获取验证链接
+1. 访问 [https://gemini.google/students](https://gemini.google/students)
+2. 点击 **Join Student Program** 以获取您的验证链接
 
-### 步骤3: 通过Telegram验证学生身份
+> [!IMPORTANT]
+> **国家/地区资格：** 如果您的国家/地区不受支持，请使用 VPN（见 [要求](#-要求)）切换到符合条件的国家/地区（英国、越南等）。
+> 
+> **💡 提示：** 在线搜索“Google Student Program supported countries”或询问 AI 以获取最新的符合条件的地区。
 
-1. 打开Telegram并访问以下机器人之一：
+### 📱 步骤 3：通过 Telegram 验证学生身份
+
+1. 打开 Telegram 并访问以下机器人之一：
    - [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
 
-2. 发送验证命令：
+2. 发送此命令：
    ```
    /verify https://services.sheerid.com/verify/***
    ```
-   *（用您的实际验证链接替换URL）*
+   *（替换为您的验证链接）*
 
-3. 等待机器人确认验证成功
+3. 等待机器人确认
 
-### 步骤4: 激活Gemini Advanced
+### ✨ 步骤 4：激活 Gemini Advanced
 
-1. 验证后，注册**Google One AI Premium**
-2. 添加您的支付方式（免费期间不会扣费）
-3. 完成注册流程
+1. 验证后，注册 **Google One AI Premium**
+2. 添加您的付款方式（免费期间不收费）
+3. 完成注册
 
-### 步骤5: 管理您的订阅
+> [!NOTE]
+> **VPN 用户：** 验证后，请断开 VPN 并重新加载页面，然后再添加付款方式。这可确保与您所在国家/地区的付款选项兼容。
 
-访问[Google Play Subscriptions](https://play.google.com/store/account/subscriptions)以取消订阅，如果您不希望在12个月免费期后被收费。
+### ⚙️ 步骤 5：管理您的订阅
+
+访问 [Google Play 订阅](https://play.google.com/store/account/subscriptions) 以在 12 个月期限结束前取消。
+
+**⏰ 提示：** 设置日历提醒以避免自动续费！
 
 ## 🎁 权益
 

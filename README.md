@@ -65,38 +65,49 @@ Before you begin, ensure you have:
 
 ## 🚀 Installation & Usage
 
-### Step 1: Create a New Browser Profile
+### 🌐 Step 1: Create a New Browser Profile
 
-To avoid data conflicts, create a new browser profile or use incognito mode.
+Create a new browser profile or use incognito mode to avoid data conflicts.
 
-### Step 2: Access the Student Program
+### 🎓 Step 2: Access the Student Program
 
-1. Visit the official Google Student Program: [https://gemini.google/students](https://gemini.google/students)
+1. Visit [https://gemini.google/students](https://gemini.google/students)
 2. Click **Join Student Program** to receive your verification link
 
-### Step 3: Verify Student Status via Telegram
+> **⚠️IMPORTANT**
+> 
+> **✅Country Eligibility:** If your country isn't supported, use a VPN (see [Requirements](#-requirements)) to switch to an eligible country (UK, Vietnam, etc.).
+> 
+> **💡 Tip:** Search "Google Student Program supported countries" online or ask AI for the latest eligible regions.
+
+### 📱 Step 3: Verify Student Status via Telegram
 
 1. Open Telegram and access one of these bots:
    - [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
 
-2. Send the verification command:
+2. Send this command:
    ```
    /verify https://services.sheerid.com/verify/***
    ```
-   *(Replace the URL with your actual verification link)*
+   *(Replace with your verification link)*
 
-3. Wait for the bot to confirm successful verification
+3. Wait for bot confirmation
 
-### Step 4: Activate Gemini Advanced
+### ✨ Step 4: Activate Gemini Advanced
 
 1. After verification, register for **Google One AI Premium**
-2. Add your payment method (you won't be charged during the free period)
-3. Complete the registration process
+2. Add your payment method (no charge during free period)
+3. Complete registration
 
-### Step 5: Manage Your Subscription
+> [!NOTE]
+> **VPN Users:** After verification, disconnect VPN and reload the page before adding payment method. This ensures compatibility with your country's payment options.
 
-Visit [Google Play Subscriptions](https://play.google.com/store/account/subscriptions) to cancel if you don't want to be charged after the 12-month free period.
+### ⚙️ Step 5: Manage Your Subscription
+
+Visit [Google Play Subscriptions](https://play.google.com/store/account/subscriptions) to cancel before the 12-month period ends.
+
+**⏰ Tip:** Set a calendar reminder to avoid auto-renewal charges!
 
 ## 🎁 Benefits
 

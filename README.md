@@ -24,6 +24,12 @@ This guide is available in multiple languages:
 - 🇫🇷 [Français](docs/README.fr.md)
 - 🇩🇪 [Deutsch](docs/README.de.md)
 - 🇨🇳 [中文](docs/README.zh.md)
+- 🇧🇷 [Português](docs/README.pt-BR.md)
+- 🇷🇺 [Русский](docs/README.ru.md)
+- 🇯🇵 [日本語](docs/README.ja.md)
+- 🇰🇷 [한국어](docs/README.ko.md)
+- 🇮🇩 [Indonesia](docs/README.id.md)
+- 🇮🇳 [हिन्दी](docs/README.hi.md)
 
 ---
 

@@ -142,6 +142,11 @@ Nếu bạn thấy hướng dẫn này hữu ích, hãy cân nhắc ủng hộ �
 - [🇰🇷 한국어](README.ko.md)
 - [🇮🇩 Indonesia](README.id.md)
 - [🇮🇳 हिन्दी](README.hi.md)
+- [🇸🇦 العربية](README.ar.md)
+- [🇹🇷 Türkçe](README.tr.md)
+- [🇮🇹 Italiano](README.it.md)
+- [🇹🇭 ไทย](README.th.md)
+- [🇵🇱 Polski](README.pl.md)
 
 ---
 

@@ -135,19 +135,6 @@
 - [🇪🇸 Español](README.es.md)
 - [🇫🇷 Français](README.fr.md)
 - [🇩🇪 Deutsch](README.de.md)
-- [🇨🇳 中文](README.zh.md)
-- [🇧🇷 Português](README.pt-BR.md)
-- [🇷🇺 Русский](README.ru.md)
-- [🇯🇵 日本語](README.ja.md)
-- [🇰🇷 한국어](README.ko.md)
-- [🇮🇩 Indonesia](README.id.md)
-
----
-
-## 📄 라이선스
-
-이 프로젝트는 MIT 라이선스에 따라 라이선스가 부여됩니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
-
 Copyright (c) 2025 SheerID Verification Tool Contributors
 
 ---

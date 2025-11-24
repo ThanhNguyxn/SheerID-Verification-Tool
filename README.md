@@ -30,6 +30,11 @@ This guide is available in multiple languages:
 - 🇰🇷 [한국어](docs/README.ko.md)
 - 🇮🇩 [Indonesia](docs/README.id.md)
 - 🇮🇳 [हिन्दी](docs/README.hi.md)
+- 🇸🇦 [العربية](docs/README.ar.md)
+- 🇹🇷 [Türkçe](docs/README.tr.md)
+- 🇮🇹 [Italiano](docs/README.it.md)
+- 🇹🇭 [ไทย](docs/README.th.md)
+- 🇵🇱 [Polski](docs/README.pl.md)
 
 ---
 

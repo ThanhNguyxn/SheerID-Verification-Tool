@@ -135,6 +135,28 @@ Jika Anda merasa panduan ini bermanfaat, pertimbangkan untuk mendukung untuk mem
 - [🇪🇸 Español](README.es.md)
 - [🇫🇷 Français](README.fr.md)
 - [🇩🇪 Deutsch](README.de.md)
+- [🇨🇳 中文](README.zh.md)
+- [🇧🇷 Português](README.pt-BR.md)
+- [🇷🇺 Русский](README.ru.md)
+- [🇯🇵 日本語](README.ja.md)
+- [🇰🇷 한국어](README.ko.md)
+- [🇮🇩 Indonesia](README.id.md)
+- [🇮🇳 हिन्दी](README.hi.md)
+- [🇸🇦 العربية](README.ar.md)
+- [🇹🇷 Türkçe](README.tr.md)
+- [🇮🇹 Italiano](README.it.md)
+- [🇹🇭 ไทย](README.th.md)
+- [🇵🇱 Polski](README.pl.md)
+
+---
+
+## 📄 Lisensi
+
+Proyek ini dilisensikan di bawah Lisensi MIT - lihat file [LICENSE](LICENSE) untuk detailnya.
+
+Copyright (c) 2025 SheerID Verification Tool Contributors
+
+---
 
 <div align="center">
 

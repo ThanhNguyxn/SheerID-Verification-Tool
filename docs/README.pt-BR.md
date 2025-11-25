@@ -31,6 +31,7 @@ O **SheerID Verification Tool** fornece um guia passo a passo para estudantes de
 
 ## 📚 Índice
 
+- [⚠️ Isenção de Responsabilidade](#️-isenção-de-responsabilidade)
 - [📋 Requisitos](#-requisitos)
 - [🚀 Instalação e Uso](#-instalação-e-uso)
 - [🎁 Benefícios](#-benefícios)
@@ -41,14 +42,38 @@ O **SheerID Verification Tool** fornece um guia passo a passo para estudantes de
 
 ---
 
+## ⚠️ Isenção de Responsabilidade
+
+> [!WARNING]
+> **Apenas Uso Educacional** - Este guia é apenas para fins informativos.
+
+**📁 O Que Esta Ferramenta Faz:**
+- 🔗 Atua como um **diretório** para serviços de verificação de terceiros
+- 📖 Fornece **guias educacionais** para verificação de estudantes
+
+**🚫 O Que Não Fazemos:**
+- ❌ **NÃO** hospedamos, operamos ou gerenciamos bots do Telegram
+- ❌ **NÃO** somos responsáveis pela segurança ou privacidade de dados de bots de terceiros
+- ❌ **NÃO** somos afiliados ao Google, SheerID ou Telegram
+
+**✅ Suas Responsabilidades:**
+- 👤 Você é responsável por suas próprias ações
+- 📜 Você deve aderir aos Termos de Serviço do Google
+- 🔒 Verifique a autenticidade do bot antes de compartilhar informações
+
+> [!CAUTION]
+> **Use por sua própria conta e risco** - Sempre verifique as fontes antes de fornecer informações pessoais.
+
+---
+
 ## 📋 Requisitos
 
 Antes de começar, certifique-se de ter:
 
 - ✅ **Conta no Telegram** - Para verificação via bot
-- ✅ **Conta do Google** - Preferencialmente nova, ano de nascimento 2000–2007 (idade estudantil)
+- ✅ **Conta do Google** - Uma Conta do Google válida que atenda aos requisitos de idade para verificação de estudantes (geralmente estudantes matriculados com 18 anos ou mais)
 - ✅ **Método de pagamento válido** - Cartão bancário ou carteira digital (sem cobrança no pacote gratuito)
-- ✅ **VPN** - (ex: Urban VPN) para mudar a região para Reino Unido, Vietnã ou outros países elegíveis, se necessário
+- ✅ **VPN** - (ex: Urban VPN) para mudar a região para Reino Unido, Vietnã, ou outros países elegíveis, se necessário
 
 ## 🚀 Instalação e Uso
 

@@ -31,6 +31,7 @@
 
 ## 📚 Tabla de Contenidos
 
+- [⚠️ Descargo de Responsabilidad](#️-descargo-de-responsabilidad)
 - [📋 Requisitos](#-requisitos)
 - [🚀 Instalación y Uso](#-instalación-y-uso)
 - [🎁 Beneficios](#-beneficios)
@@ -41,12 +42,36 @@
 
 ---
 
+## ⚠️ Descargo de Responsabilidad
+
+> [!WARNING]
+> **Solo Uso Educativo** - Esta guía es solo para fines informativos.
+
+**📁 Qué Hace Esta Herramienta:**
+- 🔗 Actúa como un **directorio** a servicios de verificación de terceros
+- 📖 Proporciona **guías educativas** para verificación de estudiantes
+
+**🚫 Qué No Hacemos:**
+- ❌ **NO** alojamos, operamos ni gestionamos bots de Telegram
+- ❌ **NO** somos responsables de la seguridad o privacidad de datos de bots de terceros
+- ❌ **NO** estamos afiliados con Google, SheerID o Telegram
+
+**✅ Tus Responsabilidades:**
+- 👤 Eres responsable de tus propias acciones
+- 📜 Debes cumplir con los Términos de Servicio de Google
+- 🔒 Verifica la autenticidad del bot antes de compartir información
+
+> [!CAUTION]
+> **Usar bajo tu propio riesgo** - Siempre verifica las fuentes antes de proporcionar información personal.
+
+---
+
 ## 📋 Requisitos
 
 Antes de comenzar, asegúrate de tener:
 
 - ✅ **Cuenta de Telegram** - Para verificación por bot
-- ✅ **Cuenta de Google** - Preferiblemente nueva, año de nacimiento 2000–2007 (edad estudiantil)
+- ✅ **Cuenta de Google** - Una Cuenta de Google válida que cumpla con los requisitos de edad para la verificación de estudiantes (generalmente estudiantes inscritos mayores de 18 años)
 - ✅ **Método de pago válido** - Tarjeta bancaria o billetera electrónica (sin cargo para paquete gratuito)
 - ✅ **VPN** - (por ejemplo, Urban VPN) para cambiar región a UK, VN u otros países elegibles si es necesario
 

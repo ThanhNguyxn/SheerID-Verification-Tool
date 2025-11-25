@@ -46,7 +46,7 @@
 Başlamadan önce şunlara sahip olduğunuzdan emin olun:
 
 - ✅ **Telegram Hesabı** - Bot doğrulaması için
-- ✅ **Google Hesabı** - Tercihen yeni, doğum yılı 2000–2007 (öğrenci yaşı)
+- ✅ **Google Hesabı** - Öğrenci doğrulaması için yaş gereksinimlerini karşılayan geçerli bir Google Hesabı (genellikle kayıtlı 18+ öğrenciler)
 - ✅ **Geçerli Ödeme Yöntemi** - Banka kartı veya e-cüzdan (ücretsiz paket için ücret alınmaz)
 - ✅ **VPN** - (örn. Urban VPN) gerekirse bölgeyi İngiltere, Vietnam veya diğer uygun ülkelere değiştirmek için
 

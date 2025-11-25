@@ -31,6 +31,7 @@
 
 ## 📚 Mục lục
 
+- [⚠️ Tuyên bố miễn trừ trách nhiệm](#️-tuyên-bố-miễn-trừ-trách-nhiệm)
 - [📋 Điều kiện sử dụng](#-điều-kiện-sử-dụng)
 - [🚀 Cài đặt & Sử dụng](#-cài-đặt--sử-dụng)
 - [🎁 Quyền lợi](#-quyền-lợi)
@@ -41,12 +42,36 @@
 
 ---
 
+## ⚠️ Tuyên bố miễn trừ trách nhiệm
+
+> [!WARNING]
+> **Chỉ dùng cho mục đích giáo dục** - Hướng dẫn này chỉ để cung cấp thông tin.
+
+**📁 Công cụ này làm gì:**
+- 🔗 Đóng vai trò **thư mục** đến các dịch vụ xác minh bên thứ ba
+- 📖 Cung cấp **hướng dẫn giáo dục** cho xác minh sinh viên
+
+**🚫 Chúng tôi không làm gì:**
+- ❌ Chúng tôi **KHÔNG** lưu trữ, vận hành hoặc quản lý các bot Telegram
+- ❌ Chúng tôi **KHÔNG** chịu trách nhiệm về bảo mật hoặc quyền riêng tư dữ liệu của bot bên thứ ba
+- ❌ Chúng tôi **KHÔNG** liên kết với Google, SheerID hoặc Telegram
+
+**✅ Trách nhiệm của bạn:**
+- 👤 Bạn chịu trách nhiệm về hành động của mình
+- 📜 Bạn phải tuân thủ Điều khoản Dịch vụ của Google
+- 🔒 Xác minh tính xác thực của bot trước khi chia sẻ thông tin
+
+> [!CAUTION]
+> **Sử dụng với rủi ro của riêng bạn** - Luôn xác minh nguồn trước khi cung cấp thông tin cá nhân.
+
+---
+
 ## 📋 Điều kiện sử dụng
 
 Trước khi bắt đầu, bạn cần chuẩn bị:
 
 - ✅ **Tài khoản Telegram** - Để xác minh qua bot
-- ✅ **Tài khoản Google** - Nên tạo mới, năm sinh từ 2000–2007 (độ tuổi sinh viên)
+- ✅ **Tài khoản Google** - Tài khoản Google hợp lệ đáp ứng yêu cầu về độ tuổi để xác minh sinh viên (thường là sinh viên đang theo học từ 18 tuổi trở lên)
 - ✅ **Phương thức thanh toán hợp lệ** - Thẻ ngân hàng hoặc ví điện tử (không bị trừ tiền với gói miễn phí)
 - ✅ **VPN** - (ví dụ: Urban VPN) để chuyển vùng sang UK, VN hoặc các quốc gia đủ điều kiện nếu cần
 

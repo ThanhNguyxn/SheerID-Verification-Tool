@@ -55,6 +55,7 @@ The **SheerID Verification Tool** provides a step-by-step guide for students wor
 
 ## 📚 Table of Contents
 
+- [⚠️ Disclaimer & Liability](#️-disclaimer--liability)
 - [📋 Requirements](#-requirements)
 - [🚀 Installation & Usage](#-installation--usage)
 - [🎁 Benefits](#-benefits)
@@ -65,12 +66,36 @@ The **SheerID Verification Tool** provides a step-by-step guide for students wor
 
 ---
 
+## ⚠️ Disclaimer & Liability
+
+> [!WARNING]
+> **Educational Use Only** - This guide is for informational purposes.
+
+**📁 What This Tool Does:**
+- 🔗 Acts as a **directory** to third-party verification services  
+- 📖 Provides **educational guides** for student verification
+
+**🚫 What We Don't Do:**
+- ❌ We do **NOT** host, operate, or manage Telegram bots
+- ❌ We are **NOT** responsible for third-party bot security or data privacy  
+- ❌ We are **NOT** affiliated with Google, SheerID, or Telegram
+
+**✅ Your Responsibilities:**
+- 👤 You are responsible for your own actions
+- 📜 You must follow Google's Terms of Service
+- 🔒 Verify bot authenticity before sharing information
+
+> [!CAUTION]  
+> **Use at your own risk** - Always verify sources before providing personal information.
+
+---
+
 ## 📋 Requirements
 
 Before you begin, ensure you have:
 
 - ✅ **Telegram account** - For bot verification
-- ✅ **Google account** - Preferably new, birth year 2000–2007 (student age)
+- ✅ **Google account** - A valid Google Account meeting the age requirements for student verification (typically 18+ enrolled students)
 - ✅ **Valid payment method** - Bank card or e-wallet (no charge for free package)
 - ✅ **VPN** - (e.g., Urban VPN) to switch region to UK, VN, or other eligible countries if needed
 

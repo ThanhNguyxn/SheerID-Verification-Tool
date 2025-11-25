@@ -46,7 +46,7 @@
 Zanim zaczniesz, upewnij się, że masz:
 
 - ✅ **Konto Telegram** - Do weryfikacji bota
-- ✅ **Konto Google** - Najlepiej nowe, rok urodzenia 2000–2007 (wiek studencki)
+- ✅ **Konto Google** - Ważne konto Google spełniające wymagania wiekowe dla weryfikacji studentów (zazwyczaj zapisani studenci w wieku 18+)
 - ✅ **Ważna metoda płatności** - Karta bankowa lub e-portfel (brak opłat za pakiet darmowy)
 - ✅ **VPN** - (np. Urban VPN) aby zmienić region na Wielką Brytanię, Wietnam lub inne kwalifikujące się kraje w razie potrzeby
 

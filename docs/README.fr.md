@@ -31,6 +31,7 @@
 
 ## 📚 Table des Matières
 
+- [⚠️ Avertissement et Responsabilité](#️-avertissement-et-responsabilité)
 - [📋 Conditions](#-conditions)
 - [🚀 Installation et Utilisation](#-installation-et-utilisation)
 - [🎁 Avantages](#-avantages)
@@ -41,12 +42,36 @@
 
 ---
 
+## ⚠️ Avertissement et Responsabilité
+
+> [!WARNING]
+> **Usage Éducatif Uniquement** - Ce guide est fourni à titre informatif.
+
+**📁 Ce Que Fait Cet Outil:**
+- 🔗 Agit comme un **répertoire** vers des services de vérification tiers
+- 📖 Fournit des **guides éducatifs** pour la vérification des étudiants
+
+**🚫 Ce Que Nous Ne Faisons Pas:**
+- ❌ Nous **N'hébergeons PAS**, n'exploitons ni ne gérons les bots Telegram
+- ❌ Nous ne sommes **PAS responsables** de la sécurité ou de la confidentialité des bots tiers
+- ❌ Nous ne sommes **PAS affiliés** à Google, SheerID ou Telegram
+
+**✅ Vos Responsabilités:**
+- 👤 Vous êtes responsable de vos propres actions
+- 📜 Vous devez respecter les Conditions d'utilisation de Google
+- 🔒 Vérifiez l'authenticité du bot avant de partager des informations
+
+> [!CAUTION]
+> **Utiliser à vos propres risques** - Vérifiez toujours les sources avant de fournir des informations personnelles.
+
+---
+
 ## 📋 Conditions
 
 Avant de commencer, assurez-vous d'avoir:
 
 - ✅ **Compte Telegram** - Pour la vérification par bot
-- ✅ **Compte Google** - De préférence nouveau, année de naissance 2000–2007 (âge étudiant)
+- ✅ **Compte Google** - Un compte Google valide répondant aux exigences d'âge pour la vérification des étudiants (généralement étudiants inscrits de 18 ans et plus)
 - ✅ **Méthode de paiement valide** - Carte bancaire ou portefeuille électronique (aucun frais pour le forfait gratuit)
 - ✅ **VPN** - (par ex. Urban VPN) pour changer de région vers UK, VN ou autres pays éligibles si nécessaire
 

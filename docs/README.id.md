@@ -31,6 +31,7 @@
 
 ## 📚 Daftar Isi
 
+- [⚠️ Penafian & Tanggung Jawab](#️-penafian--tanggung-jawab)
 - [📋 Persyaratan](#-persyaratan)
 - [🚀 Instalasi & Penggunaan](#-instalasi--penggunaan)
 - [🎁 Manfaat](#-manfaat)
@@ -41,12 +42,36 @@
 
 ---
 
+## ⚠️ Penafian & Tanggung Jawab
+
+> [!WARNING]
+> **Hanya Penggunaan Edukasi** - Panduan ini hanya untuk tujuan informasi.
+
+**📁 Apa yang Dilakukan Alat ini:**
+- 🔗 Bertindak sebagai **direktori** ke layanan verifikasi pihak ketiga
+- 📖 Menyediakan **panduan edukasi** untuk verifikasi siswa
+
+**🚫 Apa yang Tidak Kami Lakukan:**
+- ❌ Kami **TIDAK** menghost, mengoperasikan, atau mengelola bot Telegram
+- ❌ Kami **TIDAK** bertanggung jawab atas keamanan atau privasi data bot pihak ketiga
+- ❌ Kami **TIDAK** berafiliasi dengan Google, SheerID, atau Telegram
+
+**✅ Tanggung Jawab Anda:**
+- 👤 Anda bertanggung jawab atas tindakan Anda sendiri
+- 📜 Anda harus mematuhi Ketentuan Layanan Google
+- 🔒 Verifikasi keaslian bot sebelum berbagi informasi
+
+> [!CAUTION]
+> **Gunakan dengan risiko Anda sendiri** - Selalu verifikasi sumber sebelum memberikan informasi pribadi.
+
+---
+
 ## 📋 Persyaratan
 
 Sebelum memulai, pastikan Anda memiliki:
 
 - ✅ **Akun Telegram** - Untuk verifikasi bot
-- ✅ **Akun Google** - Sebaiknya baru, tahun lahir 2000–2007 (usia pelajar)
+- ✅ **Akun Google** - Akun Google yang valid memenuhi persyaratan usia untuk verifikasi siswa (biasanya siswa terdaftar 18+ tahun)
 - ✅ **Metode pembayaran yang valid** - Kartu bank atau dompet elektronik (tidak ada biaya untuk paket gratis)
 - ✅ **VPN** - (misalnya, Urban VPN) untuk mengubah wilayah ke Inggris, Vietnam, atau negara lain yang memenuhi syarat jika diperlukan
 

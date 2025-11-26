@@ -8,9 +8,24 @@
 
 **Google छात्र कार्यक्रम के माध्यम से Gemini Advanced निःशुल्क प्राप्त करने में छात्रों की सहायता के लिए एक व्यापक बहुभाषी मार्गदर्शिका।**
 
-[🌐 ऑनलाइन टूल](https://thanhnguyxn.github.io/SheerID-Verification-Tool/) | [📖 दस्तावेज़ीकरण](#-विषय-सूची) | [🐛 बग रिपोर्ट करें](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues)
+<p align="center">
+  <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
+    <img src="https://img.shields.io/badge/Live_Tool-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Tool">
+  </a>
+  <a href="https://www.povn.cc/p/tsv.html">
+    <img src="https://img.shields.io/badge/Card_Generator-34A853?style=for-the-badge&logo=google&logoColor=white" alt="Student Card Generator">
+  </a>
+  <a href="#-विषय-सूची">
+    <img src="https://img.shields.io/badge/Documentation-gray?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Documentation">
+  </a>
+  <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues">
+    <img src="https://img.shields.io/badge/Report_Bug-EA4335?style=for-the-badge&logo=github&logoColor=white" alt="Report Bug">
+  </a>
+</p>
 
 </div>
+
+
 
 ---
 
@@ -79,6 +94,10 @@
    *(इसे अपने सत्यापन लिंक से बदलें)*
 
 3. बॉट से पुष्टि की प्रतीक्षा करें
+
+
+> [!TIP]
+> **बॉट रखरखाव में है?** यदि सत्यापन बॉट अस्थायी रूप से अनुपलब्ध है, तो आप यहां परीक्षण छात्र कार्ड बना सकते हैं: [🎓 Student Card Generator](https://www.povn.cc/p/tsv.html)
 
 ### ✨ चरण 4: Gemini Advanced सक्रिय करें
 

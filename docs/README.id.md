@@ -8,9 +8,24 @@
 
 **Panduan multibahasa yang komprehensif untuk membantu siswa mendapatkan Gemini Advanced secara gratis melalui Program Pelajar Google.**
 
-[🌐 Alat Online](https://thanhnguyxn.github.io/SheerID-Verification-Tool/) | [📖 Dokumentasi](#-daftar-isi) | [🐛 Laporkan Bug](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues)
+<p align="center">
+  <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
+    <img src="https://img.shields.io/badge/Live_Tool-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Tool">
+  </a>
+  <a href="https://www.povn.cc/p/tsv.html">
+    <img src="https://img.shields.io/badge/Card_Generator-34A853?style=for-the-badge&logo=google&logoColor=white" alt="Student Card Generator">
+  </a>
+  <a href="#-daftar-isi">
+    <img src="https://img.shields.io/badge/Documentation-gray?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Documentation">
+  </a>
+  <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues">
+    <img src="https://img.shields.io/badge/Report_Bug-EA4335?style=for-the-badge&logo=github&logoColor=white" alt="Report Bug">
+  </a>
+</p>
 
 </div>
+
+
 
 ---
 
@@ -104,6 +119,10 @@ Buat profil browser baru atau gunakan mode penyamaran untuk menghindari konflik 
    *(Ganti dengan tautan verifikasi Anda)*
 
 3. Tunggu konfirmasi dari bot
+
+
+> [!TIP]
+> **Bot dalam pemeliharaan?** Jika bot verifikasi sementara tidak tersedia, Anda dapat membuat kartu pelajar uji di sini: [🎓 Student Card Generator](https://www.povn.cc/p/tsv.html)
 
 ### ✨ Langkah 4: Aktifkan Gemini Advanced
 

@@ -8,7 +8,20 @@
 
 **Hướng dẫn toàn diện đa ngôn ngữ giúp sinh viên nhận Gemini Advanced miễn phí thông qua Chương trình Sinh viên Google.**
 
-[🌐 Công cụ trực tuyến](https://thanhnguyxn.github.io/SheerID-Verification-Tool/) | [📖 Tài liệu](#-mục-lục) | [🐛 Báo lỗi](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues)
+<p align="center">
+  <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
+    <img src="https://img.shields.io/badge/Live_Tool-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Tool">
+  </a>
+  <a href="https://www.povn.cc/p/tsv.html">
+    <img src="https://img.shields.io/badge/Card_Generator-34A853?style=for-the-badge&logo=google&logoColor=white" alt="Student Card Generator">
+  </a>
+  <a href="#-mục-lục">
+    <img src="https://img.shields.io/badge/Documentation-gray?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Documentation">
+  </a>
+  <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues">
+    <img src="https://img.shields.io/badge/Report_Bug-EA4335?style=for-the-badge&logo=github&logoColor=white" alt="Report Bug">
+  </a>
+</p>
 
 </div>
 
@@ -104,6 +117,9 @@ Tạo một hồ sơ trình duyệt mới hoặc sử dụng chế độ ẩn da
    *(Thay thế bằng liên kết xác minh của bạn)*
 
 3. Chờ bot xác nhận
+
+> [!TIP]
+> **Bot đang bảo trì?** Nếu bot xác minh tạm thời không khả dụng, bạn có thể tạo thẻ sinh viên kiểm tra tại đây: [🎓 Student Card Generator](https://www.povn.cc/p/tsv.html)
 
 ### ✨ Bước 4: Kích hoạt Gemini Advanced
 

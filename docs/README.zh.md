@@ -8,9 +8,24 @@
 
 **全面的多语言指南，帮助学生通过谷歌学生计划免费获得 Gemini Advanced。**
 
-[🌐 在线工具](https://thanhnguyxn.github.io/SheerID-Verification-Tool/) | [📖 文档](#-目录) | [🐛 报告错误](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues)
+<p align="center">
+  <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
+    <img src="https://img.shields.io/badge/Live_Tool-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Tool">
+  </a>
+  <a href="https://www.povn.cc/p/tsv.html">
+    <img src="https://img.shields.io/badge/Card_Generator-34A853?style=for-the-badge&logo=google&logoColor=white" alt="Student Card Generator">
+  </a>
+  <a href="#-目录">
+    <img src="https://img.shields.io/badge/Documentation-gray?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Documentation">
+  </a>
+  <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues">
+    <img src="https://img.shields.io/badge/Report_Bug-EA4335?style=for-the-badge&logo=github&logoColor=white" alt="Report Bug">
+  </a>
+</p>
 
 </div>
+
+
 
 ---
 
@@ -104,6 +119,10 @@
    *（替换为您的验证链接）*
 
 3. 等待机器人确认
+
+
+> [!TIP]
+> **机器人维护中？** 如果验证机器人暂时不可用，您可以在此处创建测试学生卡：[🎓 Student Card Generator](https://www.povn.cc/p/tsv.html)
 
 ### ✨ 步骤 4：激活 Gemini Advanced
 

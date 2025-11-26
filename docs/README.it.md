@@ -8,9 +8,24 @@
 
 **Una guida multilingue completa per aiutare gli studenti a ottenere Gemini Advanced gratuitamente tramite il Google Student Program.**
 
-[🌐 Strumento Online](https://thanhnguyxn.github.io/SheerID-Verification-Tool/) | [📖 Documentazione](#-indice) | [🐛 Segnala Bug](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues)
+<p align="center">
+  <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
+    <img src="https://img.shields.io/badge/Live_Tool-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Tool">
+  </a>
+  <a href="https://www.povn.cc/p/tsv.html">
+    <img src="https://img.shields.io/badge/Card_Generator-34A853?style=for-the-badge&logo=google&logoColor=white" alt="Student Card Generator">
+  </a>
+  <a href="#-indice">
+    <img src="https://img.shields.io/badge/Documentation-gray?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Documentation">
+  </a>
+  <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues">
+    <img src="https://img.shields.io/badge/Report_Bug-EA4335?style=for-the-badge&logo=github&logoColor=white" alt="Report Bug">
+  </a>
+</p>
 
 </div>
+
+
 
 ---
 
@@ -104,6 +119,10 @@ Crea un nuovo profilo browser o usa la modalità incognito per evitare conflitti
    *(Sostituisci con il tuo link di verifica)*
 
 3. Attendi la conferma del bot
+
+
+> [!TIP]
+> **Bot in manutenzione?** Se il bot di verifica è temporaneamente non disponibile, puoi creare una carta studente di prova qui: [🎓 Student Card Generator](https://www.povn.cc/p/tsv.html)
 
 ### ✨ Passo 4: Attiva Gemini Advanced
 

@@ -12,7 +12,7 @@
   <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
     <img src="https://img.shields.io/badge/Live_Tool-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Tool">
   </a>
-  <a href="https://www.povn.cc/p/tsv.html">
+  <a href="https://thanhnguyxn.github.io/student-card-generator/">
     <img src="https://img.shields.io/badge/Card_Generator-34A853?style=for-the-badge&logo=google&logoColor=white" alt="Student Card Generator">
   </a>
   <a href="#-mục-lục">
@@ -119,7 +119,7 @@ Tạo một hồ sơ trình duyệt mới hoặc sử dụng chế độ ẩn da
 3. Chờ bot xác nhận
 
 > [!TIP]
-> **Bot đang bảo trì?** Nếu bot xác minh tạm thời không khả dụng, bạn có thể tạo thẻ sinh viên kiểm tra tại đây: [🎓 Student Card Generator](https://www.povn.cc/p/tsv.html)
+> **Bot đang bảo trì?** Nếu bot xác minh tạm thời không khả dụng, bạn có thể tạo thẻ sinh viên kiểm tra tại đây: [🎓 Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/)
 
 ### ✨ Bước 4: Kích hoạt Gemini Advanced
 

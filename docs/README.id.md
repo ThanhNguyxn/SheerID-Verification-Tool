@@ -12,7 +12,7 @@
   <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
     <img src="https://img.shields.io/badge/Live_Tool-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Tool">
   </a>
-  <a href="https://www.povn.cc/p/tsv.html">
+  <a href="https://thanhnguyxn.github.io/student-card-generator/">
     <img src="https://img.shields.io/badge/Card_Generator-34A853?style=for-the-badge&logo=google&logoColor=white" alt="Student Card Generator">
   </a>
   <a href="#-daftar-isi">
@@ -122,7 +122,7 @@ Buat profil browser baru atau gunakan mode penyamaran untuk menghindari konflik 
 
 
 > [!TIP]
-> **Bot dalam pemeliharaan?** Jika bot verifikasi sementara tidak tersedia, Anda dapat membuat kartu pelajar uji di sini: [🎓 Student Card Generator](https://www.povn.cc/p/tsv.html)
+> **Bot dalam pemeliharaan?** Jika bot verifikasi sementara tidak tersedia, Anda dapat membuat kartu pelajar uji di sini: [🎓 Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/)
 
 ### ✨ Langkah 4: Aktifkan Gemini Advanced
 

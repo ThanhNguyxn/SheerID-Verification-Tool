@@ -12,7 +12,7 @@
   <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
     <img src="https://img.shields.io/badge/Live_Tool-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Tool">
   </a>
-  <a href="https://www.povn.cc/p/tsv.html">
+  <a href="https://thanhnguyxn.github.io/student-card-generator/">
     <img src="https://img.shields.io/badge/Card_Generator-34A853?style=for-the-badge&logo=google&logoColor=white" alt="Student Card Generator">
   </a>
   <a href="#-目录">
@@ -122,7 +122,7 @@
 
 
 > [!TIP]
-> **机器人维护中？** 如果验证机器人暂时不可用，您可以在此处创建测试学生卡：[🎓 Student Card Generator](https://www.povn.cc/p/tsv.html)
+> **机器人维护中？** 如果验证机器人暂时不可用，您可以在此处创建测试学生卡：[🎓 Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/)
 
 ### ✨ 步骤 4：激活 Gemini Advanced
 

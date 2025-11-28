@@ -12,7 +12,7 @@
   <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
     <img src="https://img.shields.io/badge/Live_Tool-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Tool">
   </a>
-  <a href="https://www.povn.cc/p/tsv.html">
+  <a href="https://thanhnguyxn.github.io/student-card-generator/">
     <img src="https://img.shields.io/badge/Card_Generator-34A853?style=for-the-badge&logo=google&logoColor=white" alt="Student Card Generator">
   </a>
   <a href="#-içindekiler">
@@ -97,7 +97,7 @@ Veri çakışmalarını önlemek için yeni bir tarayıcı profili oluşturun ve
 
 
 > [!TIP]
-> **Bot bakımda mı?** Doğrulama botu geçici olarak kullanılamıyorsa, buradan test öğrenci kartı oluşturabilirsiniz: [🎓 Student Card Generator](https://www.povn.cc/p/tsv.html)
+> **Bot bakımda mı?** Doğrulama botu geçici olarak kullanılamıyorsa, buradan test öğrenci kartı oluşturabilirsiniz: [🎓 Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/)
 
 ### ✨ Adım 4: Gemini Advanced'i Etkinleştirin
 

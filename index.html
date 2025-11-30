@@ -544,7 +544,13 @@
   <div id="captchaModal">
     <div class="modal-content">
       <div class="modal-title">HUMAN VERIFICATION REQUIRED</div>
+      <div style="color: #888; font-size: 13px; margin-bottom: 16px; font-family: var(--font-mono);">Choose verification
+        method:</div>
       <div id="hcaptcha-container" style="display:flex;justify-content:center"></div>
+      <div style="margin: 16px 0; color: #666; font-size: 12px; font-family: var(--font-mono);">OR</div>
+      <button id="btnLoginInstead"
+        style="background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; width: 100%;">Log in
+        using Linux.do</button>
       <button class="btn-cancel"
         onclick="if (!window.__cfRLUnblockHandlers) return false; closeCaptcha()">ABORT</button>
     </div>
@@ -554,7 +560,7 @@
     // ===== DOM Helpers =====
     const $ = (id) => document.getElementById(id);
     const logEl = $('log'), qLenEl = $('qLen'), aheadEl = $('ahead'), waitEl = $('wait');
-    let es = null, jobId = '', pingTimer = null, lastPingAt = 0, currentChallengeId = '', captchaResolver = null;
+    let es = null, jobId = '', pingTimer = null, lastPingAt = 0, currentChallengeId = '', captchaResolver = null, captchaRejecter = null;
 
     function log(msg) {
       const t = new Date().toLocaleTimeString('en-US', { hour12: false });
@@ -618,19 +624,34 @@
       logEl.innerHTML = '';
       log('Initializing verification sequence...');
 
-      // First pass hcaptcha (initial)
-      const token = await showCaptcha();
+      // Show captcha modal with option to login instead
+      const result = await showCaptcha();
 
-      // Ensure logged into Linux Do (server session + CSRF)
-      const me = await ensureLogin();
-      log(`Authenticated: ${(me.user && (me.user.username || me.user.id)) || 'unknown'}`);
+      let token = null;
+      let me = null;
+
+      if (result.useLogin) {
+        // User chose to login with Linux.do
+        log('Logging in with Linux.do...');
+        me = await ensureLogin();
+        log(`✅ Authenticated as: ${(me.user && (me.user.username || me.user.id)) || 'unknown'}`);
+      } else {
+        // User solved captcha
+        token = result.token;
+        log('✅ Captcha verified');
+      }
 
       const payload = { verificationId, hcaptchaToken: token || '' };
       const enc = await encrypt(payload, '0DWb9ZMkN0s9Ks9EBsXExYUtPYr6YTAB');
 
+      const headers = { 'Content-Type': 'text/plain' };
+      if (me && me.csrf) {
+        headers['X-CSRF'] = me.csrf;
+      }
+
       const r = await fetch(`${CONFIG.serverUrl}/api/queue/submit`, {
         method: 'POST',
-        headers: { 'Content-Type': 'text/plain', 'X-CSRF': me.csrf },
+        headers: headers,
         body: enc,
         credentials: 'include'
       });
@@ -715,11 +736,19 @@
         $('captchaModal').style.display = 'flex';
         $('hcaptcha-container').innerHTML = '';
         captchaResolver = resolve;
+        captchaRejecter = reject;
+
+        // Setup login button
+        $('btnLoginInstead').onclick = () => {
+          closeCaptcha();
+          resolve({ useLogin: true, token: null });
+        };
+
         try {
           hcaptcha.render('hcaptcha-container', {
             sitekey: CONFIG.hcaptcha.sitekey,
-            theme: 'dark', // Force dark theme for hCaptcha
-            callback: (token) => { closeCaptcha(); resolve(token); },
+            theme: 'dark',
+            callback: (token) => { closeCaptcha(); resolve({ useLogin: false, token: token }); },
             'error-callback': () => { closeCaptcha(); reject(new Error('hCaptcha failed')); }
           });
         } catch (e) { closeCaptcha(); reject(e); }

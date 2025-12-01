@@ -1,20 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <meta name="download_date" content="2025-10-08T02:18:40.482Z" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>SheerID Verification · Professional</title>
-
-  <!-- hCaptcha API Script -->
-  <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
-  <script type="text/javascript">
-    window.CONFIG = {
-      serverUrl: "https://api.1key.me", // Change to your API
-      hcaptcha: { sitekey: "d134e850-e5e0-4344-8084-3132818e7580" }
-    };
-  </script>
 
   <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,76 +28,30 @@
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-      overflow-x: hidden;
-    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; margin: 0; overflow-x: hidden; }
 
     body {
       font-family: var(--font-sans);
       background-color: var(--bg-dark);
       color: var(--text-main);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      /* Noise Texture Overlay */
+      padding: 40px 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"),
         radial-gradient(circle at 50% 0%, #1a1a1a, #050505);
       background-repeat: repeat, no-repeat;
       background-size: 128px 128px, cover;
     }
 
-    /* Ambient Glows */
-    .glow-orb {
-      position: fixed;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.15;
-      z-index: -1;
-      animation: float 10s ease-in-out infinite;
-    }
+    .glow-orb { position: fixed; width: 600px; height: 600px; border-radius: 50%; filter: blur(100px); opacity: 0.15; z-index: -1; animation: float 10s ease-in-out infinite; }
+    .orb-1 { top: -200px; left: -100px; background: var(--primary); }
+    .orb-2 { bottom: -200px; right: -100px; background: var(--accent); animation-delay: -5s; }
 
-    .orb-1 {
-      top: -200px;
-      left: -100px;
-      background: var(--primary);
-    }
+    @keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(30px, 50px); } }
 
-    .orb-2 {
-      bottom: -200px;
-      right: -100px;
-      background: var(--accent);
-      animation-delay: -5s;
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translate(0, 0);
-      }
-
-      50% {
-        transform: translate(30px, 50px);
-      }
-    }
-
-    .container {
-      width: 100%;
-      max-width: 720px;
-      padding: 24px;
-      position: relative;
-      z-index: 1;
-      perspective: 1000px;
-    }
+    .container { width: 100%; max-width: 720px; padding: 24px; position: relative; z-index: 1; perspective: 1000px; }
 
     .glass-card {
       background: var(--glass-bg);
@@ -116,9 +60,7 @@
       border: 1px solid var(--glass-border);
       border-radius: 24px;
       padding: 48px;
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.2),
-        0 20px 40px -10px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 20px 40px -10px rgba(0, 0, 0, 0.5);
       opacity: 0;
       transform: translateY(20px) rotateX(2deg);
       animation: cardEntrance 0.8s var(--ease-out) forwards;
@@ -126,376 +68,78 @@
       overflow: hidden;
     }
 
-    /* Subtle top highlight */
-    .glass-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    }
+    .glass-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent); }
 
-    @keyframes cardEntrance {
-      to {
-        opacity: 1;
-        transform: translateY(0) rotateX(0);
-      }
-    }
+    @keyframes cardEntrance { to { opacity: 1; transform: translateY(0) rotateX(0); } }
 
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 40px;
-    }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 16px; }
 
-    h2 {
-      margin: 0;
-      font-size: 20px;
-      font-weight: 600;
-      font-family: var(--font-mono);
-      letter-spacing: -0.03em;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    h2 { margin: 0; font-size: 20px; font-weight: 600; font-family: var(--font-mono); letter-spacing: -0.03em; color: #fff; display: flex; align-items: center; gap: 12px; }
+    h2::before { content: ''; display: block; width: 20px; height: 20px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 6px; }
 
-    h2::before {
-      content: '';
-      display: block;
-      width: 20px;
-      height: 20px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 6px;
-    }
+    .status-badge { font-family: var(--font-mono); font-size: 11px; padding: 6px 12px; border-radius: 99px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border); color: #4ade80; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .status-dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; animation: pulse 2s infinite; }
 
-    .status-badge {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      padding: 6px 12px;
-      border-radius: 99px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--glass-border);
-      color: #4ade80;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
+    @keyframes pulse { 0% { opacity: 1; box-shadow: 0 0 10px #4ade80; } 50% { opacity: 0.5; box-shadow: 0 0 2px #4ade80; } 100% { opacity: 1; box-shadow: 0 0 10px #4ade80; } }
 
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      background: #4ade80;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #4ade80;
-      animation: pulse 2s infinite;
-    }
+    .input-wrapper { position: relative; margin-bottom: 32px; }
+    .input-group { display: flex; gap: 16px; position: relative; z-index: 2; }
 
-    @keyframes pulse {
-      0% {
-        opacity: 1;
-        box-shadow: 0 0 10px #4ade80;
-      }
+    input[type="url"] { flex: 1; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--glass-border); border-radius: 12px; padding: 0 20px; height: 56px; color: #fff; font-family: var(--font-mono); font-size: 13px; transition: all 0.3s var(--ease-out); outline: none; }
+    input[type="url"]:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); background: rgba(0, 0, 0, 0.5); }
+    input[type="url"]::placeholder { color: #444; }
 
-      50% {
-        opacity: 0.5;
-        box-shadow: 0 0 2px #4ade80;
-      }
+    button { position: relative; background: #fff; color: #000; border: none; border-radius: 12px; padding: 0 32px; height: 56px; font-weight: 600; font-size: 14px; cursor: pointer; overflow: hidden; transition: transform 0.2s; }
+    button:hover { transform: scale(1.02); }
+    button:active { transform: scale(0.98); }
+    button::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent); transition: 0.5s; }
+    button:hover::after { left: 100%; }
 
-      100% {
-        opacity: 1;
-        box-shadow: 0 0 10px #4ade80;
-      }
-    }
+    .section-title { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
 
-    .input-wrapper {
-      position: relative;
-      margin-bottom: 32px;
-    }
+    .info-box { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; padding: 20px; margin-bottom: 32px; }
+    .info-box-title { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: #60a5fa; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .info-box-content { font-size: 13px; color: #a3a3a3; line-height: 1.6; }
+    .info-box-content a { color: #60a5fa; }
+    .info-box-content code { font-family: var(--font-mono); background: rgba(0, 0, 0, 0.3); padding: 2px 6px; border-radius: 4px; font-size: 12px; color: #fff; }
 
-    .input-group {
-      display: flex;
-      gap: 16px;
-      position: relative;
-      z-index: 2;
-    }
+    .methods-section { margin-bottom: 32px; }
+    .method-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
 
-    input[type="url"] {
-      flex: 1;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      padding: 0 20px;
-      height: 56px;
-      color: #fff;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      transition: all 0.3s var(--ease-out);
-      outline: none;
-    }
+    .method-card { background: rgba(0, 0, 0, 0.3); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px; cursor: pointer; transition: all 0.3s var(--ease-out); text-decoration: none; display: block; }
+    .method-card:hover { border-color: var(--primary); background: rgba(59, 130, 246, 0.1); transform: translateY(-4px); }
+    .method-icon { font-size: 32px; margin-bottom: 12px; }
+    .method-name { font-family: var(--font-mono); font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+    .method-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
 
-    input[type="url"]:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-      background: rgba(0, 0, 0, 0.5);
-    }
+    .method-tag { display: inline-block; font-family: var(--font-mono); font-size: 10px; padding: 4px 8px; border-radius: 4px; margin-top: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .tag-recommended { background: rgba(74, 222, 128, 0.2); color: #4ade80; }
+    .tag-fast { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+    .tag-web { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+    .tag-tool { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
 
-    input[type="url"]::placeholder {
-      color: #444;
-    }
+    .terminal-window { background: #080808; border: 1px solid var(--glass-border); border-radius: 16px; padding: 0; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+    .terminal-header { background: rgba(255, 255, 255, 0.03); padding: 12px 20px; border-bottom: 1px solid var(--glass-border); }
+    .terminal-title { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .terminal-body { padding: 20px; font-family: var(--font-mono); font-size: 12px; line-height: 1.8; color: #a3a3a3; min-height: 120px; }
+    .terminal-body .step { margin-bottom: 8px; }
+    .terminal-body .step-num { color: #4ade80; margin-right: 8px; }
 
-    button {
-      position: relative;
-      background: #fff;
-      color: #000;
-      border: none;
-      border-radius: 12px;
-      padding: 0 32px;
-      height: 56px;
-      font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-      overflow: hidden;
-      transition: transform 0.2s;
-    }
+    .footer { margin-top: 40px; text-align: center; font-size: 12px; color: #444; display: flex; justify-content: center; gap: 32px; font-family: var(--font-mono); }
+    .footer a { color: #666; text-decoration: none; transition: color 0.2s; }
+    .footer a:hover { color: #fff; }
 
-    button:hover {
-      transform: scale(1.02);
-    }
-
-    button:active {
-      transform: scale(0.98);
-    }
-
-    /* Shimmer Effect */
-    button::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-      transition: 0.5s;
-    }
-
-    button:hover::after {
-      left: 100%;
-    }
-
-    /* HUD Terminal */
-    .terminal-window {
-      background: #080808;
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      padding: 0;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      display: flex;
-      flex-direction: column;
-      height: 400px;
-    }
-
-    .terminal-header {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 12px 20px;
-      border-bottom: 1px solid var(--glass-border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .terminal-title {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .terminal-stats {
-      display: flex;
-      gap: 16px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .stat-item span {
-      color: #fff;
-      margin-left: 4px;
-    }
-
-    .terminal-body {
-      flex: 1;
-      padding: 20px;
-      overflow-y: auto;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      line-height: 1.8;
-      color: #a3a3a3;
-    }
-
-    /* Log Colors */
-    .log-time {
-      color: #555;
-      margin-right: 12px;
-      user-select: none;
-    }
-
-    .log-info {
-      color: #a3a3a3;
-    }
-
-    .log-success {
-      color: #4ade80;
-    }
-
-    .log-error {
-      color: #f87171;
-    }
-
-    .log-warn {
-      color: #fbbf24;
-    }
-
-    .log-highlight {
-      color: #60a5fa;
-    }
-
-    /* Custom Scrollbar */
-    .terminal-body::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .terminal-body::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .terminal-body::-webkit-scrollbar-thumb {
-      background: #333;
-      border-radius: 3px;
-    }
-
-    .terminal-body::-webkit-scrollbar-thumb:hover {
-      background: #555;
-    }
-
-    .footer {
-      margin-top: 40px;
-      text-align: center;
-      font-size: 12px;
-      color: #444;
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      font-family: var(--font-mono);
-    }
-
-    .footer a {
-      color: #666;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer a:hover {
-      color: #fff;
-    }
-
-    /* Modal */
-    #captchaModal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      animation: fadeIn 0.3s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    .modal-content {
-      background: #111;
-      padding: 32px;
-      border-radius: 20px;
-      border: 1px solid var(--glass-border);
-      text-align: center;
-      box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
-      transform: scale(0.95);
-      animation: scaleIn 0.3s var(--ease-out) forwards;
-    }
-
-    @keyframes scaleIn {
-      to {
-        transform: scale(1);
-      }
-    }
-
-    .modal-title {
-      color: #fff;
-      margin-bottom: 24px;
-      font-weight: 500;
-      font-size: 16px;
-      font-family: var(--font-mono);
-    }
-
-    .btn-cancel {
-      background: transparent;
-      border: 1px solid #333;
-      color: #666;
-      margin-top: 24px;
-      width: 100%;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .btn-cancel:hover {
-      border-color: #666;
-      color: #fff;
-      transform: none;
-    }
-
-    .btn-cancel::after {
-      display: none;
-    }
+    .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); background: #4ade80; color: #000; padding: 12px 24px; border-radius: 8px; font-family: var(--font-mono); font-size: 13px; font-weight: 500; opacity: 0; transition: opacity 0.3s; z-index: 1000; }
+    .toast.show { opacity: 1; }
 
     @media (max-width: 600px) {
-      .container {
-        padding: 16px;
-      }
-
-      .glass-card {
-        padding: 24px;
-      }
-
-      .input-group {
-        flex-direction: column;
-      }
-
-      button {
-        width: 100%;
-      }
+      .container { padding: 16px; }
+      .glass-card { padding: 24px; }
+      .input-group { flex-direction: column; }
+      button { width: 100%; }
+      .method-cards { grid-template-columns: 1fr; }
     }
   </style>
-  <base href="https://1key.me/">
 </head>
 
 <body>
@@ -508,28 +152,67 @@
         <h2>SHEERID VERIFICATION</h2>
         <div class="status-badge">
           <div class="status-dot"></div>
-          System Online
+          Online
+        </div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-box-title"><span>💡</span> How it works</div>
+        <div class="info-box-content">
+          1. Get your SheerID verification URL from any supported service<br>
+          2. The URL should start with <code>services.sheerid.com</code><br>
+          3. Use one of the verification methods below
         </div>
       </div>
 
       <div class="input-wrapper">
+        <div class="section-title">Quick Verify via 1Key.me</div>
         <div class="input-group">
-          <input id="urlInput" type="url" placeholder="https://services.sheerid.com/verify/.../?verificationId=...">
-          <button id="btnStart">INITIALIZE</button>
+          <input id="urlInput" type="url" placeholder="https://services.sheerid.com/verify/...">
+          <button id="btnVerify">VERIFY</button>
+        </div>
+      </div>
+
+      <div class="methods-section">
+        <div class="section-title">Verification Methods</div>
+        <div class="method-cards">
+          <a href="https://t.me/sheeridverify_bot?start=invite_7762497789" target="_blank" class="method-card">
+            <div class="method-icon">🤖</div>
+            <div class="method-name">SheerID Verify Bot</div>
+            <div class="method-desc">Send /verify command with your URL to the Telegram bot</div>
+            <span class="method-tag tag-recommended">Recommended</span>
+          </a>
+          <a href="https://t.me/SheerID_VIP_Bot?start=ref_REF001124" target="_blank" class="method-card">
+            <div class="method-icon">⚡</div>
+            <div class="method-name">SheerID VIP Bot</div>
+            <div class="method-desc">Alternative bot with faster processing</div>
+            <span class="method-tag tag-fast">Fast</span>
+          </a>
+          <a href="https://1key.me" target="_blank" class="method-card">
+            <div class="method-icon">🌐</div>
+            <div class="method-name">1Key.me Website</div>
+            <div class="method-desc">Web-based verification with queue system</div>
+            <span class="method-tag tag-web">Web</span>
+          </a>
+          <a href="https://thanhnguyxn.github.io/student-card-generator/" target="_blank" class="method-card">
+            <div class="method-icon">🎓</div>
+            <div class="method-name">Student Card Generator</div>
+            <div class="method-desc">Create a test student card for manual verification</div>
+            <span class="method-tag tag-tool">Tool</span>
+          </a>
         </div>
       </div>
 
       <div class="terminal-window">
         <div class="terminal-header">
-          <div class="terminal-title">Process Log</div>
-          <div class="terminal-stats">
-            <div class="stat-item">Q: <span id="qLen">-</span></div>
-            <div class="stat-item">Ahead: <span id="ahead">-</span></div>
-            <div class="stat-item">Est: <span id="wait">-</span></div>
-          </div>
+          <div class="terminal-title">Usage Instructions</div>
         </div>
-        <div id="log" class="terminal-body">
-          <div style="color:#555; margin-bottom: 10px;">// Waiting for input...</div>
+        <div class="terminal-body">
+          <div class="step"><span class="step-num">[1]</span> Get your verification URL from Google Students page</div>
+          <div class="step"><span class="step-num">[2]</span> Choose a verification method above</div>
+          <div class="step"><span class="step-num">[3]</span> For Telegram bots: send <code style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">/verify YOUR_URL</code></div>
+          <div class="step"><span class="step-num">[4]</span> Wait for verification confirmation</div>
+          <div class="step"><span class="step-num">[5]</span> Return to Google and complete registration</div>
         </div>
       </div>
 
@@ -540,236 +223,36 @@
     </div>
   </div>
 
-  <!-- Captcha Modal -->
-  <div id="captchaModal">
-    <div class="modal-content">
-      <div class="modal-title">HUMAN VERIFICATION REQUIRED</div>
-      <div style="color: #888; font-size: 13px; margin-bottom: 16px; font-family: var(--font-mono);">Choose verification
-        method:</div>
-      <div id="hcaptcha-container" style="display:flex;justify-content:center"></div>
-      <div style="margin: 16px 0; color: #666; font-size: 12px; font-family: var(--font-mono);">OR</div>
-      <button id="btnLoginInstead"
-        style="background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; width: 100%;">Log in
-        using Linux.do</button>
-      <button class="btn-cancel"
-        onclick="if (!window.__cfRLUnblockHandlers) return false; closeCaptcha()">ABORT</button>
-    </div>
-  </div>
+  <div id="toast" class="toast">✓ URL copied! Paste it on 1Key.me</div>
 
-  <script type="text/javascript">
-    // ===== DOM Helpers =====
-    const $ = (id) => document.getElementById(id);
-    const logEl = $('log'), qLenEl = $('qLen'), aheadEl = $('ahead'), waitEl = $('wait');
-    let es = null, jobId = '', pingTimer = null, lastPingAt = 0, currentChallengeId = '', captchaResolver = null, captchaRejecter = null;
-
-    function log(msg) {
-      const t = new Date().toLocaleTimeString('en-US', { hour12: false });
-      const div = document.createElement('div');
-
-      // Determine log type for styling
-      let className = 'log-info';
-      if (msg.includes('Success') || msg.includes('done')) className = 'log-success';
-      else if (msg.includes('Error') || msg.includes('failed')) className = 'log-error';
-      else if (msg.includes('Queued') || msg.includes('STATUS')) className = 'log-highlight';
-      else if (msg.includes('Captcha')) className = 'log-warn';
-
-      div.innerHTML = `<span class="log-time">[${t}]</span><span class="${className}">${msg}</span>`;
-      logEl.appendChild(div);
-      logEl.scrollTop = logEl.scrollHeight;
-    }
-    function randomPingDelay() { return 6000 + Math.floor(Math.random() * 3000); } // 6~9s
-
-
-    async function doLinuxDoOAuth() {
-      const r = await fetch(`${CONFIG.serverUrl}/api/oauth/start`, { credentials: 'include' });
-      if (!r.ok) { throw new Error('Failed to get authorization link'); }
-      const { authUrl } = await r.json();
-      const w = window.open(authUrl, 'linuxdo_oauth', 'width=520,height=720');
-      if (!w) throw new Error('Popup was blocked, please allow popups');
-      return await new Promise((resolve, reject) => {
-        const to = setTimeout(() => { try { w.close() } catch { }; reject(new Error('Login timed out')); }, 2 * 60 * 1000);
-        function onMsg(ev) {
-          const d = ev.data || {};
-          if (d.type !== 'linuxdo_oauth') return;
-          window.removeEventListener('message', onMsg);
-          clearTimeout(to);
-          try { w.close(); } catch { }
-          resolve(true);
-        }
-        window.addEventListener('message', onMsg);
-      });
-    }
-    async function fetchMe() {
-      const r = await fetch(`${CONFIG.serverUrl}/api/oauth/me`, { credentials: 'include' });
-      if (!r.ok) return { loggedIn: false };
-      return await r.json();
-    }
-    async function ensureLogin() {
-      let me = await fetchMe();
-      if (me.loggedIn) return me;
-      await doLinuxDoOAuth();
-      me = await fetchMe();
-      if (!me.loggedIn) throw new Error('OAuth login failed or cancelled');
-      return me;
+  <script>
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
-    async function start() {
-      const url = $('urlInput').value.trim();
-      if (!url) { log('Please enter verification URL'); return; }
-      const m = url.match(/verificationId=([a-f0-9]+)/i);
-      if (!m) { log('Invalid verification ID format'); return; }
-      const verificationId = m[1];
-
-      // Clear previous logs
-      logEl.innerHTML = '';
-      log('Initializing verification sequence...');
-
-      // Show captcha modal with option to login instead
-      const result = await showCaptcha();
-
-      let token = null;
-      let me = null;
-
-      if (result.useLogin) {
-        // User chose to login with Linux.do
-        log('Logging in with Linux.do...');
-        me = await ensureLogin();
-        log(`✅ Authenticated as: ${(me.user && (me.user.username || me.user.id)) || 'unknown'}`);
-      } else {
-        // User solved captcha
-        token = result.token;
-        log('✅ Captcha verified');
-      }
-
-      const payload = { verificationId, hcaptchaToken: token || '' };
-      const enc = await encrypt(payload, '0DWb9ZMkN0s9Ks9EBsXExYUtPYr6YTAB');
-
-      const headers = { 'Content-Type': 'text/plain' };
-      if (me && me.csrf) {
-        headers['X-CSRF'] = me.csrf;
-      }
-
-      const r = await fetch(`${CONFIG.serverUrl}/api/queue/submit`, {
-        method: 'POST',
-        headers: headers,
-        body: enc,
-        credentials: 'include'
-      });
-      const data = await r.json().catch(() => ({}));
-      if (!r.ok) { log('Submission failed: ' + (data.error || r.status)); return; }
-      jobId = data.jobId;
-      log('Job Queued. ID: ' + jobId);
-      openES(jobId);
-      scheduleNextPing(true);
-    }
-
-    function openES(id) {
-      if (es) { try { es.close(); } catch { } }
-      es = new EventSource(`${CONFIG.serverUrl}/api/queue/stream?id=${encodeURIComponent(id)}`);
-      es.addEventListener('status', ev => { log(`[STATUS] ${ev.data}`); if (ev.data === 'done' || ev.data === 'failed' || ev.data === 'removed') { clearPing(); } });
-      es.addEventListener('log', ev => log(ev.data));
-      es.addEventListener('result', ev => { log('✅ Success, redirect URL: ' + ev.data); });
-      es.addEventListener('error', ev => { log('❌ Error: ' + ev.data); });
-      es.addEventListener('end', ev => { log('=== Stream closed ==='); es.close(); clearPing(); });
-      es.addEventListener('metrics', ev => {
-        try {
-          const o = JSON.parse(ev.data);
-          qLenEl.textContent = o.queueLen;
-          aheadEl.textContent = o.ahead;
-          waitEl.textContent = `${o.estWaitSec}s`;
-        } catch { }
-      });
-      es.addEventListener('captcha', async ev => {
-        const o = JSON.parse(ev.data || '{}');
-        currentChallengeId = o.challengeId || '';
-        log('Captcha Challenge Received: ' + currentChallengeId);
-        try {
-          const token = await showCaptcha();
-          await submitCaptcha(token, currentChallengeId);
-          log('Captcha Response Submitted');
-        } catch (e) {
-          log('Captcha Failed: ' + e.message);
-        }
-      });
-    }
-
-    async function submitCaptcha(token, challengeId) {
-      const r = await fetch(`${CONFIG.serverUrl}/api/queue/captcha?id=${encodeURIComponent(jobId)}&challenge=${encodeURIComponent(challengeId)}`, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token })
-      });
-      if (!r.ok) {
-        const j = await r.json().catch(() => ({}));
-        log('Captcha submission failed: ' + (j.error || r.status));
-      }
-    }
-
-    function scheduleNextPing(first = false) {
-      clearPing();
-      const delay = first ? randomPingDelay() : randomPingDelay();
-      pingTimer = setTimeout(doPing, delay);
-    }
-    function clearPing() { if (pingTimer) { clearTimeout(pingTimer); pingTimer = null; } }
-    async function doPing() {
-      const now = Date.now();
-      const delta = now - lastPingAt;
-      if (lastPingAt && delta < 5000) {
-        const pad = 5500 - delta;
-        setTimeout(doPing, pad);
-        return;
-      }
-      lastPingAt = now;
+    document.getElementById('btnVerify').addEventListener('click', async function() {
+      const url = document.getElementById('urlInput').value.trim();
+      if (!url) { alert('Please enter a verification URL'); return; }
+      if (!url.includes('sheerid.com')) { alert('Please enter a valid SheerID verification URL'); return; }
+      
       try {
-        const r = await fetch(`${CONFIG.serverUrl}/api/queue/ping?id=${encodeURIComponent(jobId)}`, { method: 'POST' });
-        if (!r.ok) {
-          const j = await r.json().catch(() => ({}));
-          log('Ping failed: ' + (j.error || r.status));
-          clearPing();
-          return;
-        }
-      } catch (e) { log('Ping network error: ' + e.message); clearPing(); return; }
-      scheduleNextPing();
-    }
+        await navigator.clipboard.writeText(url);
+        showToast('✓ URL copied! Paste it on 1Key.me');
+      } catch (e) {
+        showToast('Opening 1Key.me...');
+      }
+      
+      setTimeout(() => {
+        window.open('https://1key.me', '_blank');
+      }, 500);
+    });
 
-    // ---- Captcha Modal ----
-    function showCaptcha() {
-      return new Promise((resolve, reject) => {
-        $('captchaModal').style.display = 'flex';
-        $('hcaptcha-container').innerHTML = '';
-        captchaResolver = resolve;
-        captchaRejecter = reject;
-
-        // Setup login button
-        $('btnLoginInstead').onclick = () => {
-          closeCaptcha();
-          resolve({ useLogin: true, token: null });
-        };
-
-        try {
-          hcaptcha.render('hcaptcha-container', {
-            sitekey: CONFIG.hcaptcha.sitekey,
-            theme: 'dark',
-            callback: (token) => { closeCaptcha(); resolve({ useLogin: false, token: token }); },
-            'error-callback': () => { closeCaptcha(); reject(new Error('hCaptcha failed')); }
-          });
-        } catch (e) { closeCaptcha(); reject(e); }
-      });
-    }
-    function closeCaptcha() { $('captchaModal').style.display = 'none'; if (captchaResolver) { /* noop */ } }
-
-    // ---- Crypto AES-GCM ----
-    async function encrypt(data, key) {
-      const enc = new TextEncoder();
-      const bytes = enc.encode(JSON.stringify(data));
-      const iv = crypto.getRandomValues(new Uint8Array(12));
-      const k = await crypto.subtle.importKey('raw', enc.encode(key), { name: 'AES-GCM' }, false, ['encrypt']);
-      const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, k, bytes);
-      const out = new Uint8Array(iv.length + ct.byteLength);
-      out.set(iv, 0); out.set(new Uint8Array(ct), iv.length);
-      return btoa(String.fromCharCode(...out));
-    }
-
-    $('btnStart').onclick = start;
+    document.getElementById('urlInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') { document.getElementById('btnVerify').click(); }
+    });
   </script>
 </body>
-
 </html>

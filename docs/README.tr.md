@@ -86,6 +86,7 @@ Veri çakışmalarını önlemek için yeni bir tarayıcı profili oluşturun ve
 1. Telegram'ı açın ve bu botlardan birine erişin:
    - [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
+   - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
 
 2. Bu komutu gönderin:
    ```

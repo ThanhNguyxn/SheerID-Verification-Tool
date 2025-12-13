@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: sheerid-verification-tool
+    env: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    region: singapore
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production

@@ -5,7 +5,7 @@ let sharedBrowser = null;
 
 async function getBrowser() {
     if (!sharedBrowser || !sharedBrowser.isConnected()) {
-        console.log('� Launching shared browser instance...');
+        global.emitLog('� Launching shared browser instance...');
         sharedBrowser = await puppeteer.launch({
             headless: "new",
             protocolTimeout: 180000, // 3 minutes for slow VMs
@@ -32,7 +32,7 @@ async function closeBrowser() {
 }
 
 async function generateStudentCard(studentInfo) {
-    console.log('📸 Generating student card...');
+    global.emitLog('📸 Generating student card...');
     const browser = await getBrowser();
     const page = await browser.newPage();
 
@@ -66,7 +66,7 @@ async function generateStudentCard(studentInfo) {
         if (!cardElement) throw new Error('Card preview not found');
 
         const imageBuffer = await cardElement.screenshot({ type: 'png', encoding: 'binary' });
-        console.log('✅ Student card generated');
+        global.emitLog('✅ Student card generated');
         return imageBuffer;
 
     } finally {
@@ -75,7 +75,7 @@ async function generateStudentCard(studentInfo) {
 }
 
 async function generatePayslip(teacherInfo) {
-    console.log('📸 Generating payslip...');
+    global.emitLog('📸 Generating payslip...');
     const browser = await getBrowser();
     const page = await browser.newPage();
 
@@ -114,7 +114,7 @@ async function generatePayslip(teacherInfo) {
         if (!cardElement) throw new Error('Payslip container not found');
 
         const imageBuffer = await cardElement.screenshot({ type: 'png', encoding: 'binary' });
-        console.log('✅ Payslip generated');
+        global.emitLog('✅ Payslip generated');
         return imageBuffer;
 
     } finally {
@@ -123,7 +123,7 @@ async function generatePayslip(teacherInfo) {
 }
 
 async function generateTeacherCard(teacherInfo) {
-    console.log('📸 Generating Faculty ID Card...');
+    global.emitLog('📸 Generating Faculty ID Card...');
     const browser = await getBrowser();
     const page = await browser.newPage();
 
@@ -161,7 +161,7 @@ async function generateTeacherCard(teacherInfo) {
         if (!cardElement) throw new Error('Faculty ID Card not found');
 
         const imageBuffer = await cardElement.screenshot({ type: 'png', encoding: 'binary' });
-        console.log('✅ Faculty ID Card generated');
+        global.emitLog('✅ Faculty ID Card generated');
         return imageBuffer;
 
     } finally {
@@ -171,7 +171,7 @@ async function generateTeacherCard(teacherInfo) {
 
 // Generate multiple documents in parallel
 async function generateDocumentsParallel(info, docTypes = ['payslip', 'teacherCard']) {
-    console.log(`📸 Generating ${docTypes.length} documents in parallel...`);
+    global.emitLog(`📸 Generating ${docTypes.length} documents in parallel...`);
     const startTime = Date.now();
 
     const promises = docTypes.map(type => {
@@ -185,7 +185,7 @@ async function generateDocumentsParallel(info, docTypes = ['payslip', 'teacherCa
 
     const results = await Promise.all(promises);
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-    console.log(`✅ All documents generated in ${elapsed}s`);
+    global.emitLog(`✅ All documents generated in ${elapsed}s`);
 
     return results;
 }

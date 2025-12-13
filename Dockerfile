@@ -8,6 +8,9 @@ WORKDIR /usr/src/app
 # Copy package files from subdirectory
 COPY auto-verify-tool/package*.json ./
 
+# Skip Chromium download for Puppeteer (using base image's Chrome)
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+
 # Install dependencies
 RUN npm install
 

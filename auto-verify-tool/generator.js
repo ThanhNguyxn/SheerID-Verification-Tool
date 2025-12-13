@@ -27,18 +27,21 @@ async function generateStudentCard(studentInfo) {
             return !select.disabled && select.options.length > 1;
         });
 
-        // Select University (MIT as default)
-        // You can change this to random or specific university
-        await page.select('#universitySelect', 'Massachusetts Institute of Technology');
+        // Select Pennsylvania State University (must match org in API submission)
+        await page.select('#universitySelect', 'Pennsylvania State University-Main Campus');
 
-        // Fill in the form
+        // Clear and fill in the form with exact info from API
+        await page.$eval('#studentName', el => el.value = '');
         await page.type('#studentName', studentInfo.fullName || 'John Doe');
+
+        await page.$eval('#studentId', el => el.value = '');
         await page.type('#studentId', studentInfo.studentId || '12345678');
 
-        // Date of Birth (YYYY-MM-DD)
+        // Date of Birth (YYYY-MM-DD) - must match birthDate in API
+        await page.$eval('#dateOfBirth', el => el.value = '');
         await page.type('#dateOfBirth', studentInfo.dob || '2000-01-01');
 
-        // Wait for preview to update (give it a bit more time for the logo to load)
+        // Wait for preview to update
         await new Promise(r => setTimeout(r, 2000));
 
         // Find the card element to screenshot
@@ -151,8 +154,8 @@ async function generateTeacherCard(teacherInfo) {
             return !select.disabled && select.options.length > 1;
         });
 
-        // Select University (PSU)
-        await page.select('#universitySelect', '0'); // First university in list
+        // Select Pennsylvania State University (must match org in API)
+        await page.select('#universitySelect', 'Pennsylvania State University-Main Campus');
 
         // Fill in the form
         await page.evaluate((name) => {

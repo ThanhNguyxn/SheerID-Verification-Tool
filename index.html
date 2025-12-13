@@ -553,6 +553,14 @@
         </div>
         <div id="status" style="margin-top: 16px; font-family: var(--font-mono); font-size: 13px; min-height: 20px;">
         </div>
+        <!-- Progress Log Panel -->
+        <div id="logPanel"
+          style="display: none; margin-top: 16px; background: rgba(0,0,0,0.4); border-radius: 12px; border: 1px solid var(--glass-border); padding: 12px; max-height: 200px; overflow-y: auto;">
+          <div
+            style="font-size: 11px; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">📋
+            Progress Log</div>
+          <div id="logContent" style="font-family: var(--font-mono); font-size: 12px; line-height: 1.6;"></div>
+        </div>
       </div>
 
       <div class="methods-section">
@@ -644,6 +652,22 @@
     const BACKEND_URL = 'https://sheerid-verification-tool.fly.dev';
 
 
+    // Log panel elements
+    const logPanel = document.getElementById('logPanel');
+    const logContent = document.getElementById('logContent');
+
+    function addLog(message, type = 'info') {
+      const time = new Date().toLocaleTimeString();
+      const colors = { info: '#60a5fa', success: '#4ade80', error: '#ef4444', warn: '#fbbf24' };
+      const icons = { info: '📝', success: '✅', error: '❌', warn: '⚠️' };
+      logContent.innerHTML += `<div style="color: ${colors[type]}; margin-bottom: 4px;">${icons[type]} <span style="color: #888;">[${time}]</span> ${message}</div>`;
+      logPanel.scrollTop = logPanel.scrollHeight;
+    }
+
+    function clearLogs() {
+      logContent.innerHTML = '';
+    }
+
     verifyBtn.addEventListener('click', async () => {
       const url = urlInput.value.trim();
       const type = serviceType.value;
@@ -654,12 +678,21 @@
         return;
       }
 
+      // Show log panel and start
+      logPanel.style.display = 'block';
+      clearLogs();
+      addLog('Starting verification process...', 'info');
+
       verifyBtn.disabled = true;
       verifyBtn.textContent = 'PROCESSING...';
-      statusDiv.textContent = '🚀 Launching browser & generating ID...';
+      statusDiv.textContent = '🚀 Connecting to backend server...';
       statusDiv.style.color = '#fbbf24';
+      addLog(`Service type: ${type}`, 'info');
+      addLog('Connecting to backend server...', 'info');
 
       try {
+        addLog('Sending verification request...', 'info');
+
         // Call the backend
         const response = await fetch(`${BACKEND_URL}/api/verify`, {
           method: 'POST',
@@ -667,21 +700,28 @@
           body: JSON.stringify({ url, type })
         });
 
+        addLog('Response received, parsing...', 'info');
         const data = await response.json();
 
         if (data.success) {
+          addLog('Verification completed!', 'success');
           if (data.rewardCode) {
+            addLog(`Reward code: ${data.rewardCode}`, 'success');
             statusDiv.innerHTML = `✅ <strong>Success!</strong><br>Your Code: <code style="background:rgba(255,255,255,0.2); padding:4px 8px; border-radius:4px; font-size:1.2em; color:#fff;">${data.rewardCode}</code>`;
             statusDiv.style.color = '#4ade80';
           } else {
+            addLog('Verification submitted. Check your email.', 'success');
             statusDiv.textContent = '✅ Success! Verification submitted. Check your email.';
             statusDiv.style.color = '#4ade80';
           }
         } else {
+          addLog(`Error: ${data.error || 'Unknown error'}`, 'error');
           statusDiv.textContent = '❌ Failed: ' + (data.error || 'Unknown error');
           statusDiv.style.color = '#ef4444';
         }
       } catch (e) {
+        addLog(`Network error: ${e.message}`, 'error');
+        addLog('Backend may be down or restarting...', 'warn');
         statusDiv.textContent = '❌ Network Error. Is the backend running on port 3000?';
         statusDiv.style.color = '#ef4444';
       } finally {

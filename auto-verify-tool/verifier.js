@@ -53,7 +53,7 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
         const firstName = faker.name.firstName();
         const lastName = faker.name.lastName();
         const email = faker.internet.email(firstName, lastName, 'psu.edu');
-        const dob = '2000-01-01'; // Simplified DOB
+        const dob = faker.date.between('1998-01-01', '2004-12-31').toISOString().split('T')[0];
 
         const studentInfo = {
             fullName: `${firstName} ${lastName}`,
@@ -61,30 +61,44 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
             studentId: Math.floor(Math.random() * 100000000).toString()
         };
 
-        // 3. Generate Document (Screenshot)
+        // 3. Generate Document (Screenshot from student-card-generator)
+        console.log('📸 Generating Student ID Card...');
         const imageBuffer = await generateStudentCard(studentInfo);
+        console.log(`   PNG size: ${(imageBuffer.length / 1024).toFixed(2)}KB`);
 
-        // 4. Submit Personal Info (Step 1)
-        console.log('📤 Submitting personal info...');
-
-        // Metadata differs slightly between services
-        const metadata = {
-            verificationId: verificationId,
-            marketConsentValue: false // Spotify & YouTube both use false
-        };
-
+        // 4. Submit Personal Info (collectStudentPersonalInfo)
+        console.log('📤 Submitting student info...');
         const step1Response = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectStudentPersonalInfo`, {
             firstName,
             lastName,
             email,
             birthDate: dob,
+            phoneNumber: "",
             organization: {
-                id: 2565, // PSU Main Campus
+                id: 2565,
+                idExtended: '2565',
                 name: 'Pennsylvania State University-Main Campus'
             },
-            deviceFingerprintHash: '686f727269626c656861636b', // Fake hash
-            metadata: metadata
+            deviceFingerprintHash: faker.datatype.hexaDecimal(32).replace('0x', ''),
+            locale: 'en-US',
+            metadata: {
+                verificationId: verificationId,
+                marketConsentValue: false,
+                refererUrl: `https://services.sheerid.com/verify/67c8c14f5f17a83b745e3f82/?verificationId=${verificationId}`,
+                flags: '{"collect-info-step-email-first":"default","doc-upload-considerations":"default","doc-upload-may24":"default","doc-upload-redesign-use-legacy-message-keys":false,"docUpload-assertion-checklist":"default","font-size":"default","include-cvec-field-france-student":"not-labeled-optional"}',
+                submissionOptIn: 'By submitting the personal information above, I acknowledge that my personal information is being collected under the privacy policy of the business from which I am seeking a discount'
+            }
         });
+
+        // Skip SSO if needed
+        if (step1Response.data.currentStep === 'sso' || step1Response.data.currentStep === 'collectStudentPersonalInfo') {
+            console.log('⏩ Skipping SSO...');
+            try {
+                await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
+            } catch (e) {
+                console.log('⚠️ SSO Skip warning:', e.message);
+            }
+        }
 
         return await handleDocUpload(verificationId, imageBuffer, 'student_card.png');
 
@@ -96,12 +110,16 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
 
 async function verifyTeacher(verificationUrl) {
     try {
-        // 1. Parse Verification ID
+        // 1. Parse Verification ID and externalUserId
         const verificationIdMatch = verificationUrl.match(/verificationId=([a-f0-9]+)/i);
         if (!verificationIdMatch) throw new Error('Invalid Verification URL');
         const verificationId = verificationIdMatch[1];
 
-        console.log(`🔍 Processing Teacher Verification ID: ${verificationId}`);
+        // Parse externalUserId if present
+        const externalUserIdMatch = verificationUrl.match(/externalUserId=([^&]+)/i);
+        const externalUserId = externalUserIdMatch ? externalUserIdMatch[1] : String(Math.floor(Math.random() * 9000000 + 1000000));
+
+        console.log(`🔍 Processing Bolt.new Teacher Verification ID: ${verificationId}`);
 
         // 2. Generate Fake Identity
         const firstName = faker.name.firstName();
@@ -112,27 +130,34 @@ async function verifyTeacher(verificationUrl) {
             fullName: `${firstName} ${lastName}`
         };
 
-        // 3. Generate Document (Payslip)
+        // 3. Generate Document (Payslip from payslip-generator)
+        console.log('📸 Generating Payslip...');
         const imageBuffer = await generatePayslip(teacherInfo);
+        console.log(`   PNG size: ${(imageBuffer.length / 1024).toFixed(2)}KB`);
 
-        // 4. Submit Personal Info (Step 1)
-        console.log('📤 Submitting teacher info...');
+        // 4. Submit Personal Info (collectTeacherPersonalInfo) - Bolt.new style
+        console.log('📤 Submitting teacher info (Bolt.new style)...');
         const step1Response = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectTeacherPersonalInfo`, {
             firstName,
             lastName,
             email,
-            birthDate: "", // Teacher flow often leaves this empty
+            birthDate: "", // Bolt.new leaves birthDate empty
             phoneNumber: "",
             organization: {
                 id: 2565,
+                idExtended: '2565',
                 name: 'Pennsylvania State University-Main Campus'
             },
-            deviceFingerprintHash: '686f727269626c656861636b',
+            deviceFingerprintHash: faker.datatype.hexaDecimal(32).replace('0x', ''),
+            externalUserId: externalUserId,
+            locale: 'en-US',
             metadata: {
                 verificationId: verificationId,
                 marketConsentValue: true, // Bolt.new uses true
-                submissionOptIn: 'By submitting the personal information above, I acknowledge that my personal information is being collected under the privacy policy of the business from which I am seeking a discount',
-                flags: '{"doc-upload-considerations":"default","doc-upload-may24":"default","doc-upload-redesign-use-legacy-message-keys":false,"docUpload-assertion-checklist":"default","include-cvec-field-france-student":"not-labeled-optional","org-search-overlay":"default","org-selected-display":"default"}'
+                refererUrl: verificationUrl,
+                externalUserId: externalUserId,
+                flags: '{"doc-upload-considerations":"default","doc-upload-may24":"default","doc-upload-redesign-use-legacy-message-keys":false,"docUpload-assertion-checklist":"default","include-cvec-field-france-student":"not-labeled-optional","org-search-overlay":"default","org-selected-display":"default"}',
+                submissionOptIn: 'By submitting the personal information above, I acknowledge that my personal information is being collected under the privacy policy of the business from which I am seeking a discount'
             }
         });
 
@@ -142,7 +167,7 @@ async function verifyTeacher(verificationUrl) {
             try {
                 await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
             } catch (e) {
-                console.log('⚠️ SSO Skip warning (might be already skipped):', e.message);
+                console.log('⚠️ SSO Skip warning:', e.message);
             }
         }
 

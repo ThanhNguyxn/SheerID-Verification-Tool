@@ -121,4 +121,82 @@ async function generatePayslip(teacherInfo) {
     }
 }
 
-module.exports = { generateStudentCard, generatePayslip };
+async function generateTeacherCard(teacherInfo) {
+    console.log('📸 Launching browser to generate Faculty ID Card...');
+    const browser = await puppeteer.launch({
+        headless: "new",
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+    const page = await browser.newPage();
+
+    try {
+        // Navigate to the generator
+        await page.goto('https://thanhnguyxn.github.io/student-card-generator/', {
+            waitUntil: 'networkidle0'
+        });
+
+        // Wait for the country select to be available
+        await page.waitForSelector('#countrySelect');
+
+        // Click Teacher mode button to switch to Faculty ID Card
+        await page.click('#teacherModeBtn');
+        await new Promise(r => setTimeout(r, 500));
+
+        // Select Country (USA)
+        await page.select('#countrySelect', 'USA');
+
+        // Wait for university select to be enabled and populated
+        await page.waitForFunction(() => {
+            const select = document.querySelector('#universitySelect');
+            return !select.disabled && select.options.length > 1;
+        });
+
+        // Select University (PSU)
+        await page.select('#universitySelect', '0'); // First university in list
+
+        // Fill in the form
+        await page.evaluate((name) => {
+            document.querySelector('#studentName').value = name;
+        }, teacherInfo.fullName || 'Jane Doe');
+
+        await page.evaluate((id) => {
+            document.querySelector('#studentId').value = id;
+        }, teacherInfo.employeeId || 'UT-' + Math.floor(Math.random() * 900000 + 100000));
+
+        // Date of Birth (YYYY-MM-DD)
+        if (teacherInfo.dob) {
+            await page.evaluate((dob) => {
+                document.querySelector('#dateOfBirth').value = dob;
+            }, teacherInfo.dob);
+        }
+
+        // Click regenerate to refresh the card
+        await page.click('#regenerateBtn');
+
+        // Wait for preview to update
+        await new Promise(r => setTimeout(r, 2000));
+
+        // Find the card element to screenshot
+        const cardElement = await page.$('.id-card');
+
+        if (!cardElement) {
+            throw new Error('Faculty ID Card preview element not found');
+        }
+
+        const imageBuffer = await cardElement.screenshot({
+            type: 'png',
+            encoding: 'binary'
+        });
+
+        console.log('✅ Faculty ID Card generated successfully');
+        return imageBuffer;
+
+    } catch (error) {
+        console.error('❌ Error generating Faculty ID Card:', error);
+        throw error;
+    } finally {
+        await browser.close();
+    }
+}
+
+module.exports = { generateStudentCard, generatePayslip, generateTeacherCard };

@@ -1,12 +1,15 @@
 const axios = require('axios');
-const { generateStudentCard, generatePayslip } = require('./generator');
+const { generateStudentCard, generatePayslip, generateTeacherCard } = require('./generator');
 const faker = require('faker');
 
 const SHEERID_API_URL = 'https://services.sheerid.com/rest/v2';
 
 async function verifySheerID(verificationUrl, type = 'student') {
-    if (type === 'teacher' || type === 'gpt') {
-        // Both Bolt.new (teacher) and ChatGPT (gpt) use the same Teacher verification flow
+    if (type === 'gpt') {
+        // ChatGPT uses k12-style verification (PDF+PNG, birthDate, marketConsentValue=false)
+        return verifyGPT(verificationUrl);
+    } else if (type === 'teacher') {
+        // Bolt.new uses teacher verification
         return verifyTeacher(verificationUrl);
     } else if (type === 'youtube') {
         return verifyStudent(verificationUrl, 'youtube');
@@ -138,6 +141,115 @@ async function verifyTeacher(verificationUrl) {
 
     } catch (error) {
         console.error('❌ Teacher Verification failed:', error.response ? error.response.data : error.message);
+        return { success: false, error: error.message };
+    }
+}
+
+async function verifyGPT(verificationUrl) {
+    try {
+        // 1. Parse Verification ID
+        const verificationIdMatch = verificationUrl.match(/verificationId=([a-f0-9]+)/i);
+        if (!verificationIdMatch) throw new Error('Invalid Verification URL');
+        const verificationId = verificationIdMatch[1];
+
+        console.log(`🔍 Processing ChatGPT (k12-style) Verification ID: ${verificationId}`);
+
+        // 2. Generate Fake Identity with birthDate (required for k12)
+        const firstName = faker.name.firstName();
+        const lastName = faker.name.lastName();
+        const email = faker.internet.email(firstName, lastName, 'psu.edu');
+        const dob = '1985-06-15'; // Teachers are typically older
+
+        const teacherInfo = {
+            fullName: `${firstName} ${lastName}`,
+            dob: dob,
+            employeeId: 'UT-' + Math.floor(Math.random() * 900000 + 100000)
+        };
+
+        // 3. Generate Documents (Faculty ID Card PNG + Payslip PDF)
+        console.log('📄 Generating Teacher documents...');
+        const pngBuffer = await generateTeacherCard(teacherInfo);
+        const pdfBuffer = await generatePayslip(teacherInfo);
+
+        // 4. Submit Personal Info (k12-style with birthDate and marketConsentValue=false)
+        console.log('📤 Submitting teacher info (k12-style)...');
+        const step1Response = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectTeacherPersonalInfo`, {
+            firstName,
+            lastName,
+            email,
+            birthDate: dob, // k12 requires birthDate
+            phoneNumber: "",
+            organization: {
+                id: 2565,
+                idExtended: '2565',
+                name: 'Pennsylvania State University-Main Campus'
+            },
+            deviceFingerprintHash: '686f727269626c656861636b',
+            locale: 'en-US',
+            metadata: {
+                verificationId: verificationId,
+                marketConsentValue: false, // k12 uses false
+                submissionOptIn: 'By submitting the personal information above, I acknowledge that my personal information is being collected under the privacy policy of the business from which I am seeking a discount'
+            }
+        });
+
+        // Skip SSO if needed
+        if (step1Response.data.currentStep === 'sso' || step1Response.data.currentStep === 'collectTeacherPersonalInfo') {
+            console.log('⏩ Skipping SSO...');
+            try {
+                await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
+            } catch (e) {
+                console.log('⚠️ SSO Skip warning (might be already skipped):', e.message);
+            }
+        }
+
+        // 5. Upload Documents (PDF + PNG) - k12 style
+        console.log('📤 Uploading documents (PDF + PNG)...');
+        const docUploadResponse = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/docUpload`, {
+            files: [
+                {
+                    fileName: 'teacher_document.pdf',
+                    mimeType: 'application/pdf',
+                    fileSize: pdfBuffer.length
+                },
+                {
+                    fileName: 'teacher_document.png',
+                    mimeType: 'image/png',
+                    fileSize: pngBuffer.length
+                }
+            ]
+        });
+
+        const documents = docUploadResponse.data.documents || [];
+        if (documents.length < 2) throw new Error('Failed to get upload URLs');
+
+        // Upload PDF
+        await axios.put(documents[0].uploadUrl, pdfBuffer, {
+            headers: { 'Content-Type': 'application/pdf' }
+        });
+        console.log('✅ PDF uploaded');
+
+        // Upload PNG
+        await axios.put(documents[1].uploadUrl, pngBuffer, {
+            headers: { 'Content-Type': 'image/png' }
+        });
+        console.log('✅ PNG uploaded');
+
+        // Complete upload
+        const completeResponse = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/completeDocUpload`);
+        console.log('✅ Documents submitted!');
+
+        // Poll for reward code
+        console.log('⏳ Polling for reward code...');
+        const rewardCode = await pollForRewardCode(verificationId);
+        if (rewardCode) {
+            return { success: true, message: 'Verification successful!', rewardCode: rewardCode };
+        } else {
+            return { success: true, message: 'Verification submitted. Please check your email for the code.' };
+        }
+
+    } catch (error) {
+        console.error('❌ ChatGPT Verification failed:', error.response ? error.response.data : error.message);
         return { success: false, error: error.message };
     }
 }

@@ -5,7 +5,8 @@ const faker = require('faker');
 const SHEERID_API_URL = 'https://services.sheerid.com/rest/v2';
 
 async function verifySheerID(verificationUrl, type = 'student') {
-    if (type === 'teacher') {
+    if (type === 'teacher' || type === 'gpt') {
+        // Both Bolt.new (teacher) and ChatGPT (gpt) use the same Teacher verification flow
         return verifyTeacher(verificationUrl);
     } else if (type === 'youtube') {
         return verifyStudent(verificationUrl, 'youtube');

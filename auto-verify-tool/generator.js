@@ -8,6 +8,7 @@ async function getBrowser() {
         console.log('� Launching shared browser instance...');
         sharedBrowser = await puppeteer.launch({
             headless: "new",
+            protocolTimeout: 180000, // 3 minutes for slow VMs
             args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
@@ -15,7 +16,8 @@ async function getBrowser() {
                 '--disable-gpu',
                 '--no-first-run',
                 '--no-zygote',
-                '--single-process'
+                '--single-process',
+                '--disable-extensions'
             ]
         });
     }

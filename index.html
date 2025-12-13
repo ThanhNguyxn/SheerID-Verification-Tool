@@ -638,6 +638,12 @@
     const serviceType = document.getElementById('serviceType');
     const statusDiv = document.getElementById('status');
 
+    // ⚠️ CONFIGURATION:
+    // For Local Use: 'http://localhost:3000'
+    // For Deployment: Replace with your Railway/Render URL (e.g., 'https://my-app.railway.app')
+    const BACKEND_URL = 'http://localhost:3000';
+
+
     verifyBtn.addEventListener('click', async () => {
       const url = urlInput.value.trim();
       const type = serviceType.value;
@@ -654,8 +660,8 @@
       statusDiv.style.color = '#fbbf24';
 
       try {
-        // Call the local backend
-        const response = await fetch('http://localhost:3000/api/verify', {
+        // Call the backend
+        const response = await fetch(`${BACKEND_URL}/api/verify`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ url, type })

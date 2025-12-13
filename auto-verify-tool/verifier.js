@@ -1,8 +1,30 @@
 const axios = require('axios');
 const { generateStudentCard, generatePayslip, generateTeacherCard } = require('./generator');
 const faker = require('faker');
+const PDFDocument = require('pdfkit');
 
 const SHEERID_API_URL = 'https://services.sheerid.com/rest/v2';
+
+// Helper: Convert PNG buffer to PDF buffer
+async function pngToPdf(pngBuffer) {
+    return new Promise((resolve, reject) => {
+        const doc = new PDFDocument({ size: 'A4' });
+        const chunks = [];
+
+        doc.on('data', chunk => chunks.push(chunk));
+        doc.on('end', () => resolve(Buffer.concat(chunks)));
+        doc.on('error', reject);
+
+        // Add PNG image to PDF, centered
+        doc.image(pngBuffer, {
+            fit: [500, 700],
+            align: 'center',
+            valign: 'center'
+        });
+
+        doc.end();
+    });
+}
 
 async function verifySheerID(verificationUrl, type = 'student') {
     if (type === 'gpt') {
@@ -157,21 +179,27 @@ async function verifyGPT(verificationUrl) {
         // 2. Generate Fake Identity with birthDate (required for k12)
         const firstName = faker.name.firstName();
         const lastName = faker.name.lastName();
-        const email = faker.internet.email(firstName, lastName, 'psu.edu');
+        const email = faker.internet.email(firstName, lastName, 'springfield.k12.or.us');
         const dob = '1985-06-15'; // Teachers are typically older
 
         const teacherInfo = {
             fullName: `${firstName} ${lastName}`,
             dob: dob,
-            employeeId: 'UT-' + Math.floor(Math.random() * 900000 + 100000)
+            employeeId: 'E-' + Math.floor(Math.random() * 9000000 + 1000000)
         };
 
-        // 3. Generate Documents (Faculty ID Card PNG + Payslip PDF)
+        // 3. Generate Documents (PNG screenshot, then convert to PDF)
         console.log('📄 Generating Teacher documents...');
-        const pngBuffer = await generateTeacherCard(teacherInfo);
-        const pdfBuffer = await generatePayslip(teacherInfo);
+        const payslipPng = await generatePayslip(teacherInfo);
+        const pdfBuffer = await pngToPdf(payslipPng);
+        console.log(`   PDF size: ${(pdfBuffer.length / 1024).toFixed(2)}KB`);
+
+        // Also generate Faculty ID Card PNG
+        const teacherCardPng = await generateTeacherCard(teacherInfo);
+        console.log(`   PNG size: ${(teacherCardPng.length / 1024).toFixed(2)}KB`);
 
         // 4. Submit Personal Info (k12-style with birthDate and marketConsentValue=false)
+        // Using HIGH_SCHOOL organization like k12 config
         console.log('📤 Submitting teacher info (k12-style)...');
         const step1Response = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectTeacherPersonalInfo`, {
             firstName,
@@ -180,9 +208,9 @@ async function verifyGPT(verificationUrl) {
             birthDate: dob, // k12 requires birthDate
             phoneNumber: "",
             organization: {
-                id: 2565,
-                idExtended: '2565',
-                name: 'Pennsylvania State University-Main Campus'
+                id: 3995910,
+                idExtended: '3995910',
+                name: 'Springfield High School (Springfield, OR)'
             },
             deviceFingerprintHash: '686f727269626c656861636b',
             locale: 'en-US',
@@ -215,7 +243,7 @@ async function verifyGPT(verificationUrl) {
                 {
                     fileName: 'teacher_document.png',
                     mimeType: 'image/png',
-                    fileSize: pngBuffer.length
+                    fileSize: teacherCardPng.length
                 }
             ]
         });
@@ -230,7 +258,7 @@ async function verifyGPT(verificationUrl) {
         console.log('✅ PDF uploaded');
 
         // Upload PNG
-        await axios.put(documents[1].uploadUrl, pngBuffer, {
+        await axios.put(documents[1].uploadUrl, teacherCardPng, {
             headers: { 'Content-Type': 'image/png' }
         });
         console.log('✅ PNG uploaded');

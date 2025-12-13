@@ -23,6 +23,11 @@ global.emitLog = (message, type = 'info') => {
 app.use(cors());
 app.use(bodyParser.json());
 
+// Health check / root route
+app.get('/', (req, res) => {
+    res.json({ status: 'ok', message: 'SheerID Verification API is running' });
+});
+
 // SSE endpoint for real-time logs
 app.get('/api/logs', (req, res) => {
     res.setHeader('Content-Type', 'text/event-stream');

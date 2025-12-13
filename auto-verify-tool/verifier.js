@@ -47,7 +47,7 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
         if (!verificationIdMatch) throw new Error('Invalid Verification URL');
         const verificationId = verificationIdMatch[1];
 
-        console.log(`🔍 Processing ${serviceType} Verification ID: ${verificationId}`);
+        global.emitLog(`🔍 Processing ${serviceType} Verification ID: ${verificationId}`);
 
         // 2. Generate Fake Identity
         const firstName = faker.name.firstName();
@@ -62,12 +62,12 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
         };
 
         // 3. Generate Document (Screenshot from student-card-generator)
-        console.log('📸 Generating Student ID Card...');
+        global.emitLog('📸 Generating Student ID Card...');
         const imageBuffer = await generateStudentCard(studentInfo);
-        console.log(`   PNG size: ${(imageBuffer.length / 1024).toFixed(2)}KB`);
+        global.emitLog(`   PNG size: ${(imageBuffer.length / 1024).toFixed(2)}KB`);
 
         // 4. Submit Personal Info (collectStudentPersonalInfo)
-        console.log('📤 Submitting student info...');
+        global.emitLog('📤 Submitting student info...');
         const step1Response = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectStudentPersonalInfo`, {
             firstName,
             lastName,
@@ -92,11 +92,11 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
 
         // Skip SSO if needed
         if (step1Response.data.currentStep === 'sso' || step1Response.data.currentStep === 'collectStudentPersonalInfo') {
-            console.log('⏩ Skipping SSO...');
+            global.emitLog('⏩ Skipping SSO...');
             try {
                 await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
             } catch (e) {
-                console.log('⚠️ SSO Skip warning:', e.message);
+                global.emitLog('⚠️ SSO Skip warning:', e.message);
             }
         }
 
@@ -119,7 +119,7 @@ async function verifyTeacher(verificationUrl) {
         const externalUserIdMatch = verificationUrl.match(/externalUserId=([^&]+)/i);
         const externalUserId = externalUserIdMatch ? externalUserIdMatch[1] : String(Math.floor(Math.random() * 9000000 + 1000000));
 
-        console.log(`🔍 Processing Bolt.new Teacher Verification ID: ${verificationId}`);
+        global.emitLog(`🔍 Processing Bolt.new Teacher Verification ID: ${verificationId}`);
 
         // 2. Generate Fake Identity
         const firstName = faker.name.firstName();
@@ -131,12 +131,12 @@ async function verifyTeacher(verificationUrl) {
         };
 
         // 3. Generate Document (Payslip from payslip-generator)
-        console.log('📸 Generating Payslip...');
+        global.emitLog('📸 Generating Payslip...');
         const imageBuffer = await generatePayslip(teacherInfo);
-        console.log(`   PNG size: ${(imageBuffer.length / 1024).toFixed(2)}KB`);
+        global.emitLog(`   PNG size: ${(imageBuffer.length / 1024).toFixed(2)}KB`);
 
         // 4. Submit Personal Info (collectTeacherPersonalInfo) - Bolt.new style
-        console.log('📤 Submitting teacher info (Bolt.new style)...');
+        global.emitLog('📤 Submitting teacher info (Bolt.new style)...');
         const step1Response = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectTeacherPersonalInfo`, {
             firstName,
             lastName,
@@ -163,11 +163,11 @@ async function verifyTeacher(verificationUrl) {
 
         // Skip SSO if needed
         if (step1Response.data.currentStep === 'sso' || step1Response.data.currentStep === 'collectTeacherPersonalInfo') {
-            console.log('⏩ Skipping SSO...');
+            global.emitLog('⏩ Skipping SSO...');
             try {
                 await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
             } catch (e) {
-                console.log('⚠️ SSO Skip warning:', e.message);
+                global.emitLog('⚠️ SSO Skip warning:', e.message);
             }
         }
 
@@ -175,7 +175,7 @@ async function verifyTeacher(verificationUrl) {
         const uploadResult = await handleDocUpload(verificationId, imageBuffer, 'payslip.png');
 
         if (uploadResult.success) {
-            console.log('⏳ Polling for reward code...');
+            global.emitLog('⏳ Polling for reward code...');
             const rewardCode = await pollForRewardCode(verificationId);
             if (rewardCode) {
                 return { success: true, message: 'Verification successful!', rewardCode: rewardCode };
@@ -199,7 +199,7 @@ async function verifyGPT(verificationUrl) {
         if (!verificationIdMatch) throw new Error('Invalid Verification URL');
         const verificationId = verificationIdMatch[1];
 
-        console.log(`🔍 Processing ChatGPT (k12-style) Verification ID: ${verificationId}`);
+        global.emitLog(`🔍 Processing ChatGPT (k12-style) Verification ID: ${verificationId}`);
 
         // 2. Generate Fake Identity with birthDate (required for k12)
         const firstName = faker.name.firstName();
@@ -214,18 +214,18 @@ async function verifyGPT(verificationUrl) {
         };
 
         // 3. Generate Documents (PNG screenshot, then convert to PDF)
-        console.log('📄 Generating Teacher documents...');
+        global.emitLog('📄 Generating Teacher documents...');
         const payslipPng = await generatePayslip(teacherInfo);
         const pdfBuffer = await pngToPdf(payslipPng);
-        console.log(`   PDF size: ${(pdfBuffer.length / 1024).toFixed(2)}KB`);
+        global.emitLog(`   PDF size: ${(pdfBuffer.length / 1024).toFixed(2)}KB`);
 
         // Also generate Faculty ID Card PNG
         const teacherCardPng = await generateTeacherCard(teacherInfo);
-        console.log(`   PNG size: ${(teacherCardPng.length / 1024).toFixed(2)}KB`);
+        global.emitLog(`   PNG size: ${(teacherCardPng.length / 1024).toFixed(2)}KB`);
 
         // 4. Submit Personal Info (k12-style with birthDate and marketConsentValue=false)
         // Using HIGH_SCHOOL organization like k12 config
-        console.log('📤 Submitting teacher info (k12-style)...');
+        global.emitLog('📤 Submitting teacher info (k12-style)...');
         const step1Response = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectTeacherPersonalInfo`, {
             firstName,
             lastName,
@@ -248,16 +248,16 @@ async function verifyGPT(verificationUrl) {
 
         // Skip SSO if needed
         if (step1Response.data.currentStep === 'sso' || step1Response.data.currentStep === 'collectTeacherPersonalInfo') {
-            console.log('⏩ Skipping SSO...');
+            global.emitLog('⏩ Skipping SSO...');
             try {
                 await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
             } catch (e) {
-                console.log('⚠️ SSO Skip warning (might be already skipped):', e.message);
+                global.emitLog('⚠️ SSO Skip warning (might be already skipped):', e.message);
             }
         }
 
         // 5. Upload Documents (PDF + PNG) - k12 style
-        console.log('📤 Uploading documents (PDF + PNG)...');
+        global.emitLog('📤 Uploading documents (PDF + PNG)...');
         const docUploadResponse = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/docUpload`, {
             files: [
                 {
@@ -280,20 +280,20 @@ async function verifyGPT(verificationUrl) {
         await axios.put(documents[0].uploadUrl, pdfBuffer, {
             headers: { 'Content-Type': 'application/pdf' }
         });
-        console.log('✅ PDF uploaded');
+        global.emitLog('✅ PDF uploaded');
 
         // Upload PNG
         await axios.put(documents[1].uploadUrl, teacherCardPng, {
             headers: { 'Content-Type': 'image/png' }
         });
-        console.log('✅ PNG uploaded');
+        global.emitLog('✅ PNG uploaded');
 
         // Complete upload
         const completeResponse = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/completeDocUpload`);
-        console.log('✅ Documents submitted!');
+        global.emitLog('✅ Documents submitted!');
 
         // Poll for reward code
-        console.log('⏳ Polling for reward code...');
+        global.emitLog('⏳ Polling for reward code...');
         const rewardCode = await pollForRewardCode(verificationId);
         if (rewardCode) {
             return { success: true, message: 'Verification successful!', rewardCode: rewardCode };
@@ -324,7 +324,7 @@ async function pollForRewardCode(verificationId, maxAttempts = 10) {
                 return null; // Stop polling on failure
             }
 
-            console.log(`   ...attempt ${i + 1}/${maxAttempts}`);
+            global.emitLog(`   ...attempt ${i + 1}/${maxAttempts}`);
         } catch (e) {
             console.error('   Polling error:', e.message);
         }
@@ -335,7 +335,7 @@ async function pollForRewardCode(verificationId, maxAttempts = 10) {
 async function handleDocUpload(verificationId, imageBuffer, fileName) {
     try {
         // 5. Upload Document (Step 2)
-        console.log('📤 Uploading document...');
+        global.emitLog('📤 Uploading document...');
 
         // Request upload URL
         const docUploadResponse = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/docUpload`, {
@@ -356,7 +356,7 @@ async function handleDocUpload(verificationId, imageBuffer, fileName) {
         // Confirm Upload
         const completeResponse = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/completeDocUpload`);
 
-        console.log('✅ Verification submitted!');
+        global.emitLog('✅ Verification submitted!');
         return {
             success: true,
             status: completeResponse.data.currentStep,

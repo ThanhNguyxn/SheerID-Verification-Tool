@@ -690,8 +690,26 @@
       addLog(`Service type: ${type}`, 'info');
       addLog('Connecting to backend server...', 'info');
 
+      // Connect to SSE for real-time logs
+      let eventSource = null;
+      try {
+        eventSource = new EventSource(`${BACKEND_URL}/api/logs`);
+        eventSource.onmessage = (event) => {
+          try {
+            const log = JSON.parse(event.data);
+            addLog(log.message, log.type || 'info');
+          } catch (e) { }
+        };
+        eventSource.onerror = () => {
+          // Silently handle SSE errors
+        };
+      } catch (e) {
+        addLog('Live logs unavailable, waiting for result...', 'warn');
+      }
+
       try {
         addLog('Sending verification request...', 'info');
+        addLog('⏱️ This may take 1-2 minutes, please wait...', 'warn');
 
         // Call the backend
         const response = await fetch(`${BACKEND_URL}/api/verify`, {
@@ -725,6 +743,8 @@
         statusDiv.textContent = '❌ Network Error. Is the backend running on port 3000?';
         statusDiv.style.color = '#ef4444';
       } finally {
+        // Close SSE connection
+        if (eventSource) eventSource.close();
         verifyBtn.disabled = false;
         verifyBtn.textContent = 'VERIFY NOW';
       }

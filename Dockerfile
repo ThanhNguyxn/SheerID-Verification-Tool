@@ -5,14 +5,14 @@ USER root
 # Set working directory
 WORKDIR /usr/src/app
 
-# Copy package files
-COPY package*.json ./
+# Copy package files from subdirectory
+COPY auto-verify-tool/package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy source code
-COPY . .
+# Copy source code from subdirectory
+COPY auto-verify-tool/ .
 
 # Expose port
 EXPOSE 3000

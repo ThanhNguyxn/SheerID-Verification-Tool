@@ -109,7 +109,7 @@
 ### 📱 ステップ3：Telegram経由での学生ステータスの確認
 
 1. Telegramを開き、以下のボットのいずれかにアクセスします：
-   - [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
    - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
 

@@ -109,7 +109,7 @@ Crea un nuovo profilo browser o usa la modalità incognito per evitare conflitti
 ### 📱 Passo 3: Verifica lo Stato di Studente via Telegram
 
 1. Apri Telegram e accedi a uno di questi bot:
-   - [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
    - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
 

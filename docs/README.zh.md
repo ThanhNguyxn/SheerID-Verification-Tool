@@ -109,7 +109,7 @@
 ### 📱 步骤 3：通过 Telegram 验证学生身份
 
 1. 打开 Telegram 并访问以下机器人之一：
-   - [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
    - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
 

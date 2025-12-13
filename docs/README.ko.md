@@ -109,7 +109,7 @@
 ### 📱 3단계: Telegram을 통한 학생 신분 인증
 
 1. Telegram을 열고 다음 봇 중 하나에 접속하세요:
-   - [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
+
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
    - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
 

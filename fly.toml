@@ -17,6 +17,6 @@ primary_region = "sin"  # Singapore - closest to Vietnam
   PORT = "3000"
 
 [[vm]]
-  memory = "512mb"
+  memory = "1gb"
   cpu_kind = "shared"
   cpus = 1

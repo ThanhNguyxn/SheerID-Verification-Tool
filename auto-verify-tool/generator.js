@@ -81,25 +81,36 @@ async function generatePayslip(teacherInfo) {
             waitUntil: 'networkidle0'
         });
 
-        // Helper function to type into input by label text
+        // Wait for React to fully hydrate
+        await new Promise(r => setTimeout(r, 2000));
+        await page.waitForSelector('.editor-panel');
+
+        // Helper function to type into input by finding label text in input-group
         const typeByLabel = async (labelText, value) => {
-            const [input] = await page.$x(`//label[text()="${labelText}"]/following-sibling::input`);
-            if (input) {
-                await input.click({ clickCount: 3 }); // Select all
-                await input.type(value);
-            } else {
-                console.warn(`Input for "${labelText}" not found`);
-            }
+            await page.evaluate((label, val) => {
+                const labels = Array.from(document.querySelectorAll('.input-group label'));
+                const targetLabel = labels.find(l => l.textContent === label);
+                if (targetLabel) {
+                    const input = targetLabel.parentElement.querySelector('input');
+                    if (input) {
+                        // Trigger React's onChange by setting native value setter
+                        const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+                        nativeInputValueSetter.call(input, val);
+                        input.dispatchEvent(new Event('input', { bubbles: true }));
+                    }
+                }
+            }, labelText, value);
         };
 
-        // Fill in the form
+        // Fill in the form - Company should match SheerID org
         await typeByLabel('Company Name', 'Pennsylvania State University');
         await typeByLabel('Full Name', teacherInfo.fullName || 'Jane Doe');
         await typeByLabel('Position', 'Professor');
+        await typeByLabel('Employee ID', teacherInfo.employeeId || 'E-1234567');
         await typeByLabel('Pay Date', new Date().toISOString().split('T')[0]);
 
         // Wait for preview to update
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise(r => setTimeout(r, 1500));
 
         // Find the card element to screenshot
         const cardElement = await page.$('.payslip-container');

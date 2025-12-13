@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { generateStudentCard, generatePayslip, generateTeacherCard } = require('./generator');
+const { generateStudentCard, generatePayslip, generateTeacherCard, generateDocumentsParallel, closeBrowser } = require('./generator');
 const faker = require('faker');
 const PDFDocument = require('pdfkit');
 

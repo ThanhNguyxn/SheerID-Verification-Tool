@@ -112,7 +112,7 @@ Erstellen Sie ein neues Browser-Profil oder nutzen Sie den Inkognito-Modus, um D
    - [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
    - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
-   - [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789)
+
 
 2. Senden Sie diesen Befehl:
    ```

@@ -399,6 +399,11 @@
       color: #a855f7;
     }
 
+    .tag-bot {
+      background: rgba(236, 72, 153, 0.2);
+      color: #ec4899;
+    }
+
     .terminal-window {
       background: #080808;
       border: 1px solid var(--glass-border);
@@ -530,72 +535,84 @@
       </div>
 
       <div class="input-wrapper">
-        <div class="section-title">Quick Verify via 1Key.me</div>
+        <div class="section-title">⚡ Auto Verifier (Local Backend)</div>
+
+        <div style="margin-bottom: 16px;">
+          <select id="serviceType"
+            style="width: 100%; padding: 12px; border-radius: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: #fff; font-family: var(--font-mono); outline: none;">
+            <option value="student">Spotify / Gemini (Student)</option>
+            <option value="youtube">YouTube Premium (Student)</option>
+            <option value="teacher">Bolt.new (Teacher)</option>
+            <option value="gpt" disabled>ChatGPT (Teacher) - Coming Soon</option>
+          </select>
+        </div>
+
         <div class="input-group">
           <input id="urlInput" type="url" placeholder="https://services.sheerid.com/verify/...">
-          <button id="btnVerify">VERIFY</button>
+          <button id="btnVerify">VERIFY NOW</button>
+        </div>
+        <div id="status" style="margin-top: 16px; font-family: var(--font-mono); font-size: 13px; min-height: 20px;">
         </div>
       </div>
 
       <div class="methods-section">
-        <div class="section-title">Verification Methods</div>
+        <div class="section-title">Other Methods</div>
+        <div
+          style="font-family: var(--font-mono); font-size: 11px; color: #fbbf24; margin-bottom: 20px; background: rgba(251, 191, 36, 0.1); padding: 10px 16px; border-radius: 8px; border: 1px solid rgba(251, 191, 36, 0.2); display: flex; align-items: center; gap: 8px;">
+          <span>⚠️</span> If the Auto Verifier above is not working, please try the alternative methods below.
+        </div>
         <div class="method-cards">
           <!-- Telegram Bots -->
           <a href="https://t.me/sheeridverify_bot?start=invite_7762497789" target="_blank" class="method-card">
             <div class="method-icon">🤖</div>
             <div class="method-name">SheerID Verify Bot</div>
             <div class="method-desc">Send /verify command with your URL to the Telegram bot</div>
-            <span class="method-tag tag-recommended">Recommended</span>
+            <span class="method-tag tag-bot">BOT</span>
           </a>
           <a href="https://t.me/SheerID_VIP_Bot?start=ref_REF001124" target="_blank" class="method-card">
             <div class="method-icon">⚡</div>
             <div class="method-name">SheerID VIP Bot</div>
             <div class="method-desc">Alternative bot with faster processing</div>
-            <span class="method-tag tag-fast">Fast</span>
+            <span class="method-tag tag-bot">BOT</span>
           </a>
           <a href="https://t.me/sheeridvn_bot?start=invite_7762497789" target="_blank" class="method-card">
             <div class="method-icon">🇻🇳</div>
             <div class="method-name">SheerID VN Bot</div>
             <div class="method-desc">Vietnamese community Telegram bot</div>
-            <span class="method-tag tag-recommended">VN</span>
+            <span class="method-tag tag-bot">BOT</span>
           </a>
-          <a href="https://t.me/auto_sheerid_bot?start=7762497789" target="_blank" class="method-card">
-            <div class="method-icon">🤖</div>
-            <div class="method-name">Auto SheerID Bot</div>
-            <div class="method-desc">Automated verification bot</div>
-            <span class="method-tag tag-fast">Auto</span>
-          </a>
+
           <!-- Web Tools -->
           <a href="https://1key.me" target="_blank" class="method-card">
             <div class="method-icon">🌐</div>
             <div class="method-name">1Key.me Website</div>
             <div class="method-desc">Web-based verification with queue system</div>
-            <span class="method-tag tag-web">Web</span>
+            <span class="method-tag tag-web">WEB</span>
           </a>
           <a href="https://batch.1key.me/" target="_blank" class="method-card">
             <div class="method-icon">📦</div>
             <div class="method-name">Batch 1Key.me</div>
             <div class="method-desc">Batch verification for multiple URLs at once</div>
-            <span class="method-tag tag-fast">Batch</span>
+            <span class="method-tag tag-web">WEB</span>
           </a>
           <a href="https://3key.me/" target="_blank" class="method-card">
             <div class="method-icon">🌐</div>
             <div class="method-name">3Key.me Website</div>
             <div class="method-desc">Web-based verification with queue system</div>
-            <span class="method-tag tag-web">Web</span>
+            <span class="method-tag tag-web">WEB</span>
           </a>
           <a href="https://teacher.azx.us/" target="_blank" class="method-card">
             <div class="method-icon">👨‍🏫</div>
             <div class="method-name">Teacher AZX</div>
             <div class="method-desc">Teacher verification tool</div>
-            <span class="method-tag tag-web">Web</span>
+            <span class="method-tag tag-web">WEB</span>
           </a>
           <!-- Document Generators -->
           <a href="https://thanhnguyxn.github.io/student-card-generator/" target="_blank" class="method-card">
             <div class="method-icon">🎓</div>
             <div class="method-name">Student Card Generator</div>
             <div class="method-desc">Create a test student card for manual verification</div>
-            <span class="method-tag tag-tool">Tool</span>
+            <span class="method-tag tag-tool">TOOL</span>
           </a>
           <a href="https://thanhnguyxn.github.io/payslip-generator/" target="_blank" class="method-card">
             <div class="method-icon">💰</div>
@@ -606,20 +623,7 @@
         </div>
       </div>
 
-      <div class="terminal-window">
-        <div class="terminal-header">
-          <div class="terminal-title">Usage Instructions</div>
-        </div>
-        <div class="terminal-body">
-          <div class="step"><span class="step-num">[1]</span> Get your verification URL from Google Students page</div>
-          <div class="step"><span class="step-num">[2]</span> Choose a verification method above</div>
-          <div class="step"><span class="step-num">[3]</span> For Telegram bots: send <code
-              style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">/verify YOUR_URL</code>
-          </div>
-          <div class="step"><span class="step-num">[4]</span> Wait for verification confirmation</div>
-          <div class="step"><span class="step-num">[5]</span> Return to Google and complete registration</div>
-        </div>
-      </div>
+
 
       <div class="footer">
         <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool" target="_blank">GITHUB_REPO</a>
@@ -628,35 +632,60 @@
     </div>
   </div>
 
-  <div id="toast" class="toast">✓ URL copied! Paste it on 1Key.me</div>
-
   <script>
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3000);
-    }
+    const verifyBtn = document.getElementById('btnVerify');
+    const urlInput = document.getElementById('urlInput');
+    const serviceType = document.getElementById('serviceType');
+    const statusDiv = document.getElementById('status');
 
-    document.getElementById('btnVerify').addEventListener('click', async function () {
-      const url = document.getElementById('urlInput').value.trim();
-      if (!url) { alert('Please enter a verification URL'); return; }
-      if (!url.includes('sheerid.com')) { alert('Please enter a valid SheerID verification URL'); return; }
+    verifyBtn.addEventListener('click', async () => {
+      const url = urlInput.value.trim();
+      const type = serviceType.value;
 
-      try {
-        await navigator.clipboard.writeText(url);
-        showToast('✓ URL copied! Paste it on 1Key.me');
-      } catch (e) {
-        showToast('Opening 1Key.me...');
+      if (!url) {
+        statusDiv.textContent = '⚠️ Please enter a URL';
+        statusDiv.style.color = '#fbbf24';
+        return;
       }
 
-      setTimeout(() => {
-        window.open('https://1key.me', '_blank');
-      }, 500);
+      verifyBtn.disabled = true;
+      verifyBtn.textContent = 'PROCESSING...';
+      statusDiv.textContent = '🚀 Launching browser & generating ID...';
+      statusDiv.style.color = '#fbbf24';
+
+      try {
+        // Call the local backend
+        const response = await fetch('http://localhost:3000/api/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url, type })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          if (data.rewardCode) {
+            statusDiv.innerHTML = `✅ <strong>Success!</strong><br>Your Code: <code style="background:rgba(255,255,255,0.2); padding:4px 8px; border-radius:4px; font-size:1.2em; color:#fff;">${data.rewardCode}</code>`;
+            statusDiv.style.color = '#4ade80';
+          } else {
+            statusDiv.textContent = '✅ Success! Verification submitted. Check your email.';
+            statusDiv.style.color = '#4ade80';
+          }
+        } else {
+          statusDiv.textContent = '❌ Failed: ' + (data.error || 'Unknown error');
+          statusDiv.style.color = '#ef4444';
+        }
+      } catch (e) {
+        statusDiv.textContent = '❌ Network Error. Is the backend running on port 3000?';
+        statusDiv.style.color = '#ef4444';
+      } finally {
+        verifyBtn.disabled = false;
+        verifyBtn.textContent = 'VERIFY NOW';
+      }
     });
 
-    document.getElementById('urlInput').addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') { document.getElementById('btnVerify').click(); }
+    urlInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') { verifyBtn.click(); }
     });
   </script>
 </body>

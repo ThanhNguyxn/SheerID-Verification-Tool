@@ -112,7 +112,7 @@ Crie um novo perfil de navegador ou use o modo anônimo para evitar conflitos de
    - [SheerID Verify Bot](https://t.me/sheeridverify_bot?start=invite_7762497789)
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
    - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
-   - [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789)
+
 
 2. Envie este comando:
    ```

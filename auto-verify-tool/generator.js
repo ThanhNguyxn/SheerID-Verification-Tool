@@ -42,13 +42,13 @@ async function generateStudentCard(studentInfo) {
             timeout: 30000
         });
 
-        await page.waitForSelector('#countrySelect', { timeout: 10000 });
+        await page.waitForSelector('#countrySelect', { timeout: 30000 });
         await page.select('#countrySelect', 'USA');
 
         await page.waitForFunction(() => {
             const select = document.querySelector('#universitySelect');
             return !select.disabled && select.options.length > 1;
-        }, { timeout: 10000 });
+        }, { timeout: 30000 });
 
         await page.select('#universitySelect', 'Pennsylvania State University-Main Campus');
 
@@ -85,8 +85,8 @@ async function generatePayslip(teacherInfo) {
             timeout: 30000
         });
 
-        await new Promise(r => setTimeout(r, 1500));
-        await page.waitForSelector('.editor-panel', { timeout: 10000 });
+        await new Promise(r => setTimeout(r, 3000));
+        await page.waitForSelector('.editor-panel', { timeout: 30000 });
 
         // Fast input using evaluate
         await page.evaluate((info) => {
@@ -133,16 +133,16 @@ async function generateTeacherCard(teacherInfo) {
             timeout: 30000
         });
 
-        await page.waitForSelector('#countrySelect', { timeout: 10000 });
+        await page.waitForSelector('#countrySelect', { timeout: 30000 });
         await page.click('#teacherModeBtn');
-        await new Promise(r => setTimeout(r, 300));
+        await new Promise(r => setTimeout(r, 500));
 
         await page.select('#countrySelect', 'USA');
 
         await page.waitForFunction(() => {
             const select = document.querySelector('#universitySelect');
             return !select.disabled && select.options.length > 1;
-        }, { timeout: 10000 });
+        }, { timeout: 30000 });
 
         await page.select('#universitySelect', 'Pennsylvania State University-Main Campus');
 

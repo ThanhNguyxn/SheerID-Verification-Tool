@@ -48,8 +48,10 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
         const verificationId = verificationIdMatch[1];
 
         global.emitLog(`🔍 Processing ${serviceType} Verification ID: ${verificationId}`);
+        global.emitLog('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
         // 2. Generate Fake Identity
+        global.emitLog('👤 [Step 1/5] Generating fake identity...');
         const firstName = faker.name.firstName();
         const lastName = faker.name.lastName();
         const email = faker.internet.email(firstName, lastName, 'psu.edu');
@@ -60,14 +62,18 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
             dob: dob,
             studentId: Math.floor(Math.random() * 100000000).toString()
         };
+        global.emitLog(`   ✓ Name: ${firstName} ${lastName}`);
+        global.emitLog(`   ✓ Email: ${email}`);
+        global.emitLog(`   ✓ DOB: ${dob}`);
+        global.emitLog(`   ✓ Student ID: ${studentInfo.studentId}`);
 
         // 3. Generate Document (Screenshot from student-card-generator)
-        global.emitLog('📸 Generating Student ID Card...');
+        global.emitLog('📸 [Step 2/5] Generating Student ID Card...');
         const imageBuffer = await generateStudentCard(studentInfo);
-        global.emitLog(`   PNG size: ${(imageBuffer.length / 1024).toFixed(2)}KB`);
+        global.emitLog(`   ✓ PNG generated: ${(imageBuffer.length / 1024).toFixed(2)}KB`);
 
         // 4. Submit Personal Info (collectStudentPersonalInfo)
-        global.emitLog('📤 Submitting student info...');
+        global.emitLog('📤 [Step 3/5] Submitting student info to SheerID...');
         const step1Response = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectStudentPersonalInfo`, {
             firstName,
             lastName,
@@ -90,9 +96,12 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
             }
         });
 
+        global.emitLog(`   ✓ Personal info submitted`);
+        global.emitLog(`   ✓ Current step: ${step1Response.data.currentStep}`);
+
         // Skip SSO if needed
         if (step1Response.data.currentStep === 'sso' || step1Response.data.currentStep === 'collectStudentPersonalInfo') {
-            global.emitLog('⏩ Skipping SSO...');
+            global.emitLog('⏩ [Step 4/5] Skipping SSO verification...');
             try {
                 await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
             } catch (e) {
@@ -335,9 +344,10 @@ async function pollForRewardCode(verificationId, maxAttempts = 10) {
 async function handleDocUpload(verificationId, imageBuffer, fileName) {
     try {
         // 5. Upload Document (Step 2)
-        global.emitLog('📤 Uploading document...');
+        global.emitLog('📤 [Step 5/5] Uploading document to SheerID...');
 
         // Request upload URL
+        global.emitLog('   → Requesting upload URL from SheerID...');
         const docUploadResponse = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/docUpload`, {
             files: [{
                 fileName: fileName,
@@ -345,18 +355,25 @@ async function handleDocUpload(verificationId, imageBuffer, fileName) {
                 fileSize: imageBuffer.length
             }]
         });
+        global.emitLog('   ✓ Upload URL received');
 
         const uploadUrl = docUploadResponse.data.documents[0].uploadUrl;
 
         // Upload to S3
+        global.emitLog('   → Uploading document to AWS S3...');
         await axios.put(uploadUrl, imageBuffer, {
             headers: { 'Content-Type': 'image/png' }
         });
+        global.emitLog('   ✓ Document uploaded to S3');
 
         // Confirm Upload
+        global.emitLog('   → Confirming upload with SheerID...');
         const completeResponse = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/completeDocUpload`);
+        global.emitLog('   ✓ Upload confirmed');
 
-        global.emitLog('✅ Verification submitted!');
+        global.emitLog('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        global.emitLog('✅ Verification submitted successfully!');
+        global.emitLog(`   Status: ${completeResponse.data.currentStep}`);
         return {
             success: true,
             status: completeResponse.data.currentStep,

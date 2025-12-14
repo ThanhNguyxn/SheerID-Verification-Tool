@@ -5,10 +5,10 @@ let sharedBrowser = null;
 
 async function getBrowser() {
     if (!sharedBrowser || !sharedBrowser.isConnected()) {
-        global.emitLog('� Launching shared browser instance...');
+        global.emitLog('🚀 Launching Chrome browser...');
         sharedBrowser = await puppeteer.launch({
             headless: "new",
-            protocolTimeout: 180000, // 3 minutes for slow VMs
+            protocolTimeout: 300000, // 5 minutes for slow VMs
             args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
@@ -17,7 +17,17 @@ async function getBrowser() {
                 '--no-first-run',
                 '--no-zygote',
                 '--single-process',
-                '--disable-extensions'
+                '--disable-extensions',
+                // Memory optimization
+                '--disable-background-networking',
+                '--disable-default-apps',
+                '--disable-sync',
+                '--disable-translate',
+                '--mute-audio',
+                '--hide-scrollbars',
+                '--disable-infobars',
+                '--disable-features=site-per-process',
+                '--js-flags=--max-old-space-size=512'
             ]
         });
     }

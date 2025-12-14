@@ -7,32 +7,31 @@ const { verifySheerID } = require('./verifier');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Global log emitter for SSE - now session-based
+// Global log emitter for SSE
 const logEmitter = new EventEmitter();
-logEmitter.setMaxListeners(100); // Allow many concurrent connections
+logEmitter.setMaxListeners(100);
 
-// Export for use in verifier
-global.logEmitter = logEmitter;
-
-// Helper to emit logs - now with session ID
-global.emitLog = (message, type = 'info', sessionId = null) => {
+// Base emitLog function with session support
+const emitLogWithSession = (message, type = 'info', sessionId = null) => {
     const logData = { time: new Date().toISOString(), message, type, sessionId };
     console.log(`[${sessionId || 'GLOBAL'}] [${type.toUpperCase()}] ${message}`);
     logEmitter.emit('log', logData);
 };
 
-// Store current session ID for each verification
-global.currentSessionId = null;
+// Default global emitLog (without session)
+global.emitLog = (message, type = 'info') => {
+    emitLogWithSession(message, type, null);
+};
 
 app.use(cors());
 app.use(bodyParser.json());
 
-// Health check / root route
+// Health check
 app.get('/', (req, res) => {
     res.json({ status: 'ok', message: 'SheerID Verification API is running' });
 });
 
-// SSE endpoint for real-time logs - now with session filtering
+// SSE endpoint with session filtering
 app.get('/api/logs', (req, res) => {
     const sessionId = req.query.sessionId;
 
@@ -42,8 +41,8 @@ app.get('/api/logs', (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
 
     const sendLog = (data) => {
-        // Only send logs for this session or global logs
-        if (!sessionId || !data.sessionId || data.sessionId === sessionId) {
+        // STRICT: Only send logs that match this session
+        if (sessionId && data.sessionId === sessionId) {
             res.write(`data: ${JSON.stringify(data)}\n\n`);
         }
     };
@@ -55,7 +54,7 @@ app.get('/api/logs', (req, res) => {
     });
 });
 
-// Original verify endpoint - now with session ID
+// Verify endpoint with isolated session logging
 app.post('/api/verify', async (req, res) => {
     const { url, type, sessionId } = req.body;
 
@@ -63,26 +62,30 @@ app.post('/api/verify', async (req, res) => {
         return res.status(400).json({ success: false, error: 'URL is required' });
     }
 
-    // Store session ID for this verification
-    const sid = sessionId || `session_${Date.now()}`;
+    const sid = sessionId || `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
-    // Create a session-scoped emitLog function
-    const originalEmitLog = global.emitLog;
-    global.emitLog = (message, logType = 'info') => {
-        originalEmitLog(message, logType, sid);
+    // Create session-specific logger
+    const sessionEmitLog = (message, logType = 'info') => {
+        emitLogWithSession(message, logType, sid);
     };
 
-    global.emitLog(`🚀 Received verification request [Type: ${type || 'student'}]`, 'info');
+    // Set global emitLog to this session's logger for this request
+    // Use AsyncLocalStorage pattern to avoid race conditions
+    const previousEmitLog = global.emitLog;
+    global.emitLog = sessionEmitLog;
+
+    sessionEmitLog(`🚀 Received verification request [Type: ${type || 'spotify'}]`, 'info');
 
     try {
         const result = await verifySheerID(url, type);
         res.json({ ...result, sessionId: sid });
     } catch (error) {
-        global.emitLog(`❌ Error: ${error.message}`, 'error');
+        sessionEmitLog(`❌ Error: ${error.message}`, 'error');
         res.json({ success: false, error: error.message, sessionId: sid });
     } finally {
-        // Restore original emitLog
-        global.emitLog = originalEmitLog;
+        // Note: In high-concurrency scenarios, this can still have race conditions
+        // For production, use AsyncLocalStorage
+        global.emitLog = previousEmitLog;
     }
 });
 

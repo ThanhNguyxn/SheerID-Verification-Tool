@@ -89,6 +89,28 @@ async function generatePayslip(teacherInfo) {
     const browser = await getBrowser();
     const page = await browser.newPage();
 
+    // School rotation - 14 US universities
+    const universities = [
+        'Pennsylvania State University-Main Campus',
+        'Massachusetts Institute of Technology',
+        'Harvard University',
+        'Stanford University',
+        'University of California, Berkeley',
+        'Yale University',
+        'Princeton University',
+        'Columbia University',
+        'New York University',
+        'University of California, Los Angeles',
+        'University of Chicago',
+        'Duke University',
+        'Cornell University',
+        'Northwestern University'
+    ];
+
+    // Select random university for this verification
+    const selectedUniversity = universities[Math.floor(Math.random() * universities.length)];
+    global.emitLog(`🎓 Payslip university: ${selectedUniversity}`);
+
     try {
         await page.goto('https://thanhnguyxn.github.io/payslip-generator/', {
             waitUntil: 'domcontentloaded',
@@ -98,8 +120,8 @@ async function generatePayslip(teacherInfo) {
         await new Promise(r => setTimeout(r, 3000));
         await page.waitForSelector('.editor-panel', { timeout: 30000 });
 
-        // Fast input using evaluate
-        await page.evaluate((info) => {
+        // Fast input using evaluate with random university
+        await page.evaluate((info, university) => {
             const setInput = (label, value) => {
                 const labels = Array.from(document.querySelectorAll('.input-group label'));
                 const targetLabel = labels.find(l => l.textContent === label);
@@ -112,11 +134,11 @@ async function generatePayslip(teacherInfo) {
                     }
                 }
             };
-            setInput('Company Name', 'Pennsylvania State University');
+            setInput('Company Name', university);
             setInput('Full Name', info.fullName || 'Jane Doe');
             setInput('Position', 'Professor');
             setInput('Employee ID', info.employeeId || 'E-1234567');
-        }, teacherInfo);
+        }, teacherInfo, selectedUniversity);
 
         await new Promise(r => setTimeout(r, 1000));
 
@@ -132,10 +154,32 @@ async function generatePayslip(teacherInfo) {
     }
 }
 
-async function generateTeacherCard(teacherInfo) {
+async function generateTeacherCard(teacherInfo, options = {}) {
     global.emitLog('📸 Generating Faculty ID Card...');
     const browser = await getBrowser();
     const page = await browser.newPage();
+
+    // School rotation - 14 US universities
+    const universities = [
+        'Pennsylvania State University-Main Campus',
+        'Massachusetts Institute of Technology',
+        'Harvard University',
+        'Stanford University',
+        'University of California, Berkeley',
+        'Yale University',
+        'Princeton University',
+        'Columbia University',
+        'New York University',
+        'University of California, Los Angeles',
+        'University of Chicago',
+        'Duke University',
+        'Cornell University',
+        'Northwestern University'
+    ];
+
+    // Select random university for this verification
+    const selectedUniversity = universities[Math.floor(Math.random() * universities.length)];
+    global.emitLog(`🎓 Selected university: ${selectedUniversity}`);
 
     try {
         await page.goto('https://thanhnguyxn.github.io/payslip-generator/', {
@@ -146,8 +190,8 @@ async function generateTeacherCard(teacherInfo) {
         await new Promise(r => setTimeout(r, 3000));
         await page.waitForSelector('.editor-panel', { timeout: 30000 });
 
-        // Fill in employee info
-        await page.evaluate((info) => {
+        // Fill in employee info with random university
+        await page.evaluate((info, university) => {
             const setInput = (label, value) => {
                 const labels = Array.from(document.querySelectorAll('.input-group label'));
                 const targetLabel = labels.find(l => l.textContent === label);
@@ -160,11 +204,11 @@ async function generateTeacherCard(teacherInfo) {
                     }
                 }
             };
-            setInput('Company Name', 'Pennsylvania State University');
+            setInput('Company Name', university);
             setInput('Full Name', info.fullName || 'Jane Doe');
             setInput('Position', 'Professor');
             setInput('Employee ID', info.employeeId || 'E-1234567');
-        }, teacherInfo);
+        }, teacherInfo, selectedUniversity);
 
         await new Promise(r => setTimeout(r, 500));
 
@@ -179,6 +223,37 @@ async function generateTeacherCard(teacherInfo) {
         }
 
         await new Promise(r => setTimeout(r, 1500));
+
+        // Handle PDF generation if requested
+        if (options.format === 'pdf') {
+            global.emitLog('📄 Generating PDF...');
+
+            try {
+                // Wait for the exposed function to be available
+                await page.waitForFunction(() => typeof window.getTeacherCardPdfBase64 === 'function', { timeout: 15000 });
+
+                const pdfBase64 = await page.evaluate(async () => {
+                    try {
+                        return await window.getTeacherCardPdfBase64();
+                    } catch (err) {
+                        return { error: err.toString() };
+                    }
+                });
+
+                if (!pdfBase64) throw new Error('PDF generation returned null');
+                if (pdfBase64.error) throw new Error(`Browser error: ${pdfBase64.error}`);
+
+                // Convert base64 to buffer (strip data:application/pdf;base64, prefix if present)
+                const base64Data = pdfBase64.replace(/^data:.*,/, '');
+                const pdfBuffer = Buffer.from(base64Data, 'base64');
+
+                global.emitLog('✅ Faculty ID Card PDF generated');
+                return pdfBuffer;
+            } catch (err) {
+                global.emitLog(`❌ PDF generation failed: ${err.message}`);
+                throw err;
+            }
+        }
 
         // Screenshot front card only
         const cardElement = await page.$('#teacher-card-front');

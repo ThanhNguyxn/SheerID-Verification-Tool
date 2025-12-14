@@ -138,36 +138,50 @@ async function generateTeacherCard(teacherInfo) {
     const page = await browser.newPage();
 
     try {
-        await page.goto('https://thanhnguyxn.github.io/student-card-generator/', {
+        await page.goto('https://thanhnguyxn.github.io/payslip-generator/', {
             waitUntil: 'domcontentloaded',
             timeout: 30000
         });
 
-        await page.waitForSelector('#countrySelect', { timeout: 30000 });
-        await page.click('#teacherModeBtn');
-        await new Promise(r => setTimeout(r, 500));
+        await new Promise(r => setTimeout(r, 3000));
+        await page.waitForSelector('.editor-panel', { timeout: 30000 });
 
-        await page.select('#countrySelect', 'USA');
-
-        await page.waitForFunction(() => {
-            const select = document.querySelector('#universitySelect');
-            return !select.disabled && select.options.length > 1;
-        }, { timeout: 30000 });
-
-        await page.select('#universitySelect', 'Pennsylvania State University-Main Campus');
-
+        // Fill in employee info
         await page.evaluate((info) => {
-            document.querySelector('#studentName').value = info.fullName || 'Jane Doe';
-            document.querySelector('#studentId').value = info.employeeId || 'E-1234567';
-            if (info.dob) document.querySelector('#dateOfBirth').value = info.dob;
+            const setInput = (label, value) => {
+                const labels = Array.from(document.querySelectorAll('.input-group label'));
+                const targetLabel = labels.find(l => l.textContent === label);
+                if (targetLabel) {
+                    const input = targetLabel.parentElement.querySelector('input');
+                    if (input) {
+                        const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+                        nativeInputValueSetter.call(input, value);
+                        input.dispatchEvent(new Event('input', { bubbles: true }));
+                    }
+                }
+            };
+            setInput('Company Name', 'Pennsylvania State University');
+            setInput('Full Name', info.fullName || 'Jane Doe');
+            setInput('Position', 'Professor');
+            setInput('Employee ID', info.employeeId || 'E-1234567');
         }, teacherInfo);
 
-        const regenerateBtn = await page.$('#regenerateBtn');
-        if (regenerateBtn) await regenerateBtn.click();
+        await new Promise(r => setTimeout(r, 500));
 
-        await new Promise(r => setTimeout(r, 1000));
+        // Click Teacher ID tab
+        const tabs = await page.$$('.tab-btn');
+        for (const tab of tabs) {
+            const text = await page.evaluate(el => el.textContent, tab);
+            if (text.includes('Teacher ID')) {
+                await tab.click();
+                break;
+            }
+        }
 
-        const cardElement = await page.$('.id-card');
+        await new Promise(r => setTimeout(r, 1500));
+
+        // Screenshot front card only
+        const cardElement = await page.$('#teacher-card-front');
         if (!cardElement) throw new Error('Faculty ID Card not found');
 
         const imageBuffer = await cardElement.screenshot({ type: 'png', encoding: 'binary' });

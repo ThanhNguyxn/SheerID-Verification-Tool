@@ -5,8 +5,8 @@ USER root
 # Set working directory
 WORKDIR /usr/src/app
 
-# Copy package files from subdirectory
-COPY auto-verify-tool/package*.json ./
+# Copy package files
+COPY package*.json ./
 
 # Skip Chromium download for Puppeteer (using base image's Chrome)
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
@@ -14,8 +14,8 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 # Install dependencies
 RUN npm install
 
-# Copy source code from subdirectory
-COPY auto-verify-tool/ .
+# Copy source code
+COPY . .
 
 # Expose port
 EXPOSE 3000

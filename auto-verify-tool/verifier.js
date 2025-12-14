@@ -26,7 +26,7 @@ async function pngToPdf(pngBuffer) {
     });
 }
 
-async function verifySheerID(verificationUrl, type = 'student') {
+async function verifySheerID(verificationUrl, type = 'spotify') {
     if (type === 'gpt') {
         // ChatGPT uses k12-style verification (PDF+PNG, birthDate, marketConsentValue=false)
         return verifyGPT(verificationUrl);
@@ -34,9 +34,12 @@ async function verifySheerID(verificationUrl, type = 'student') {
         // Bolt.new uses teacher verification
         return verifyTeacher(verificationUrl);
     } else if (type === 'youtube') {
-        return verifyStudent(verificationUrl, 'youtube');
+        return verifyStudent(verificationUrl, 'YouTube');
+    } else if (type === 'gemini') {
+        return verifyStudent(verificationUrl, 'Gemini');
     } else {
-        return verifyStudent(verificationUrl, 'spotify');
+        // Default: Spotify
+        return verifyStudent(verificationUrl, 'Spotify');
     }
 }
 
@@ -47,11 +50,14 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
         if (!verificationIdMatch) throw new Error('Invalid Verification URL');
         const verificationId = verificationIdMatch[1];
 
-        global.emitLog(`🔍 Processing ${serviceType} Verification ID: ${verificationId}`);
-        global.emitLog('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        global.emitLog('═══════════════════════════════════════════════════════════');
+        global.emitLog(`🔍 SheerID ${serviceType.toUpperCase()} Student Verification`);
+        global.emitLog('═══════════════════════════════════════════════════════════');
+        global.emitLog(`📋 Verification ID: ${verificationId}`);
 
         // 2. Generate Fake Identity
-        global.emitLog('👤 [Step 1/5] Generating fake identity...');
+        global.emitLog('');
+        global.emitLog('📝 [Step 1/4] Generating student identity...');
         const firstName = faker.name.firstName();
         const lastName = faker.name.lastName();
         const email = faker.internet.email(firstName, lastName, 'psu.edu');
@@ -62,18 +68,20 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
             dob: dob,
             studentId: Math.floor(Math.random() * 100000000).toString()
         };
-        global.emitLog(`   ✓ Name: ${firstName} ${lastName}`);
-        global.emitLog(`   ✓ Email: ${email}`);
-        global.emitLog(`   ✓ DOB: ${dob}`);
-        global.emitLog(`   ✓ Student ID: ${studentInfo.studentId}`);
+        global.emitLog(`   ├─ Name: ${firstName} ${lastName}`);
+        global.emitLog(`   ├─ Email: ${email}`);
+        global.emitLog(`   ├─ Birth Date: ${dob}`);
+        global.emitLog(`   └─ Student ID: ${studentInfo.studentId}`);
 
         // 3. Generate Document (Screenshot from student-card-generator)
-        global.emitLog('📸 [Step 2/5] Generating Student ID Card...');
+        global.emitLog('');
+        global.emitLog('🎨 [Step 2/4] Generating Student ID Card...');
         const imageBuffer = await generateStudentCard(studentInfo);
-        global.emitLog(`   ✓ PNG generated: ${(imageBuffer.length / 1024).toFixed(2)}KB`);
+        global.emitLog(`   └─ ✅ PNG generated: ${(imageBuffer.length / 1024).toFixed(2)}KB`);
 
         // 4. Submit Personal Info (collectStudentPersonalInfo)
-        global.emitLog('📤 [Step 3/5] Submitting student info to SheerID...');
+        global.emitLog('');
+        global.emitLog('📤 [Step 3/4] Submitting student info to SheerID...');
         const step1Response = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectStudentPersonalInfo`, {
             firstName,
             lastName,
@@ -96,16 +104,17 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
             }
         });
 
-        global.emitLog(`   ✓ Personal info submitted`);
-        global.emitLog(`   ✓ Current step: ${step1Response.data.currentStep}`);
+        global.emitLog(`   └─ ✅ Step 3 completed: ${step1Response.data.currentStep}`);
 
         // Skip SSO if needed
         if (step1Response.data.currentStep === 'sso' || step1Response.data.currentStep === 'collectStudentPersonalInfo') {
-            global.emitLog('⏩ [Step 4/5] Skipping SSO verification...');
+            global.emitLog('');
+            global.emitLog('⏩ Skipping SSO verification...');
             try {
-                await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
+                const ssoResponse = await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
+                global.emitLog(`   └─ ✅ SSO skipped: ${ssoResponse.data.currentStep}`);
             } catch (e) {
-                global.emitLog('⚠️ SSO Skip warning:', e.message);
+                global.emitLog(`   └─ ⚠️ SSO skip warning: ${e.message}`);
             }
         }
 
@@ -113,6 +122,7 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
 
     } catch (error) {
         console.error(`❌ ${serviceType} Verification failed:`, error.response ? error.response.data : error.message);
+        global.emitLog(`❌ Error: ${error.response ? JSON.stringify(error.response.data) : error.message}`);
         return { success: false, error: error.message };
     }
 }
@@ -128,9 +138,14 @@ async function verifyTeacher(verificationUrl) {
         const externalUserIdMatch = verificationUrl.match(/externalUserId=([^&]+)/i);
         const externalUserId = externalUserIdMatch ? externalUserIdMatch[1] : String(Math.floor(Math.random() * 9000000 + 1000000));
 
-        global.emitLog(`🔍 Processing Bolt.new Teacher Verification ID: ${verificationId}`);
+        global.emitLog('═══════════════════════════════════════════════════════════');
+        global.emitLog('🔍 SheerID TEACHER Verification (Bolt.new Style)');
+        global.emitLog('═══════════════════════════════════════════════════════════');
+        global.emitLog(`📋 Verification ID: ${verificationId}`);
 
         // 2. Generate Fake Identity
+        global.emitLog('');
+        global.emitLog('📝 [Step 1/4] Generating teacher identity...');
         const firstName = faker.name.firstName();
         const lastName = faker.name.lastName();
         const email = faker.internet.email(firstName, lastName, 'psu.edu');
@@ -138,14 +153,18 @@ async function verifyTeacher(verificationUrl) {
         const teacherInfo = {
             fullName: `${firstName} ${lastName}`
         };
+        global.emitLog(`   ├─ Name: ${firstName} ${lastName}`);
+        global.emitLog(`   └─ Email: ${email}`);
 
         // 3. Generate Document (Payslip from payslip-generator)
-        global.emitLog('📸 Generating Payslip...');
+        global.emitLog('');
+        global.emitLog('🎨 [Step 2/4] Generating Payslip document...');
         const imageBuffer = await generatePayslip(teacherInfo);
-        global.emitLog(`   PNG size: ${(imageBuffer.length / 1024).toFixed(2)}KB`);
+        global.emitLog(`   └─ ✅ PNG generated: ${(imageBuffer.length / 1024).toFixed(2)}KB`);
 
         // 4. Submit Personal Info (collectTeacherPersonalInfo) - Bolt.new style
-        global.emitLog('📤 Submitting teacher info (Bolt.new style)...');
+        global.emitLog('');
+        global.emitLog('📤 [Step 3/4] Submitting teacher info to SheerID...');
         const step1Response = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectTeacherPersonalInfo`, {
             firstName,
             lastName,
@@ -170,13 +189,17 @@ async function verifyTeacher(verificationUrl) {
             }
         });
 
+        global.emitLog(`   └─ ✅ Step 3 completed: ${step1Response.data.currentStep}`);
+
         // Skip SSO if needed
         if (step1Response.data.currentStep === 'sso' || step1Response.data.currentStep === 'collectTeacherPersonalInfo') {
-            global.emitLog('⏩ Skipping SSO...');
+            global.emitLog('');
+            global.emitLog('⏩ Skipping SSO verification...');
             try {
-                await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
+                const ssoResponse = await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
+                global.emitLog(`   └─ ✅ SSO skipped: ${ssoResponse.data.currentStep}`);
             } catch (e) {
-                global.emitLog('⚠️ SSO Skip warning:', e.message);
+                global.emitLog(`   └─ ⚠️ SSO skip warning: ${e.message}`);
             }
         }
 
@@ -184,6 +207,7 @@ async function verifyTeacher(verificationUrl) {
         const uploadResult = await handleDocUpload(verificationId, imageBuffer, 'payslip.png');
 
         if (uploadResult.success) {
+            global.emitLog('');
             global.emitLog('⏳ Polling for reward code...');
             const rewardCode = await pollForRewardCode(verificationId);
             if (rewardCode) {
@@ -197,6 +221,7 @@ async function verifyTeacher(verificationUrl) {
 
     } catch (error) {
         console.error('❌ Teacher Verification failed:', error.response ? error.response.data : error.message);
+        global.emitLog(`❌ Error: ${error.response ? JSON.stringify(error.response.data) : error.message}`);
         return { success: false, error: error.message };
     }
 }
@@ -208,9 +233,14 @@ async function verifyGPT(verificationUrl) {
         if (!verificationIdMatch) throw new Error('Invalid Verification URL');
         const verificationId = verificationIdMatch[1];
 
-        global.emitLog(`🔍 Processing ChatGPT (k12-style) Verification ID: ${verificationId}`);
+        global.emitLog('═══════════════════════════════════════════════════════════');
+        global.emitLog('🔍 SheerID CHATGPT TEACHER Verification (K12 Style)');
+        global.emitLog('═══════════════════════════════════════════════════════════');
+        global.emitLog(`📋 Verification ID: ${verificationId}`);
 
         // 2. Generate Fake Identity with birthDate (required for k12)
+        global.emitLog('');
+        global.emitLog('📝 [Step 1/5] Generating teacher identity...');
         const firstName = faker.name.firstName();
         const lastName = faker.name.lastName();
         const email = faker.internet.email(firstName, lastName, 'springfield.k12.or.us');
@@ -221,20 +251,26 @@ async function verifyGPT(verificationUrl) {
             dob: dob,
             employeeId: 'E-' + Math.floor(Math.random() * 9000000 + 1000000)
         };
+        global.emitLog(`   ├─ Name: ${firstName} ${lastName}`);
+        global.emitLog(`   ├─ Email: ${email}`);
+        global.emitLog(`   └─ Birth Date: ${dob}`);
 
         // 3. Generate Documents (PNG screenshot, then convert to PDF)
-        global.emitLog('📄 Generating Teacher documents...');
+        global.emitLog('');
+        global.emitLog('🎨 [Step 2/5] Generating Teacher documents...');
+        global.emitLog('   ├─ Generating payslip...');
         const payslipPng = await generatePayslip(teacherInfo);
         const pdfBuffer = await pngToPdf(payslipPng);
-        global.emitLog(`   PDF size: ${(pdfBuffer.length / 1024).toFixed(2)}KB`);
+        global.emitLog(`   ├─ ✅ PDF generated: ${(pdfBuffer.length / 1024).toFixed(2)}KB`);
 
         // Also generate Faculty ID Card PNG
+        global.emitLog('   ├─ Generating Faculty ID Card...');
         const teacherCardPng = await generateTeacherCard(teacherInfo);
-        global.emitLog(`   PNG size: ${(teacherCardPng.length / 1024).toFixed(2)}KB`);
+        global.emitLog(`   └─ ✅ PNG generated: ${(teacherCardPng.length / 1024).toFixed(2)}KB`);
 
         // 4. Submit Personal Info (k12-style with birthDate and marketConsentValue=false)
-        // Using HIGH_SCHOOL organization like k12 config
-        global.emitLog('📤 Submitting teacher info (k12-style)...');
+        global.emitLog('');
+        global.emitLog('📤 [Step 3/5] Submitting teacher info to SheerID...');
         const step1Response = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectTeacherPersonalInfo`, {
             firstName,
             lastName,
@@ -255,18 +291,24 @@ async function verifyGPT(verificationUrl) {
             }
         });
 
+        global.emitLog(`   └─ ✅ Step 3 completed: ${step1Response.data.currentStep}`);
+
         // Skip SSO if needed
         if (step1Response.data.currentStep === 'sso' || step1Response.data.currentStep === 'collectTeacherPersonalInfo') {
-            global.emitLog('⏩ Skipping SSO...');
+            global.emitLog('');
+            global.emitLog('⏩ [Step 4/5] Skipping SSO verification...');
             try {
-                await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
+                const ssoResponse = await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
+                global.emitLog(`   └─ ✅ SSO skipped: ${ssoResponse.data.currentStep}`);
             } catch (e) {
-                global.emitLog('⚠️ SSO Skip warning (might be already skipped):', e.message);
+                global.emitLog(`   └─ ⚠️ SSO skip warning (might be already skipped)`);
             }
         }
 
         // 5. Upload Documents (PDF + PNG) - k12 style
-        global.emitLog('📤 Uploading documents (PDF + PNG)...');
+        global.emitLog('');
+        global.emitLog('📤 [Step 5/5] Uploading documents to SheerID...');
+        global.emitLog('   ├─ Requesting upload URLs...');
         const docUploadResponse = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/docUpload`, {
             files: [
                 {
@@ -284,34 +326,47 @@ async function verifyGPT(verificationUrl) {
 
         const documents = docUploadResponse.data.documents || [];
         if (documents.length < 2) throw new Error('Failed to get upload URLs');
+        global.emitLog('   ├─ ✅ Upload URLs received');
 
         // Upload PDF
+        global.emitLog('   ├─ Uploading PDF to S3...');
         await axios.put(documents[0].uploadUrl, pdfBuffer, {
             headers: { 'Content-Type': 'application/pdf' }
         });
-        global.emitLog('✅ PDF uploaded');
+        global.emitLog('   ├─ ✅ PDF uploaded');
 
         // Upload PNG
+        global.emitLog('   ├─ Uploading PNG to S3...');
         await axios.put(documents[1].uploadUrl, teacherCardPng, {
             headers: { 'Content-Type': 'image/png' }
         });
-        global.emitLog('✅ PNG uploaded');
+        global.emitLog('   ├─ ✅ PNG uploaded');
 
         // Complete upload
+        global.emitLog('   ├─ Confirming upload with SheerID...');
         const completeResponse = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/completeDocUpload`);
-        global.emitLog('✅ Documents submitted!');
+        global.emitLog(`   └─ ✅ Documents submitted: ${completeResponse.data.currentStep}`);
+
+        global.emitLog('');
+        global.emitLog('═══════════════════════════════════════════════════════════');
+        global.emitLog('✅ VERIFICATION SUBMITTED SUCCESSFULLY!');
+        global.emitLog('═══════════════════════════════════════════════════════════');
 
         // Poll for reward code
+        global.emitLog('');
         global.emitLog('⏳ Polling for reward code...');
         const rewardCode = await pollForRewardCode(verificationId);
         if (rewardCode) {
+            global.emitLog(`🎉 Reward Code: ${rewardCode}`);
             return { success: true, message: 'Verification successful!', rewardCode: rewardCode };
         } else {
+            global.emitLog('📧 No instant code. Please check your email.');
             return { success: true, message: 'Verification submitted. Please check your email for the code.' };
         }
 
     } catch (error) {
         console.error('❌ ChatGPT Verification failed:', error.response ? error.response.data : error.message);
+        global.emitLog(`❌ Error: ${error.response ? JSON.stringify(error.response.data) : error.message}`);
         return { success: false, error: error.message };
     }
 }
@@ -333,7 +388,7 @@ async function pollForRewardCode(verificationId, maxAttempts = 10) {
                 return null; // Stop polling on failure
             }
 
-            global.emitLog(`   ...attempt ${i + 1}/${maxAttempts}`);
+            global.emitLog(`   └─ Attempt ${i + 1}/${maxAttempts}...`);
         } catch (e) {
             console.error('   Polling error:', e.message);
         }
@@ -343,11 +398,11 @@ async function pollForRewardCode(verificationId, maxAttempts = 10) {
 
 async function handleDocUpload(verificationId, imageBuffer, fileName) {
     try {
-        // 5. Upload Document (Step 2)
-        global.emitLog('📤 [Step 5/5] Uploading document to SheerID...');
+        global.emitLog('');
+        global.emitLog('📤 [Step 4/4] Uploading document to SheerID...');
 
         // Request upload URL
-        global.emitLog('   → Requesting upload URL from SheerID...');
+        global.emitLog('   ├─ Requesting upload URL...');
         const docUploadResponse = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/docUpload`, {
             files: [{
                 fileName: fileName,
@@ -355,25 +410,29 @@ async function handleDocUpload(verificationId, imageBuffer, fileName) {
                 fileSize: imageBuffer.length
             }]
         });
-        global.emitLog('   ✓ Upload URL received');
+        global.emitLog('   ├─ ✅ Upload URL received');
 
         const uploadUrl = docUploadResponse.data.documents[0].uploadUrl;
 
         // Upload to S3
-        global.emitLog('   → Uploading document to AWS S3...');
+        global.emitLog('   ├─ Uploading to S3...');
         await axios.put(uploadUrl, imageBuffer, {
             headers: { 'Content-Type': 'image/png' }
         });
-        global.emitLog('   ✓ Document uploaded to S3');
+        global.emitLog('   ├─ ✅ Document uploaded to S3');
 
         // Confirm Upload
-        global.emitLog('   → Confirming upload with SheerID...');
+        global.emitLog('   ├─ Confirming upload with SheerID...');
         const completeResponse = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/completeDocUpload`);
-        global.emitLog('   ✓ Upload confirmed');
+        global.emitLog(`   └─ ✅ Upload confirmed: ${completeResponse.data.currentStep}`);
 
-        global.emitLog('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-        global.emitLog('✅ Verification submitted successfully!');
-        global.emitLog(`   Status: ${completeResponse.data.currentStep}`);
+        global.emitLog('');
+        global.emitLog('═══════════════════════════════════════════════════════════');
+        global.emitLog('✅ VERIFICATION SUBMITTED SUCCESSFULLY!');
+        global.emitLog('═══════════════════════════════════════════════════════════');
+        global.emitLog(`📧 Status: ${completeResponse.data.currentStep}`);
+        global.emitLog('Please check your email for confirmation.');
+
         return {
             success: true,
             status: completeResponse.data.currentStep,

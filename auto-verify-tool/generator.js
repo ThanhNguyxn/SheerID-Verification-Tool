@@ -1,36 +1,33 @@
 const puppeteer = require('puppeteer');
+const UNIVERSITIES = require('./universities-data');
 
 // Shared browser instance for performance
 let sharedBrowser = null;
 
 async function getBrowser() {
-    if (!sharedBrowser || !sharedBrowser.isConnected()) {
-        global.emitLog('🚀 Launching Chrome browser...');
-        sharedBrowser = await puppeteer.launch({
-            headless: "new",
-            protocolTimeout: 300000, // 5 minutes for slow VMs
-            args: [
-                '--no-sandbox',
-                '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-                '--disable-gpu',
-                '--no-first-run',
-                '--no-zygote',
-                '--single-process',
-                '--disable-extensions',
-                // Memory optimization
-                '--disable-background-networking',
-                '--disable-default-apps',
-                '--disable-sync',
-                '--disable-translate',
-                '--mute-audio',
-                '--hide-scrollbars',
-                '--disable-infobars',
-                '--disable-features=site-per-process',
-                '--js-flags=--max-old-space-size=512'
-            ]
-        });
+    if (sharedBrowser) {
+        if (sharedBrowser.isConnected()) {
+            return sharedBrowser;
+        }
+        sharedBrowser = null;
     }
+
+    global.emitLog('🚀 Launching Chrome browser...');
+    sharedBrowser = await puppeteer.launch({
+        headless: true,
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-gpu'
+        ]
+    });
+
+    sharedBrowser.on('disconnected', () => {
+        global.emitLog('⚠️ Browser disconnected');
+        sharedBrowser = null;
+    });
+
     return sharedBrowser;
 }
 
@@ -46,6 +43,11 @@ async function generateStudentCard(studentInfo) {
     const browser = await getBrowser();
     const page = await browser.newPage();
 
+    // Find university object to get country
+    const universityObj = UNIVERSITIES.find(u => u.name === studentInfo.university);
+    const country = universityObj ? universityObj.country : 'USA'; // Default to USA
+    const universityName = universityObj ? universityObj.name : studentInfo.university;
+
     try {
         await page.goto('https://thanhnguyxn.github.io/student-card-generator/', {
             waitUntil: 'domcontentloaded',
@@ -53,14 +55,26 @@ async function generateStudentCard(studentInfo) {
         });
 
         await page.waitForSelector('#countrySelect', { timeout: 30000 });
-        await page.select('#countrySelect', 'USA');
 
-        await page.waitForFunction(() => {
+        await page.select('#countrySelect', country);
+
+        await new Promise(r => setTimeout(r, 1000)); // Wait for options to update
+
+        await page.waitForFunction((uniName) => {
             const select = document.querySelector('#universitySelect');
-            return !select.disabled && select.options.length > 1;
-        }, { timeout: 30000 });
+            return !select.disabled && Array.from(select.options).some(opt => opt.textContent === uniName);
+        }, { timeout: 30000 }, universityName);
 
-        await page.select('#universitySelect', 'Pennsylvania State University-Main Campus');
+        // Get the value (index) for the selected university
+        const universityValue = await page.evaluate((uniName) => {
+            const select = document.querySelector('#universitySelect');
+            const option = Array.from(select.options).find(opt => opt.textContent === uniName);
+            return option ? option.value : null;
+        }, universityName);
+
+        if (!universityValue) throw new Error(`University not found in dropdown: ${universityName}`);
+
+        await page.select('#universitySelect', universityValue);
 
         // Use evaluate for faster input (no typing delay)
         await page.evaluate((info) => {
@@ -80,7 +94,8 @@ async function generateStudentCard(studentInfo) {
         return imageBuffer;
 
     } finally {
-        await page.close();
+        if (page) await page.close();
+        // Do not close browser here
     }
 }
 
@@ -90,25 +105,11 @@ async function generatePayslip(teacherInfo) {
     const page = await browser.newPage();
 
     // School rotation - 14 US universities
-    const universities = [
-        'Pennsylvania State University-Main Campus',
-        'Massachusetts Institute of Technology',
-        'Harvard University',
-        'Stanford University',
-        'University of California, Berkeley',
-        'Yale University',
-        'Princeton University',
-        'Columbia University',
-        'New York University',
-        'University of California, Los Angeles',
-        'University of Chicago',
-        'Duke University',
-        'Cornell University',
-        'Northwestern University'
-    ];
+    // School rotation - use centralized list
+    const universities = UNIVERSITIES.map(u => u.name);
 
-    // Select random university for this verification
-    const selectedUniversity = universities[Math.floor(Math.random() * universities.length)];
+    // Select university: Use provided one, or random from list
+    const selectedUniversity = teacherInfo.university || universities[Math.floor(Math.random() * universities.length)];
     global.emitLog(`🎓 Payslip university: ${selectedUniversity}`);
 
     try {
@@ -160,25 +161,11 @@ async function generateTeacherCard(teacherInfo, options = {}) {
     const page = await browser.newPage();
 
     // School rotation - 14 US universities
-    const universities = [
-        'Pennsylvania State University-Main Campus',
-        'Massachusetts Institute of Technology',
-        'Harvard University',
-        'Stanford University',
-        'University of California, Berkeley',
-        'Yale University',
-        'Princeton University',
-        'Columbia University',
-        'New York University',
-        'University of California, Los Angeles',
-        'University of Chicago',
-        'Duke University',
-        'Cornell University',
-        'Northwestern University'
-    ];
+    // School rotation - use centralized list
+    const universities = UNIVERSITIES.map(u => u.name);
 
-    // Select random university for this verification
-    const selectedUniversity = universities[Math.floor(Math.random() * universities.length)];
+    // Select university: Use provided one, or random from list
+    const selectedUniversity = teacherInfo.university || universities[Math.floor(Math.random() * universities.length)];
     global.emitLog(`🎓 Selected university: ${selectedUniversity}`);
 
     try {

@@ -2,6 +2,16 @@ const axios = require('axios');
 const { generateStudentCard, generatePayslip, generateTeacherCard, generateDocumentsParallel, closeBrowser } = require('./generator');
 const faker = require('faker');
 const PDFDocument = require('pdfkit');
+const UNIVERSITIES = require('./universities-data');
+
+function getRandomUniversity(country = null) {
+    let candidates = UNIVERSITIES;
+    if (country) {
+        candidates = UNIVERSITIES.filter(u => u.country === country);
+    }
+    if (candidates.length === 0) return UNIVERSITIES[Math.floor(Math.random() * UNIVERSITIES.length)];
+    return candidates[Math.floor(Math.random() * candidates.length)];
+}
 
 const SHEERID_API_URL = 'https://services.sheerid.com/rest/v2';
 
@@ -63,10 +73,17 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
         const email = faker.internet.email(firstName, lastName, 'psu.edu');
         const dob = faker.date.between('1998-01-01', '2004-12-31').toISOString().split('T')[0];
 
+        // Select a random university for this verification
+        // Prioritize USA (80% chance)
+        const prioritizeUS = Math.random() < 0.8;
+        const university = prioritizeUS ? getRandomUniversity('USA') : getRandomUniversity();
+        global.emitLog(`🎓 Selected University: ${university.name} (ID: ${university.sheerId})`);
+
         const studentInfo = {
             fullName: `${firstName} ${lastName}`,
             dob: dob,
-            studentId: Math.floor(Math.random() * 100000000).toString()
+            studentId: Math.floor(Math.random() * 100000000).toString(),
+            university: university.name
         };
         global.emitLog(`   ├─ Name: ${firstName} ${lastName}`);
         global.emitLog(`   ├─ Email: ${email}`);
@@ -89,9 +106,9 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
             birthDate: dob,
             phoneNumber: "",
             organization: {
-                id: 2565,
-                idExtended: '2565',
-                name: 'Pennsylvania State University-Main Campus'
+                id: university.sheerId,
+                idExtended: String(university.sheerId),
+                name: university.name
             },
             deviceFingerprintHash: faker.datatype.hexaDecimal(32).replace('0x', ''),
             locale: 'en-US',
@@ -150,8 +167,13 @@ async function verifyTeacher(verificationUrl) {
         const lastName = faker.name.lastName();
         const email = faker.internet.email(firstName, lastName, 'psu.edu');
 
+        // Select a random university for this verification (Teachers: US Only)
+        const university = getRandomUniversity('USA');
+        global.emitLog(`🎓 Selected University: ${university.name} (ID: ${university.sheerId})`);
+
         const teacherInfo = {
-            fullName: `${firstName} ${lastName}`
+            fullName: `${firstName} ${lastName}`,
+            university: university.name
         };
         global.emitLog(`   ├─ Name: ${firstName} ${lastName}`);
         global.emitLog(`   └─ Email: ${email}`);
@@ -172,9 +194,9 @@ async function verifyTeacher(verificationUrl) {
             birthDate: "", // Bolt.new leaves birthDate empty
             phoneNumber: "",
             organization: {
-                id: 2565,
-                idExtended: '2565',
-                name: 'Pennsylvania State University-Main Campus'
+                id: university.sheerId,
+                idExtended: String(university.sheerId),
+                name: university.name
             },
             deviceFingerprintHash: faker.datatype.hexaDecimal(32).replace('0x', ''),
             externalUserId: externalUserId,

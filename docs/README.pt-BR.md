@@ -155,6 +155,11 @@ Ao concluir com sucesso, você receberá:
 - 📝 **NotebookLM Pro** - Recursos avançados de anotações
 - 🎥 **1.000 créditos de vídeo IA** - Crie vídeos com VEO3
 
+**ChatGPT Plus:**
+- 💬 **ChatGPT Plus** - Grátis para professores K-12
+- 🧠 **Acesso ao GPT-4o** - Capacidades avançadas de IA
+- 🎨 **DALL·E e mais** - Geração de imagens e recursos avançados
+
 ## ⚠️ Notas de Segurança
 
 - 🔐 Use apenas fontes de bots confiáveis listadas neste guia

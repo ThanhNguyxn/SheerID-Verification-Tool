@@ -562,9 +562,9 @@ async function verifyTeacher(verificationUrl) {
 
 async function verifyGPT(verificationUrl) {
     try {
-        // 1. Parse Verification ID
-        const verificationIdMatch = verificationUrl.match(/verificationId=([a-f0-9]+)/i);
-        if (!verificationIdMatch) throw new Error('Invalid Verification URL');
+        // 1. Parse Verification ID (supports both ?verificationId=... and /verify/...)
+        const verificationIdMatch = verificationUrl.match(/(?:verificationId=|verify\/)([a-f0-9]+)/i);
+        if (!verificationIdMatch) throw new Error('Invalid Verification URL format. Expected .../verify/{ID} or ...?verificationId={ID}');
         const verificationId = verificationIdMatch[1];
 
         global.emitLog('═══════════════════════════════════════════════════════════');

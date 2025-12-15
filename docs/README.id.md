@@ -126,11 +126,16 @@ Buat profil browser baru atau gunakan mode penyamaran untuk menghindari konflik 
 > [!TIP]
 > **Bot dalam pemeliharaan?** Jika bot verifikasi sementara tidak tersedia, Anda dapat membuat kartu pelajar uji di sini: [🎓 Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/)
 
-### ✨ Langkah 4: Aktifkan Gemini Advanced
+### ✨ Langkah 4: Aktifkan Paket Premium Anda
 
+**Untuk Google Gemini:**
 1. Setelah verifikasi, daftar untuk **Google One AI Premium**
 2. Tambahkan metode pembayaran Anda (tidak ada biaya selama periode gratis)
 3. Selesaikan pendaftaran
+
+**Untuk ChatGPT Plus:**
+1. Setelah verifikasi, ChatGPT Plus Anda akan diaktifkan secara otomatis
+2. Nikmati langganan gratis Anda!
 
 > [!NOTE]
 > **Pengguna VPN:** Setelah verifikasi, putuskan sambungan VPN dan muat ulang halaman sebelum menambahkan metode pembayaran. Ini memastikan kompatibilitas dengan opsi pembayaran negara Anda.

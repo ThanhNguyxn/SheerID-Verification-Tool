@@ -166,11 +166,7 @@ Cliquez sur **Join Student Program** ou bouton équivalent pour recevoir votre l
 1. Après vérification, votre ChatGPT Plus sera activé automatiquement
 2. Profitez de votre abonnement gratuit !
 
-### ✨ Étape 4 : Activer Gemini Advanced
 
-1. Après vérification, inscrivez-vous à **Google One AI Premium**
-2. Ajoutez votre méthode de paiement (aucun frais pendant la période gratuite)
-3. Terminez l'inscription
 
 > [!NOTE]
 > **Utilisateurs VPN :** Après vérification, déconnectez le VPN et rechargez la page avant d'ajouter le mode de paiement. Cela garantit la compatibilité avec les options de paiement de votre pays.

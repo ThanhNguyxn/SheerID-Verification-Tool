@@ -126,11 +126,16 @@ Crie um novo perfil de navegador ou use o modo anônimo para evitar conflitos de
 > [!TIP]
 > **Bot em manutenção?** Se o bot de verificação estiver temporariamente indisponível, você pode criar um cartão de estudante de teste aqui: [🎓 Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/)
 
-### ✨ Passo 4: Ativar Gemini Advanced
+### ✨ Passo 4: Ativar seu Plano Premium
 
+**Para Google Gemini:**
 1. Após a verificação, inscreva-se no **Google One AI Premium**
 2. Adicione seu método de pagamento (sem cobrança durante o período gratuito)
 3. Conclua o registro
+
+**Para ChatGPT Plus:**
+1. Após a verificação, seu ChatGPT Plus será ativado automaticamente
+2. Aproveite sua assinatura gratuita!
 
 > [!NOTE]
 > **Usuários de VPN:** Após a verificação, desconecte a VPN e recarregue a página antes de adicionar o método de pagamento. Isso garante compatibilidade com as opções de pagamento do seu país.

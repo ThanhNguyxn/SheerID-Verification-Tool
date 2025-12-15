@@ -1,8 +1,120 @@
-const axios = require('axios');
+const axios = global.axios || require('axios');
+const crypto = require('crypto');
 const { generateStudentCard, generatePayslip, generateTeacherCard, generateDocumentsParallel, closeBrowser } = require('./generator');
 const faker = require('faker');
 const PDFDocument = require('pdfkit');
 const UNIVERSITIES = require('./universities-data');
+
+// ============== IMPROVEMENT: Success Rate Tracking ==============
+const verificationStats = {
+    total: 0,
+    success: 0,
+    failed: 0,
+    byUniversity: {},
+    getSuccessRate: function () {
+        return this.total > 0 ? ((this.success / this.total) * 100).toFixed(1) : 0;
+    },
+    recordSuccess: function (universityName) {
+        this.total++;
+        this.success++;
+        if (!this.byUniversity[universityName]) {
+            this.byUniversity[universityName] = { total: 0, success: 0 };
+        }
+        this.byUniversity[universityName].total++;
+        this.byUniversity[universityName].success++;
+    },
+    recordFailure: function (universityName) {
+        this.total++;
+        this.failed++;
+        if (!this.byUniversity[universityName]) {
+            this.byUniversity[universityName] = { total: 0, success: 0 };
+        }
+        this.byUniversity[universityName].total++;
+    }
+};
+
+// ============== IMPROVEMENT: Better Device Fingerprint ==============
+function generateRealisticFingerprint() {
+    const components = [
+        Date.now().toString(16),
+        Math.random().toString(16).substring(2, 10),
+        process.platform || 'win32',
+        Math.floor(Math.random() * 1000).toString(16)
+    ];
+    return crypto.createHash('md5').update(components.join('-')).digest('hex');
+}
+
+// ============== IMPROVEMENT: Realistic Birth Date (18-25 years old) ==============
+function generateRealisticBirthDate() {
+    const now = new Date();
+    const minAge = 18;
+    const maxAge = 25;
+    const minYear = now.getFullYear() - maxAge;
+    const maxYear = now.getFullYear() - minAge;
+    return faker.date.between(`${minYear}-01-01`, `${maxYear}-12-31`).toISOString().split('T')[0];
+}
+
+// ============== IMPROVEMENT: Request Delay to Avoid Rate Limiting ==============
+const MIN_DELAY = 300;
+const MAX_DELAY = 800;
+
+async function randomDelay() {
+    const delay = Math.random() * (MAX_DELAY - MIN_DELAY) + MIN_DELAY;
+    await new Promise(r => setTimeout(r, delay));
+}
+
+// ============== IMPROVEMENT: Retry Logic with Exponential Backoff ==============
+async function retryRequest(fn, maxRetries = 3, operationName = 'Request') {
+    for (let i = 0; i < maxRetries; i++) {
+        try {
+            return await fn();
+        } catch (error) {
+            const isLastAttempt = i === maxRetries - 1;
+            if (isLastAttempt) throw error;
+
+            const delay = Math.pow(2, i) * 1000; // 1s, 2s, 4s
+            global.emitLog?.(`   ⚠️ ${operationName} failed (attempt ${i + 1}/${maxRetries}), retrying in ${delay / 1000}s...`);
+            await new Promise(r => setTimeout(r, delay));
+        }
+    }
+}
+
+// ============== IMPROVEMENT: Weighted University Selection ==============
+function selectBestUniversity(preferUSA = true) {
+    // Filter USA universities first (higher success rate typically)
+    let candidates = preferUSA
+        ? UNIVERSITIES.filter(u => u.country === 'USA' && u.domain)
+        : UNIVERSITIES.filter(u => u.domain);
+
+    if (candidates.length === 0) {
+        candidates = UNIVERSITIES.filter(u => u.domain);
+    }
+
+    // Sort by success rate (universities with no data get priority to test them)
+    candidates.sort((a, b) => {
+        const statsA = verificationStats.byUniversity[a.name];
+        const statsB = verificationStats.byUniversity[b.name];
+
+        // No stats = priority (untested)
+        if (!statsA && statsB) return -1;
+        if (statsA && !statsB) return 1;
+        if (!statsA && !statsB) return Math.random() - 0.5; // Random for untested
+
+        // Compare success rates
+        const rateA = statsA.total > 0 ? statsA.success / statsA.total : 0;
+        const rateB = statsB.total > 0 ? statsB.success / statsB.total : 0;
+        return rateB - rateA;
+    });
+
+    // Pick from top 5 performers with some randomness
+    const topCandidates = candidates.slice(0, Math.min(5, candidates.length));
+    return topCandidates[Math.floor(Math.random() * topCandidates.length)];
+}
+
+// Export stats for external monitoring
+function getVerificationStats() {
+    return { ...verificationStats };
+}
 
 function getRandomUniversity(country = null) {
     let candidates = UNIVERSITIES;
@@ -13,7 +125,96 @@ function getRandomUniversity(country = null) {
     return candidates[Math.floor(Math.random() * candidates.length)];
 }
 
+// ============== LINK STATE CHECKER ==============
 const SHEERID_API_URL = 'https://services.sheerid.com/rest/v2';
+
+// Valid states for starting verification
+const VALID_START_STATES = [
+    'collectStudentPersonalInfo',
+    'collectTeacherPersonalInfo',
+    'initial'
+];
+
+// Error classification for proper recovery
+const ERROR_TYPES = {
+    INVALID_STEP: 'invalidStep',
+    EXPIRED_LINK: 'expiredLink',
+    ORGANIZATION_NOT_FOUND: 'organization_not_found',
+    RATE_LIMITED: 'rateLimited',
+    SSO_REQUIRED: 'ssoRequired'
+};
+
+// Check verification link state before submitting
+async function checkLinkState(verificationId) {
+    try {
+        const response = await axios.get(`${SHEERID_API_URL}/verification/${verificationId}`, {
+            timeout: 10000
+        });
+
+        const data = response.data;
+        return {
+            isValid: true,
+            currentStep: data.currentStep,
+            canProceed: VALID_START_STATES.includes(data.currentStep) || data.currentStep === 'sso',
+            segment: data.segment,
+            errorIds: data.errorIds || [],
+            raw: data
+        };
+    } catch (error) {
+        // If 404 or other error, link is invalid/expired
+        return {
+            isValid: false,
+            currentStep: 'unknown',
+            canProceed: false,
+            error: error.message,
+            errorIds: []
+        };
+    }
+}
+
+// Classify error for appropriate recovery action
+function classifyError(errorResponse) {
+    const errorIds = errorResponse?.errorIds || [];
+    const errorMessage = errorResponse?.systemErrorMessage || '';
+
+    if (errorIds.includes('invalidStep')) {
+        return {
+            type: ERROR_TYPES.INVALID_STEP,
+            message: '❌ Link is not in valid state. Link may have expired or is at a different step.',
+            recovery: '💡 Solution: Upload a solid color image (black/white) to trigger link expiration, then get a new link.'
+        };
+    }
+
+    if (errorIds.includes('organization_not_found')) {
+        return {
+            type: ERROR_TYPES.ORGANIZATION_NOT_FOUND,
+            message: '❌ University not found in SheerID system.',
+            recovery: '💡 Solution: Try with a different university.'
+        };
+    }
+
+    if (errorMessage.includes('rate') || errorMessage.includes('limit')) {
+        return {
+            type: ERROR_TYPES.RATE_LIMITED,
+            message: '⚠️ Rate limited - Too many requests.',
+            recovery: '💡 Solution: Wait 1-2 minutes and try again.'
+        };
+    }
+
+    if (errorIds.includes('expiredLink') || errorMessage.includes('expired')) {
+        return {
+            type: ERROR_TYPES.EXPIRED_LINK,
+            message: '❌ Link has expired.',
+            recovery: '💡 Solution: Get a new verification link from the registration page.'
+        };
+    }
+
+    return {
+        type: 'unknown',
+        message: `❌ Unknown error: ${errorMessage || JSON.stringify(errorIds)}`,
+        recovery: '💡 Solution: Try again or get a new link.'
+    };
+}
 
 // Helper: Convert PNG buffer to PDF buffer
 async function pngToPdf(pngBuffer) {
@@ -54,6 +255,7 @@ async function verifySheerID(verificationUrl, type = 'spotify') {
 }
 
 async function verifyStudent(verificationUrl, serviceType = 'spotify') {
+    let university = null;
     try {
         // 1. Parse Verification ID
         const verificationIdMatch = verificationUrl.match(/verificationId=([a-f0-9]+)/i);
@@ -65,36 +267,51 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
         global.emitLog('═══════════════════════════════════════════════════════════');
         global.emitLog(`📋 Verification ID: ${verificationId}`);
 
-        // 2. Generate Fake Identity
+        // 1.5. CHECK LINK STATE BEFORE PROCEEDING
+        global.emitLog('🔗 Checking link state...');
+        const linkState = await checkLinkState(verificationId);
+
+        if (!linkState.isValid) {
+            global.emitLog('❌ Link is invalid or expired!');
+            global.emitLog('💡 Solution: Get a new verification link from the registration page.');
+            return {
+                success: false,
+                error: 'Invalid or expired verification link',
+                errorType: ERROR_TYPES.EXPIRED_LINK,
+                recovery: 'Get a new verification link from the registration page.'
+            };
+        }
+
+        if (!linkState.canProceed) {
+            const errorInfo = classifyError({ errorIds: linkState.errorIds, systemErrorMessage: '' });
+            global.emitLog(`❌ Link state: ${linkState.currentStep} - Cannot proceed!`);
+            global.emitLog(errorInfo.message);
+            global.emitLog(errorInfo.recovery);
+            return {
+                success: false,
+                error: `Invalid link state: ${linkState.currentStep}`,
+                errorType: ERROR_TYPES.INVALID_STEP,
+                currentStep: linkState.currentStep,
+                recovery: errorInfo.recovery
+            };
+        }
+
+        global.emitLog(`   ✅ Link valid! Current step: ${linkState.currentStep}`);
+        global.emitLog(`📊 Current Success Rate: ${verificationStats.getSuccessRate()}% (${verificationStats.success}/${verificationStats.total})`);
+
+        // 2. Generate Fake Identity with IMPROVEMENTS
         global.emitLog('');
         global.emitLog('📝 [Step 1/4] Generating student identity...');
         const firstName = faker.name.firstName();
         const lastName = faker.name.lastName();
-        const email = faker.internet.email(firstName, lastName, 'psu.edu');
-        const dob = faker.date.between('1998-01-01', '2004-12-31').toISOString().split('T')[0];
 
-        // Rotate between known-working US universities to avoid detection
-        const KNOWN_WORKING_UNIVERSITIES = [
-            { sheerId: 2565, name: "Pennsylvania State University-Main Campus" },
-            { sheerId: 1953, name: "Massachusetts Institute of Technology" },
-            { sheerId: 3113, name: "Stanford University" },
-            { sheerId: 3491, name: "University of California, Berkeley" },
-            { sheerId: 698, name: "Columbia University" },
-            { sheerId: 751, name: "Cornell University" },
-            { sheerId: 2420, name: "Northwestern University" },
-            { sheerId: 943, name: "Duke University" },
-            { sheerId: 3606, name: "University of Michigan" },
-            { sheerId: 3738, name: "University of Texas at Austin" },
-            { sheerId: 3878, name: "University of Washington" },
-            { sheerId: 3566, name: "University of Florida" },
-            { sheerId: 2469, name: "Ohio State University" },
-            { sheerId: 2591, name: "University of Pennsylvania" },
-            { sheerId: 407, name: "Brown University" },
-            { sheerId: 1635, name: "Johns Hopkins University" },
-            { sheerId: 3725, name: "University of Southern California" },
-            { sheerId: 508, name: "Carnegie Mellon University" }
-        ];
-        const university = KNOWN_WORKING_UNIVERSITIES[Math.floor(Math.random() * KNOWN_WORKING_UNIVERSITIES.length)];
+        // IMPROVEMENT: Use weighted university selection based on success rate
+        university = selectBestUniversity(true);
+        const email = faker.internet.email(firstName, lastName, university.domain || 'psu.edu');
+
+        // IMPROVEMENT: Use realistic birth date (18-25 years old)
+        const dob = generateRealisticBirthDate();
+
         global.emitLog(`🎓 Using University: ${university.name} (ID: ${university.sheerId})`);
 
         const studentInfo = {
@@ -114,30 +331,39 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
         const imageBuffer = await generateStudentCard(studentInfo);
         global.emitLog(`   └─ ✅ PNG generated: ${(imageBuffer.length / 1024).toFixed(2)}KB`);
 
-        // 4. Submit Personal Info (collectStudentPersonalInfo)
+        // IMPROVEMENT: Add delay before API request
+        await randomDelay();
+
+        // 4. Submit Personal Info with RETRY LOGIC
         global.emitLog('');
         global.emitLog('📤 [Step 3/4] Submitting student info to SheerID...');
-        const step1Response = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectStudentPersonalInfo`, {
-            firstName,
-            lastName,
-            email,
-            birthDate: dob,
-            phoneNumber: "",
-            organization: {
-                id: university.sheerId,
-                idExtended: String(university.sheerId),
-                name: university.name
-            },
-            deviceFingerprintHash: faker.datatype.hexaDecimal(32).replace('0x', ''),
-            locale: 'en-US',
-            metadata: {
-                verificationId: verificationId,
-                marketConsentValue: false,
-                refererUrl: `https://services.sheerid.com/verify/67c8c14f5f17a83b745e3f82/?verificationId=${verificationId}`,
-                flags: '{"collect-info-step-email-first":"default","doc-upload-considerations":"default","doc-upload-may24":"default","doc-upload-redesign-use-legacy-message-keys":false,"docUpload-assertion-checklist":"default","font-size":"default","include-cvec-field-france-student":"not-labeled-optional"}',
-                submissionOptIn: 'By submitting the personal information above, I acknowledge that my personal information is being collected under the privacy policy of the business from which I am seeking a discount'
-            }
-        });
+
+        // IMPROVEMENT: Use realistic fingerprint
+        const deviceFingerprint = generateRealisticFingerprint();
+
+        const step1Response = await retryRequest(async () => {
+            return await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectStudentPersonalInfo`, {
+                firstName,
+                lastName,
+                email,
+                birthDate: dob,
+                phoneNumber: "",
+                organization: {
+                    id: university.sheerId,
+                    idExtended: String(university.sheerId),
+                    name: university.name
+                },
+                deviceFingerprintHash: deviceFingerprint,
+                locale: 'en-US',
+                metadata: {
+                    verificationId: verificationId,
+                    marketConsentValue: false,
+                    refererUrl: `https://services.sheerid.com/verify/67c8c14f5f17a83b745e3f82/?verificationId=${verificationId}`,
+                    flags: '{"collect-info-step-email-first":"default","doc-upload-considerations":"default","doc-upload-may24":"default","doc-upload-redesign-use-legacy-message-keys":false,"docUpload-assertion-checklist":"default","font-size":"default","include-cvec-field-france-student":"not-labeled-optional"}',
+                    submissionOptIn: 'By submitting the personal information above, I acknowledge that my personal information is being collected under the privacy policy of the business from which I am seeking a discount'
+                }
+            });
+        }, 3, 'Submit student info');
 
         global.emitLog(`   └─ ✅ Step 3 completed: ${step1Response.data.currentStep}`);
 
@@ -146,6 +372,7 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
             global.emitLog('');
             global.emitLog('⏩ Skipping SSO verification...');
             try {
+                await randomDelay();
                 const ssoResponse = await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
                 global.emitLog(`   └─ ✅ SSO skipped: ${ssoResponse.data.currentStep}`);
             } catch (e) {
@@ -153,9 +380,22 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
             }
         }
 
-        return await handleDocUpload(verificationId, imageBuffer, 'student_card.png');
+        const result = await handleDocUpload(verificationId, imageBuffer, 'student_card.png');
+
+        // IMPROVEMENT: Track success/failure
+        if (result.success) {
+            verificationStats.recordSuccess(university.name);
+        } else {
+            verificationStats.recordFailure(university.name);
+        }
+
+        return result;
 
     } catch (error) {
+        // IMPROVEMENT: Track failure
+        if (university) {
+            verificationStats.recordFailure(university.name);
+        }
         console.error(`❌ ${serviceType} Verification failed:`, error.response ? error.response.data : error.message);
         global.emitLog(`❌ Error: ${error.response ? JSON.stringify(error.response.data) : error.message}`);
         return { success: false, error: error.message };
@@ -163,6 +403,7 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
 }
 
 async function verifyTeacher(verificationUrl) {
+    let university = null;
     try {
         // 1. Parse Verification ID and externalUserId
         const verificationIdMatch = verificationUrl.match(/verificationId=([a-f0-9]+)/i);
@@ -178,35 +419,48 @@ async function verifyTeacher(verificationUrl) {
         global.emitLog('═══════════════════════════════════════════════════════════');
         global.emitLog(`📋 Verification ID: ${verificationId}`);
 
-        // 2. Generate Fake Identity
+        // 1.5. CHECK LINK STATE BEFORE PROCEEDING
+        global.emitLog('🔗 Checking link state...');
+        const linkState = await checkLinkState(verificationId);
+
+        if (!linkState.isValid) {
+            global.emitLog('❌ Link is invalid or expired!');
+            global.emitLog('💡 Solution: Get a new verification link from the registration page.');
+            return {
+                success: false,
+                error: 'Invalid or expired verification link',
+                errorType: ERROR_TYPES.EXPIRED_LINK,
+                recovery: 'Get a new verification link from the registration page.'
+            };
+        }
+
+        if (!linkState.canProceed) {
+            const errorInfo = classifyError({ errorIds: linkState.errorIds, systemErrorMessage: '' });
+            global.emitLog(`❌ Link state: ${linkState.currentStep} - Cannot proceed!`);
+            global.emitLog(errorInfo.message);
+            global.emitLog(errorInfo.recovery);
+            return {
+                success: false,
+                error: `Invalid link state: ${linkState.currentStep}`,
+                errorType: ERROR_TYPES.INVALID_STEP,
+                currentStep: linkState.currentStep,
+                recovery: errorInfo.recovery
+            };
+        }
+
+        global.emitLog(`   ✅ Link valid! Current step: ${linkState.currentStep}`);
+        global.emitLog(`📊 Current Success Rate: ${verificationStats.getSuccessRate()}% (${verificationStats.success}/${verificationStats.total})`);
+
+        // 2. Generate Fake Identity with IMPROVEMENTS
         global.emitLog('');
         global.emitLog('📝 [Step 1/4] Generating teacher identity...');
         const firstName = faker.name.firstName();
         const lastName = faker.name.lastName();
-        const email = faker.internet.email(firstName, lastName, 'psu.edu');
 
-        // Rotate between known-working US universities to avoid detection
-        const KNOWN_WORKING_UNIVERSITIES = [
-            { sheerId: 2565, name: "Pennsylvania State University-Main Campus" },
-            { sheerId: 1953, name: "Massachusetts Institute of Technology" },
-            { sheerId: 3113, name: "Stanford University" },
-            { sheerId: 3491, name: "University of California, Berkeley" },
-            { sheerId: 698, name: "Columbia University" },
-            { sheerId: 751, name: "Cornell University" },
-            { sheerId: 2420, name: "Northwestern University" },
-            { sheerId: 943, name: "Duke University" },
-            { sheerId: 3606, name: "University of Michigan" },
-            { sheerId: 3738, name: "University of Texas at Austin" },
-            { sheerId: 3878, name: "University of Washington" },
-            { sheerId: 3566, name: "University of Florida" },
-            { sheerId: 2469, name: "Ohio State University" },
-            { sheerId: 2591, name: "University of Pennsylvania" },
-            { sheerId: 407, name: "Brown University" },
-            { sheerId: 1635, name: "Johns Hopkins University" },
-            { sheerId: 3725, name: "University of Southern California" },
-            { sheerId: 508, name: "Carnegie Mellon University" }
-        ];
-        const university = KNOWN_WORKING_UNIVERSITIES[Math.floor(Math.random() * KNOWN_WORKING_UNIVERSITIES.length)];
+        // IMPROVEMENT: Use weighted university selection
+        university = selectBestUniversity(true);
+        const email = faker.internet.email(firstName, lastName, university.domain || 'psu.edu');
+
         global.emitLog(`🎓 Using University: ${university.name} (ID: ${university.sheerId})`);
 
         const teacherInfo = {
@@ -222,32 +476,41 @@ async function verifyTeacher(verificationUrl) {
         const imageBuffer = await generatePayslip(teacherInfo);
         global.emitLog(`   └─ ✅ PNG generated: ${(imageBuffer.length / 1024).toFixed(2)}KB`);
 
-        // 4. Submit Personal Info (collectTeacherPersonalInfo) - Bolt.new style
+        // IMPROVEMENT: Add delay before API request
+        await randomDelay();
+
+        // 4. Submit Personal Info with RETRY LOGIC
         global.emitLog('');
         global.emitLog('📤 [Step 3/4] Submitting teacher info to SheerID...');
-        const step1Response = await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectTeacherPersonalInfo`, {
-            firstName,
-            lastName,
-            email,
-            birthDate: "", // Bolt.new leaves birthDate empty
-            phoneNumber: "",
-            organization: {
-                id: university.sheerId,
-                idExtended: String(university.sheerId),
-                name: university.name
-            },
-            deviceFingerprintHash: faker.datatype.hexaDecimal(32).replace('0x', ''),
-            externalUserId: externalUserId,
-            locale: 'en-US',
-            metadata: {
-                verificationId: verificationId,
-                marketConsentValue: true, // Bolt.new uses true
-                refererUrl: verificationUrl,
+
+        // IMPROVEMENT: Use realistic fingerprint
+        const deviceFingerprint = generateRealisticFingerprint();
+
+        const step1Response = await retryRequest(async () => {
+            return await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectTeacherPersonalInfo`, {
+                firstName,
+                lastName,
+                email,
+                birthDate: "", // Bolt.new leaves birthDate empty
+                phoneNumber: "",
+                organization: {
+                    id: university.sheerId,
+                    idExtended: String(university.sheerId),
+                    name: university.name
+                },
+                deviceFingerprintHash: deviceFingerprint,
                 externalUserId: externalUserId,
-                flags: '{"doc-upload-considerations":"default","doc-upload-may24":"default","doc-upload-redesign-use-legacy-message-keys":false,"docUpload-assertion-checklist":"default","include-cvec-field-france-student":"not-labeled-optional","org-search-overlay":"default","org-selected-display":"default"}',
-                submissionOptIn: 'By submitting the personal information above, I acknowledge that my personal information is being collected under the privacy policy of the business from which I am seeking a discount'
-            }
-        });
+                locale: 'en-US',
+                metadata: {
+                    verificationId: verificationId,
+                    marketConsentValue: true, // Bolt.new uses true
+                    refererUrl: verificationUrl,
+                    externalUserId: externalUserId,
+                    flags: '{"doc-upload-considerations":"default","doc-upload-may24":"default","doc-upload-redesign-use-legacy-message-keys":false,"docUpload-assertion-checklist":"default","include-cvec-field-france-student":"not-labeled-optional","org-search-overlay":"default","org-selected-display":"default"}',
+                    submissionOptIn: 'By submitting the personal information above, I acknowledge that my personal information is being collected under the privacy policy of the business from which I am seeking a discount'
+                }
+            });
+        }, 3, 'Submit teacher info');
 
         global.emitLog(`   └─ ✅ Step 3 completed: ${step1Response.data.currentStep}`);
 
@@ -256,6 +519,7 @@ async function verifyTeacher(verificationUrl) {
             global.emitLog('');
             global.emitLog('⏩ Skipping SSO verification...');
             try {
+                await randomDelay();
                 const ssoResponse = await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
                 global.emitLog(`   └─ ✅ SSO skipped: ${ssoResponse.data.currentStep}`);
             } catch (e) {
@@ -270,6 +534,10 @@ async function verifyTeacher(verificationUrl) {
             global.emitLog('');
             global.emitLog('⏳ Polling for reward code...');
             const rewardCode = await pollForRewardCode(verificationId);
+
+            // IMPROVEMENT: Track success
+            verificationStats.recordSuccess(university.name);
+
             if (rewardCode) {
                 return { success: true, message: 'Verification successful!', rewardCode: rewardCode };
             } else {
@@ -277,9 +545,15 @@ async function verifyTeacher(verificationUrl) {
             }
         }
 
+        // IMPROVEMENT: Track failure
+        verificationStats.recordFailure(university.name);
         return uploadResult;
 
     } catch (error) {
+        // IMPROVEMENT: Track failure
+        if (university) {
+            verificationStats.recordFailure(university.name);
+        }
         console.error('❌ Teacher Verification failed:', error.response ? error.response.data : error.message);
         global.emitLog(`❌ Error: ${error.response ? JSON.stringify(error.response.data) : error.message}`);
         return { success: false, error: error.message };
@@ -297,6 +571,37 @@ async function verifyGPT(verificationUrl) {
         global.emitLog('🔍 SheerID CHATGPT TEACHER Verification (K12 Style)');
         global.emitLog('═══════════════════════════════════════════════════════════');
         global.emitLog(`📋 Verification ID: ${verificationId}`);
+
+        // 1.5. CHECK LINK STATE BEFORE PROCEEDING
+        global.emitLog('🔗 Checking link state...');
+        const linkState = await checkLinkState(verificationId);
+
+        if (!linkState.isValid) {
+            global.emitLog('❌ Link is invalid or expired!');
+            global.emitLog('💡 Solution: Get a new verification link from the registration page.');
+            return {
+                success: false,
+                error: 'Invalid or expired verification link',
+                errorType: ERROR_TYPES.EXPIRED_LINK,
+                recovery: 'Get a new verification link from the registration page.'
+            };
+        }
+
+        if (!linkState.canProceed) {
+            const errorInfo = classifyError({ errorIds: linkState.errorIds, systemErrorMessage: '' });
+            global.emitLog(`❌ Link state: ${linkState.currentStep} - Cannot proceed!`);
+            global.emitLog(errorInfo.message);
+            global.emitLog(errorInfo.recovery);
+            return {
+                success: false,
+                error: `Invalid link state: ${linkState.currentStep}`,
+                errorType: ERROR_TYPES.INVALID_STEP,
+                currentStep: linkState.currentStep,
+                recovery: errorInfo.recovery
+            };
+        }
+
+        global.emitLog(`   ✅ Link valid! Current step: ${linkState.currentStep}`);
 
         // 2. Generate Fake Identity with birthDate (required for k12)
         global.emitLog('');
@@ -503,4 +808,4 @@ async function handleDocUpload(verificationId, imageBuffer, fileName) {
     }
 }
 
-module.exports = { verifySheerID };
+module.exports = { verifySheerID, getVerificationStats, checkLinkState, classifyError, ERROR_TYPES };

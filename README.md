@@ -142,8 +142,7 @@ Choose your program and get your verification link:
 
 Click **Join Student Program** or equivalent button to receive your verification link.
 
-> **⚠️IMPORTANT**
-> 
+> [!IMPORTANT]
 > **✅Country Eligibility:** If your country isn't supported, use a VPN (see [Requirements](#-requirements)) to switch to an eligible country (US, etc.).
 > 
 > **💡 Tip:** Search "Google Student Program supported countries" online or ask AI for the latest eligible regions.

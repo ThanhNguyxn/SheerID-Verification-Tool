@@ -119,7 +119,7 @@ Chọn chương trình của bạn và lấy liên kết xác minh:
 Nhấn **Join Student Program** hoặc nút tương đương để nhận liên kết xác minh.
 
 > [!IMPORTANT]
-> **Điều kiện Quốc gia:** Nếu quốc gia của bạn không được hỗ trợ, hãy sử dụng VPN (xem [Yêu cầu](#-điều-kiện-sử-dụng)) để chuyển sang quốc gia đủ điều kiện (US, v.v.).
+> **✅ Điều kiện Quốc gia:** Nếu quốc gia của bạn không được hỗ trợ, hãy sử dụng VPN (xem [Yêu cầu](#-điều-kiện-sử-dụng)) để chuyển sang quốc gia đủ điều kiện (US, v.v.).
 > 
 > **💡 Mẹo:** Tìm kiếm "Google Student Program supported countries" trên mạng hoặc hỏi AI để biết các khu vực đủ điều kiện mới nhất.
 

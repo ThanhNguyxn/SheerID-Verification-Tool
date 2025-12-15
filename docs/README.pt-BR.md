@@ -110,33 +110,51 @@ Antes de começar, certifique-se de ter:
 
 ### 🎓 Passo 2: Acessar o Programa de Estudantes
 
-1. Visite [https://gemini.google/students](https://gemini.google/students)
-2. Clique em **Join Student Program** para receber seu link de verificação
+Escolha seu programa e obtenha seu link de verificação:
+
+| Programa | Link | Para |
+|----------|------|------|
+| 🤖 **Google Gemini** | [gemini.google/students](https://gemini.google/students) | Estudantes Universitários |
+| 💬 **ChatGPT Plus** | [chatgpt.com/plans/k12-teachers](https://chatgpt.com/plans/k12-teachers/) | Professores K-12 |
+
+Clique em **Join Student Program** ou botão equivalente para receber seu link de verificação.
 
 > [!IMPORTANT]
-> **Elegibilidade do País:** Se o seu país não for suportado, use uma VPN (veja [Requisitos](#-requisitos)) para mudar para um país elegível (Reino Unido, Vietnã, etc.).
+> **Elegibilidade do País:** Se o seu país não for suportado, use uma VPN para mudar para um país elegível (EUA, etc.).
 > 
 > **💡 Dica:** Pesquise online por "Google Student Program supported countries" ou pergunte a uma IA sobre as regiões elegíveis mais recentes.
 
 ### 📱 Passo 3: Verificar Status de Estudante via Telegram
 
 1. Abra o Telegram e acesse um destes bots:
-
-   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
+   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) ✅ *Suporta GPT K12*
    - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
 
+2. Envie o comando apropriado com base no seu programa:
 
-2. Envie este comando:
+   **Para Google Gemini:**
    ```
    /verify https://services.sheerid.com/verify/***
    ```
+   
+   **Para ChatGPT Plus (K-12):**
+   ```
+   /vc https://services.sheerid.com/verify/***
+   ```
+   
    *(Substitua pelo seu link de verificação)*
 
 3. Aguarde a confirmação do bot
 
-
 > [!TIP]
-> **Bot em manutenção?** Se o bot de verificação estiver temporariamente indisponível, você pode criar um cartão de estudante de teste aqui: [🎓 Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/)
+> **💰 Totalmente Gratuito!** Ganhe moedas grátis:
+> - Convidando amigos para o bot
+> - Usando `/checkin` diariamente para ganhar pontos
+> 
+> *Precisa de moedas urgentemente? Também oferecemos opções de recarga.*
+
+> [!WARNING]
+> **Encontrou um erro?** Use o comando `/fix` e cole seu link de verificação novamente. Se os erros persistirem após várias tentativas, tente usar uma conta do Google diferente.
 
 ### ✨ Passo 4: Ativar seu Plano Premium
 

@@ -110,33 +110,51 @@ Sebelum memulai, pastikan Anda memiliki:
 
 ### 🎓 Langkah 2: Akses Program Pelajar
 
-1. Kunjungi [https://gemini.google/students](https://gemini.google/students)
-2. Klik **Join Student Program** untuk menerima tautan verifikasi Anda
+Pilih program Anda dan dapatkan tautan verifikasi Anda:
+
+| Program | Tautan | Untuk |
+|---------|--------|-------|
+| 🤖 **Google Gemini** | [gemini.google/students](https://gemini.google/students) | Mahasiswa |
+| 💬 **ChatGPT Plus** | [chatgpt.com/plans/k12-teachers](https://chatgpt.com/plans/k12-teachers/) | Guru K-12 |
+
+Klik **Join Student Program** atau tombol yang setara untuk menerima tautan verifikasi Anda.
 
 > [!IMPORTANT]
-> **Kelayakan Negara:** Jika negara Anda tidak didukung, gunakan VPN (lihat [Persyaratan](#-persyaratan)) untuk beralih ke negara yang memenuhi syarat (Inggris, Vietnam, dll.).
+> **Kelayakan Negara:** Jika negara Anda tidak didukung, gunakan VPN untuk beralih ke negara yang memenuhi syarat (AS, dll.).
 > 
 > **💡 Tips:** Cari "Google Student Program supported countries" secara online atau tanyakan pada AI untuk wilayah terbaru yang memenuhi syarat.
 
 ### 📱 Langkah 3: Verifikasi Status Pelajar melalui Telegram
 
 1. Buka Telegram dan akses salah satu bot ini:
-
-   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
+   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) ✅ *Mendukung GPT K12*
    - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
 
+2. Kirim perintah yang sesuai berdasarkan program Anda:
 
-2. Kirim perintah ini:
+   **Untuk Google Gemini:**
    ```
    /verify https://services.sheerid.com/verify/***
    ```
+   
+   **Untuk ChatGPT Plus (K-12):**
+   ```
+   /vc https://services.sheerid.com/verify/***
+   ```
+   
    *(Ganti dengan tautan verifikasi Anda)*
 
 3. Tunggu konfirmasi dari bot
 
-
 > [!TIP]
-> **Bot dalam pemeliharaan?** Jika bot verifikasi sementara tidak tersedia, Anda dapat membuat kartu pelajar uji di sini: [🎓 Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/)
+> **💰 Sepenuhnya Gratis!** Dapatkan koin gratis:
+> - Dengan mengundang teman ke bot
+> - Menggunakan `/checkin` setiap hari untuk mendapatkan poin
+> 
+> *Butuh koin segera? Kami juga menawarkan opsi isi ulang.*
+
+> [!WARNING]
+> **Mengalami kesalahan?** Gunakan perintah `/fix` dan tempel ulang tautan verifikasi Anda. Jika kesalahan tetap ada setelah beberapa kali percobaan, coba gunakan akun Google yang berbeda.
 
 ### ✨ Langkah 4: Aktifkan Paket Premium Anda
 

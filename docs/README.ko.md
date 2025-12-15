@@ -110,29 +110,51 @@
 
 ### 🎓 2단계: 학생 프로그램 접속
 
-1. [https://gemini.google/students](https://gemini.google/students) 방문
-2. **Join Student Program**을 클릭하여 인증 링크 받기
+프로그램을 선택하고 인증 링크를 받으세요:
+
+| 프로그램 | 링크 | 대상 |
+|----------|------|------|
+| 🤖 **Google Gemini** | [gemini.google/students](https://gemini.google/students) | 대학생 |
+| 💬 **ChatGPT Plus** | [chatgpt.com/plans/k12-teachers](https://chatgpt.com/plans/k12-teachers/) | K-12 교사 |
+
+**Join Student Program** 또는 동등한 버튼을 클릭하여 인증 링크를 받으세요.
 
 > [!IMPORTANT]
-> **국가 자격:** 거주 국가가 지원되지 않는 경우, VPN([요구 사항](#-요구-사항) 참조)을 사용하여 지원되는 국가(영국, 베트남 등)로 전환하세요.
+> **국가 자격:** 거주 국가가 지원되지 않는 경우, VPN을 사용하여 지원되는 국가(미국 등)로 전환하세요.
 > 
 > **💡 팁:** 온라인에서 "Google Student Program supported countries"를 검색하거나 AI에게 최신 적격 지역에 대해 문의하세요.
 
 ### 📱 3단계: Telegram을 통한 학생 신분 인증
 
 1. Telegram을 열고 다음 봇 중 하나에 접속하세요:
-
-   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
+   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) ✅ *GPT K12 지원*
    - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
 
+2. 프로그램에 따라 적절한 명령어를 전송하세요:
 
-2. 다음 명령어를 전송하세요:
+   **Google Gemini의 경우:**
    ```
    /verify https://services.sheerid.com/verify/***
    ```
+   
+   **ChatGPT Plus (K-12)의 경우:**
+   ```
+   /vc https://services.sheerid.com/verify/***
+   ```
+   
    *(실제 인증 링크로 교체하세요)*
 
 3. 봇의 인증 성공 확인을 기다리세요
+
+> [!TIP]
+> **💰 완전 무료!** 무료 코인 획득:
+> - 친구를 봇에 초대하기
+> - 매일 `/checkin`을 사용하여 포인트 획득
+> 
+> *코인이 급하게 필요하세요? 충전 옵션도 지원합니다.*
+
+> [!WARNING]
+> **오류가 발생했나요?** `/fix` 명령어를 사용하고 인증 링크를 다시 붙여넣으세요. 여러 번 시도해도 오류가 지속되면 다른 Google 계정을 사용해 보세요.
 
 ### ✨ 4단계: 프리미엄 요금제 활성화
 

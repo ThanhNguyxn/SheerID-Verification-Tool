@@ -73,11 +73,29 @@ async function verifyStudent(verificationUrl, serviceType = 'spotify') {
         const email = faker.internet.email(firstName, lastName, 'psu.edu');
         const dob = faker.date.between('1998-01-01', '2004-12-31').toISOString().split('T')[0];
 
-        // Select a random university for this verification
-        // Prioritize USA (80% chance)
-        const prioritizeUS = Math.random() < 0.8;
-        const university = prioritizeUS ? getRandomUniversity('USA') : getRandomUniversity();
-        global.emitLog(`🎓 Selected University: ${university.name} (ID: ${university.sheerId})`);
+        // Rotate between known-working US universities to avoid detection
+        const KNOWN_WORKING_UNIVERSITIES = [
+            { sheerId: 2565, name: "Pennsylvania State University-Main Campus" },
+            { sheerId: 1953, name: "Massachusetts Institute of Technology" },
+            { sheerId: 3113, name: "Stanford University" },
+            { sheerId: 3491, name: "University of California, Berkeley" },
+            { sheerId: 698, name: "Columbia University" },
+            { sheerId: 751, name: "Cornell University" },
+            { sheerId: 2420, name: "Northwestern University" },
+            { sheerId: 943, name: "Duke University" },
+            { sheerId: 3606, name: "University of Michigan" },
+            { sheerId: 3738, name: "University of Texas at Austin" },
+            { sheerId: 3878, name: "University of Washington" },
+            { sheerId: 3566, name: "University of Florida" },
+            { sheerId: 2469, name: "Ohio State University" },
+            { sheerId: 2591, name: "University of Pennsylvania" },
+            { sheerId: 407, name: "Brown University" },
+            { sheerId: 1635, name: "Johns Hopkins University" },
+            { sheerId: 3725, name: "University of Southern California" },
+            { sheerId: 508, name: "Carnegie Mellon University" }
+        ];
+        const university = KNOWN_WORKING_UNIVERSITIES[Math.floor(Math.random() * KNOWN_WORKING_UNIVERSITIES.length)];
+        global.emitLog(`🎓 Using University: ${university.name} (ID: ${university.sheerId})`);
 
         const studentInfo = {
             fullName: `${firstName} ${lastName}`,
@@ -167,9 +185,29 @@ async function verifyTeacher(verificationUrl) {
         const lastName = faker.name.lastName();
         const email = faker.internet.email(firstName, lastName, 'psu.edu');
 
-        // Select a random university for this verification (Teachers: US Only)
-        const university = getRandomUniversity('USA');
-        global.emitLog(`🎓 Selected University: ${university.name} (ID: ${university.sheerId})`);
+        // Rotate between known-working US universities to avoid detection
+        const KNOWN_WORKING_UNIVERSITIES = [
+            { sheerId: 2565, name: "Pennsylvania State University-Main Campus" },
+            { sheerId: 1953, name: "Massachusetts Institute of Technology" },
+            { sheerId: 3113, name: "Stanford University" },
+            { sheerId: 3491, name: "University of California, Berkeley" },
+            { sheerId: 698, name: "Columbia University" },
+            { sheerId: 751, name: "Cornell University" },
+            { sheerId: 2420, name: "Northwestern University" },
+            { sheerId: 943, name: "Duke University" },
+            { sheerId: 3606, name: "University of Michigan" },
+            { sheerId: 3738, name: "University of Texas at Austin" },
+            { sheerId: 3878, name: "University of Washington" },
+            { sheerId: 3566, name: "University of Florida" },
+            { sheerId: 2469, name: "Ohio State University" },
+            { sheerId: 2591, name: "University of Pennsylvania" },
+            { sheerId: 407, name: "Brown University" },
+            { sheerId: 1635, name: "Johns Hopkins University" },
+            { sheerId: 3725, name: "University of Southern California" },
+            { sheerId: 508, name: "Carnegie Mellon University" }
+        ];
+        const university = KNOWN_WORKING_UNIVERSITIES[Math.floor(Math.random() * KNOWN_WORKING_UNIVERSITIES.length)];
+        global.emitLog(`🎓 Using University: ${university.name} (ID: ${university.sheerId})`);
 
         const teacherInfo = {
             fullName: `${firstName} ${lastName}`,

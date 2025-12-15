@@ -453,7 +453,7 @@ const K12_SCHOOLS = [
         idExtended: "3995910",
         country: "USA",
         domain: "dallasisd.org",
-        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/psu.png", // Placeholder
+        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/dallasisd.png",
         address: "Dallas, TX, USA"
     },
     {
@@ -462,7 +462,7 @@ const K12_SCHOOLS = [
         idExtended: "3995910",
         country: "USA",
         domain: "challengerschool.com",
-        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/psu.png", // Placeholder
+        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/challenger.png",
         address: "Sandy, UT, USA"
     },
     {
@@ -471,7 +471,7 @@ const K12_SCHOOLS = [
         idExtended: "3995910",
         country: "USA",
         domain: "lausd.net",
-        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/psu.png", // Placeholder
+        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/lausd.png",
         address: "Los Angeles, CA, USA"
     },
     {
@@ -480,7 +480,7 @@ const K12_SCHOOLS = [
         idExtended: "3995910",
         country: "USA",
         domain: "schools.nyc.gov",
-        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/psu.png", // Placeholder
+        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/nycdoe.png",
         address: "New York, NY, USA"
     },
     {
@@ -489,7 +489,7 @@ const K12_SCHOOLS = [
         idExtended: "3995910",
         country: "USA",
         domain: "cps.edu",
-        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/psu.png", // Placeholder
+        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/cps.png",
         address: "Chicago, IL, USA"
     },
     {
@@ -498,7 +498,7 @@ const K12_SCHOOLS = [
         idExtended: "3995910",
         country: "USA",
         domain: "ccsd.net",
-        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/psu.png", // Placeholder
+        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/ccsd.png",
         address: "Las Vegas, NV, USA"
     },
     {
@@ -507,7 +507,7 @@ const K12_SCHOOLS = [
         idExtended: "3995910",
         country: "USA",
         domain: "fcps.edu",
-        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/psu.png", // Placeholder
+        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/fcps.png",
         address: "Falls Church, VA, USA"
     }
 ];

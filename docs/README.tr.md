@@ -61,54 +61,90 @@
 Başlamadan önce şunlara sahip olduğunuzdan emin olun:
 
 - ✅ **Telegram Hesabı** - Bot doğrulaması için
-- ✅ **Google Hesabı** - Öğrenci doğrulaması için yaş gereksinimlerini karşılayan geçerli bir Google Hesabı (genellikle kayıtlı 18+ öğrenciler)
+- ✅ **Google/OpenAI Hesabı** - Doğrulama için geçerli bir hesap
 - ✅ **Geçerli Ödeme Yöntemi** - Banka kartı veya e-cüzdan (ücretsiz paket için ücret alınmaz)
-- ✅ **VPN** - (örn. Urban VPN) gerekirse bölgeyi İngiltere, Vietnam veya diğer uygun ülkelere değiştirmek için
+- ✅ **VPN** - (örn. Urban VPN) gerekirse bölgeyi ABD (US) veya diğer uygun ülkelere değiştirmek için
 
 ## 🚀 Kurulum ve Kullanım
 
-### 🌐 Adım 1: Yeni Bir Tarayıcı Profili Oluşturun
+### 🌐 Adım 1: Tarayıcınızı Ayarlayın
 
-Veri çakışmalarını önlemek için yeni bir tarayıcı profili oluşturun veya gizli modu kullanın.
+1. **Yeni bir tarayıcı profili oluşturun** veya gizli modu kullanın
+
+2. **VPN uzantısı yükleyin** (zaten **US** gibi desteklenen bir bölgedeyseniz atlayın):
+   - [Urban VPN](https://chrome.google.com/webstore/detail/urban-vpn) (Chrome/Edge)
+   - [Proton VPN](https://protonvpn.com/) (Tüm tarayıcılar)
+   - Veya herhangi bir güvenilir VPN
+
+> [!IMPORTANT]
+> **Gizli mod mu kullanıyorsunuz?** Uzantı ayarlarına gidin ve VPN'inizin çalışması için **"Gizli modda izin ver"**i etkinleştirin.
+>
+> ![Allow in Incognito](images/allow-incognito.png)
+
+> [!TIP]
+> Adım 2'ye geçmeden önce **ABD (US) veya diğer uygun ülkelere** bağlanın.
 
 ### 🎓 Adım 2: Öğrenci Programına Erişin
 
-1. [https://gemini.google/students](https://gemini.google/students) adresini ziyaret edin
-2. Doğrulama bağlantınızı almak için **Join Student Program**'a tıklayın
+Programınızı seçin ve doğrulama bağlantınızı alın:
+
+| Program | Bağlantı | Kimin İçin |
+|---------|----------|------------|
+| 🤖 **Google Gemini** | [gemini.google/students](https://gemini.google/students) | Üniversite Öğrencileri |
+| 💬 **ChatGPT Plus** | [chatgpt.com/plans/k12-teachers](https://chatgpt.com/plans/k12-teachers/) | K-12 Öğretmenleri |
+
+Doğrulama bağlantınızı almak için **Join Student Program** veya eşdeğer düğmeye tıklayın.
 
 > [!IMPORTANT]
-> **Ülke Uygunluğu:** Ülkeniz desteklenmiyorsa, uygun bir ülkeye (İngiltere, Vietnam vb.) geçmek için bir VPN (bkz. [Gereksinimler](#-gereksinimler)) kullanın.
+> **Ülke Uygunluğu:** Ülkeniz desteklenmiyorsa, uygun bir ülkeye (ABD vb.) geçmek için bir VPN kullanın.
 > 
-> **💡 İpucu:** En son uygun bölgeler için çevrimiçi olarak "Google Student Program supported countries" araması yapın veya yapay zekaya sorun.
+> **💡 İpucu:** En son uygun bölgeler için çevrimiçi olarak "Google Student Program supported countries" araması yapın.
 
 ### 📱 Adım 3: Telegram ile Öğrenci Durumunu Doğrulayın
 
 1. Telegram'ı açın ve bu botlardan birine erişin:
-
-   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
+   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) ✅ *GPT K12 Destekli*
    - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
 
+2. Programınıza göre uygun komutu gönderin:
 
-2. Bu komutu gönderin:
+   **Google Gemini için:**
    ```
    /verify https://services.sheerid.com/verify/***
    ```
+   
+   **ChatGPT Plus (K-12) için:**
+   ```
+   /vc https://services.sheerid.com/verify/***
+   ```
+   
    *(Doğrulama bağlantınızla değiştirin)*
 
 3. Bot onayını bekleyin
 
-
 > [!TIP]
-> **Bot bakımda mı?** Doğrulama botu geçici olarak kullanılamıyorsa, buradan test öğrenci kartı oluşturabilirsiniz: [🎓 Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/)
+> **💰 Tamamen Ücretsiz!** Ücretsiz coin kazanın:
+> - Arkadaşlarınızı bota davet ederek
+> - Puan kazanmak için günlük `/checkin` kullanarak
+> 
+> *Acil coine mi ihtiyacınız var? Yükleme seçenekleri de sunuyoruz.*
 
-### ✨ Adım 4: Gemini Advanced'i Etkinleştirin
+> [!WARNING]
+> **Hata mı aldınız?** `/fix` komutunu kullanın ve doğrulama bağlantınızı tekrar yapıştırın. Hatalar devam ederse, farklı bir Google hesabıyla deneyin.
 
+### ✨ Adım 4: Premium Planınızı Etkinleştirin
+
+**Google Gemini için:**
 1. Doğrulamadan sonra **Google One AI Premium**'a kaydolun
 2. Ödeme yönteminizi ekleyin (ücretsiz dönem boyunca ücret alınmaz)
 3. Kayıt işlemini tamamlayın
 
+**ChatGPT Plus için:**
+1. Doğrulamadan sonra, ChatGPT Plus'ınız otomatik olarak etkinleştirilecektir
+2. Ücretsiz aboneliğinizin keyfini çıkarın!
+
 > [!NOTE]
-> **VPN Kullanıcıları:** Doğrulamadan sonra, ödeme yöntemi eklemeden önce VPN bağlantısını kesin ve sayfayı yeniden yükleyin. Bu, ülkenizin ödeme seçenekleriyle uyumluluğu sağlar.
+> **VPN Kullanıcıları:** Doğrulamadan sonra, ödeme yöntemi eklemeden önce VPN bağlantısını kesin ve sayfayı yeniden yükleyin.
 
 ### ⚙️ Adım 5: Aboneliğinizi Yönetin
 
@@ -120,10 +156,16 @@ Veri çakışmalarını önlemek için yeni bir tarayıcı profili oluşturun ve
 
 Başarıyla tamamladığınızda şunları alacaksınız:
 
+**Google Gemini:**
 - ✨ **Gemini Advanced** - 12 ay ücretsiz
 - 💾 **2TB Google Drive** - Geniş bulut depolama alanı
 - 📝 **NotebookLM Pro** - Gelişmiş not alma yetenekleri
 - 🎥 **1.000 AI Video Kredisi** - VEO3 ile videolar oluşturun
+
+**ChatGPT Plus:**
+- 💬 **ChatGPT Plus** - K-12 Öğretmenleri için ücretsiz
+- 🧠 **GPT-4o Erişimi** - Gelişmiş AI yetenekleri
+- 🎨 **DALL·E ve daha fazlası** - Görüntü oluşturma ve daha fazla özellik
 
 ## ⚠️ Güvenlik Notları
 

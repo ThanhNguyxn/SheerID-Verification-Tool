@@ -86,54 +86,90 @@
 Prima di iniziare, assicurati di avere:
 
 - ✅ **Account Telegram** - Per la verifica tramite bot
-- ✅ **Account Google** - Un account Google valido che soddisfa i requisiti di età per la verifica degli studenti (in genere studenti iscritti di 18+ anni)
+- ✅ **Account Google/OpenAI** - Un account valido per la verifica
 - ✅ **Metodo di pagamento valido** - Carta bancaria o e-wallet (nessun addebito per il pacchetto gratuito)
-- ✅ **VPN** - (es. Urban VPN) per cambiare regione in Regno Unito, Vietnam o altri paesi idonei se necessario
+- ✅ **VPN** - (es. Urban VPN) per cambiare regione in USA (US) o altri paesi idonei se necessario
 
 ## 🚀 Installazione e Utilizzo
 
-### 🌐 Passo 1: Crea un Nuovo Profilo Browser
+### 🌐 Passo 1: Configura il tuo Browser
 
-Crea un nuovo profilo browser o usa la modalità incognito per evitare conflitti di dati.
+1. **Crea un nuovo profilo browser** o usa la modalità incognito
+
+2. **Installa un'estensione VPN** (salta se sei già in una regione supportata come **US**):
+   - [Urban VPN](https://chrome.google.com/webstore/detail/urban-vpn) (Chrome/Edge)
+   - [Proton VPN](https://protonvpn.com/) (Tutti i browser)
+   - O qualsiasi VPN affidabile
+
+> [!IMPORTANT]
+> **Usi la modalità incognito?** Vai nelle impostazioni dell'estensione e abilita **"Consenti in incognito"** affinché la tua VPN funzioni.
+>
+> ![Allow in Incognito](images/allow-incognito.png)
+
+> [!TIP]
+> Connettiti a **USA o altri paesi idonei** prima di passare al Passo 2.
 
 ### 🎓 Passo 2: Accedi al Programma Studenti
 
-1. Visita [https://gemini.google/students](https://gemini.google/students)
-2. Clicca su **Join Student Program** per ricevere il tuo link di verifica
+Scegli il tuo programma e ottieni il tuo link di verifica:
+
+| Programma | Link | Per |
+|-----------|------|-----|
+| 🤖 **Google Gemini** | [gemini.google/students](https://gemini.google/students) | Studenti Universitari |
+| 💬 **ChatGPT Plus** | [chatgpt.com/plans/k12-teachers](https://chatgpt.com/plans/k12-teachers/) | Insegnanti K-12 |
+
+Clicca su **Join Student Program** o pulsante equivalente per ricevere il tuo link di verifica.
 
 > [!IMPORTANT]
-> **Idoneità del Paese:** Se il tuo paese non è supportato, usa una VPN (vedi [Requisiti](#-requisiti)) per passare a un paese idoneo (Regno Unito, Vietnam, ecc.).
+> **Idoneità del Paese:** Se il tuo paese non è supportato, usa una VPN per passare a un paese idoneo (USA, ecc.).
 > 
-> **💡 Suggerimento:** Cerca online "Google Student Program supported countries" o chiedi all'IA le ultime regioni idonee.
+> **💡 Suggerimento:** Cerca online "Google Student Program supported countries".
 
 ### 📱 Passo 3: Verifica lo Stato di Studente via Telegram
 
 1. Apri Telegram e accedi a uno di questi bot:
-
-   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
+   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) ✅ *Supporta GPT K12*
    - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
 
+2. Invia il comando appropriato in base al tuo programma:
 
-2. Invia questo comando:
+   **Per Google Gemini:**
    ```
    /verify https://services.sheerid.com/verify/***
    ```
+   
+   **Per ChatGPT Plus (K-12):**
+   ```
+   /vc https://services.sheerid.com/verify/***
+   ```
+   
    *(Sostituisci con il tuo link di verifica)*
 
 3. Attendi la conferma del bot
 
-
 > [!TIP]
-> **Bot in manutenzione?** Se il bot di verifica è temporaneamente non disponibile, puoi creare una carta studente di prova qui: [🎓 Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/)
+> **💰 Completamente Gratuito!** Guadagna monete gratis:
+> - Invitando amici al bot
+> - Usando `/checkin` quotidianamente per guadagnare punti
+> 
+> *Hai bisogno di monete urgenti? Offriamo anche opzioni di ricarica.*
 
-### ✨ Passo 4: Attiva Gemini Advanced
+> [!WARNING]
+> **Hai un errore?** Usa il comando `/fix` e incolla nuovamente il tuo link di verifica. Se gli errori persistono, prova con un account Google diverso.
 
+### ✨ Passo 4: Attiva il tuo Piano Premium
+
+**Per Google Gemini:**
 1. Dopo la verifica, registrati a **Google One AI Premium**
 2. Aggiungi il tuo metodo di pagamento (nessun addebito durante il periodo gratuito)
 3. Completa la registrazione
 
+**Per ChatGPT Plus:**
+1. Dopo la verifica, il tuo ChatGPT Plus verrà attivato automaticamente
+2. Goditi il tuo abbonamento gratuito!
+
 > [!NOTE]
-> **Utenti VPN:** Dopo la verifica, disconnetti la VPN e ricarica la pagina prima di aggiungere il metodo di pagamento. Questo garantisce la compatibilità con le opzioni di pagamento del tuo paese.
+> **Utenti VPN:** Dopo la verifica, disconnetti la VPN e ricarica la pagina prima di aggiungere il metodo di pagamento.
 
 ### ⚙️ Passo 5: Gestisci il tuo Abbonamento
 
@@ -145,10 +181,16 @@ Visita [Abbonamenti Google Play](https://play.google.com/store/account/subscript
 
 Al completamento con successo, riceverai:
 
+**Google Gemini:**
 - ✨ **Gemini Advanced** - Gratuito per 12 mesi
 - 💾 **2TB Google Drive** - Ampio spazio di archiviazione cloud
 - 📝 **NotebookLM Pro** - Funzionalità avanzate per prendere appunti
 - 🎥 **1.000 crediti video AI** - Crea video con VEO3
+
+**ChatGPT Plus:**
+- 💬 **ChatGPT Plus** - Gratuito per insegnanti K-12
+- 🧠 **Accesso GPT-4o** - Funzionalità AI avanzate
+- 🎨 **DALL·E e altro** - Generazione di immagini e altre funzionalità
 
 ## ⚠️ Note sulla Sicurezza
 

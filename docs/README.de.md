@@ -102,6 +102,8 @@ Bevor Sie beginnen, stellen Sie sicher, dass Sie haben:
 
 > [!IMPORTANT]
 > **Inkognito-Modus?** Aktivieren Sie **"Im Inkognito-Modus zulassen"** für die VPN-Erweiterung.
+>
+> ![Allow in Incognito](images/allow-incognito.png)
 
 > [!TIP]
 > Verbinden Sie sich mit **US oder anderen berechtigten Ländern** vor Schritt 2.

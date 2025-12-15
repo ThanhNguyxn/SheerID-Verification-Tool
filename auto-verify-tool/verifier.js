@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const { generateStudentCard, generatePayslip, generateTeacherCard, generateDocumentsParallel, closeBrowser } = require('./generator');
 const faker = require('faker');
 const PDFDocument = require('pdfkit');
-const UNIVERSITIES = require('./universities-data');
+const { UNIVERSITIES, K12_SCHOOLS } = require('./universities-data');
 
 // ============== IMPROVEMENT: Success Rate Tracking ==============
 const verificationStats = {
@@ -606,9 +606,14 @@ async function verifyGPT(verificationUrl) {
         // 2. Generate Fake Identity with birthDate (required for k12)
         global.emitLog('');
         global.emitLog('📝 [Step 1/5] Generating teacher identity...');
+
+        // Select a random K-12 school
+        const school = K12_SCHOOLS[Math.floor(Math.random() * K12_SCHOOLS.length)];
+        global.emitLog(`🏫 Using K-12 School: ${school.name} (${school.country})`);
+
         const firstName = faker.name.firstName();
         const lastName = faker.name.lastName();
-        const email = faker.internet.email(firstName, lastName, 'springfield.k12.or.us');
+        const email = faker.internet.email(firstName, lastName, school.domain);
         const dob = '1985-06-15'; // Teachers are typically older
 
         const teacherInfo = {
@@ -643,9 +648,9 @@ async function verifyGPT(verificationUrl) {
             birthDate: dob, // k12 requires birthDate
             phoneNumber: "",
             organization: {
-                id: 3995910,
-                idExtended: '3995910',
-                name: 'Springfield High School (Springfield, OR)'
+                id: school.sheerId,
+                idExtended: school.idExtended,
+                name: school.name
             },
             deviceFingerprintHash: '686f727269626c656861636b',
             locale: 'en-US',

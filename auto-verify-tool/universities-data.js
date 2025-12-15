@@ -445,4 +445,71 @@ const UNIVERSITIES = [
     }
 ];
 
-module.exports = UNIVERSITIES;
+// K-12 School Districts and Charter Networks (Preferred by OpenAI/ChatGPT)
+const K12_SCHOOLS = [
+    {
+        name: "Dallas Independent School District",
+        sheerId: 3995910,
+        idExtended: "3995910",
+        country: "USA",
+        domain: "dallasisd.org",
+        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/psu.png", // Placeholder
+        address: "Dallas, TX, USA"
+    },
+    {
+        name: "Challenger School",
+        sheerId: 3995910,
+        idExtended: "3995910",
+        country: "USA",
+        domain: "challengerschool.com",
+        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/psu.png", // Placeholder
+        address: "Sandy, UT, USA"
+    },
+    {
+        name: "Los Angeles Unified School District",
+        sheerId: 3995910,
+        idExtended: "3995910",
+        country: "USA",
+        domain: "lausd.net",
+        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/psu.png", // Placeholder
+        address: "Los Angeles, CA, USA"
+    },
+    {
+        name: "New York City Department of Education",
+        sheerId: 3995910,
+        idExtended: "3995910",
+        country: "USA",
+        domain: "schools.nyc.gov",
+        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/psu.png", // Placeholder
+        address: "New York, NY, USA"
+    },
+    {
+        name: "Chicago Public Schools",
+        sheerId: 3995910,
+        idExtended: "3995910",
+        country: "USA",
+        domain: "cps.edu",
+        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/psu.png", // Placeholder
+        address: "Chicago, IL, USA"
+    },
+    {
+        name: "Clark County School District",
+        sheerId: 3995910,
+        idExtended: "3995910",
+        country: "USA",
+        domain: "ccsd.net",
+        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/psu.png", // Placeholder
+        address: "Las Vegas, NV, USA"
+    },
+    {
+        name: "Fairfax County Public Schools",
+        sheerId: 3995910,
+        idExtended: "3995910",
+        country: "USA",
+        domain: "fcps.edu",
+        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/psu.png", // Placeholder
+        address: "Falls Church, VA, USA"
+    }
+];
+
+module.exports = { UNIVERSITIES, K12_SCHOOLS };

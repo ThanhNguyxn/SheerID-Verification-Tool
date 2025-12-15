@@ -6,7 +6,7 @@
 [![GitHub Forks](https://img.shields.io/github/forks/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Google学生プログラムを通じてGemini Advancedを無料で入手するための包括的な多言語ガイド。**
+**学生認証プログラムを通じてGemini AdvancedとChatGPT Plusを無料で入手するための包括的な多言語ガイド。**
 
 <p align="center">
   <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
@@ -86,9 +86,9 @@
 始める前に、以下を確認してください：
 
 - ✅ **Telegramアカウント** - ボット確認用
-- ✅ **Googleアカウント** - 学生確認の年齢要件を満たす有効なGoogleアカウント（通常18歳以上の在学中の学生）
+- ✅ **Google/OpenAI アカウント** - 確認用の有効なアカウント
 - ✅ **有効な支払い方法** - 銀行カードまたは電子ウォレット（無料パッケージの請求なし）
-- ✅ **VPN** - （例：Urban VPN）必要に応じて地域を英国、ベトナム、またはその他の対象国に切り替えるため
+- ✅ **VPN** - （例：Urban VPN）必要に応じて地域を米国 (US) またはその他の対象国に切り替えるため
 
 ## 🚀 インストールと使用法
 
@@ -141,10 +141,16 @@
 
 正常に完了すると、以下を受け取ります：
 
+**Google Gemini:**
 - ✨ **Gemini Advanced** - 12ヶ月間無料
 - 💾 **2TB Google Drive** - 大容量クラウドストレージ
 - 📝 **NotebookLM Pro** - 高度なメモ機能
 - 🎥 **1,000 AI動画クレジット** - VEO3で動画を作成
+
+**ChatGPT Plus:**
+- 💬 **ChatGPT Plus** - K-12 教員向け無料
+- 🧠 **GPT-4o アクセス** - 高度なAI機能
+- 🎨 **DALL·E など** - 画像生成とその他の機能
 
 ## ⚠️ セキュリティに関する注意
 

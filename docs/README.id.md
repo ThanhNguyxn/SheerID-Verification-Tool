@@ -6,7 +6,7 @@
 [![GitHub Forks](https://img.shields.io/github/forks/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Panduan multibahasa yang komprehensif untuk membantu siswa mendapatkan Gemini Advanced secara gratis melalui Program Pelajar Google.**
+**Panduan multibahasa yang komprehensif untuk membantu siswa mendapatkan Gemini Advanced dan ChatGPT Plus secara gratis melalui program verifikasi pelajar.**
 
 <p align="center">
   <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
@@ -145,10 +145,16 @@ Kunjungi [Langganan Google Play](https://play.google.com/store/account/subscript
 
 Setelah berhasil menyelesaikan, Anda akan menerima:
 
+**Google Gemini:**
 - ✨ **Gemini Advanced** - Gratis selama 12 bulan
 - 💾 **2TB Google Drive** - Penyimpanan cloud yang besar
 - 📝 **NotebookLM Pro** - Kemampuan mencatat tingkat lanjut
 - 🎥 **1.000 kredit video AI** - Buat video dengan VEO3
+
+**ChatGPT Plus:**
+- 💬 **ChatGPT Plus** - Gratis untuk guru K-12
+- 🧠 **Akses GPT-4o** - Kemampuan AI tingkat lanjut
+- 🎨 **DALL·E dan lainnya** - Pembuatan gambar dan fitur lainnya
 
 ## ⚠️ Catatan Keamanan
 

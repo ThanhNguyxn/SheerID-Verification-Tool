@@ -6,7 +6,7 @@
 [![GitHub Forks](https://img.shields.io/github/forks/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Google 학생 프로그램을 통해 Gemini Advanced를 무료로 이용할 수 있도록 돕는 포괄적인 다국어 가이드입니다.**
+**학생 인증 프로그램을 통해 Gemini Advanced와 ChatGPT Plus를 무료로 이용할 수 있도록 돕는 포괄적인 다국어 가이드입니다.**
 
 <p align="center">
   <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
@@ -86,9 +86,9 @@
 시작하기 전에 다음을 준비하세요:
 
 - ✅ **Telegram 계정** - 봇 인증용
-- ✅ **Google 계정** - 학생 인증을 위한 연령 요건을 충족하는 유효한 Google 계정(일반적으로 18세 이상의 재학중인 학생)
+- ✅ **Google/OpenAI 계정** - 인증을 위한 유효한 계정
 - ✅ **유효한 결제 수단** - 은행 카드 또는 전자 지갑 (무료 패키지에는 요금이 청구되지 않음)
-- ✅ **VPN** - (예: Urban VPN) 필요한 경우 지역을 영국, 베트남 또는 기타 적격 국가로 변경하기 위해
+- ✅ **VPN** - (예: Urban VPN) 필요한 경우 지역을 미국(US) 또는 기타 적격 국가로 변경하기 위해
 
 ## 🚀 설치 및 사용법
 
@@ -141,10 +141,16 @@
 
 성공적으로 완료하면 다음을 받게 됩니다:
 
+**Google Gemini:**
 - ✨ **Gemini Advanced** - 12개월 무료
 - 💾 **2TB Google Drive** - 대용량 클라우드 스토리지
 - 📝 **NotebookLM Pro** - 고급 메모 기능
 - 🎥 **1,000 AI 비디오 크레딧** - VEO3로 비디오 생성
+
+**ChatGPT Plus:**
+- 💬 **ChatGPT Plus** - K-12 교사 무료
+- 🧠 **GPT-4o 액세스** - 고급 AI 기능
+- 🎨 **DALL·E 및 기타** - 이미지 생성 및 추가 기능
 
 ## ⚠️ 보안 참고 사항
 

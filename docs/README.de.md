@@ -6,7 +6,7 @@
 [![GitHub Forks](https://img.shields.io/github/forks/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Ein umfassender mehrsprachiger Leitfaden, um Studenten zu helfen, Gemini Advanced kostenlos über das Google-Studentenprogramm zu erhalten.**
+**Ein umfassender mehrsprachiger Leitfaden, um Studenten zu helfen, Gemini Advanced & ChatGPT Plus kostenlos über Studentenverifizierungsprogramme zu erhalten.**
 
 <p align="center">
   <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
@@ -38,7 +38,7 @@
 - 🌍 **Mehrsprachiger Support** - Verfügbar auf Englisch, Vietnamesisch, Spanisch, Französisch, Deutsch und Chinesisch
 - 📋 **Schritt-für-Schritt-Anleitung** - Klare Anweisungen für den gesamten Verifizierungsprozess
 - 🔒 **Sicherheitsorientiert** - Betont sichere Praktiken und vertrauenswürdige Quellen
-- 🎁 **Premium-Vorteile** - Zugang zu Gemini Advanced, 2TB Speicher und mehr für 12 Monate
+- 🎁 **Premium-Vorteile** - Zugang zu Gemini Advanced, ChatGPT Plus, 2TB Speicher und mehr
 - 🤖 **Telegram Bot Integration** - Automatisierte Verifizierung über sichere Telegram-Bots
 - 🆓 **Völlig Kostenlos** - Keine versteckten Kosten während der kostenlosen Studentenperiode
 
@@ -86,69 +86,84 @@
 Bevor Sie beginnen, stellen Sie sicher, dass Sie haben:
 
 - ✅ **Telegram-Konto** - Für Bot-Verifizierung
-- ✅ **Google-Konto** - Ein gültiges Google-Konto, das die Altersanforderungen für die Studentenverifizierung erfüllt (normalerweise eingeschriebene Studenten ab 18 Jahren)
+- ✅ **Google/OpenAI-Konto** - Ein gültiges Konto zur Verifizierung
 - ✅ **Gültige Zahlungsmethode** - Bankkarte oder E-Wallet (keine Gebühr für kostenloses Paket)
-- ✅ **VPN** - (z.B. Urban VPN) zum Wechseln der Region nach UK, VN oder andere berechtigte Länder falls erforderlich
+- ✅ **VPN** - (z.B. Urban VPN) zum Wechseln der Region nach US oder andere berechtigte Länder falls erforderlich
 
 ## 🚀 Installation und Verwendung
 
-### 🌐 Schritt 1: Neues Browser-Profil erstellen
+### 🌐 Schritt 1: Browser einrichten
 
-Erstellen Sie ein neues Browser-Profil oder nutzen Sie den Inkognito-Modus, um Datenkonflikte zu vermeiden.
+1. **Erstellen Sie ein neues Browser-Profil** oder nutzen Sie den Inkognito-Modus
 
-### 🎓 Schritt 2: Zugang zum Studentenprogramm
-
-1. Besuchen Sie [https://gemini.google/students](https://gemini.google/students)
-2. Klicken Sie auf **Join Student Program**, um Ihren Verifizierungslink zu erhalten
+2. **Installieren Sie eine VPN-Erweiterung** (überspringen wenn bereits in **US**):
+   - [Urban VPN](https://chrome.google.com/webstore/detail/urban-vpn) (Chrome/Edge)
+   - [Proton VPN](https://protonvpn.com/) (Alle Browser)
 
 > [!IMPORTANT]
-> **Länderberechtigung:** Wenn Ihr Land nicht unterstützt wird, nutzen Sie ein VPN (siehe [Anforderungen](#-anforderungen)), um zu einem berechtigten Land zu wechseln (UK, Vietnam, etc.).
-> 
-> **💡 Tipp:** Suchen Sie online nach "Google Student Program supported countries" oder fragen Sie eine KI nach den aktuell berechtigten Regionen.
-
-### 📱 Schritt 3: Studentenstatus über Telegram verifizieren
-
-1. Öffnen Sie Telegram und nutzen Sie einen dieser Bots:
-
-   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
-   - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
-
-
-2. Senden Sie diesen Befehl:
-   ```
-   /verify https://services.sheerid.com/verify/***
-   ```
-   *(Ersetzen Sie dies durch Ihren Verifizierungslink)*
-
-3. Warten Sie auf die Bestätigung des Bots
-
+> **Inkognito-Modus?** Aktivieren Sie **"Im Inkognito-Modus zulassen"** für die VPN-Erweiterung.
 
 > [!TIP]
-> **Bot in Wartung?** Wenn der Verifizierungs-Bot vorübergehend nicht verfügbar ist, können Sie hier eine Test-Studentenkarte erstellen: [🎓 Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/)
+> Verbinden Sie sich mit **US oder anderen berechtigten Ländern** vor Schritt 2.
 
-### ✨ Schritt 4: Gemini Advanced aktivieren
+### 🎓 Schritt 2: Programm auswählen
 
-1. Registrieren Sie sich nach der Verifizierung für **Google One AI Premium**
-2. Fügen Sie Ihre Zahlungsmethode hinzu (keine Kosten während des kostenlosen Zeitraums)
-3. Schließen Sie die Registrierung ab
+| Programm | Link | Für |
+|----------|------|-----|
+| 🤖 **Google Gemini** | [gemini.google/students](https://gemini.google/students) | Studenten |
+| 💬 **ChatGPT Plus** | [chatgpt.com/plans/k12-teachers](https://chatgpt.com/plans/k12-teachers/) | K-12 Lehrer |
+
+> [!IMPORTANT]
+> **Länderberechtigung:** Nutzen Sie VPN für ein berechtigtes Land (US, etc.).
+
+### 📱 Schritt 3: Über Telegram verifizieren
+
+1. Öffnen Sie Telegram:
+   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) ✅ *GPT K12*
+   - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
+
+2. Befehl senden:
+
+   **Für Gemini:** `/verify https://services.sheerid.com/verify/***`
+   
+   **Für ChatGPT (K-12):** `/vc https://services.sheerid.com/verify/***`
+
+> [!TIP]
+> **💰 Kostenlos!** Verdienen Sie Münzen: Freunde einladen, täglich `/checkin`
+
+> [!WARNING]
+> **Fehler?** Nutzen Sie `/fix` und versuchen Sie es erneut.
+
+### ✨ Schritt 4: Premium aktivieren
+
+**Für Gemini:**
+1. Registrieren Sie sich für **Google One AI Premium**
+2. Zahlungsmethode hinzufügen (kostenlos)
+3. Fertig!
+
+**Für ChatGPT Plus:**
+1. Automatisch aktiviert nach Verifizierung
+2. Genießen Sie Ihr Abo!
 
 > [!NOTE]
-> **VPN-Nutzer:** Trennen Sie nach der Verifizierung die VPN-Verbindung und laden Sie die Seite neu, bevor Sie die Zahlungsmethode hinzufügen. Dies stellt die Kompatibilität mit den Zahlungsoptionen Ihres Landes sicher.
+> **VPN-Nutzer:** VPN trennen vor Zahlungsmethode hinzufügen.
 
-### ⚙️ Schritt 5: Abonnement verwalten
+### ⚙️ Schritt 5: Abo verwalten
 
-Besuchen Sie [Google Play Abos](https://play.google.com/store/account/subscriptions), um vor Ablauf der 12 Monate zu kündigen.
-
-**⏰ Tipp:** Stellen Sie eine Kalendererinnerung ein, um automatische Verlängerungskosten zu vermeiden!
+Kündigen Sie vor Ablauf bei [Google Play Abos](https://play.google.com/store/account/subscriptions).
 
 ## 🎁 Vorteile
 
-Bei erfolgreichem Abschluss erhalten Sie:
-
+**Google Gemini:**
 - ✨ **Gemini Advanced** - 12 Monate kostenlos
-- 💾 **2TB Google Drive** - Großer Cloud-Speicher
-- 📝 **NotebookLM Pro** - Erweiterte Notizfunktionen
-- 🎥 **1,000 KI-Video-Credits** - Erstellen Sie Videos mit VEO3
+- 💾 **2TB Google Drive**
+- 📝 **NotebookLM Pro**
+- 🎥 **1,000 KI-Video-Credits**
+
+**ChatGPT Plus:**
+- 💬 **ChatGPT Plus** - Kostenlos für K-12 Lehrer
+- 🧠 **GPT-4o Zugang**
+- 🎨 **DALL·E und mehr**
 
 ## ⚠️ Sicherheitshinweise
 

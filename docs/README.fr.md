@@ -6,7 +6,7 @@
 [![GitHub Forks](https://img.shields.io/github/forks/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Un guide multilingue complet pour aider les étudiants à obtenir Gemini Advanced gratuitement via le Programme Étudiant Google.**
+**Un guide multilingue complet pour aider les étudiants à obtenir Gemini Advanced & ChatGPT Plus gratuitement via des programmes de vérification étudiante.**
 
 <p align="center">
   <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
@@ -38,7 +38,7 @@
 - 🌍 **Support Multilingue** - Disponible en anglais, vietnamien, espagnol, français, allemand et chinois
 - 📋 **Guide Étape par Étape** - Instructions claires pour l'ensemble du processus de vérification
 - 🔒 **Axé sur la Sécurité** - Met l'accent sur les pratiques sûres et les sources fiables
-- 🎁 **Avantages Premium** - Accès à Gemini Advanced, 2TB de stockage et plus pendant 12 mois
+- 🎁 **Avantages Premium** - Accès à Gemini Advanced, ChatGPT Plus, 2TB de stockage et plus
 - 🤖 **Intégration Bot Telegram** - Vérification automatisée via des bots Telegram sécurisés
 - 🆓 **Complètement Gratuit** - Aucun coût caché pendant la période étudiante gratuite
 
@@ -86,41 +86,85 @@
 Avant de commencer, assurez-vous d'avoir:
 
 - ✅ **Compte Telegram** - Pour la vérification par bot
-- ✅ **Compte Google** - Un compte Google valide répondant aux exigences d'âge pour la vérification des étudiants (généralement étudiants inscrits de 18 ans et plus)
+- ✅ **Compte Google/OpenAI** - Un compte valide pour la vérification
 - ✅ **Méthode de paiement valide** - Carte bancaire ou portefeuille électronique (aucun frais pour le forfait gratuit)
-- ✅ **VPN** - (par ex. Urban VPN) pour changer de région vers UK, VN ou autres pays éligibles si nécessaire
+- ✅ **VPN** - (par ex. Urban VPN) pour changer de région vers US ou autres pays éligibles si nécessaire
 
 ## 🚀 Installation et Utilisation
 
-### 🌐 Étape 1 : Créer un Nouveau Profil de Navigateur
+### 🌐 Étape 1 : Configurer Votre Navigateur
 
-Créez un nouveau profil de navigateur ou utilisez le mode incognito pour éviter les conflits de données.
+1. **Créez un nouveau profil de navigateur** ou utilisez le mode incognito pour éviter les conflits de données
+
+2. **Installez une extension VPN** (ignorez si vous êtes déjà dans une région prise en charge comme **US**):
+   - [Urban VPN](https://chrome.google.com/webstore/detail/urban-vpn) (Chrome/Edge)
+   - [Proton VPN](https://protonvpn.com/) (Tous les navigateurs)
+   - Ou tout VPN fiable
+
+> [!IMPORTANT]
+> **Utilisez le mode incognito ?** Allez dans les paramètres d'extension et activez **"Autoriser en mode incognito"** pour que votre VPN fonctionne.
+>
+> ![Allow in Incognito](images/allow-incognito.png)
+
+> [!TIP]
+> Connectez-vous à **US ou autres pays éligibles** avant de passer à l'Étape 2.
 
 ### 🎓 Étape 2 : Accéder au Programme Étudiant
 
-1. Visitez [https://gemini.google/students](https://gemini.google/students)
-2. Cliquez sur **Join Student Program** pour recevoir votre lien de vérification
+Choisissez votre programme et obtenez votre lien de vérification:
+
+| Programme | Lien | Pour |
+|-----------|------|------|
+| 🤖 **Google Gemini** | [gemini.google/students](https://gemini.google/students) | Étudiants universitaires |
+| 💬 **ChatGPT Plus** | [chatgpt.com/plans/k12-teachers](https://chatgpt.com/plans/k12-teachers/) | Enseignants K-12 |
+
+Cliquez sur **Join Student Program** ou bouton équivalent pour recevoir votre lien de vérification.
 
 > [!IMPORTANT]
-> **Éligibilité du Pays :** Si votre pays n'est pas pris en charge, utilisez un VPN (voir [Conditions](#-conditions)) pour passer à un pays éligible (Royaume-Uni, Vietnam, etc.).
-> 
-> **💡 Conseil :** Recherchez "Google Student Program supported countries" en ligne ou demandez à une IA pour connaître les dernières régions éligibles.
+> **Éligibilité du Pays :** Si votre pays n'est pas pris en charge, utilisez un VPN pour passer à un pays éligible (US, etc.).
 
 ### 📱 Étape 3 : Vérifier le Statut Étudiant via Telegram
 
 1. Ouvrez Telegram et accédez à l'un de ces bots :
-
-   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124)
+   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) ✅ *Supporte GPT K12*
    - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
 
+2. Envoyez la commande appropriée selon votre programme:
 
-2. Envoyez cette commande :
+   **Pour Google Gemini:**
    ```
    /verify https://services.sheerid.com/verify/***
    ```
+   
+   **Pour ChatGPT Plus (K-12):**
+   ```
+   /vc https://services.sheerid.com/verify/***
+   ```
+   
    *(Remplacez par votre lien de vérification)*
 
 3. Attendez la confirmation du bot
+
+> [!TIP]
+> **💰 Complètement Gratuit !** Gagnez des pièces gratuites:
+> - En invitant des amis au bot
+> - En utilisant `/checkin` quotidiennement pour gagner des points
+> 
+> *Besoin de pièces urgent ? Nous offrons aussi des options de recharge.*
+
+> [!WARNING]
+> **Vous avez une erreur ?** Utilisez la commande `/fix` et collez à nouveau votre lien de vérification. Si les erreurs persistent, essayez avec un autre compte Google.
+
+### ✨ Étape 4 : Activer Votre Plan Premium
+
+**Pour Google Gemini:**
+1. Après vérification, inscrivez-vous à **Google One AI Premium**
+2. Ajoutez votre méthode de paiement (aucun frais pendant la période gratuite)
+3. Terminez l'inscription
+
+**Pour ChatGPT Plus:**
+1. Après vérification, votre ChatGPT Plus sera activé automatiquement
+2. Profitez de votre abonnement gratuit !
 
 ### ✨ Étape 4 : Activer Gemini Advanced
 
@@ -141,10 +185,16 @@ Visitez [Abonnements Google Play](https://play.google.com/store/account/subscrip
 
 Après avoir réussi, vous recevrez:
 
+**Google Gemini:**
 - ✨ **Gemini Advanced** - Gratuit pendant 12 mois
 - 💾 **2TB Google Drive** - Grand espace de stockage cloud
 - 📝 **NotebookLM Pro** - Capacités avancées de prise de notes
 - 🎥 **1,000 crédits vidéo IA** - Créez des vidéos avec VEO3
+
+**ChatGPT Plus:**
+- 💬 **ChatGPT Plus** - Gratuit pour les enseignants K-12
+- 🧠 **Accès GPT-4o** - Capacités IA avancées
+- 🎨 **DALL·E et plus** - Génération d'images et fonctionnalités avancées
 
 ## ⚠️ Notes de Sécurité
 

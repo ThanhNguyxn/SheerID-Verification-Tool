@@ -6,7 +6,7 @@
 [![GitHub Forks](https://img.shields.io/github/forks/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Kompleksowy, wielojęzyczny przewodnik pomagający studentom uzyskać Gemini Advanced za darmo poprzez Google Student Program.**
+**Kompleksowy, wielojęzyczny przewodnik pomagający studentom uzyskać Gemini Advanced i ChatGPT Plus za darmo poprzez programy weryfikacji studenckiej.**
 
 <p align="center">
   <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">

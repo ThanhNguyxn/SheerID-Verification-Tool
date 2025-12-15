@@ -94,7 +94,19 @@
 
 ### 🌐 1단계: 새 브라우저 프로필 생성
 
-데이터 충돌을 피하기 위해 새 브라우저 프로필을 생성하거나 시크릿 모드를 사용하세요.
+1. **새 브라우저 프로필 생성** 또는 데이터 충돌을 피하기 위해 시크릿 모드를 사용하세요
+
+2. **VPN 확장 프로그램 설치** (이미 **US**와 같은 지원되는 지역에 있는 경우 건너뛰기):
+   - [Urban VPN](https://chrome.google.com/webstore/detail/urban-vpn) (Chrome/Edge)
+   - [Proton VPN](https://protonvpn.com/) (모든 브라우저)
+
+> [!IMPORTANT]
+> **시크릿 모드를 사용 중이신가요?** 확장 프로그램 설정으로 이동하여 VPN이 작동하도록 **"시크릿 모드에서 허용"**을 활성화하세요.
+>
+> ![Allow in Incognito](images/allow-incognito.png)
+
+> [!TIP]
+> 2단계로 이동하기 전에 **미국(US) 또는 기타 적격 국가**에 연결하세요.
 
 ### 🎓 2단계: 학생 프로그램 접속
 

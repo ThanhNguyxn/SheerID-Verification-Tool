@@ -94,7 +94,19 @@ Sebelum memulai, pastikan Anda memiliki:
 
 ### 🌐 Langkah 1: Buat Profil Browser Baru
 
-Buat profil browser baru atau gunakan mode penyamaran untuk menghindari konflik data.
+1. **Buat profil browser baru** atau gunakan mode penyamaran untuk menghindari konflik data
+
+2. **Instal ekstensi VPN** (lewati jika Anda sudah berada di wilayah yang didukung seperti **US**):
+   - [Urban VPN](https://chrome.google.com/webstore/detail/urban-vpn) (Chrome/Edge)
+   - [Proton VPN](https://protonvpn.com/) (Semua Browser)
+
+> [!IMPORTANT]
+> **Menggunakan mode penyamaran?** Buka pengaturan ekstensi dan aktifkan **"Izinkan dalam penyamaran"** agar VPN Anda berfungsi.
+>
+> ![Allow in Incognito](images/allow-incognito.png)
+
+> [!TIP]
+> Sambungkan ke **AS atau negara lain yang memenuhi syarat** sebelum beralih ke Langkah 2.
 
 ### 🎓 Langkah 2: Akses Program Pelajar
 

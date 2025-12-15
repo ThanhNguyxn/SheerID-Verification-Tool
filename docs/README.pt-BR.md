@@ -94,7 +94,19 @@ Antes de começar, certifique-se de ter:
 
 ### 🌐 Passo 1: Criar um Novo Perfil de Navegador
 
-Crie um novo perfil de navegador ou use o modo anônimo para evitar conflitos de dados.
+1. **Crie um novo perfil de navegador** ou use o modo anônimo para evitar conflitos de dados
+
+2. **Instale uma extensão VPN** (pule se já estiver em uma região suportada como **US**):
+   - [Urban VPN](https://chrome.google.com/webstore/detail/urban-vpn) (Chrome/Edge)
+   - [Proton VPN](https://protonvpn.com/) (Todos os navegadores)
+
+> [!IMPORTANT]
+> **Usando modo anônimo?** Vá para as configurações da extensão e ative **"Permitir em anônimo"** para que sua VPN funcione.
+>
+> ![Allow in Incognito](images/allow-incognito.png)
+
+> [!TIP]
+> Conecte-se aos **EUA ou outros países elegíveis** antes de ir para o Passo 2.
 
 ### 🎓 Passo 2: Acessar o Programa de Estudantes
 

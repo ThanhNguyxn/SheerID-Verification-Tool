@@ -369,6 +369,31 @@ When searching for schools in SheerID, make sure the organization type is **K12*
 > [!NOTE]
 > **Pro Tip**: K12 verification often doesn't require document upload if the IP environment is clean and the school hasn't been overused.
 
+### 📚 K12 Teachers Data (`teachers.js`)
+
+We have **verified teacher data** from 6 elite K12 schools for GPT bypass:
+
+| School | SheerID | Teachers | Email Domain |
+|--------|---------|----------|--------------|
+| Bronx Science | 156251 | 10 | @schools.nyc.gov |
+| Staten Island Tech | 155770 | 14 | @schools.nyc.gov |
+| Townsend Harris | 158162 | 13 | @schools.nyc.gov |
+| Thomas Jefferson | 3704245 | 12 | @fcps.edu |
+| Whitney Young | 3521074 | 12 | @cps.edu |
+| Gretchen Whitney | 3539252 | 13 | @abcusd.us |
+
+**Usage:**
+```javascript
+// Pick random teacher from teachers.js
+const teacher = getRandomTeacher("156251");
+// { fullName: "Rachel Hoyle", email: "rhoyle@schools.nyc.gov", position: "Principal" }
+```
+
+**Manual Workflow:**
+1. Open `teachers.js` → Pick a teacher
+2. Fill SheerID form with: First Name, Last Name, Email
+3. Select matching school from dropdown
+4. If doc needed → Use payslip-generator with same info
 
 ---
 

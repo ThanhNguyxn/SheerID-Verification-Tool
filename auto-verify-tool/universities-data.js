@@ -446,70 +446,187 @@ const UNIVERSITIES = [
 ];
 
 // K-12 School Districts and Charter Networks (Preferred by OpenAI/ChatGPT)
+// NOTE: Individual high schools with type "K12" work better than districts
+// These schools were discovered using the K12 Tips methodology from README
+// All verified via SheerID API: orgsearch.sheerid.net/rest/organization/v2/search?type=K12
 const K12_SCHOOLS = [
-    {
-        name: "Dallas Independent School District",
-        sheerId: 3995910,
-        idExtended: "3995910",
-        country: "USA",
-        domain: "dallasisd.org",
-        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/dallasisd.png",
-        address: "Dallas, TX, USA"
-    },
-    {
-        name: "Challenger School",
-        sheerId: 3995910,
-        idExtended: "3995910",
-        country: "USA",
-        domain: "challengerschool.com",
-        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/challenger.png",
-        address: "Sandy, UT, USA"
-    },
-    {
-        name: "Los Angeles Unified School District",
-        sheerId: 3995910,
-        idExtended: "3995910",
-        country: "USA",
-        domain: "lausd.net",
-        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/lausd.png",
-        address: "Los Angeles, CA, USA"
-    },
-    {
-        name: "New York City Department of Education",
-        sheerId: 3995910,
-        idExtended: "3995910",
-        country: "USA",
-        domain: "schools.nyc.gov",
-        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/nycdoe.png",
-        address: "New York, NY, USA"
-    },
-    {
-        name: "Chicago Public Schools",
-        sheerId: 3995910,
-        idExtended: "3995910",
-        country: "USA",
-        domain: "cps.edu",
-        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/cps.png",
-        address: "Chicago, IL, USA"
-    },
-    {
-        name: "Clark County School District",
-        sheerId: 3995910,
-        idExtended: "3995910",
-        country: "USA",
-        domain: "ccsd.net",
-        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/ccsd.png",
-        address: "Las Vegas, NV, USA"
-    },
-    {
-        name: "Fairfax County Public Schools",
-        sheerId: 3995910,
-        idExtended: "3995910",
-        country: "USA",
-        domain: "fcps.edu",
-        logo: "https://thanhnguyxn.github.io/student-card-generator/img/logos/fcps.png",
-        address: "Falls Church, VA, USA"
-    }
+    // ============================================
+    // NYC SPECIALIZED HIGH SCHOOLS (8 schools)
+    // ============================================
+    { name: "Stuyvesant High School", sheerId: 155694, type: "K12", city: "New York, NY", staffUrl: "https://stuy.enschool.org/apps/staff/" },
+    { name: "Bronx High School Of Science", sheerId: 156251, type: "K12", city: "Bronx, NY", staffUrl: "https://www.bxscience.edu/apps/staff/" },
+    { name: "Brooklyn Technical High School", sheerId: 157582, type: "K12", city: "Brooklyn, NY", staffUrl: "https://www.bths.edu/apps/staff/" },
+    { name: "Staten Island Technical High School", sheerId: 155770, type: "K12", city: "Staten Island, NY", staffUrl: "https://www.siths.org/staff-directory" },
+    { name: "Townsend Harris High School", sheerId: 158162, type: "K12", city: "Flushing, NY", staffUrl: "https://thhs.qc.edu/faculty-and-staff/" },
+    { name: "High School for Math, Science and Engineering", sheerId: 155694, type: "K12", city: "New York, NY" },
+    { name: "Queens High School for Sciences at York College", sheerId: 158162, type: "K12", city: "Jamaica, NY" },
+    { name: "Information Technology High School", sheerId: 3496072, type: "K12", city: "Long Island City, NY" },
+
+    // ============================================
+    // CHICAGO SELECTIVE ENROLLMENT (5 schools)
+    // ============================================
+    { name: "Walter Payton College Preparatory High School", sheerId: 3521141, type: "K12", city: "Chicago, IL", staffUrl: "https://www.wpcp.org/apps/staff/" },
+    { name: "Whitney M Young Magnet High School", sheerId: 3521074, type: "K12", city: "Chicago, IL", staffUrl: "https://www.wyoung.org/staff" },
+    { name: "Northside College Preparatory High School", sheerId: 219471, type: "K12", city: "Chicago, IL" },
+    { name: "Lane Technical High School", sheerId: 219254, type: "K12", city: "Chicago, IL" },
+    { name: "STEM Magnet Academy Elementary School", sheerId: 3521073, type: "K12", city: "Chicago, IL" },
+
+    // ============================================
+    // VIRGINIA / DC AREA STEM (3 schools)
+    // ============================================
+    { name: "Thomas Jefferson High School For Science And Technology", sheerId: 3704245, type: "K12", city: "Alexandria, VA", note: "#1 STEM school in USA", staffUrl: "https://tjhsst.fcps.edu/faculty" },
+    { name: "BASIS Independent McLean", sheerId: 4815368, type: "K12", city: "McLean, VA" },
+    { name: "McKinley Technology High School", sheerId: 167407, type: "K12", city: "Washington, DC" },
+
+    // ============================================
+    // CALIFORNIA ELITE HIGH SCHOOLS (10 schools)
+    // ============================================
+    { name: "Gretchen Whitney High School", sheerId: 3539252, type: "K12", city: "Cerritos, CA", note: "#1 Public HS in CA", staffUrl: "https://www.whitneyhs.us/staff" },
+    { name: "Lowell High School (San Francisco)", sheerId: 262338, type: "K12", city: "San Francisco, CA", staffUrl: "https://www.sfusd.edu/school/lowell-high-school" },
+    { name: "Palo Alto High School", sheerId: 262370, type: "K12", city: "Palo Alto, CA", staffUrl: "https://www.paly.net/about/staff-directory" },
+    { name: "Gunn (Henry M.) High School", sheerId: 262410, type: "K12", city: "Palo Alto, CA" },
+    { name: "Palos Verdes Peninsula High School", sheerId: 254044, type: "K12", city: "Palos Verdes, CA" },
+    { name: "Palos Verdes High School", sheerId: 254042, type: "K12", city: "Palos Verdes, CA" },
+    { name: "Foothill Technology High School", sheerId: 259802, type: "K12", city: "Ventura, CA" },
+    { name: "BASIS Independent Silicon Valley", sheerId: 3554672, type: "K12", city: "San Jose, CA" },
+    { name: "Technology High School (Rohnert Park)", sheerId: 263711, type: "K12", city: "Rohnert Park, CA" },
+    { name: "KIPP Esperanza High School", sheerId: 10010525, type: "K12", city: "East Palo Alto, CA" },
+
+    // ============================================
+    // NEW JERSEY / NORTHEAST (5 schools)
+    // ============================================
+    { name: "High Technology High School", sheerId: 10286510, type: "K12", city: "Lincroft, NJ", note: "#1 Public HS in NJ" },
+    { name: "Technology High School (Newark)", sheerId: 151793, type: "K12", city: "Newark, NJ" },
+    { name: "Lowell High School (Massachusetts)", sheerId: 145511, type: "K12", city: "Lowell, MA" },
+    { name: "Phillips Academy Andover", sheerId: 145364, type: "K12", city: "Andover, MA", note: "Elite prep school" },
+    { name: "Phillips Exeter Academy", sheerId: 148201, type: "K12", city: "Exeter, NH", note: "Elite prep school" },
+
+    // ============================================
+    // BASIS CHARTER NETWORK (6 schools)
+    // ============================================
+    { name: "BASIS Scottsdale", sheerId: 3536914, type: "K12", city: "Scottsdale, AZ" },
+    { name: "BASIS Tucson North", sheerId: 250527, type: "K12", city: "Tucson, AZ" },
+    { name: "BASIS Mesa", sheerId: 3536799, type: "K12", city: "Mesa, AZ" },
+    { name: "BASIS Chandler", sheerId: 3707277, type: "K12", city: "Chandler, AZ" },
+    { name: "BASIS Peoria", sheerId: 3537336, type: "K12", city: "Peoria, AZ" },
+    { name: "BASIS Flagstaff", sheerId: 3537729, type: "K12", city: "Flagstaff, AZ" },
+
+    // ============================================
+    // KIPP CHARTER NETWORK (8 schools)
+    // ============================================
+    { name: "KIPP Academy Charter School (Bronx)", sheerId: 155846, type: "K12", city: "Bronx, NY" },
+    { name: "KIPP DC Public Charter Schools", sheerId: 3501341, type: "K12", city: "Washington, DC" },
+    { name: "KIPP SoCal Public Schools", sheerId: 10488713, type: "K12", city: "Los Angeles, CA" },
+    { name: "KIPP New Jersey Schools", sheerId: 3493517, type: "K12", city: "Newark, NJ" },
+    { name: "KIPP Philadelphia Public Schools", sheerId: 3500589, type: "K12", city: "Philadelphia, PA" },
+    { name: "KIPP Columbus", sheerId: 3508555, type: "K12", city: "Columbus, OH" },
+    { name: "KIPP Sunnyside High School", sheerId: 238013, type: "K12", city: "Houston, TX" },
+    { name: "KIPP Academy Lynn Charter School", sheerId: 145625, type: "K12", city: "Lynn, MA" },
+
+    // ============================================
+    // SUCCESS ACADEMY NETWORK (5 schools)
+    // ============================================
+    { name: "Success Academy (NY Central)", sheerId: 10236792, type: "K12", city: "New York, NY" },
+    { name: "Success Academy Charter School - Harlem", sheerId: 4581454, type: "K12", city: "New York, NY" },
+    { name: "Success Academy Charter School - Union Square", sheerId: 3495255, type: "K12", city: "New York, NY" },
+    { name: "Success Academy Charter School - Hudson Yards", sheerId: 3495291, type: "K12", city: "New York, NY" },
+    { name: "Success Academy Charter School - Hell's Kitchen", sheerId: 3495299, type: "K12", city: "New York, NY" },
+
+    // ============================================
+    // LINCOLN HIGH SCHOOLS (Multiple locations)
+    // ============================================
+    { name: "Lincoln High School (Tacoma, WA)", sheerId: 270998, type: "K12", city: "Tacoma, WA", staffUrl: "https://lincoln.tacomaschools.org/contact" },
+    { name: "Lincoln High School (Portland, OR)", sheerId: 268293, type: "K12", city: "Portland, OR", staffUrl: "https://www.lincolnhs.org/apps/staff/" },
+    { name: "Lincoln High School (San Diego, CA)", sheerId: 257321, type: "K12", city: "San Diego, CA" },
+
+    // ============================================
+    // OTHER NOTABLE MAGNET SCHOOLS (10 schools)
+    // ============================================
+    { name: "Central Magnet School", sheerId: 189685, type: "K12", city: "Murfreesboro, TN" },
+    { name: "Tucson Magnet High School", sheerId: 250255, type: "K12", city: "Tucson, AZ" },
+    { name: "Classical Magnet School", sheerId: 3703766, type: "K12", city: "Hartford, CT" },
+    { name: "Garner Magnet High School", sheerId: 174308, type: "K12", city: "Garner, NC" },
+    { name: "Manor New Technology High School", sheerId: 242065, type: "K12", city: "Manor, TX" },
+    { name: "Academic Magnet High School", sheerId: 177339, type: "K12", city: "North Charleston, SC", note: "#1 Public HS in SC" },
+    { name: "Broughton Magnet High School", sheerId: 3503466, type: "K12", city: "Raleigh, NC" },
+    { name: "King-Drew Magnet High School", sheerId: 3539022, type: "K12", city: "Los Angeles, CA" },
+    { name: "Benson Magnet High School", sheerId: 3527182, type: "K12", city: "Omaha, NE" },
+    { name: "Galileo Magnet High School", sheerId: 3502961, type: "K12", city: "Danville, VA" },
+
+    // ============================================
+    // SCIENCE ACADEMIES (10 schools)
+    // ============================================
+    { name: "Fulton Science Academy", sheerId: 10148026, type: "K12", city: "Alpharetta, GA" },
+    { name: "Bio-Med Science Academy STEM School", sheerId: 3704829, type: "K12", city: "Rootstown, OH" },
+    { name: "Envision Science Academy", sheerId: 3503442, type: "K12", city: "Wake Forest, NC" },
+    { name: "Harmony Science Academy Dallas", sheerId: 3706876, type: "K12", city: "Dallas, TX" },
+    { name: "Horizon Science Academy Columbus HS", sheerId: 3508525, type: "K12", city: "Columbus, OH" },
+    { name: "Magnolia Science Academy 1", sheerId: 3539426, type: "K12", city: "Reseda, CA" },
+    { name: "Magnolia Science Academy 3", sheerId: 254735, type: "K12", city: "Carson, CA" },
+    { name: "Dove Science Academy High School OKC", sheerId: 3529406, type: "K12", city: "Oklahoma City, OK" },
+    { name: "Science Academy of Chicago", sheerId: 216860, type: "K12", city: "Mount Prospect, IL" },
+    { name: "Travis Science Academy", sheerId: 237052, type: "K12", city: "Temple, TX" },
+
+    // ============================================
+    // ELITE PREP SCHOOLS (10 schools)
+    // ============================================
+    { name: "Berkeley Preparatory School", sheerId: 185742, type: "K12", city: "Tampa, FL" },
+    { name: "Georgetown Preparatory School", sheerId: 168570, type: "K12", city: "Rockville, MD" },
+    { name: "Shorecrest Preparatory School", sheerId: 185870, type: "K12", city: "Saint Petersburg, FL" },
+    { name: "Trinity Preparatory School", sheerId: 183106, type: "K12", city: "Winter Park, FL" },
+    { name: "Seattle Preparatory School", sheerId: 269977, type: "K12", city: "Seattle, WA" },
+    { name: "Fordham Preparatory School", sheerId: 156050, type: "K12", city: "Bronx, NY" },
+    { name: "Rutgers Preparatory School", sheerId: 154979, type: "K12", city: "Somerset, NJ" },
+    { name: "Scranton Preparatory School", sheerId: 165101, type: "K12", city: "Scranton, PA" },
+    { name: "Flintridge Preparatory School", sheerId: 254919, type: "K12", city: "La Canada Flintridge, CA" },
+    { name: "Eastside Preparatory School", sheerId: 3554995, type: "K12", city: "Kirkland, WA" },
+
+    // ============================================
+    // EARLY COLLEGE HIGH SCHOOLS (8 schools)
+    // ============================================
+    { name: "Early College High School Dallas", sheerId: 235022, type: "K12", city: "Dallas, TX" },
+    { name: "Early College High School at Carver", sheerId: 179760, type: "K12", city: "Atlanta, GA" },
+    { name: "Early College at Guilford", sheerId: 174145, type: "K12", city: "Greensboro, NC" },
+    { name: "Early College Academy Columbus", sheerId: 3508435, type: "K12", city: "Columbus, OH" },
+    { name: "Early College High School Costa Mesa", sheerId: 258878, type: "K12", city: "Costa Mesa, CA" },
+    { name: "Early College High School at Delaware State", sheerId: 3501075, type: "K12", city: "Dover, DE" },
+    { name: "Early College Alliance", sheerId: 203333, type: "K12", city: "Ypsilanti, MI" },
+    { name: "Early College High School Round Rock", sheerId: 3533810, type: "K12", city: "Round Rock, TX" },
+
+    // ============================================
+    // IDEA PUBLIC SCHOOLS (5 schools)
+    // ============================================
+    { name: "IDEA Public Schools", sheerId: 3533677, type: "K12", city: "Weslaco, TX" },
+    { name: "IDEA Public Charter School DC", sheerId: 10521304, type: "K12", city: "Washington, DC" },
+    { name: "IDEA Health Professions", sheerId: 10057129, type: "K12", city: "Austin, TX" },
+    { name: "SEED Public Charter School", sheerId: 3501292, type: "K12", city: "Washington, DC" },
+    { name: "IDEA Price Hill", sheerId: 10000736, type: "K12", city: "Cincinnati, OH" },
+
+    // ============================================
+    // HUMANITIES & IB SCHOOLS (8 schools)
+    // ============================================
+    { name: "Humanities Preparatory School", sheerId: 155269, type: "K12", city: "New York, NY" },
+    { name: "Governor's School For Arts And Humanities", sheerId: 3504562, type: "K12", city: "Greenville, SC" },
+    { name: "Indiana Academy For Sci Math And Humanities", sheerId: 3705062, type: "K12", city: "Muncie, IN" },
+    { name: "Connecticut International Baccalaureate Academy", sheerId: 149911, type: "K12", city: "East Hartford, CT" },
+    { name: "Heights HS International Baccalaureate School", sheerId: 3532141, type: "K12", city: "Houston, TX" },
+    { name: "Jefferson County IB High School", sheerId: 3506566, type: "K12", city: "Birmingham, AL" },
+    { name: "Texas Academy Leadership Humanities", sheerId: 3532903, type: "K12", city: "Beaumont, TX" },
+    { name: "Hall International Academy Arts Humanities", sheerId: 4584414, type: "K12", city: "Boise, ID" },
+
+    // ============================================
+    // WESTLAKE & BELLEVUE SCHOOLS (8 schools)
+    // ============================================
+    { name: "Westlake High School Austin", sheerId: 242400, type: "K12", city: "Austin, TX" },
+    { name: "Westlake High School CA", sheerId: 255557, type: "K12", city: "Westlake Village, CA" },
+    { name: "Westlake High School Saratoga Springs", sheerId: 10010881, type: "K12", city: "Saratoga Springs, UT" },
+    { name: "Bellevue High School WA", sheerId: 269511, type: "K12", city: "Bellevue, WA" },
+    { name: "Interlake Senior High School", sheerId: 269566, type: "K12", city: "Bellevue, WA" },
+    { name: "Newport Senior High School", sheerId: 269544, type: "K12", city: "Bellevue, WA" },
+    { name: "Sammamish Senior High School", sheerId: 269532, type: "K12", city: "Bellevue, WA" },
+    { name: "Bellevue Christian School", sheerId: 269510, type: "K12", city: "Bellevue, WA" }
 ];
 
 module.exports = { UNIVERSITIES, K12_SCHOOLS };
+
+

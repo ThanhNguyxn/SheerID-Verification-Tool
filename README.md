@@ -229,6 +229,14 @@ Upon successful completion, you'll receive:
 - [Google One AI Premium](https://one.google.com)
 - [Gemini Help Center](https://support.google.com/gemini)
 
+**For Developers:**
+> 🛠️ Want to understand how the verification engine works under the hood? Check out the [**Technical Documentation**](auto-verify-tool/README.md) for:
+> - 🏗️ System Architecture & API Flow
+> - ⚙️ SheerID REST API Integration  
+> - 🎓 K12 Teacher Verification Tips
+> - 🛡️ Anti-Detection Techniques
+> - 📊 Success Rate Tracking
+
 ---
 
 ## 💖 Support the Project

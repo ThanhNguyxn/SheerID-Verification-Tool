@@ -615,6 +615,56 @@ const K12_SCHOOLS = [
     { name: "Hall International Academy Arts Humanities", sheerId: 4584414, type: "K12", city: "Boise, ID" },
 
     // ============================================
+    // TOP 50 US HIGH SCHOOLS - GPT K12 VERIFIED (from Niche.com ranking)
+    // These schools are the most prestigious K12 institutions
+    // ============================================
+    // #1-5 Top Ranked
+    { name: "Signature School Inc", sheerId: 202063, type: "K12", city: "Evansville, IN", address: "610 Main St, Evansville, IN 47708", note: "#3 US" },
+    { name: "School For Advanced Studies Homestead", sheerId: 183857, type: "K12", city: "Homestead, FL", address: "11011 SW 104 St, Miami, FL 33176", note: "#4 US - Miami Dade College" },
+    { name: "School For Advanced Studies South", sheerId: 184605, type: "K12", city: "Miami, FL", address: "11011 SW 104 St, Miami, FL 33176" },
+
+    // #6-10
+    { name: "Loveless Academic Magnet Program High School (LAMP)", sheerId: 3506727, type: "K12", city: "Montgomery, AL", address: "6125 Brewbaker Blvd, Montgomery, AL 36116" },
+    { name: "School For Advanced Studies Wolfson", sheerId: 184166, type: "K12", city: "Miami, FL", address: "25 NE 2nd St, Miami, FL 33132" },
+    { name: "School of Science and Engineering", sheerId: 235104, type: "K12", city: "Dallas, TX", address: "1201 E. Eighth St., Dallas, TX 75203" },
+    { name: "International Academy - Okma Campus", sheerId: 3512649, type: "K12", city: "Bloomfield Hills, MI", address: "1020 E Square Lake Rd, Bloomfield Hills, MI 48304" },
+    { name: "Gwinnett School Of Mathematics, Science And Technology", sheerId: 178685, type: "K12", city: "Lawrenceville, GA", address: "970 McElvaney Lane, Lawrenceville, GA 30044" },
+
+    // #16-25
+    { name: "School For Advanced Studies North", sheerId: 184494, type: "K12", city: "Miami, FL", address: "11380 NW 27th Ave, Miami, FL 33167" },
+    { name: "High School for the Performing and Visual Arts (Kinder HSPVA)", sheerId: 236855, type: "K12", city: "Houston, TX", address: "790 Austin St, Houston, TX 77002" },
+    { name: "Union County Vocational Technical School", sheerId: 3703844, type: "K12", city: "Scotch Plains, NJ", address: "1776 Raritan Rd, Scotch Plains, NJ 07076" },
+    { name: "Design And Architecture Senior High School", sheerId: 3505864, type: "K12", city: "Miami, FL", address: "4001 NE 2nd Ave, Miami, FL 33137" },
+    { name: "Bergen County Technical High School-Teterboro", sheerId: 152431, type: "K12", city: "Hackensack, NJ", address: "200 Hackensack Ave, Hackensack, NJ 07601" },
+    { name: "South Texas ISD Science Academy", sheerId: 244855, type: "K12", city: "Mercedes, TX", address: "900 Med High Dr, Mercedes, TX 78570" },
+
+    // #26-35
+    { name: "University High", sheerId: 261649, type: "K12", city: "Fresno, CA", address: "4101 E. Fairmont Ave, Fresno, CA 93726" },
+    { name: "BASIS Oro Valley", sheerId: 3536926, type: "K12", city: "Oro Valley, AZ", address: "11155 N Oracle Rd, Oro Valley, AZ 85737" },
+    { name: "North Carolina School of Science and Mathematics", sheerId: 174195, type: "K12", city: "Durham, NC", address: "1219 Broad St, Durham, NC 27705" },
+    { name: "University High School", sheerId: 258837, type: "K12", city: "Irvine, CA", address: "4771 Campus Dr, Irvine, CA 92612" },
+    { name: "Carnegie Vanguard High School", sheerId: 237756, type: "K12", city: "Houston, TX", address: "1501 Taft St, Houston, TX 77019" },
+    { name: "Meridian School", sheerId: 240054, type: "K12", city: "Round Rock, TX", address: "2555 N Interstate 35, Round Rock, TX 78664" },
+    { name: "Middlesex County Academy for Science, Mathematics and Engineering", sheerId: 154658, type: "K12", city: "Edison, NJ", address: "1400 Woodbridge Ave, Edison, NJ 08837" },
+
+    // #36-45
+    { name: "BASIS San Antonio - Shavano Campus", sheerId: 3533001, type: "K12", city: "San Antonio, TX", address: "4122 N Loop 1604 W, San Antonio, TX 78249" },
+    { name: "Gretchen Whitney High School", sheerId: 3539252, type: "K12", city: "Cerritos, CA", address: "16800 Shoemaker Ave, Cerritos, CA 90703", note: "#39 US" },
+    { name: "North Hollywood Senior High School", sheerId: 255768, type: "K12", city: "North Hollywood, CA", address: "5231 Colfax Ave, North Hollywood, CA 91601" },
+    { name: "Biotechnology High School", sheerId: 153986, type: "K12", city: "Freehold, NJ", address: "5000 Kozloski Rd, Freehold, NJ 07728" },
+    { name: "BASIS Charter Schools San Antonio", sheerId: 3533002, type: "K12", city: "San Antonio, TX", address: "8403 State Hwy 151, San Antonio, TX 78245" },
+    { name: "Dr. Ronald E. McNair Academic High School", sheerId: 152785, type: "K12", city: "Jersey City, NJ", address: "123 Coles St, Jersey City, NJ 07302" },
+    { name: "Canyon Crest Academy", sheerId: 3539908, type: "K12", city: "San Diego, CA", address: "5951 Village Center Loop Rd, San Diego, CA 92130" },
+    { name: "Maine School of Science and Mathematics", sheerId: 144825, type: "K12", city: "Limestone, ME", address: "95 High St, Limestone, ME 04750" },
+    { name: "Brooklyn Technical High School", sheerId: 157582, type: "K12", city: "Brooklyn, NY", address: "29 Fort Greene Pl, Brooklyn, NY 11217" },
+
+    // #46-50
+    { name: "BASIS San Antonio - Medical Center Campus", sheerId: 3533003, type: "K12", city: "San Antonio, TX", address: "8403 State Hwy 151, San Antonio, TX 78245" },
+    { name: "Il Mathematics And Science Academy", sheerId: 3520767, type: "K12", city: "Aurora, IL", address: "1500 Sullivan Rd, Aurora, IL 60506", note: "IMSA" },
+    { name: "BASIS Ahwatukee", sheerId: 3536842, type: "K12", city: "Phoenix, AZ", address: "1021 S 58th St, Phoenix, AZ 85044" },
+    { name: "Collegiate Academy High School", sheerId: 236789, type: "K12", city: "Houston, TX", address: "901 N Post Oak Rd, Houston, TX 77024" },
+
+    // ============================================
     // WESTLAKE & BELLEVUE SCHOOLS (8 schools)
     // ============================================
     { name: "Westlake High School Austin", sheerId: 242400, type: "K12", city: "Austin, TX" },

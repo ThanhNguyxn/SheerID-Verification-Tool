@@ -1,6 +1,5 @@
 const puppeteer = require('puppeteer');
-const UNIVERSITIES = require('./universities-data');
-
+const { UNIVERSITIES } = require('./universities-data');
 // Shared browser instance for performance
 let sharedBrowser = null;
 

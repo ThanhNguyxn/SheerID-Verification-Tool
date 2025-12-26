@@ -677,6 +677,47 @@ const K12_SCHOOLS = [
     { name: "Bellevue Christian School", sheerId: 269510, type: "K12", city: "Bellevue, WA" }
 ];
 
-module.exports = { UNIVERSITIES, K12_SCHOOLS };
+// US Military Branches for Military Verification (ChatGPT Plus, etc.)
+const MILITARY_UNITS = [
+    {
+        name: "United States Army",
+        branch: "Army",
+        ranks: ["PVT", "PV2", "PFC", "SPC", "CPL", "SGT", "SSG", "SFC", "MSG", "1SG", "SGM", "2LT", "1LT", "CPT", "MAJ", "LTC", "COL"],
+        domain: "army.mil"
+    },
+    {
+        name: "United States Navy",
+        branch: "Navy",
+        ranks: ["SR", "SA", "SN", "PO3", "PO2", "PO1", "CPO", "SCPO", "MCPO", "ENS", "LTJG", "LT", "LCDR", "CDR", "CAPT"],
+        domain: "navy.mil"
+    },
+    {
+        name: "United States Air Force",
+        branch: "Air Force",
+        ranks: ["AB", "Amn", "A1C", "SrA", "SSgt", "TSgt", "MSgt", "SMSgt", "CMSgt", "2Lt", "1Lt", "Capt", "Maj", "Lt Col", "Col"],
+        domain: "af.mil"
+    },
+    {
+        name: "United States Marine Corps",
+        branch: "Marines",
+        ranks: ["Pvt", "PFC", "LCpl", "Cpl", "Sgt", "SSgt", "GySgt", "MSgt", "1stSgt", "MGySgt", "SgtMaj", "2ndLt", "1stLt", "Capt", "Maj", "LtCol", "Col"],
+        domain: "usmc.mil"
+    },
+    {
+        name: "United States Coast Guard",
+        branch: "Coast Guard",
+        ranks: ["SR", "SA", "SN", "PO3", "PO2", "PO1", "CPO", "SCPO", "MCPO", "ENS", "LTJG", "LT", "LCDR", "CDR", "CAPT"],
+        domain: "uscg.mil"
+    },
+    {
+        name: "United States Space Force",
+        branch: "Space Force",
+        ranks: ["Spc1", "Spc2", "Spc3", "Spc4", "Sgt", "TSgt", "MSgt", "SMSgt", "CMSgt", "2Lt", "1Lt", "Capt", "Maj", "Lt Col", "Col"],
+        domain: "spaceforce.mil"
+    }
+];
+
+module.exports = { UNIVERSITIES, K12_SCHOOLS, MILITARY_UNITS };
+
 
 

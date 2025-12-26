@@ -1,9 +1,9 @@
 const axios = global.axios || require('axios');
 const crypto = require('crypto');
-const { generateStudentCard, generatePayslip, generateTeacherCard, generateDocumentsParallel, closeBrowser } = require('./generator');
+const { generateStudentCard, generatePayslip, generateTeacherCard, generateMilitaryCard, generateDocumentsParallel, closeBrowser } = require('./generator');
 const faker = require('faker');
 const PDFDocument = require('pdfkit');
-const { UNIVERSITIES, K12_SCHOOLS } = require('./universities-data');
+const { UNIVERSITIES, K12_SCHOOLS, MILITARY_UNITS } = require('./universities-data');
 
 // ============== IMPROVEMENT: Success Rate Tracking ==============
 const verificationStats = {
@@ -244,6 +244,9 @@ async function verifySheerID(verificationUrl, type = 'spotify') {
     } else if (type === 'teacher') {
         // Bolt.new uses teacher verification
         return verifyTeacher(verificationUrl);
+    } else if (type === 'military') {
+        // Military personnel verification (ChatGPT Plus military discount)
+        return verifyMilitary(verificationUrl);
     } else if (type === 'youtube') {
         return verifyStudent(verificationUrl, 'YouTube');
     } else if (type === 'gemini') {
@@ -736,6 +739,144 @@ async function verifyGPT(verificationUrl) {
 
     } catch (error) {
         console.error('❌ ChatGPT Verification failed:', error.response ? error.response.data : error.message);
+        global.emitLog(`❌ Error: ${error.response ? JSON.stringify(error.response.data) : error.message}`);
+        return { success: false, error: error.message };
+    }
+}
+
+async function verifyMilitary(verificationUrl) {
+    let branch = null;
+    try {
+        // 1. Parse Verification ID
+        const verificationIdMatch = verificationUrl.match(/(?:verificationId=|verify\/)([a-f0-9]+)/i);
+        if (!verificationIdMatch) throw new Error('Invalid Verification URL format');
+        const verificationId = verificationIdMatch[1];
+
+        global.emitLog('═══════════════════════════════════════════════════════════');
+        global.emitLog('🔍 SheerID MILITARY Verification');
+        global.emitLog('═══════════════════════════════════════════════════════════');
+        global.emitLog(`📋 Verification ID: ${verificationId}`);
+
+        // 1.5. CHECK LINK STATE BEFORE PROCEEDING
+        global.emitLog('🔗 Checking link state...');
+        const linkState = await checkLinkState(verificationId);
+
+        if (!linkState.isValid) {
+            global.emitLog('❌ Link is invalid or expired!');
+            return {
+                success: false,
+                error: 'Invalid or expired verification link',
+                errorType: ERROR_TYPES.EXPIRED_LINK,
+                recovery: 'Get a new verification link.'
+            };
+        }
+
+        if (!linkState.canProceed) {
+            const errorInfo = classifyError({ errorIds: linkState.errorIds, systemErrorMessage: '' });
+            global.emitLog(`❌ Link state: ${linkState.currentStep} - Cannot proceed!`);
+            global.emitLog(errorInfo.message);
+            global.emitLog(errorInfo.recovery);
+            return {
+                success: false,
+                error: `Invalid link state: ${linkState.currentStep}`,
+                errorType: ERROR_TYPES.INVALID_STEP,
+                currentStep: linkState.currentStep,
+                recovery: errorInfo.recovery
+            };
+        }
+
+        global.emitLog(`   ✅ Link valid! Current step: ${linkState.currentStep}`);
+
+        // 2. Generate Military Identity
+        global.emitLog('');
+        global.emitLog('📝 [Step 1/4] Generating military identity...');
+
+        // Select random branch
+        branch = MILITARY_UNITS[Math.floor(Math.random() * MILITARY_UNITS.length)];
+        const firstName = faker.name.firstName();
+        const lastName = faker.name.lastName();
+        const rank = branch.ranks[Math.floor(Math.random() * branch.ranks.length)];
+        const serviceNumber = Math.floor(Math.random() * 900000000 + 100000000).toString();
+        const email = faker.internet.email(firstName, lastName, 'gmail.com');
+        const dob = generateRealisticBirthDate();
+
+        global.emitLog(`🎖️ Using Branch: ${branch.name}`);
+        global.emitLog(`   ├─ Rank: ${rank}`);
+        global.emitLog(`   ├─ Name: ${firstName} ${lastName}`);
+        global.emitLog(`   ├─ Email: ${email}`);
+        global.emitLog(`   ├─ Birth Date: ${dob}`);
+        global.emitLog(`   └─ Service Number: ${serviceNumber}`);
+
+        const militaryInfo = {
+            fullName: `${rank} ${firstName} ${lastName}`,
+            rank: rank,
+            branch: branch.name,
+            serviceNumber: serviceNumber
+        };
+
+        // 3. Generate Military ID Card
+        global.emitLog('');
+        global.emitLog('🎨 [Step 2/4] Generating Military ID Card...');
+        const imageBuffer = await generateMilitaryCard(militaryInfo);
+        global.emitLog(`   └─ ✅ PNG generated: ${(imageBuffer.length / 1024).toFixed(2)}KB`);
+
+        await randomDelay();
+
+        // 4. Submit Personal Info
+        global.emitLog('');
+        global.emitLog('📤 [Step 3/4] Submitting military info to SheerID...');
+
+        const deviceFingerprint = generateRealisticFingerprint();
+
+        // Try collectActiveMilitaryPersonalInfo first (common for ChatGPT military)
+        const step1Response = await retryRequest(async () => {
+            return await axios.post(`${SHEERID_API_URL}/verification/${verificationId}/step/collectActiveMilitaryPersonalInfo`, {
+                firstName,
+                lastName,
+                email,
+                birthDate: dob,
+                phoneNumber: "",
+                deviceFingerprintHash: deviceFingerprint,
+                locale: 'en-US',
+                metadata: {
+                    verificationId: verificationId,
+                    marketConsentValue: false,
+                    submissionOptIn: 'By submitting the personal information above, I acknowledge that my personal information is being collected under the privacy policy of the business from which I am seeking a discount'
+                }
+            });
+        }, 3, 'Submit military info');
+
+        global.emitLog(`   └─ ✅ Step 3 completed: ${step1Response.data.currentStep}`);
+
+        // Skip SSO if needed
+        if (step1Response.data.currentStep === 'sso' || step1Response.data.currentStep === 'collectActiveMilitaryPersonalInfo') {
+            global.emitLog('');
+            global.emitLog('⏩ Skipping SSO verification...');
+            try {
+                await randomDelay();
+                const ssoResponse = await axios.delete(`${SHEERID_API_URL}/verification/${verificationId}/step/sso`);
+                global.emitLog(`   └─ ✅ SSO skipped: ${ssoResponse.data.currentStep}`);
+            } catch (e) {
+                global.emitLog(`   └─ ⚠️ SSO skip warning: ${e.message}`);
+            }
+        }
+
+        // 5. Upload Document
+        const result = await handleDocUpload(verificationId, imageBuffer, 'military_id.png');
+
+        if (result.success) {
+            verificationStats.recordSuccess(branch.name);
+        } else {
+            verificationStats.recordFailure(branch.name);
+        }
+
+        return result;
+
+    } catch (error) {
+        if (branch) {
+            verificationStats.recordFailure(branch.name);
+        }
+        console.error('❌ Military Verification failed:', error.response ? error.response.data : error.message);
         global.emitLog(`❌ Error: ${error.response ? JSON.stringify(error.response.data) : error.message}`);
         return { success: false, error: error.message };
     }

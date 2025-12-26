@@ -255,6 +255,67 @@ async function generateTeacherCard(teacherInfo, options = {}) {
     }
 }
 
+async function generateMilitaryCard(militaryInfo) {
+    global.emitLog('📸 Generating Military ID Card...');
+    const browser = await getBrowser();
+    const page = await browser.newPage();
+
+    try {
+        await page.goto('https://thanhnguyxn.github.io/payslip-generator/', {
+            waitUntil: 'domcontentloaded',
+            timeout: 30000
+        });
+
+        await new Promise(r => setTimeout(r, 3000));
+        await page.waitForSelector('.editor-panel', { timeout: 30000 });
+
+        // Fill military info using payslip form
+        await page.evaluate((info) => {
+            const setInput = (label, value) => {
+                const labels = Array.from(document.querySelectorAll('.input-group label'));
+                const targetLabel = labels.find(l => l.textContent === label);
+                if (targetLabel) {
+                    const input = targetLabel.parentElement.querySelector('input');
+                    if (input) {
+                        const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+                        nativeInputValueSetter.call(input, value);
+                        input.dispatchEvent(new Event('input', { bubbles: true }));
+                    }
+                }
+            };
+            setInput('Company Name', info.branch);
+            setInput('Full Name', info.fullName);
+            setInput('Position', info.rank);
+            setInput('Employee ID', info.serviceNumber);
+        }, militaryInfo);
+
+        await new Promise(r => setTimeout(r, 500));
+
+        // Click Teacher ID tab (repurpose for Military ID)
+        const tabs = await page.$$('.tab-btn');
+        for (const tab of tabs) {
+            const text = await page.evaluate(el => el.textContent, tab);
+            if (text.includes('Teacher ID')) {
+                await tab.click();
+                break;
+            }
+        }
+
+        await new Promise(r => setTimeout(r, 1500));
+
+        const cardElement = await page.$('#teacher-card-front');
+        if (!cardElement) throw new Error('Military ID Card not found');
+
+        const imageBuffer = await cardElement.screenshot({ type: 'png', encoding: 'binary' });
+        global.emitLog('✅ Military ID Card generated');
+        return imageBuffer;
+
+    } finally {
+        await page.close();
+    }
+}
+
+
 // Generate multiple documents in parallel
 async function generateDocumentsParallel(info, docTypes = ['payslip', 'teacherCard']) {
     global.emitLog(`📸 Generating ${docTypes.length} documents in parallel...`);
@@ -280,6 +341,7 @@ module.exports = {
     generateStudentCard,
     generatePayslip,
     generateTeacherCard,
+    generateMilitaryCard,
     generateDocumentsParallel,
     getBrowser,
     closeBrowser

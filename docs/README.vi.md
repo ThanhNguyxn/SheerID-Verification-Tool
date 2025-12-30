@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 # 🔐 SheerID Verification Tool
 
@@ -212,6 +212,8 @@ Khi hoàn tất thành công, bạn sẽ nhận được:
 Nếu bạn thấy hướng dẫn này hữu ích, hãy cân nhắc ủng hộ để giúp duy trì và cải thiện dự án:
 
 <a href="https://buymeacoffee.com/thanhnguyxn" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?logo=github)](https://github.com/sponsors/ThanhNguyxn)
 
 ---
 

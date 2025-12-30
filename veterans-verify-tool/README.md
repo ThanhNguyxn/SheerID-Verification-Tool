@@ -144,6 +144,14 @@ python main.py
 | `Data already verified` | This veteran data was already used |
 | `Document upload required` | Data couldn't be verified, needs manual upload |
 
+## Support
+
+If you find this tool helpful, please consider supporting:
+
+<a href="https://buymeacoffee.com/thanhnguyxn" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50"></a>
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?logo=github)](https://github.com/sponsors/ThanhNguyxn)
+
 ## Disclaimer
 
 This tool is for educational purposes only. Use at your own risk.

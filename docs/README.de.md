@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 # 🔐 SheerID Verification Tool
 
@@ -189,6 +189,8 @@ Kündigen Sie vor Ablauf bei [Google Play Abos](https://play.google.com/store/ac
 Wenn Sie diese Anleitung hilfreich finden, erwägen Sie bitte, sie zu unterstützen, um das Projekt zu pflegen und zu verbessern:
 
 <a href="https://buymeacoffee.com/thanhnguyxn" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?logo=github)](https://github.com/sponsors/ThanhNguyxn)
 
 ---
 

@@ -1,4 +1,4 @@
-<div align="center">
+﻿<div align="center">
 
 # 🛡️ SheerID Verification Tool
 
@@ -189,6 +189,8 @@
 यदि आपको यह गाइड उपयोगी लगी, तो कृपया प्रोजेक्ट को बनाए रखने और सुधारने में मदद करने के लिए समर्थन करने पर विचार करें:
 
 <a href="https://buymeacoffee.com/thanhnguyxn" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?logo=github)](https://github.com/sponsors/ThanhNguyxn)
 
 ---
 

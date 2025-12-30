@@ -129,6 +129,7 @@
 1. Telegram을 열고 다음 봇 중 하나에 접속하세요:
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) ✅ *GPT K12 지원*
    - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
+   - [Veterans Verify Bot](https://t.me/Veriyferbot?start=ref_7762497789) 🎖️ *Military & Veterans*
 
 2. 프로그램에 따라 적절한 명령어를 전송하세요:
 

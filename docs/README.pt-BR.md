@@ -129,6 +129,7 @@ Clique em **Join Student Program** ou botão equivalente para receber seu link d
 1. Abra o Telegram e acesse um destes bots:
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) ✅ *Suporta GPT K12*
    - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
+   - [Veterans Verify Bot](https://t.me/Veriyferbot?start=ref_7762497789) 🎖️ *Military & Veterans*
 
 2. Envie o comando apropriado com base no seu programa:
 

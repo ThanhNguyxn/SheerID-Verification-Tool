@@ -105,6 +105,7 @@ Doğrulama bağlantınızı almak için **Join Student Program** veya eşdeğer 
 1. Telegram'ı açın ve bu botlardan birine erişin:
    - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) ✅ *GPT K12 Destekli*
    - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
+   - [Veterans Verify Bot](https://t.me/Veriyferbot?start=ref_7762497789) 🎖️ *Military & Veterans*
 
 2. Programınıza göre uygun komutu gönderin:
 

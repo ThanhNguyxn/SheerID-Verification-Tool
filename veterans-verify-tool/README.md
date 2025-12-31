@@ -135,6 +135,26 @@ python main.py
 - **Email required**: You need access to the email inbox for verification
 - **accessToken expires**: Get a new one if you see authentication errors
 
+## 🧠 Intelligent Strategy: Military
+
+Based on research into SheerID's Military verification logic:
+
+### 1. Strict Eligibility Window
+-   **Rule**: ChatGPT Plus discount is for Active Duty or Veterans separated within the **last 12 months**.
+-   **Strategy**: The tool defaults to a recent `dischargeDate` (e.g., Dec 2025) to maximize eligibility chances.
+
+### 2. Verification Tiers
+1.  **Authoritative Check**: SheerID checks US Military databases (DoD/DEERS).
+2.  **Auto-Approval**: If name/DOB matches the database + 12-month rule, it auto-approves.
+3.  **Document Upload**: If auto-check fails, you MUST upload a **DD-214** or **Orders**.
+    -   *Note*: This tool warns you if upload is required, as fake military docs are highly illegal and difficult to pass.
+
+### 3. Success Factors
+-   **Real Data**: You must use real veteran info (Name, DOB, Branch).
+-   **Recent Separation**: Ensure the discharge date is within the last year.
+
+---
+
 ## Troubleshooting
 
 | Error | Solution |

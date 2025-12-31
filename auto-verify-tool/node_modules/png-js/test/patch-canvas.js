@@ -1,1 +1,0 @@
-HTMLCanvasElement.prototype.getContext = function() {};

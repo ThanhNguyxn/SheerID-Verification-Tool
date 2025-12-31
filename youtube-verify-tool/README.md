@@ -1,32 +1,82 @@
-# YouTube Student Verification Tool
+# 🎬 YouTube Student Verification Tool
 
-SheerID Student verification for YouTube Premium.
+Python tool for YouTube Premium student discount via SheerID.
 
-## Requirements
+---
+
+## 📋 Requirements
+
+- Python 3.8+
+- `httpx` - HTTP client
+- `Pillow` - Image generation
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/ThanhNguyxn/SheerID-Verification-Tool.git
+```
+
+### 2. Go to Tool Directory
+
+```bash
+cd SheerID-Verification-Tool/youtube-verify-tool
+```
+
+### 3. Install Dependencies
 
 ```bash
 pip install httpx Pillow
 ```
 
-## Usage
+### 4. Run Tool
 
 ```bash
-python main.py "https://services.sheerid.com/verify/PROGRAM_ID/?verificationId=YOUR_ID"
+python main.py "https://services.sheerid.com/verify/xxx?verificationId=abc123"
 ```
 
-## How It Works
+---
 
-1. Generates fake student info (name, email, DOB)
-2. Creates fake student ID card PNG
-3. Submits via `collectStudentPersonalInfo`
-4. Uploads document to SheerID S3
+## ⚙️ How It Works
 
-## Note
+Same logic as Spotify tool:
 
-- Uses PSU (Pennsylvania State University) as fake school
-- Student age: 18-25 years old
-- Review usually takes 24-48 hours
+```
+1. Parse verificationId from URL
+2. Check link validity
+3. Generate student identity (name, email, DOB)
+4. Generate student ID card (PNG)
+5. Submit → collectStudentPersonalInfo
+6. Skip SSO
+7. Upload to S3
+8. Complete upload
+```
 
-## License
+---
 
-MIT
+## 🧠 Intelligent Strategy: University Student
+
+This tool shares the same advanced logic as the Spotify tool:
+
+### 1. Weighted University Selection
+-   **Database**: 45+ Universities (US, VN, JP, KR, etc.).
+-   **Smart Weighting**: Prioritizes universities with "easier" verification thresholds.
+
+### 2. The "Waterfall" Flow
+1.  **Submission**: Submits PII.
+2.  **SSO Bypass**: Skips school portal login (`DELETE /step/sso`).
+3.  **Document Gen**: Creates realistic Student ID cards on-the-fly.
+4.  **Completion**: Finalizes upload via `completeDocUpload`.
+
+### 3. Success Factors
+-   **Age Targeting**: 18-24 demographic.
+-   **Clean Images**: Generated IDs are optimized for SheerID's OCR.
+
+---
+
+## 📝 Note
+
+This tool uses the same codebase as Spotify tool, just with YouTube Premium branding.

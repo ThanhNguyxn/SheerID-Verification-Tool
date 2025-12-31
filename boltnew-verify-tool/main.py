@@ -34,29 +34,34 @@ except ImportError:
 PROGRAM_ID = "68cc6a2e64f55220de204448"
 SHEERID_BASE_URL = "https://services.sheerid.com"
 
-# Pennsylvania State University campuses
-SCHOOLS = {
-    "2565": {
-        "id": 2565,
-        "idExtended": "2565",
-        "name": "Pennsylvania State University-Main Campus",
-        "domain": "PSU.EDU"
-    },
-    "651379": {
-        "id": 651379,
-        "idExtended": "651379",
-        "name": "Pennsylvania State University-World Campus",
-        "domain": "PSU.EDU"
-    },
-    "8387": {
-        "id": 8387,
-        "idExtended": "8387",
-        "name": "Pennsylvania State University-Penn State Harrisburg",
-        "domain": "PSU.EDU"
-    }
-}
+# Universities with weights (from JS data - teacher tools use these)
+UNIVERSITIES = [
+    {"id": 2565, "name": "Pennsylvania State University-Main Campus", "domain": "psu.edu", "weight": 100},
+    {"id": 1953, "name": "Massachusetts Institute of Technology", "domain": "mit.edu", "weight": 90},
+    {"id": 1426, "name": "Harvard University", "domain": "harvard.edu", "weight": 85},
+    {"id": 3113, "name": "Stanford University", "domain": "stanford.edu", "weight": 88},
+    {"id": 3491, "name": "University of California, Berkeley", "domain": "berkeley.edu", "weight": 90},
+    {"id": 698, "name": "Columbia University", "domain": "columbia.edu", "weight": 85},
+    {"id": 2285, "name": "New York University", "domain": "nyu.edu", "weight": 88},
+    {"id": 3499, "name": "University of California, Los Angeles", "domain": "ucla.edu", "weight": 92},
+    {"id": 751, "name": "Cornell University", "domain": "cornell.edu", "weight": 85},
+    {"id": 2420, "name": "Northwestern University", "domain": "northwestern.edu", "weight": 82},
+    {"id": 328355, "name": "University of Toronto", "domain": "utoronto.ca", "weight": 75},
+    {"id": 273409, "name": "University of Oxford", "domain": "ox.ac.uk", "weight": 70},
+]
 
-DEFAULT_SCHOOL_ID = "2565"
+
+def select_university():
+    """Weighted random selection of university"""
+    weights = [u["weight"] for u in UNIVERSITIES]
+    total = sum(weights)
+    r = random.uniform(0, total)
+    cumulative = 0
+    for uni in UNIVERSITIES:
+        cumulative += uni["weight"]
+        if r <= cumulative:
+            return {"id": uni["id"], "idExtended": str(uni["id"]), "name": uni["name"], "domain": uni["domain"]}
+    return {"id": UNIVERSITIES[0]["id"], "idExtended": str(UNIVERSITIES[0]["id"]), "name": UNIVERSITIES[0]["name"], "domain": UNIVERSITIES[0]["domain"]}
 
 # ============ NAME GENERATOR ============
 FIRST_NAMES = [
@@ -79,10 +84,10 @@ def generate_name() -> Tuple[str, str]:
     return random.choice(FIRST_NAMES), random.choice(LAST_NAMES)
 
 
-def generate_email(first_name: str, last_name: str) -> str:
-    """Generate PSU email"""
+def generate_email(first_name: str, last_name: str, domain: str = "psu.edu") -> str:
+    """Generate school email"""
     suffix = random.randint(100, 999)
-    return f"{first_name[0].lower()}{last_name.lower()}{suffix}@psu.edu"
+    return f"{first_name[0].lower()}{last_name.lower()}{suffix}@{domain}"
 
 
 def generate_birth_date() -> str:
@@ -215,9 +220,9 @@ class BoltnewVerifier:
         try:
             # Generate teacher info
             first_name, last_name = generate_name()
-            email = generate_email(first_name, last_name)
+            school = select_university()
+            email = generate_email(first_name, last_name, school["domain"])
             birth_date = generate_birth_date()
-            school = SCHOOLS[DEFAULT_SCHOOL_ID]
             
             print(f"   Teacher: {first_name} {last_name}")
             print(f"   Email: {email}")
@@ -246,8 +251,10 @@ class BoltnewVerifier:
                 "deviceFingerprintHash": self.device_fingerprint,
                 "locale": "en-US",
                 "metadata": {
-                    "marketConsentValue": True,
-                    "submissionOptIn": "By submitting, I acknowledge the privacy policy."
+                    "marketConsentValue": False,
+                    "verificationId": self.verification_id,
+                    "refererUrl": f"{SHEERID_BASE_URL}/verify/{PROGRAM_ID}/?verificationId={self.verification_id}",
+                    "submissionOptIn": "By submitting the personal information above, I acknowledge that my personal information is being collected under the privacy policy of the business from which I am seeking a discount"
                 }
             }
             
@@ -303,13 +310,22 @@ class BoltnewVerifier:
             if not self._upload_to_s3(upload_url, doc_data, "image/png"):
                 return {"success": False, "error": "S3 upload failed"}
             
-            print("   [OK] Document uploaded successfully!")
+            print("   [OK] Document uploaded!")
+            
+            # Step 5: Complete document upload (PastKing logic)
+            print("   -> Step 5/5: Completing upload...")
+            data, status = self._request(
+                "POST",
+                f"{SHEERID_BASE_URL}/rest/v2/verification/{self.verification_id}/step/completeDocUpload"
+            )
+            print(f"      Upload completed: {data.get('currentStep', 'pending')}")
             
             return {
                 "success": True,
                 "message": "Verification submitted! Wait for review.",
                 "teacher": f"{first_name} {last_name}",
-                "email": email
+                "email": email,
+                "redirectUrl": data.get("redirectUrl")
             }
             
         except Exception as e:

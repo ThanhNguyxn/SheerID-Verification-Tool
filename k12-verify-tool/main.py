@@ -33,35 +33,74 @@ except ImportError:
 PROGRAM_ID = "68d47554aa292d20b9bec8f7"
 SHEERID_BASE_URL = "https://services.sheerid.com"
 
-# High Schools (Springfield High School variants)
-SCHOOLS = {
-    "3995910": {
-        "id": 3995910,
-        "idExtended": "3995910",
-        "name": "Springfield High School (Springfield, OR)",
-        "type": "HIGH_SCHOOL"
-    },
-    "3995271": {
-        "id": 3995271,
-        "idExtended": "3995271",
-        "name": "Springfield High School (Springfield, OH)",
-        "type": "HIGH_SCHOOL"
-    },
-    "3992142": {
-        "id": 3992142,
-        "idExtended": "3992142",
-        "name": "Springfield High School (Springfield, IL)",
-        "type": "HIGH_SCHOOL"
-    },
-    "3996208": {
-        "id": 3996208,
-        "idExtended": "3996208",
-        "name": "Springfield High School (Springfield, PA)",
-        "type": "HIGH_SCHOOL"
-    }
-}
+# ============ K12 SCHOOLS (from JS data - 50+ schools) ============
+K12_SCHOOLS = [
+    # NYC Specialized High Schools
+    {"id": 155694, "name": "Stuyvesant High School", "city": "New York, NY", "weight": 100},
+    {"id": 156251, "name": "Bronx High School Of Science", "city": "Bronx, NY", "weight": 98},
+    {"id": 157582, "name": "Brooklyn Technical High School", "city": "Brooklyn, NY", "weight": 95},
+    {"id": 155770, "name": "Staten Island Technical High School", "city": "Staten Island, NY", "weight": 90},
+    {"id": 158162, "name": "Townsend Harris High School", "city": "Flushing, NY", "weight": 88},
+    # Chicago Selective Enrollment
+    {"id": 3521141, "name": "Walter Payton College Preparatory High School", "city": "Chicago, IL", "weight": 95},
+    {"id": 3521074, "name": "Whitney M Young Magnet High School", "city": "Chicago, IL", "weight": 92},
+    {"id": 219471, "name": "Northside College Preparatory High School", "city": "Chicago, IL", "weight": 88},
+    {"id": 219254, "name": "Lane Technical High School", "city": "Chicago, IL", "weight": 85},
+    # Virginia / DC STEM
+    {"id": 3704245, "name": "Thomas Jefferson High School For Science And Technology", "city": "Alexandria, VA", "weight": 100},
+    {"id": 167407, "name": "McKinley Technology High School", "city": "Washington, DC", "weight": 85},
+    # California Elite
+    {"id": 3539252, "name": "Gretchen Whitney High School", "city": "Cerritos, CA", "weight": 95},
+    {"id": 262338, "name": "Lowell High School (San Francisco)", "city": "San Francisco, CA", "weight": 90},
+    {"id": 262370, "name": "Palo Alto High School", "city": "Palo Alto, CA", "weight": 88},
+    {"id": 262410, "name": "Gunn (Henry M.) High School", "city": "Palo Alto, CA", "weight": 85},
+    # BASIS Charter Network
+    {"id": 3536914, "name": "BASIS Scottsdale", "city": "Scottsdale, AZ", "weight": 90},
+    {"id": 250527, "name": "BASIS Tucson North", "city": "Tucson, AZ", "weight": 88},
+    {"id": 3536799, "name": "BASIS Mesa", "city": "Mesa, AZ", "weight": 85},
+    {"id": 3707277, "name": "BASIS Chandler", "city": "Chandler, AZ", "weight": 82},
+    # KIPP Charter
+    {"id": 155846, "name": "KIPP Academy Charter School (Bronx)", "city": "Bronx, NY", "weight": 85},
+    {"id": 3501341, "name": "KIPP DC Public Charter Schools", "city": "Washington, DC", "weight": 82},
+    {"id": 10488713, "name": "KIPP SoCal Public Schools", "city": "Los Angeles, CA", "weight": 80},
+    # Lincoln High Schools
+    {"id": 270998, "name": "Lincoln High School (Tacoma, WA)", "city": "Tacoma, WA", "weight": 78},
+    {"id": 268293, "name": "Lincoln High School (Portland, OR)", "city": "Portland, OR", "weight": 76},
+    {"id": 257321, "name": "Lincoln High School (San Diego, CA)", "city": "San Diego, CA", "weight": 75},
+    # Science Academies
+    {"id": 10148026, "name": "Fulton Science Academy", "city": "Alpharetta, GA", "weight": 85},
+    {"id": 3704829, "name": "Bio-Med Science Academy STEM School", "city": "Rootstown, OH", "weight": 82},
+    {"id": 3706876, "name": "Harmony Science Academy Dallas", "city": "Dallas, TX", "weight": 80},
+    # Elite Prep Schools
+    {"id": 185742, "name": "Berkeley Preparatory School", "city": "Tampa, FL", "weight": 78},
+    {"id": 168570, "name": "Georgetown Preparatory School", "city": "Rockville, MD", "weight": 80},
+    {"id": 145364, "name": "Phillips Academy Andover", "city": "Andover, MA", "weight": 75},
+    {"id": 148201, "name": "Phillips Exeter Academy", "city": "Exeter, NH", "weight": 75},
+    # Top 50 US - Verified
+    {"id": 202063, "name": "Signature School Inc", "city": "Evansville, IN", "weight": 95},
+    {"id": 183857, "name": "School For Advanced Studies Homestead", "city": "Homestead, FL", "weight": 92},
+    {"id": 3506727, "name": "Loveless Academic Magnet Program High School (LAMP)", "city": "Montgomery, AL", "weight": 90},
+    {"id": 178685, "name": "Gwinnett School Of Mathematics, Science And Technology", "city": "Lawrenceville, GA", "weight": 88},
+    {"id": 174195, "name": "North Carolina School of Science and Mathematics", "city": "Durham, NC", "weight": 90},
+    {"id": 3520767, "name": "Il Mathematics And Science Academy", "city": "Aurora, IL", "weight": 92},
+    # Westlake & Bellevue
+    {"id": 242400, "name": "Westlake High School Austin", "city": "Austin, TX", "weight": 82},
+    {"id": 269511, "name": "Bellevue High School WA", "city": "Bellevue, WA", "weight": 80},
+    {"id": 269566, "name": "Interlake Senior High School", "city": "Bellevue, WA", "weight": 78},
+]
 
-DEFAULT_SCHOOL_ID = "3995910"
+
+def select_school():
+    """Weighted random selection of K12 school"""
+    weights = [s["weight"] for s in K12_SCHOOLS]
+    total = sum(weights)
+    r = random.uniform(0, total)
+    cumulative = 0
+    for school in K12_SCHOOLS:
+        cumulative += school["weight"]
+        if r <= cumulative:
+            return {"id": school["id"], "idExtended": str(school["id"]), "name": school["name"], "type": "K12"}
+    return {"id": K12_SCHOOLS[0]["id"], "idExtended": str(K12_SCHOOLS[0]["id"]), "name": K12_SCHOOLS[0]["name"], "type": "K12"}
 
 # ============ NAME GENERATOR ============
 FIRST_NAMES = [
@@ -206,7 +245,7 @@ class K12Verifier:
             first_name, last_name = generate_name()
             email = generate_email(first_name, last_name)
             birth_date = generate_birth_date()
-            school = SCHOOLS[DEFAULT_SCHOOL_ID]
+            school = select_school()
             
             print(f"   Teacher: {first_name} {last_name}")
             print(f"   Email: {email}")
@@ -235,8 +274,8 @@ class K12Verifier:
                 "deviceFingerprintHash": self.device_fingerprint,
                 "locale": "en-US",
                 "metadata": {
-                    "marketConsentValue": True,
-                    "submissionOptIn": "By submitting, I acknowledge the privacy policy."
+                    "marketConsentValue": False,
+                    "submissionOptIn": "By submitting the personal information above, I acknowledge that my personal information is being collected under the privacy policy of the business from which I am seeking a discount"
                 }
             }
             
@@ -256,13 +295,36 @@ class K12Verifier:
             current_step = data.get("currentStep", "") if isinstance(data, dict) else ""
             print(f"      Current step: {current_step}")
             
+            # Check for auto-pass (K12 often doesn't need upload!)
+            if current_step == "success":
+                print("   ✅ AUTO-PASS! No upload needed!")
+                return {
+                    "success": True,
+                    "message": "Verification auto-approved! No document needed.",
+                    "teacher": f"{first_name} {last_name}",
+                    "email": email,
+                    "auto_pass": True
+                }
+            
             # Step 3: Skip SSO if needed
             if current_step in ["sso", "collectTeacherPersonalInfo"]:
-                print("   -> Step 3/4: Skipping SSO...")
-                self._request(
+                print("   -> Step 3/5: Skipping SSO...")
+                data, _ = self._request(
                     "DELETE",
                     f"{SHEERID_BASE_URL}/rest/v2/verification/{self.verification_id}/step/sso"
                 )
+                current_step = data.get("currentStep", "") if isinstance(data, dict) else ""
+                
+                # Check again for auto-pass after SSO skip
+                if current_step == "success":
+                    print("   ✅ AUTO-PASS after SSO skip!")
+                    return {
+                        "success": True,
+                        "message": "Verification auto-approved!",
+                        "teacher": f"{first_name} {last_name}",
+                        "email": email,
+                        "auto_pass": True
+                    }
             
             # Step 4: Upload document
             print("   -> Step 4/4: Uploading teacher badge...")
@@ -290,13 +352,22 @@ class K12Verifier:
             if not self._upload_to_s3(upload_url, doc_data, "image/png"):
                 return {"success": False, "error": "S3 upload failed"}
             
-            print("   [OK] Document uploaded successfully!")
+            print("   [OK] Document uploaded!")
+            
+            # Step 5: Complete document upload
+            print("   -> Step 5/5: Completing upload...")
+            data, _ = self._request(
+                "POST",
+                f"{SHEERID_BASE_URL}/rest/v2/verification/{self.verification_id}/step/completeDocUpload"
+            )
+            print(f"      Upload completed: {data.get('currentStep', 'pending') if isinstance(data, dict) else 'pending'}")
             
             return {
                 "success": True,
                 "message": "Verification submitted! Wait for review.",
                 "teacher": f"{first_name} {last_name}",
-                "email": email
+                "email": email,
+                "auto_pass": False
             }
             
         except Exception as e:

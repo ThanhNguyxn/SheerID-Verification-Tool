@@ -1,259 +1,110 @@
-﻿<div align="center">
-
-# 🛡️ SheerID Verification Tool
+﻿# 🔐 SheerID 인증 도구
 
 [![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 
-**학생 인증 프로그램을 통해 Gemini Advanced와 ChatGPT Plus를 무료로 이용할 수 있도록 돕는 포괄적인 다국어 가이드입니다.**
-
-<p align="center">
-  <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
-    <img src="https://img.shields.io/badge/Live_Tool-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Tool">
-  </a>
-  <a href="https://thanhnguyxn.github.io/student-card-generator/">
-    <img src="https://img.shields.io/badge/Card_Generator-34A853?style=for-the-badge&logo=google&logoColor=white" alt="Student Card Generator">
-  </a>
-  <a href="#-목차">
-    <img src="https://img.shields.io/badge/Documentation-gray?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Documentation">
-  </a>
-  <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues">
-    <img src="https://img.shields.io/badge/Report_Bug-EA4335?style=for-the-badge&logo=github&logoColor=white" alt="Report Bug">
-  </a>
-</p>
-
-</div>
-
-
+다양한 서비스(Spotify, YouTube, Google One 등)를 위한 SheerID 인증 워크플로를 자동화하는 포괄적인 도구 모음입니다.
 
 ---
 
-## 📖 프로젝트 소개
+## 🛠️ 사용 가능한 도구
 
-**SheerID Verification Tool**은 전 세계 학생들이 Google의 Gemini Advanced AI 플랫폼을 무료로 이용할 수 있도록 단계별 가이드를 제공합니다. 이 도구는 SheerID 학생 인증 시스템을 사용하여 인증 과정을 간소화하며, 학생들이 Gemini Advanced, 2TB Google Drive 스토리지, NotebookLM Pro, AI 비디오 생성 크레딧을 포함한 프리미엄 기능을 잠금 해제할 수 있도록 합니다.
+| 도구 | 유형 | 대상 | 설명 |
+|------|------|--------|-------------|
+| [spotify-verify-tool](../spotify-verify-tool/) | 🎵 학생 | Spotify Premium | 대학생 인증 |
+| [youtube-verify-tool](../youtube-verify-tool/) | 🎬 학생 | YouTube Premium | 대학생 인증 |
+| [one-verify-tool](../one-verify-tool/) | 🤖 학생 | Gemini Advanced | Google One AI Premium 인증 |
+| [boltnew-verify-tool](../boltnew-verify-tool/) | 👨‍🏫 교사 | Bolt.new | 교사 인증 (대학교) |
+| [k12-verify-tool](../k12-verify-tool/) | 🏫 K12 | ChatGPT Plus | K12 교사 인증 (고등학교) |
+| [veterans-verify-tool](../veterans-verify-tool/) | 🎖️ 군인 | 일반 | 군인 신분 인증 |
+| [veterans-extension](../veterans-extension/) | 🧩 Chrome | 브라우저 | 군인 인증용 Chrome 확장 프로그램 |
 
-### ✨ 특징
+### 🔗 외부 도구
 
-- 🌍 **다국어 지원** - 영어, 베트남어, 스페인어, 프랑스어, 독일어, 중국어, 포르투갈어, 러시아어, 일본어, 한국어, 인도네시아어 지원
-- 📋 **단계별 가이드** - 전체 인증 과정에 대한 명확한 지침
-- 🔒 **보안 중시** - 안전한 관행과 신뢰할 수 있는 소스 강조
-- 🎁 **프리미엄 혜택** - 12개월 동안 Gemini Advanced, 2TB 스토리지 등 이용 가능
-- 🤖 **Telegram 봇 통합** - 안전한 Telegram 봇을 통한 자동 인증
-- 🆓 **완전 무료** - 무료 학생 기간 동안 숨겨진 비용 없음
-
----
-
-## 📚 목차
-
-- [⚠️ 면책 조항 및 책임](#️-면책-조항-및-책임)
-- [📋 요구 사항](#-요구-사항)
-- [🚀 설치 및 사용법](#-설치-및-사용법)
-- [🎁 혜택](#-혜택)
-- [⚠️ 보안 참고 사항](#️-보안-참고-사항)
-- [🔗 추가 리소스](#-추가-리소스)
-- [💖 프로젝트 후원](#-프로젝트-후원)
-- [📄 라이선스](#-라이선스)
+| 도구 | 유형 | 설명 |
+|------|------|-------------|
+| [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ 봇 | 더 빠른 처리를 제공하는 대체 텔레그램 봇 |
+| [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 봇 | 베트남 커뮤니티 텔레그램 봇 |
+| [Veterans Verify Bot](https://t.me/Veriyferbot?start=ref_7762497789) | 🎖️ 봇 | 군인 인증 봇 |
+| [Batch 1Key.me](https://batch.1key.me/) | 📦 웹 | 여러 URL 일괄 인증 |
+| [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 도구 | 수동 인증용 학생증 생성 |
+| [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 도구 | 교사 인증용 급여 명세서 생성 |
 
 ---
 
-## ⚠️ 면책 조항 및 책임
+## 🧠 핵심 아키텍처 및 로직
 
-> [!WARNING]
-> **교육 목적으로만** - 이 가이드는 정보 제공을 위한 것입니다.
+이 리포지토리의 모든 Python 도구는 높은 성공률을 위해 최적화된 공통 아키텍처를 공유합니다.
 
-**📁 이 도구가 하는 일:**
-- 🔗 제3자 인증 서비스에 대한 **디렉토리** 역할
-- 📖 학생 인증을 위한 **교육 가이드** 제공
+### 1. 인증 흐름 (The Verification Flow)
+도구는 표준화된 "폭포수(Waterfall)" 프로세스를 따릅니다:
+1.  **데이터 생성 (Data Generation)**: 목표 인구 통계와 일치하는 현실적인 신원(이름, 생년월일, 이메일)을 생성합니다.
+2.  **제출 (`collectStudentPersonalInfo`)**: SheerID API에 데이터를 제출합니다.
+3.  **SSO 건너뛰기 (`DELETE /step/sso`)**: 중요한 단계. 학교 포털에 로그인해야 하는 요구 사항을 우회합니다.
+4.  **문서 업로드 (`docUpload`)**: 생성된 증빙 문서(학생증, 성적 증명서 또는 교사 배지)를 업로드합니다.
+5.  **완료 (`completeDocUpload`)**: 업로드가 완료되었음을 SheerID에 알립니다.
 
-**🚫 우리가 하지 않는 일:**
-- ❌ Telegram 봇을 **호스팅, 운영 또는 관리하지 않습니다**
-- ❌ 제3자 봇의 보안 또는 데이터 개인정보 보호에 **책임지지 않습니다**
-- ❌ Google, SheerID 또는 Telegram과 **제휴하지 않습니다**
+### 2. 지능형 전략 (Intelligent Strategies)
 
-**✅ 귀하의 책임:**
-- 👤 귀하는 자신의 행동에 책임이 있습니다
-- 📜 Google의 서비스 약관을 준수해야 합니다
-- 🔒 정보를 공유하기 전에 봇의 진위를 확인하세요
+#### 🎓 대학 전략 (Spotify, YouTube, Gemini)
+- **가중치 선택**: **45개 이상의 대학**(미국, 베트남, 일본, 한국 등)으로 구성된 선별된 목록을 사용합니다.
+- **성공 추적**: 성공률이 높은 대학이 더 자주 선택됩니다.
+- **문서 생성**: 동적 이름과 날짜가 포함된 사실적인 학생증을 생성합니다.
 
-> [!CAUTION]
-> **자신의 책임하에 사용하세요** - 개인 정보를 제공하기 전에 항상 출처를 확인하세요.
+#### 👨‍🏫 교사 전략 (Bolt.new)
+- **연령 타겟팅**: 교사 인구 통계에 맞게 더 나이 든 신원(25-55세)을 생성합니다.
+- **문서 생성**: 학생증 대신 "재직 증명서"를 생성합니다.
+- **엔드포인트**: 학생 엔드포인트 대신 `collectTeacherPersonalInfo`를 타겟팅합니다.
 
----
+#### 🏫 K12 전략 (ChatGPT Plus)
+- **학교 유형 타겟팅**: `type: "K12"`(`HIGH_SCHOOL` 아님)인 학교를 구체적으로 타겟팅합니다.
+- **자동 통과 로직 (Auto-Pass)**: 학교와 교사 정보가 일치하면 K12 인증은 문서 업로드 없이 **자동 승인**되는 경우가 많습니다.
+- **대체**: 업로드가 필요한 경우 교사 배지를 생성합니다.
 
-## 📋 요구 사항
-
-시작하기 전에 다음을 준비하세요:
-
-- ✅ **Telegram 계정** - 봇 인증용
-- ✅ **Google/OpenAI 계정** - 인증을 위한 유효한 계정
-- ✅ **유효한 결제 수단** - 은행 카드 또는 전자 지갑 (무료 패키지에는 요금이 청구되지 않음)
-- ✅ **VPN** - (예: Urban VPN) 필요한 경우 지역을 미국(US) 또는 기타 적격 국가로 변경하기 위해
-
-## 🚀 설치 및 사용법
-
-### 🌐 1단계: 새 브라우저 프로필 생성
-
-1. **새 브라우저 프로필 생성** 또는 데이터 충돌을 피하기 위해 시크릿 모드를 사용하세요
-
-2. **VPN 확장 프로그램 설치** (이미 **US**와 같은 지원되는 지역에 있는 경우 건너뛰기):
-   - [Urban VPN](https://chrome.google.com/webstore/detail/urban-vpn) (Chrome/Edge)
-   - [Proton VPN](https://protonvpn.com/) (모든 브라우저)
-
-> [!IMPORTANT]
-> **시크릿 모드를 사용 중이신가요?** 확장 프로그램 설정으로 이동하여 VPN이 작동하도록 **"시크릿 모드에서 허용"**을 활성화하세요.
->
-> ![Allow in Incognito](images/allow-incognito.png)
-
-> [!TIP]
-> 2단계로 이동하기 전에 **미국(US) 또는 기타 적격 국가**에 연결하세요.
-
-### 🎓 2단계: 학생 프로그램 접속
-
-프로그램을 선택하고 인증 링크를 받으세요:
-
-| 프로그램 | 링크 | 대상 |
-|----------|------|------|
-| 🤖 **Google Gemini** | [gemini.google/students](https://gemini.google/students) | 대학생 |
-| 💬 **ChatGPT Plus** | [chatgpt.com/plans/k12-teachers](https://chatgpt.com/plans/k12-teachers/) | K-12 교사 |
-
-**Join Student Program** 또는 동등한 버튼을 클릭하여 인증 링크를 받으세요.
-
-> [!IMPORTANT]
-> **국가 자격:** 거주 국가가 지원되지 않는 경우, VPN을 사용하여 지원되는 국가(미국 등)로 전환하세요.
-> 
-> **💡 팁:** 온라인에서 "Google Student Program supported countries"를 검색하거나 AI에게 최신 적격 지역에 대해 문의하세요.
-
-### 📱 3단계: Telegram을 통한 학생 신분 인증
-
-1. Telegram을 열고 다음 봇 중 하나에 접속하세요:
-   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) ✅ *GPT K12 지원*
-   - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
-   - [Veterans Verify Bot](https://t.me/Veriyferbot?start=ref_7762497789) 🎖️ *Military & Veterans*
-
-2. 프로그램에 따라 적절한 명령어를 전송하세요:
-
-   **Google Gemini의 경우:**
-   ```
-   /verify https://services.sheerid.com/verify/***
-   ```
-   
-   **ChatGPT Plus (K-12)의 경우:**
-   ```
-   /vc https://services.sheerid.com/verify/***
-   ```
-   
-   *(실제 인증 링크로 교체하세요)*
-
-3. 봇의 인증 성공 확인을 기다리세요
-
-> [!TIP]
-> **💰 완전 무료!** 무료 코인 획득:
-> - 친구를 봇에 초대하기
-> - 매일 `/checkin`을 사용하여 포인트 획득
-> 
-> *코인이 급하게 필요하세요? 충전 옵션도 지원합니다.*
-
-> [!WARNING]
-> **오류가 발생했나요?** `/fix` 명령어를 사용하고 인증 링크를 다시 붙여넣으세요. 여러 번 시도해도 오류가 지속되면 다른 Google 계정을 사용해 보세요.
-
-### ✨ 4단계: 프리미엄 요금제 활성화
-
-**Google Gemini의 경우:**
-1. 인증 후 **Google One AI Premium**에 등록하세요
-2. 결제 수단을 추가하세요 (무료 기간 동안에는 청구되지 않음)
-3. 등록 절차를 완료하세요
-
-**ChatGPT Plus의 경우:**
-1. 인증 후 ChatGPT Plus가 자동으로 활성화됩니다
-2. 무료 구독을 즐기세요!
-
-> [!NOTE]
-> **VPN 사용자:** 인증 후 결제 수단을 추가하기 전에 VPN 연결을 해제하고 페이지를 새로 고침하세요. 이렇게 하면 거주 국가의 결제 옵션과 호환됩니다.
-
-### ⚙️ 5단계: 구독 관리
-
-12개월 기간이 끝난 후 요금이 청구되지 않도록 하려면 [Google Play 구독](https://play.google.com/store/account/subscriptions)을 방문하여 취소하세요.
-
-**⏰ 팁:** 자동 갱신 요금을 피하기 위해 캘린더 알림을 설정하세요!
-
-## 🎁 혜택
-
-성공적으로 완료하면 다음을 받게 됩니다:
-
-**Google Gemini:**
-- ✨ **Gemini Advanced** - 12개월 무료
-- 💾 **2TB Google Drive** - 대용량 클라우드 스토리지
-- 📝 **NotebookLM Pro** - 고급 메모 기능
-- 🎥 **1,000 AI 비디오 크레딧** - VEO3로 비디오 생성
-
-**ChatGPT Plus:**
-- 💬 **ChatGPT Plus** - K-12 교사 무료
-- 🧠 **GPT-4o 액세스** - 고급 AI 기능
-- 🎨 **DALL·E 및 기타** - 이미지 생성 및 추가 기능
-
-## ⚠️ 보안 참고 사항
-
-- 🔐 이 가이드에 나열된 신뢰할 수 있는 봇 소스만 사용하세요
-- 🚫 결제 정보를 제3자와 공유하지 마세요
-- ⏰ 취소하지 않으면 12개월 후 유료 패키지로 전환됩니다
-
-## 🔗 추가 리소스
-
-**대체 인증:** Telegram을 통해 인증할 수 없는 경우 [SheerID Verification Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)을 사용하세요
-
-**공식 링크:**
-- [Google One AI Premium](https://one.google.com)
-- [Gemini 고객센터](https://support.google.com/gemini)
+#### 🎖️ 재향 군인 전략 (ChatGPT Plus)
+- **엄격한 자격**: 현역 군인 또는 **지난 12개월 이내**에 전역한 재향 군인을 타겟팅합니다.
+- **권위 있는 확인**: SheerID는 DoD/DEERS 데이터베이스와 대조하여 확인합니다.
+- **로직**: 자동 승인 기회를 극대화하기 위해 기본적으로 최근 전역 날짜를 사용합니다.
 
 ---
 
-## 💖 프로젝트 후원
+## 📋 빠른 시작
 
-이 가이드가 도움이 되었다면 프로젝트 유지 및 개선을 위해 후원을 고려해 주세요:
+### 필수 조건
+- Python 3.8+
+- `pip`
 
-<a href="https://buymeacoffee.com/thanhnguyxn" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+### 설치
 
-[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?logo=github)](https://github.com/sponsors/ThanhNguyxn)
+1.  **리포지토리 복제:**
+    ```bash
+    git clone https://github.com/ThanhNguyxn/SheerID-Verification-Tool.git
+    cd SheerID-Verification-Tool
+    ```
 
----
+2.  **의존성 설치:**
+    ```bash
+    pip install httpx Pillow
+    ```
 
-## 🌐 기타 언어
-
-- [🇬🇧 English](../README.md)
-- [🇻🇳 Tiếng Việt](README.vi.md)
-- [🇪🇸 Español](README.es.md)
-- [🇫🇷 Français](README.fr.md)
-- [🇩🇪 Deutsch](README.de.md)
-- [🇨🇳 中文](README.zh.md)
-- [🇧🇷 Português](README.pt-BR.md)
-- [🇷🇺 Русский](README.ru.md)
-- [🇯🇵 日本語](README.ja.md)
-- [🇰🇷 한국어](README.ko.md)
-- [🇮🇩 Indonesia](README.id.md)
-- [🇮🇳 हिन्दी](README.hi.md)
-- [🇸🇦 العربية](README.ar.md)
-- [🇹🇷 Türkçe](README.tr.md)
-- [🇮🇹 Italiano](README.it.md)
-- [🇹🇭 ไทย](README.th.md)
-- [🇵🇱 Polski](README.pl.md)
+3.  **도구 실행 (예: Spotify):**
+    ```bash
+    cd spotify-verify-tool
+    python main.py "YOUR_SHEERID_URL"
+    ```
 
 ---
 
-## 📄 라이선스
+## ⚠️ 면책 조항
 
-이 프로젝트는 MIT 라이선스에 따라 라이선스가 부여됩니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
-
-Copyright (c) 2025 SheerID Verification Tool Contributors
+이 프로젝트는 **교육 목적으로만** 제공됩니다. 이 도구는 인증 시스템의 작동 방식과 테스트 방법을 보여줍니다.
+- 사기 목적으로 사용하지 마십시오.
+- 작성자는 오용에 대해 책임을 지지 않습니다.
+- 모든 플랫폼의 서비스 약관을 준수하십시오.
 
 ---
 
-<div align="center">
+## 🤝 기여
 
-**전 세계 학생들을 위해 ❤️로 제작되었습니다**
-
-이 가이드가 도움이 되었다면 [GitHub](https://github.com/ThanhNguyxn/SheerID-Verification-Tool)에서 ⭐를 눌러주세요!
-
-[⬆ 맨 위로 돌아가기](#-sheerid-verification-tool)
-
-</div>
+기여는 언제나 환영합니다! Pull Request를 보내주세요.

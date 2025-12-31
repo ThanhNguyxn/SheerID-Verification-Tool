@@ -1,82 +1,115 @@
-# Bolt.new Teacher Verification Tool
+# 👨‍🏫 Bolt.new Teacher Verification Tool
 
-SheerID Teacher verification tool for Bolt.new.
+Python tool for Bolt.new teacher discount via SheerID.
 
-## Requirements
+---
+
+## 📋 Requirements
 
 - Python 3.8+
-- httpx
-- Pillow
+- `httpx` - HTTP client
+- `Pillow` - Image generation
 
-## Quick Start
+---
 
-### 1. Install dependencies
+## 🚀 Quick Start
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/ThanhNguyxn/SheerID-Verification-Tool.git
+```
+
+### 2. Go to Tool Directory
+
+```bash
+cd SheerID-Verification-Tool/boltnew-verify-tool
+```
+
+### 3. Install Dependencies
 
 ```bash
 pip install httpx Pillow
 ```
 
-### 2. Run
+### 4. Run Tool
 
 ```bash
-python main.py "https://services.sheerid.com/verify/PROGRAM_ID/?verificationId=YOUR_ID"
+python main.py "https://services.sheerid.com/verify/xxx?verificationId=abc123"
 ```
 
-Or run interactively:
+---
 
-```bash
-python main.py
-# Then paste your verification URL
-```
+## ⚙️ How It Works
 
-## How It Works
-
-1. Parses verification URL to extract `verificationId`
-2. Generates fake teacher info (name, email, DOB)
-3. Creates fake teacher certificate PNG
-4. Submits teacher info via `collectTeacherPersonalInfo`
-5. Skips SSO verification
-6. Uploads document to SheerID S3
-7. Waits for manual review
-
-## Output Example
+### Teacher Verification Flow
 
 ```
-=======================================================
+1. Parse verificationId from URL
+2. Generate teacher identity:
+   - Name (from name pool)
+   - University email
+   - DOB (25-55 years old - teachers are older)
+3. Generate employment certificate (PNG)
+4. Submit → collectTeacherPersonalInfo  ← Different from student!
+5. Skip SSO → DELETE /step/sso
+6. Upload document → S3
+7. Complete → completeDocUpload
+```
+
+### Key Difference from Student Tools
+
+| Aspect | Student | Teacher |
+|--------|---------|---------|
+| API Endpoint | `collectStudentPersonalInfo` | `collectTeacherPersonalInfo` |
+| Age Range | 18-25 | 25-55 |
+| Document | Student ID Card | Employment Certificate |
+
+---
+
+## 🧠 Intelligent Strategy: Teacher
+
+This tool is specifically tuned for Teacher verification:
+
+### 1. Teacher Demographics
+-   **Age Targeting**: Generates identities aged **25-55** (unlike students who are 18-24).
+-   **Employment Proof**: Generates "Employment Certificates" instead of Student IDs.
+
+### 2. The "Waterfall" Flow
+1.  **Submission**: Submits teacher PII (`collectTeacherPersonalInfo`).
+2.  **SSO Bypass**: Skips school portal login (`DELETE /step/sso`).
+3.  **Document Gen**: Creates realistic employment certificates.
+4.  **Completion**: Finalizes upload via `completeDocUpload`.
+
+### 3. Success Factors
+-   **Valid Schools**: Uses a list of 12+ major universities known to have teacher programs.
+-   **Document Clarity**: Certificates are generated with clear, legible text for OCR.
+
+---
+
+## 📝 Output Example
+
+```
+=========================================================
   Bolt.new Teacher Verification Tool
-  SheerID Teacher Verification
-=======================================================
+=========================================================
 
-[INFO] Processing URL...
-   Teacher: John Smith
-   Email: jsmith123@psu.edu
+   Teacher: Mary Johnson
+   Email: mjohnson456@psu.edu
    School: Pennsylvania State University-Main Campus
-   Birth Date: 1985-03-15
-   Verification ID: abc123...
+   Birth Date: 1985-03-12
 
    -> Step 1/4: Generating teacher document...
-      Document size: 12.34 KB
+      Document size: 38.50 KB
    -> Step 2/4: Submitting teacher info...
       Current step: docUpload
    -> Step 3/4: Skipping SSO...
-   -> Step 4/4: Requesting upload URL...
+   -> Step 4/5: Requesting upload URL...
    -> Uploading document to S3...
-   [OK] Document uploaded successfully!
+   [OK] Document uploaded!
+   -> Step 5/5: Completing upload...
+      Upload completed: pending
 
--------------------------------------------------------
+---------------------------------------------------------
   [SUCCESS] Verification submitted!
-  Teacher: John Smith
-  Email: jsmith123@psu.edu
--------------------------------------------------------
 ```
-
-## Note
-
-- Uses Pennsylvania State University (PSU) as fake school
-- Generates fake teacher employment certificate
-- Verification requires manual review (usually 24-48 hours)
-- Program ID may need updating if expired
-
-## License
-
-MIT

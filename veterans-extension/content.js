@@ -1,0 +1,444 @@
+// Veterans Extension - Content Script
+// Auto-fill SheerID Veterans verification forms for ChatGPT Plus
+
+(function () {
+    const PROGRAM_ID = '690415d58971e73ca187d8c9';
+    const currentUrl = window.location.href;
+
+    // Check if plugin is enabled
+    async function isPluginEnabled() {
+        const stored = await chrome.storage.local.get(['pluginEnabled']);
+        return stored.pluginEnabled !== false;
+    }
+
+    // ============ VETERANS-CLAIM PAGE ============
+    if (window.location.pathname.includes('veterans-claim')) {
+        console.log('[Veterans] Detected veterans-claim page');
+
+        let called = false;
+
+        async function startVerification() {
+            if (called) return;
+            called = true;
+
+            if (!await isPluginEnabled()) {
+                console.log('[Veterans] Extension disabled');
+                return;
+            }
+
+            console.log('[Veterans] Starting verification...');
+
+            try {
+                // Get program ID from storage or use default
+                const stored = await chrome.storage.local.get(['programId']);
+                const programId = stored.programId || PROGRAM_ID;
+
+                console.log('[Veterans] Using program ID:', programId);
+
+                // Extract accessToken from page
+                let accessToken = null;
+                try {
+                    const html = document.documentElement.innerHTML;
+                    const match = html.match(/"accessToken"\s*:\s*"([^"]+)"/);
+                    if (match) {
+                        accessToken = match[1];
+                        console.log('[Veterans] Got accessToken');
+                    }
+                } catch (e) {
+                    console.error('[Veterans] Failed to extract accessToken:', e);
+                }
+
+                if (!accessToken) {
+                    console.error('[Veterans] No accessToken found');
+                    alert('Please make sure you are logged in to ChatGPT');
+                    return;
+                }
+
+                // Call create_verification API
+                const response = await fetch('https://chatgpt.com/backend-api/veterans/create_verification', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + accessToken
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({ program_id: programId })
+                });
+
+                console.log('[Veterans] API response:', response.status);
+
+                if (!response.ok) {
+                    console.error('[Veterans] API failed:', response.status);
+                    return;
+                }
+
+                const data = await response.json();
+                const verificationId = data.verification_id;
+
+                console.log('[Veterans] Got verification_id:', verificationId);
+
+                if (!verificationId) {
+                    console.error('[Veterans] No verification_id');
+                    return;
+                }
+
+                // Redirect to SheerID
+                const sheerIdUrl = `https://services.sheerid.com/verify/${programId}/?verificationId=${verificationId}`;
+                console.log('[Veterans] Redirecting to:', sheerIdUrl);
+                window.location.href = sheerIdUrl;
+
+            } catch (err) {
+                console.error('[Veterans] Error:', err);
+            }
+        }
+
+        // Wait for page to load
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            setTimeout(startVerification, 200);
+        } else {
+            document.addEventListener('DOMContentLoaded', () => setTimeout(startVerification, 200));
+        }
+    }
+
+    // ============ SHEERID VERIFICATION PAGE ============
+    if (currentUrl.includes('services.sheerid.com/verify/')) {
+        console.log('[Veterans] Detected SheerID page');
+
+        let retrying = false;
+
+        // Check for errors and retry
+        async function checkForErrorAndRetry() {
+            if (retrying) return false;
+
+            if (!await isPluginEnabled()) {
+                console.log('[Veterans] Extension disabled');
+                return false;
+            }
+
+            const pageText = (document.body?.innerText || '').toLowerCase();
+
+            // Check for success
+            if (pageText.includes('claim your offer') ||
+                pageText.includes('claim offer') ||
+                pageText.includes('verification successful')) {
+                console.log('[Veterans] ✅ Verification successful! Disabling extension.');
+                await chrome.storage.local.set({ pluginEnabled: false });
+                return true;
+            }
+
+            // Check for errors
+            const hasError =
+                pageText.includes('verification limit exceeded') ||
+                pageText.includes('we are unable to verify you') ||
+                pageText.includes('unable to verify') ||
+                pageText.includes('too many attempts') ||
+                pageText.includes('try again later');
+
+            if (hasError) {
+                retrying = true;
+                console.log('[Veterans] ❌ Error detected, returning to veterans-claim...');
+                window.location.href = 'https://chatgpt.com/veterans-claim';
+                return true;
+            }
+
+            return false;
+        }
+
+        // Auto-fill the form
+        async function autoFillForm() {
+            if (!await isPluginEnabled()) {
+                console.log('[Veterans] Extension disabled');
+                return;
+            }
+
+            // Check for errors first
+            if (await checkForErrorAndRetry()) return;
+
+            // Get data from storage
+            const stored = await chrome.storage.local.get(['inputData', 'currentIndex', 'email']);
+
+            if (!stored.inputData) {
+                console.log('[Veterans] No data saved');
+                return;
+            }
+
+            const lines = stored.inputData.trim().split('\n').filter(line =>
+                line.trim() && !line.toLowerCase().startsWith('first|')
+            );
+            const idx = stored.currentIndex || 0;
+
+            if (!lines[idx]) {
+                console.log('[Veterans] No data at index', idx);
+                return;
+            }
+
+            const parts = lines[idx].split('|');
+            if (parts.length < 5) {
+                console.log('[Veterans] Invalid data format');
+                return;
+            }
+
+            const [firstName, lastName, branch, dob, dod] = parts;
+            const dobParts = dob.split('-');
+            const dodParts = dod.split('-');
+
+            const fillData = {
+                firstName: firstName.trim(),
+                lastName: lastName.trim(),
+                branch: branch.trim(),
+                dobMonth: parseInt(dobParts[1]),
+                dobDay: parseInt(dobParts[2]),
+                dobYear: dobParts[0],
+                dodMonth: parseInt(dodParts[1]),
+                dodDay: parseInt(dodParts[2]),
+                dodYear: dodParts[0],
+                email: stored.email || ''
+            };
+
+            console.log('[Veterans] Filling data:', fillData);
+
+            // Wait for form to load
+            await waitForForm();
+
+            // Check again after form loads
+            if (await checkForErrorAndRetry()) return;
+
+            // Fill the form
+            await fillVeteranForm(fillData);
+
+            // Update index and used list
+            const usedItem = `[${idx}] ${firstName} ${lastName}`;
+            const usedStored = await chrome.storage.local.get(['usedItems']);
+            const usedItems = usedStored.usedItems || [];
+            usedItems.push(usedItem);
+            await chrome.storage.local.set({
+                usedItems,
+                currentIndex: idx + 1
+            });
+        }
+
+        function waitForForm() {
+            return new Promise((resolve) => {
+                let attempts = 0;
+                const maxAttempts = 100;
+
+                const check = () => {
+                    attempts++;
+                    const statusInput = document.getElementById('sid-military-status');
+
+                    if (statusInput || attempts >= maxAttempts) {
+                        resolve();
+                    } else {
+                        setTimeout(check, 100);
+                    }
+                };
+                check();
+            });
+        }
+
+        async function fillVeteranForm(data) {
+            const monthNames = ['', 'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'];
+
+            const validBranches = ['Army', 'Air Force', 'Navy', 'Marine Corps', 'Coast Guard', 'Space Force'];
+
+            function matchBranch(input) {
+                const normalized = input.toUpperCase().replace(/^US\s+/, '').trim();
+                for (const branch of validBranches) {
+                    if (branch.toUpperCase() === normalized ||
+                        branch.toUpperCase().includes(normalized) ||
+                        normalized.includes(branch.toUpperCase())) {
+                        return branch;
+                    }
+                }
+                if (normalized.includes('MARINE')) return 'Marine Corps';
+                if (normalized.includes('ARMY')) return 'Army';
+                if (normalized.includes('NAVY')) return 'Navy';
+                if (normalized.includes('AIR') && normalized.includes('FORCE')) return 'Air Force';
+                if (normalized.includes('COAST')) return 'Coast Guard';
+                if (normalized.includes('SPACE')) return 'Space Force';
+                return 'Army'; // Default
+            }
+
+            function setInputValue(element, value) {
+                element.focus();
+                element.value = value;
+                element.dispatchEvent(new Event('input', { bubbles: true }));
+                element.dispatchEvent(new Event('change', { bubbles: true }));
+                element.dispatchEvent(new Event('blur', { bubbles: true }));
+            }
+
+            async function selectDropdown(inputId, searchText) {
+                const input = document.getElementById(inputId);
+                if (!input) {
+                    console.log('[Veterans] Dropdown not found:', inputId);
+                    return false;
+                }
+
+                const menuId = inputId + '-menu';
+                const container = input.closest('.sid-input-select-list');
+                const selectButton = container?.querySelector('.sid-input-select-button');
+
+                // Click dropdown button
+                if (selectButton) {
+                    selectButton.click();
+                } else {
+                    input.click();
+                }
+
+                // Wait for options
+                let options = null;
+                for (let i = 0; i < 20; i++) {
+                    await new Promise(r => setTimeout(r, 100));
+                    const menu = document.getElementById(menuId);
+                    options = menu?.querySelectorAll('[role="option"]');
+                    if (options && options.length > 0) break;
+                }
+
+                if (!options || options.length === 0) {
+                    // Fallback: type to search
+                    input.focus();
+                    input.value = searchText;
+                    input.dispatchEvent(new Event('input', { bubbles: true }));
+
+                    for (let i = 0; i < 10; i++) {
+                        await new Promise(r => setTimeout(r, 100));
+                        const menu = document.getElementById(menuId);
+                        options = menu?.querySelectorAll('[role="option"]');
+                        if (options && options.length > 0) break;
+                    }
+                }
+
+                // Click matching option
+                if (options && options.length > 0) {
+                    const searchLower = searchText.toLowerCase();
+                    let targetOpt = null;
+
+                    for (const opt of options) {
+                        const optText = opt.textContent.trim().toLowerCase();
+                        if (optText === searchLower || optText.includes(searchLower) || searchLower.includes(optText)) {
+                            targetOpt = opt;
+                            break;
+                        }
+                    }
+
+                    if (!targetOpt) targetOpt = options[0];
+
+                    targetOpt.scrollIntoView({ block: 'nearest' });
+                    await new Promise(r => setTimeout(r, 50));
+                    targetOpt.click();
+                    await new Promise(r => setTimeout(r, 200));
+                    return true;
+                }
+
+                return false;
+            }
+
+            // 1. Select Status: Veteran
+            const statusInput = document.getElementById('sid-military-status');
+            if (statusInput) {
+                console.log('[Veterans] Selecting status: Veteran');
+                await selectDropdown('sid-military-status', 'Veteran');
+                await new Promise(r => setTimeout(r, 1500));
+            }
+
+            // 2. Wait for Branch field
+            let branchInput = null;
+            for (let i = 0; i < 30; i++) {
+                branchInput = document.getElementById('sid-branch-of-service');
+                if (branchInput) break;
+                await new Promise(r => setTimeout(r, 200));
+            }
+
+            // 3. Select Branch
+            if (branchInput) {
+                const branchValue = matchBranch(data.branch);
+                console.log('[Veterans] Selecting branch:', branchValue);
+                await selectDropdown('sid-branch-of-service', branchValue);
+                await new Promise(r => setTimeout(r, 500));
+            }
+
+            // 4. First Name
+            const firstNameInput = document.getElementById('sid-first-name');
+            if (firstNameInput) setInputValue(firstNameInput, data.firstName);
+
+            // 5. Last Name
+            const lastNameInput = document.getElementById('sid-last-name');
+            if (lastNameInput) setInputValue(lastNameInput, data.lastName);
+
+            // 6. Date of Birth
+            await selectDropdown('sid-birthdate__month', monthNames[data.dobMonth]);
+            await new Promise(r => setTimeout(r, 300));
+
+            const dobDay = document.getElementById('sid-birthdate-day');
+            if (dobDay) setInputValue(dobDay, data.dobDay.toString());
+
+            const dobYear = document.getElementById('sid-birthdate-year');
+            if (dobYear) setInputValue(dobYear, data.dobYear);
+
+            // 7. Discharge Date
+            await selectDropdown('sid-discharge-date__month', monthNames[data.dodMonth]);
+            await new Promise(r => setTimeout(r, 300));
+
+            const dodDay = document.getElementById('sid-discharge-date-day');
+            if (dodDay) setInputValue(dodDay, data.dodDay.toString());
+
+            const dodYear = document.getElementById('sid-discharge-date-year');
+            if (dodYear) setInputValue(dodYear, data.dodYear);
+
+            // 8. Email
+            if (data.email) {
+                const emailInput = document.getElementById('sid-email');
+                if (emailInput) setInputValue(emailInput, data.email);
+            }
+
+            // 9. Submit
+            await new Promise(r => setTimeout(r, 1000));
+            const submitBtn = document.getElementById('sid-submit-btn-collect-info');
+            if (submitBtn) {
+                console.log('[Veterans] Clicking submit...');
+                submitBtn.click();
+            }
+        }
+
+        // Listen for manual fill command from popup
+        window.addEventListener('veteransFillForm', () => {
+            autoFillForm();
+        });
+
+        // Error monitoring
+        function startMonitoring() {
+            let lastCheck = 0;
+
+            const observer = new MutationObserver(async () => {
+                const now = Date.now();
+                if (now - lastCheck < 500) return;
+                lastCheck = now;
+
+                if (!await isPluginEnabled()) {
+                    observer.disconnect();
+                    return;
+                }
+
+                await checkForErrorAndRetry();
+            });
+
+            if (document.body) {
+                observer.observe(document.body, { childList: true, subtree: true });
+            }
+
+            setTimeout(() => observer.disconnect(), 60000);
+        }
+
+        // Start auto-fill
+        if (document.readyState === 'complete') {
+            setTimeout(autoFillForm, 500);
+            setTimeout(startMonitoring, 1000);
+        } else {
+            window.addEventListener('load', () => {
+                setTimeout(autoFillForm, 500);
+                setTimeout(startMonitoring, 1000);
+            });
+        }
+    }
+})();

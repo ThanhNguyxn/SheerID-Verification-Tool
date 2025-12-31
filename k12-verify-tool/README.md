@@ -1,51 +1,87 @@
-# K12 Teacher Verification Tool
+# 🏫 K12 Teacher Verification Tool
 
-SheerID K12 Teacher verification for High School teachers.
+Python tool for ChatGPT Plus K12 teacher discount via SheerID.
 
-## Requirements
+---
+
+## 📋 Requirements
+
+- Python 3.8+
+- `httpx` - HTTP client
+- `Pillow` - Image generation
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/ThanhNguyxn/SheerID-Verification-Tool.git
+```
+
+### 2. Go to Tool Directory
+
+```bash
+cd SheerID-Verification-Tool/k12-verify-tool
+```
+
+### 3. Install Dependencies
 
 ```bash
 pip install httpx Pillow
 ```
 
-## Usage
+### 4. Run Tool
 
 ```bash
-python main.py "https://services.sheerid.com/verify/PROGRAM_ID/?verificationId=YOUR_ID"
+python main.py "https://services.sheerid.com/verify/xxx?verificationId=abc123"
 ```
 
-## How It Works
+---
 
-1. Generates fake K12 teacher info (name, email, DOB)
-2. Creates fake teacher badge PNG (school ID style)
-3. Submits via `collectTeacherPersonalInfo`
-4. Skips SSO verification
-5. Uploads document to SheerID S3
+## 🧠 Intelligent Strategy: K12 Teacher
 
-## Schools Used
+This tool leverages specific loopholes in K12 verification:
 
-Uses Springfield High School (multiple locations):
-- Springfield, OR
-- Springfield, OH
-- Springfield, IL
-- Springfield, PA
+### 1. School Type Targeting
+-   **Logic**: Targets schools with `type: "K12"` instead of `"HIGH_SCHOOL"`.
+-   **Result**: High probability of **auto-approval** without document upload.
 
-## Note
+### 2. The "Waterfall" Flow
+1.  **Submission**: Submits teacher PII (`collectTeacherPersonalInfo`).
+2.  **Auto-Pass Check**: Checks if `currentStep` is `success` immediately.
+3.  **SSO Bypass**: Skips school portal login (`DELETE /step/sso`).
+4.  **Auto-Pass Check 2**: Checks again for success.
+5.  **Fallback**: If upload needed, generates a Teacher Badge.
 
-- This is for **High School (K-12) teachers**, not University
-- Teacher age: 25-55 years old
-- Uses generic email domains (gmail, yahoo, etc.)
-- Review usually takes 24-48 hours
+### 3. Success Factors
+-   **Real Info**: Uses real teacher names found on school websites.
+-   **IP Address**: Residential/Edu IPs work best.
 
-## Difference from Boltnew
+---
 
-| Feature | Boltnew | K12 |
-|---------|---------|-----|
-| School Type | University | High School |
-| Email | @psu.edu | @gmail.com |
-| Document | Employment certificate | Staff badge |
-| Program ID | Different | Different |
+## 📊 K12 Schools Database
 
-## License
+| Category | Examples |
+|----------|----------|
+| **NYC Specialized** | Stuyvesant, Bronx Science, Brooklyn Tech |
+| **Chicago Selective** | Payton Prep, Whitney Young, Northside |
+| **Virginia/DC STEM** | Thomas Jefferson, McKinley Tech |
+| **California Elite** | Whitney, Lowell, Palo Alto |
+| **BASIS Charter** | Scottsdale, Tucson North, Mesa |
+| **KIPP Network** | KIPP DC, KIPP SoCal |
 
-MIT
+---
+
+## ⚠️ Important Notes
+
+- **School type verification**: Use SheerID org search API to confirm school type is "K12"
+- **If upload required**: Try pure white image 3 times, system may auto-approve
+- **Real teacher names work better**: Search school websites for staff directories
+
+---
+
+## 📖 Reference
+
+Based on research from: https://www.azx.us/posts/638

@@ -1,235 +1,110 @@
-﻿<div align="center">
-
-# 🛡️ SheerID Verification Tool
+﻿# 🔐 Narzędzie Weryfikacji SheerID
 
 [![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 
-**Kompleksowy, wielojęzyczny przewodnik pomagający studentom uzyskać Gemini Advanced i ChatGPT Plus za darmo poprzez programy weryfikacji studenckiej.**
-
-<p align="center">
-  <a href="https://thanhnguyxn.github.io/SheerID-Verification-Tool/">
-    <img src="https://img.shields.io/badge/Live_Tool-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Tool">
-  </a>
-  <a href="https://thanhnguyxn.github.io/student-card-generator/">
-    <img src="https://img.shields.io/badge/Card_Generator-34A853?style=for-the-badge&logo=google&logoColor=white" alt="Student Card Generator">
-  </a>
-  <a href="#-spis-treści">
-    <img src="https://img.shields.io/badge/Documentation-gray?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Documentation">
-  </a>
-  <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues">
-    <img src="https://img.shields.io/badge/Report_Bug-EA4335?style=for-the-badge&logo=github&logoColor=white" alt="Report Bug">
-  </a>
-</p>
-
-</div>
-
-
+Kompleksowy zestaw narzędzi do automatyzacji przepływów pracy weryfikacji SheerID dla różnych usług (Spotify, YouTube, Google One itp.).
 
 ---
 
-## 📖 O Projekcie
+## 🛠️ Dostępne Narzędzia
 
-**SheerID Verification Tool** zapewnia przewodnik krok po kroku dla studentów na całym świecie, aby uzyskać bezpłatny dostęp do platformy AI Gemini Advanced od Google. To narzędzie upraszcza proces weryfikacji przy użyciu systemu weryfikacji studentów SheerID, umożliwiając studentom odblokowanie funkcji premium, w tym Gemini Advanced, 2 TB pamięci Google Drive, NotebookLM Pro i kredytów na tworzenie wideo AI.
+| Narzędzie | Typ | Cel | Opis |
+|------|------|--------|-------------|
+| [spotify-verify-tool](../spotify-verify-tool/) | 🎵 Student | Spotify Premium | Weryfikacja studenta uniwersytetu |
+| [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Student | YouTube Premium | Weryfikacja studenta uniwersytetu |
+| [one-verify-tool](../one-verify-tool/) | 🤖 Student | Gemini Advanced | Weryfikacja Google One AI Premium |
+| [boltnew-verify-tool](../boltnew-verify-tool/) | 👨‍🏫 Nauczyciel | Bolt.new | Weryfikacja nauczyciela (Uniwersytet) |
+| [k12-verify-tool](../k12-verify-tool/) | 🏫 K12 | ChatGPT Plus | Weryfikacja nauczyciela K12 (Szkoła średnia) |
+| [veterans-verify-tool](../veterans-verify-tool/) | 🎖️ Wojsko | Ogólne | Weryfikacja statusu wojskowego |
+| [veterans-extension](../veterans-extension/) | 🧩 Chrome | Przeglądarka | Rozszerzenie Chrome do weryfikacji wojskowej |
 
-### ✨ Funkcje
+### 🔗 Narzędzia Zewnętrzne
 
-- 🌍 **Wsparcie Wielojęzyczne** - Dostępne w języku angielskim, wietnamskim, hiszpańskim, francuskim, niemieckim, chińskim, portugalskim, rosyjskim, japońskim, koreańskim, indonezyjskim, hindi, arabskim, tureckim, włoskim, tajskim i polskim
-- 📋 **Przewodnik Krok po Kroku** - Jasne instrukcje dla całego procesu weryfikacji
-- 🔒 **Nacisk na Bezpieczeństwo** - Kładzie nacisk na bezpieczne praktyki i zaufane źródła
-- 🎁 **Korzyści Premium** - Dostęp do Gemini Advanced, 2 TB pamięci i więcej przez 12 miesięcy
-- 🤖 **Integracja z Botem Telegram** - Automatyczna weryfikacja za pomocą bezpiecznych botów Telegram
-- 🆓 **Całkowicie Darmowe** - Brak ukrytych kosztów w trakcie darmowego okresu studenckiego
-
----
-
-## 📚 Spis Treści
-
-- [📋 Wymagania](#-wymagania)
-- [🚀 Instalacja i Użycie](#-instalacja-i-użycie)
-- [🎁 Korzyści](#-korzyści)
-- [⚠️ Uwagi Dotyczące Bezpieczeństwa](#️-uwagi-dotyczące-bezpieczeństwa)
-- [🔗 Dodatkowe Zasoby](#-dodatkowe-zasoby)
-- [💖 Wesprzyj Projekt](#-wesprzyj-projekt)
-- [📄 Licencja](#-licencja)
+| Narzędzie | Typ | Opis |
+|------|------|-------------|
+| [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | Alternatywny bot Telegram z szybszym przetwarzaniem |
+| [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | Bot Telegram społeczności wietnamskiej |
+| [Veterans Verify Bot](https://t.me/Veriyferbot?start=ref_7762497789) | 🎖️ Bot | Bot weryfikacji wojskowej |
+| [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Weryfikacja wsadowa dla wielu adresów URL |
+| [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Tworzenie legitymacji studenckich do weryfikacji ręcznej |
+| [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Generowanie odcinków wypłat do weryfikacji nauczycieli |
 
 ---
 
-## 📋 Wymagania
+## 🧠 Podstawowa Architektura i Logika
 
-Zanim zaczniesz, upewnij się, że masz:
+Wszystkie narzędzia Python w tym repozytorium dzielą wspólną, zoptymalizowaną architekturę zaprojektowaną dla wysokich wskaźników sukcesu.
 
-- ✅ **Konto Telegram** - Do weryfikacji bota
-- ✅ **Konto Google/OpenAI** - Ważne konto do weryfikacji
-- ✅ **Ważna metoda płatności** - Karta bankowa lub e-portfel (brak opłat za pakiet darmowy)
-- ✅ **VPN** - (np. Urban VPN) do zmiany regionu na USA (US) lub inne kwalifikujące się kraje w razie potrzeby
+### 1. Przepływ Weryfikacji (The Verification Flow)
+Narzędzia postępują zgodnie ze standardowym procesem "Wodospadu" (Waterfall):
+1.  **Generowanie Danych (Data Generation)**: Tworzy realistyczną tożsamość (Imię, Data urodzenia, Email) pasującą do docelowej grupy demograficznej.
+2.  **Przesłanie (`collectStudentPersonalInfo`)**: Przesyła dane do API SheerID.
+3.  **Pominięcie SSO (`DELETE /step/sso`)**: Kluczowy krok. Pomija wymóg logowania się do portalu szkolnego.
+4.  **Przesłanie Dokumentu (`docUpload`)**: Przesyła wygenerowany dokument dowodowy (Legitymacja studencka, Transkrypt lub Odznaka nauczyciela).
+5.  **Zakończenie (`completeDocUpload`)**: Sygnalizuje SheerID, że przesyłanie zostało zakończone.
 
-## 🚀 Instalacja i Użycie
+### 2. Inteligentne Strategie (Intelligent Strategies)
 
-### 🌐 Krok 1: Skonfiguruj Przeglądarkę
+#### 🎓 Strategia Uniwersytecka (Spotify, YouTube, Gemini)
+- **Wybór Ważony**: Używa wyselekcjonowanej listy **45+ Uniwersytetów** (USA, VN, JP, KR itp.).
+- **Śledzenie Sukcesu**: Uniwersytety z wyższymi wskaźnikami sukcesu są wybierane częściej.
+- **Generowanie Dokumentów**: Generuje realistycznie wyglądające legitymacje studenckie z dynamicznymi nazwiskami i datami.
 
-1. **Utwórz nowy profil przeglądarki** lub użyj trybu incognito
+#### 👨‍🏫 Strategia Nauczycielska (Bolt.new)
+- **Targetowanie Wiekowe**: Generuje starsze tożsamości (25-55 lat), aby pasowały do demografii nauczycieli.
+- **Generowanie Dokumentów**: Tworzy "Zaświadczenia o Zatrudnieniu" zamiast legitymacji studenckich.
+- **Punkt Końcowy**: Celuje w `collectTeacherPersonalInfo` zamiast punktów końcowych dla studentów.
 
-2. **Zainstaluj rozszerzenie VPN** (pomiń, jeśli jesteś już w obsługiwanym regionie, takim jak **US**):
-   - [Urban VPN](https://chrome.google.com/webstore/detail/urban-vpn) (Chrome/Edge)
-   - [Proton VPN](https://protonvpn.com/) (Wszystkie przeglądarki)
-   - Lub dowolny niezawodny VPN
+#### 🏫 Strategia K12 (ChatGPT Plus)
+- **Targetowanie Typu Szkoły**: Specjalnie celuje w szkoły z `type: "K12"` (nie `HIGH_SCHOOL`).
+- **Logika Automatycznego Przejścia (Auto-Pass)**: Weryfikacja K12 jest często **automatycznie zatwierdzana** bez przesyłania dokumentów, jeśli informacje o szkole i nauczycielu są zgodne.
+- **Rezerwa**: Jeśli wymagane jest przesłanie, generuje Odznakę Nauczyciela.
 
-> [!IMPORTANT]
-> **Używasz trybu incognito?** Przejdź do ustawień rozszerzeń i włącz **"Zezwalaj w trybie incognito"**, aby VPN działał.
->
-> ![Allow in Incognito](images/allow-incognito.png)
-
-> [!TIP]
-> Połącz się z **USA lub innymi kwalifikującymi się krajami** przed przejściem do Kroku 2.
-
-### 🎓 Krok 2: Uzyskaj Dostęp do Programu Studenckiego
-
-Wybierz swój program i uzyskaj link weryfikacyjny:
-
-| Program | Link | Dla |
-|---------|------|-----|
-| 🤖 **Google Gemini** | [gemini.google/students](https://gemini.google/students) | Studenci Uniwersyteccy |
-| 💬 **ChatGPT Plus** | [chatgpt.com/plans/k12-teachers](https://chatgpt.com/plans/k12-teachers/) | Nauczyciele K-12 |
-
-Kliknij **Join Student Program** lub równoważny przycisk, aby otrzymać link weryfikacyjny.
-
-> [!IMPORTANT]
-> **Kwalifikowalność Kraju:** Jeśli Twój kraj nie jest obsługiwany, użyj VPN, aby przełączyć się na kraj kwalifikujący się (USA itp.).
-> 
-> **💡 Wskazówka:** Wyszukaj w Internecie "Google Student Program supported countries".
-
-### 📱 Krok 3: Zweryfikuj Status Studenta przez Telegram
-
-1. Otwórz Telegram i uzyskaj dostęp do jednego z tych botów:
-   - [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) ✅ *Obsługuje GPT K12*
-   - [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789)
-   - [Veterans Verify Bot](https://t.me/Veriyferbot?start=ref_7762497789) 🎖️ *Military & Veterans*
-
-2. Wyślij odpowiednie polecenie w zależności od programu:
-
-   **Dla Google Gemini:**
-   ```
-   /verify https://services.sheerid.com/verify/***
-   ```
-   
-   **Dla ChatGPT Plus (K-12):**
-   ```
-   /vc https://services.sheerid.com/verify/***
-   ```
-   
-   *(Zastąp swoim linkiem weryfikacyjnym)*
-
-3. Poczekaj na potwierdzenie bota
-
-> [!TIP]
-> **💰 Całkowicie Za Darmo!** Zarabiaj darmowe monety:
-> - Zapraszając znajomych do bota
-> - Używając `/checkin` codziennie, aby zdobywać punkty
-> 
-> *Potrzebujesz pilnie monet? Oferujemy również opcje doładowania.*
-
-> [!WARNING]
-> **Masz błąd?** Użyj polecenia `/fix` i wklej ponownie swój link weryfikacyjny. Jeśli błędy będą się powtarzać, spróbuj z innym kontem Google.
-
-### ✨ Krok 4: Aktywuj Swój Plan Premium
-
-**Dla Google Gemini:**
-1. Po weryfikacji zarejestruj się w **Google One AI Premium**
-2. Dodaj swoją metodę płatności (brak opłat w okresie darmowym)
-3. Dokończ rejestrację
-
-**Dla ChatGPT Plus:**
-1. Po weryfikacji Twój ChatGPT Plus zostanie aktywowany automatycznie
-2. Ciesz się darmową subskrypcją!
-
-> [!NOTE]
-> **Użytkownicy VPN:** Po weryfikacji rozłącz VPN i odśwież stronę przed dodaniem metody płatności.
-
-### ⚙️ Krok 5: Zarządzaj Swoją Subskrypcją
-
-Odwiedź [Subskrypcje Google Play](https://play.google.com/store/account/subscriptions), aby anulować przed końcem 12-miesięcznego okresu.
-
-**⏰ Wskazówka:** Ustaw przypomnienie w kalendarzu, aby uniknąć opłat za automatyczne odnawianie!
-
-## 🎁 Korzyści
-
-Po pomyślnym zakończeniu otrzymasz:
-
-**Google Gemini:**
-- ✨ **Gemini Advanced** - Za darmo przez 12 miesięcy
-- 💾 **2TB Google Drive** - Duża przestrzeń w chmurze
-- 📝 **NotebookLM Pro** - Zaawansowane możliwości robienia notatek
-- 🎥 **1,000 kredytów wideo AI** - Twórz filmy z VEO3
-
-**ChatGPT Plus:**
-- 💬 **ChatGPT Plus** - Za darmo dla nauczycieli K-12
-- 🧠 **Dostęp do GPT-4o** - Zaawansowane możliwości AI
-- 🎨 **DALL·E i więcej** - Generowanie obrazów i więcej funkcji
-
-## ⚠️ Uwagi Dotyczące Bezpieczeństwa
-
-- 🔐 Używaj tylko zaufanych źródeł botów wymienionych w tym przewodniku
-- 🚫 Nigdy nie udostępniaj informacji o płatnościach osobom trzecim
-- ⏰ Po 12 miesiącach pakiet stanie się płatny, jeśli nie zostanie anulowany
-
-## 🔗 Dodatkowe Zasoby
-
-**Alternatywna Weryfikacja:** Jeśli nie możesz zweryfikować przez Telegram, użyj [SheerID Verification Tool](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
-
-**Oficjalne Linki:**
-- [Google One AI Premium](https://one.google.com)
-- [Centrum Pomocy Gemini](https://support.google.com/gemini)
+#### 🎖️ Strategia Weteranów (ChatGPT Plus)
+- **Ścisła Kwalifikowalność**: Celuje w czynny personel wojskowy lub weteranów zwolnionych w ciągu **ostatnich 12 miesięcy**.
+- **Autorytatywne Sprawdzenie**: SheerID weryfikuje w bazie danych DoD/DEERS.
+- **Logika**: Domyślnie używa niedawnych dat zwolnienia, aby zmaksymalizować szanse na automatyczne zatwierdzenie.
 
 ---
 
-## 💖 Wesprzyj Projekt
+## 📋 Szybki Start
 
-Jeśli uważasz ten przewodnik za przydatny, rozważ wsparcie, aby pomóc w utrzymaniu i ulepszaniu projektu:
+### Wymagania wstępne
+- Python 3.8+
+- `pip`
 
-<a href="https://buymeacoffee.com/thanhnguyxn" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+### Instalacja
 
-[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?logo=github)](https://github.com/sponsors/ThanhNguyxn)
+1.  **Sklonuj repozytorium:**
+    ```bash
+    git clone https://github.com/ThanhNguyxn/SheerID-Verification-Tool.git
+    cd SheerID-Verification-Tool
+    ```
 
----
+2.  **Zainstaluj zależności:**
+    ```bash
+    pip install httpx Pillow
+    ```
 
-## 🌐 Inne Języki
-
-- [🇬🇧 English](../README.md)
-- [🇻🇳 Tiếng Việt](README.vi.md)
-- [🇪🇸 Español](README.es.md)
-- [🇫🇷 Français](README.fr.md)
-- [🇩🇪 Deutsch](README.de.md)
-- [🇨🇳 中文](README.zh.md)
-- [🇧🇷 Português](README.pt-BR.md)
-- [🇷🇺 Русский](README.ru.md)
-- [🇯🇵 日本語](README.ja.md)
-- [🇰🇷 한국어](README.ko.md)
-- [🇮🇩 Indonesia](README.id.md)
-- [🇮🇳 हिन्दी](README.hi.md)
-- [🇸🇦 العربية](README.ar.md)
-- [🇹🇷 Türkçe](README.tr.md)
-- [🇮🇹 Italiano](README.it.md)
-- [🇹🇭 ไทย](README.th.md)
-- [🇵🇱 Polski](README.pl.md)
+3.  **Uruchom narzędzie (np. Spotify):**
+    ```bash
+    cd spotify-verify-tool
+    python main.py "YOUR_SHEERID_URL"
+    ```
 
 ---
 
-## 📄 Licencja
+## ⚠️ Zrzeczenie się Odpowiedzialności
 
-Ten projekt jest licencjonowany na licencji MIT - zobacz plik [LICENSE](LICENSE) po szczegóły.
-
-Copyright (c) 2025 SheerID Verification Tool Contributors
+Ten projekt służy wyłącznie do **celów edukacyjnych**. Narzędzia pokazują, jak działają systemy weryfikacji i jak można je testować.
+- Nie używać do celów oszukańczych.
+- Autorzy nie ponoszą odpowiedzialności za jakiekolwiek niewłaściwe użycie.
+- Przestrzegaj Warunków Świadczenia Usług wszystkich platform.
 
 ---
 
-<div align="center">
+## 🤝 Współpraca
 
-**Zrobione z ❤️ dla studentów na całym świecie**
-
-Jeśli uważasz ten przewodnik za przydatny, rozważ przyznanie ⭐ na [GitHub](https://github.com/ThanhNguyxn/SheerID-Verification-Tool)!
-
-[⬆ Powrót do góry](#-sheerid-verification-tool)
-
-</div>
+Wkład jest mile widziany! Zapraszam do przesłania Pull Request.

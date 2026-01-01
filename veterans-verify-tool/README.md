@@ -69,11 +69,11 @@ Copy `data.example.txt` to `data.txt`:
 cp data.example.txt data.txt
 ```
 
-Add real veteran data (one per line):
+Add veteran data (one per line):
 
 ```
-JOHN|SMITH|Army|1990-05-15|2023-06-01
-DAVID|JOHNSON|Marine Corps|1988-12-20|2022-03-15
+JOHN|SMITH|Army|1990-05-15|2025-06-01
+DAVID|JOHNSON|Marine Corps|1988-12-20|2025-03-15
 ```
 
 Format: `firstName|lastName|branch|birthDate|dischargeDate`
@@ -86,11 +86,69 @@ Format: `firstName|lastName|branch|birthDate|dischargeDate`
 
 **Date format:** YYYY-MM-DD
 
+> **Note:** Discharge date should be within the last 12 months for eligibility.
+
 ### 4. Run
 
 ```bash
 python main.py
 ```
+
+---
+
+## CLI Options
+
+| Option | Required | Description |
+|--------|----------|-------------|
+| `--proxy HOST:PORT` | No | Use a proxy server |
+| `--no-dedup` | No | Disable deduplication check |
+
+### Examples
+
+```bash
+# Default (read from data.txt)
+python main.py
+
+# Use proxy
+python main.py --proxy 123.45.67.89:8080
+
+# Disable deduplication (allow re-using data)
+python main.py --no-dedup
+```
+
+---
+
+## Proxy Configuration
+
+### Option 1: Command line
+
+```bash
+python main.py --proxy YOUR_PROXY:PORT
+```
+
+### Option 2: Proxy file
+
+Create `proxy.txt` with one proxy per line:
+
+```
+# Format: host:port or host:port:user:pass
+123.45.67.89:8080
+proxy.example.com:1080:username:password
+```
+
+The tool will automatically load proxies from `proxy.txt` if it exists.
+
+---
+
+## Deduplication
+
+The tool tracks used data in `used.txt` to prevent re-verifying the same veteran.
+
+- **Format:** `FIRSTNAME|LASTNAME|DOB` (one per line)
+- **Auto-created:** After each verification attempt
+- **Disable:** Use `--no-dedup` flag
+
+---
 
 ## How It Works
 
@@ -101,7 +159,9 @@ python main.py
 5. Extracts and submits email token
 6. Verification complete!
 
-## Output
+---
+
+## Output Example
 
 ```
 =======================================================
@@ -128,30 +188,15 @@ python main.py
 -------------------------------------------------------
 ```
 
+---
+
 ## Important Notes
 
 - **Real data required**: SheerID verifies against US military database
 - **One verification per identity**: Each veteran can only be verified once
 - **Email required**: You need access to the email inbox for verification
 - **accessToken expires**: Get a new one if you see authentication errors
-
-## 🧠 Intelligent Strategy: Military
-
-Based on research into SheerID's Military verification logic:
-
-### 1. Strict Eligibility Window
--   **Rule**: ChatGPT Plus discount is for Active Duty or Veterans separated within the **last 12 months**.
--   **Strategy**: The tool defaults to a recent `dischargeDate` (e.g., Dec 2025) to maximize eligibility chances.
-
-### 2. Verification Tiers
-1.  **Authoritative Check**: SheerID checks US Military databases (DoD/DEERS).
-2.  **Auto-Approval**: If name/DOB matches the database + 12-month rule, it auto-approves.
-3.  **Document Upload**: If auto-check fails, you MUST upload a **DD-214** or **Orders**.
-    -   *Note*: This tool warns you if upload is required, as fake military docs are highly illegal and difficult to pass.
-
-### 3. Success Factors
--   **Real Data**: You must use real veteran info (Name, DOB, Branch).
--   **Recent Separation**: Ensure the discharge date is within the last year.
+- **Recent discharge**: Date should be within last 12 months
 
 ---
 
@@ -163,6 +208,9 @@ Based on research into SheerID's Military verification logic:
 | `Email connection failed` | Check IMAP settings, use app password for Gmail |
 | `Data already verified` | This veteran data was already used |
 | `Document upload required` | Data couldn't be verified, needs manual upload |
+| `Already used, skipping` | Data in `used.txt`, use `--no-dedup` to retry |
+
+---
 
 ## Support
 

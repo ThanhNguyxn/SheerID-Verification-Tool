@@ -240,6 +240,25 @@
         </label>
     </div>
 
+    <!-- Statistics Panel -->
+    <div class="stats-panel" style="display: flex; gap: 10px; margin-bottom: 15px;">
+        <div
+            style="flex: 1; background: rgba(74, 222, 128, 0.2); padding: 12px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 20px; font-weight: bold; color: #4ade80;" id="successCount">0</div>
+            <div style="font-size: 11px; color: #94a3b8;">✅ Success</div>
+        </div>
+        <div
+            style="flex: 1; background: rgba(248, 113, 113, 0.2); padding: 12px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 20px; font-weight: bold; color: #f87171;" id="failCount">0</div>
+            <div style="font-size: 11px; color: #94a3b8;">❌ Failed</div>
+        </div>
+        <div
+            style="flex: 1; background: rgba(251, 191, 36, 0.2); padding: 12px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 20px; font-weight: bold; color: #fbbf24;" id="skipCount">0</div>
+            <div style="font-size: 11px; color: #94a3b8;">⏭️ Skipped</div>
+        </div>
+    </div>
+
     <div class="form-group">
         <label>Program ID</label>
         <input type="text" id="programId" placeholder="690415d58971e73ca187d8c9">
@@ -272,6 +291,12 @@
     </div>
 
     <button class="btn btn-secondary" id="clearBtn">🗑️ Clear Used List</button>
+
+    <!-- Export/Import -->
+    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+        <button class="btn btn-secondary" id="exportBtn" style="flex: 1;">📤 Export</button>
+        <button class="btn btn-secondary" id="importBtn" style="flex: 1;">📥 Import</button>
+    </div>
 
     <div class="status" id="status"></div>
 

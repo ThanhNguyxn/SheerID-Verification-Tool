@@ -4,6 +4,10 @@ ChatGPT Plus Veterans/Military Verification
 
 Written from scratch - based on SheerID API flow understanding
 Author: ThanhNguyxn
+
+Features:
+- Proxy support
+- Deduplication tracking
 """
 
 import json
@@ -11,12 +15,15 @@ import hashlib
 import time
 import re
 import os
+import sys
+import argparse
 import uuid
 import base64
 import imaplib
 import email
 from email.header import decode_header
 from pathlib import Path
+from typing import Optional, List
 
 try:
     import requests
@@ -24,10 +31,16 @@ except ImportError:
     print("Error: requests library required. Install with: pip install requests")
     exit(1)
 
+
+
 # Constants
 SHEERID_API = "https://services.sheerid.com/rest/v2"
 CHATGPT_API = "https://chatgpt.com/backend-api"
 DEFAULT_PROGRAM_ID = "690415d58971e73ca187d8c9"
+
+# File paths
+PROXY_FILE = "proxy.txt"
+USED_FILE = "used.txt"
 
 # Military Branch Organization IDs
 BRANCH_ORG_MAP = {
@@ -47,6 +60,51 @@ BRANCH_ORG_MAP = {
 }
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36"
+
+
+# ============ PROXY & DEDUPLICATION ============
+def load_proxies(file_path: str = None) -> List[str]:
+    """Load proxy list from file"""
+    path = Path(file_path or PROXY_FILE)
+    if not path.exists():
+        return []
+    
+    proxies = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line and not line.startswith("#"):
+            # Handle format: host:port or host:port:user:pass
+            if "://" not in line:
+                parts = line.split(":")
+                if len(parts) >= 2:
+                    if len(parts) == 2:
+                        line = f"http://{parts[0]}:{parts[1]}"
+                    elif len(parts) == 4:
+                        line = f"http://{parts[2]}:{parts[3]}@{parts[0]}:{parts[1]}"
+            proxies.append(line)
+    return proxies
+
+
+def get_used_data() -> set:
+    """Load used data records"""
+    path = Path(__file__).parent / USED_FILE
+    if not path.exists():
+        return set()
+    return set(line.strip() for line in path.read_text(encoding="utf-8").splitlines() if line.strip())
+
+
+def is_data_used(first_name: str, last_name: str, dob: str) -> bool:
+    """Check if data was already used"""
+    key = f"{first_name.upper()}|{last_name.upper()}|{dob}"
+    return key in get_used_data()
+
+
+def mark_data_used(first_name: str, last_name: str, dob: str):
+    """Mark data as used"""
+    path = Path(__file__).parent / USED_FILE
+    key = f"{first_name.upper()}|{last_name.upper()}|{dob}"
+    with open(path, "a", encoding="utf-8") as f:
+        f.write(key + "\n")
 
 
 def generate_fingerprint():
@@ -412,6 +470,12 @@ class VeteransVerifier:
 
 
 def main():
+    # Parse arguments
+    parser = argparse.ArgumentParser(description="Veterans Verification Tool")
+    parser.add_argument("--proxy", type=str, help="Use specific proxy (host:port)")
+    parser.add_argument("--no-dedup", action="store_true", help="Disable deduplication check")
+    args = parser.parse_args()
+    
     print()
     print("=" * 55)
     print("  Veterans Verification Tool")
@@ -435,7 +499,16 @@ def main():
         print("        3. Copy the accessToken value")
         return
     
-    # Load data
+    # Load proxies
+    proxies = []
+    if args.proxy:
+        proxies = [args.proxy]
+    else:
+        proxies = load_proxies(str(Path(__file__).parent / PROXY_FILE))
+    if proxies:
+        print(f"[INFO] Loaded {len(proxies)} proxies")
+    
+    # Load data from data.txt
     data_path = Path(__file__).parent / "data.txt"
     if not data_path.exists():
         print("[ERROR] data.txt not found!")
@@ -451,6 +524,7 @@ def main():
     
     print(f"[INFO] Loaded {len(lines)} records")
     print()
+
     
     verifier = VeteransVerifier(config)
     
@@ -465,9 +539,20 @@ def main():
             continue
         
         name = f"{user_data['firstName']} {user_data['lastName']}"
+        
+        # Check deduplication
+        if not args.no_dedup and is_data_used(user_data['firstName'], user_data['lastName'], user_data['birthDate']):
+            print(f"[{i+1}/{len(lines)}] {name} - Already used, skipping")
+            skip += 1
+            continue
+        
         print(f"[{i+1}/{len(lines)}] {name} ({user_data['branch']})")
         
         result = verifier.verify(user_data)
+        
+        # Mark as used regardless of result
+        if not args.no_dedup:
+            mark_data_used(user_data['firstName'], user_data['lastName'], user_data['birthDate'])
         
         if result.get("success"):
             success += 1

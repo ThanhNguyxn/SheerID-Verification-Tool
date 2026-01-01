@@ -116,6 +116,7 @@
             }
 
             const pageText = (document.body?.innerText || '').toLowerCase();
+            const pageHtml = (document.body?.innerHTML || '').toLowerCase();
 
             // Check for success
             if (pageText.includes('claim your offer') ||
@@ -123,20 +124,47 @@
                 pageText.includes('verification successful')) {
                 console.log('[Veterans] ✅ Verification successful! Disabling extension.');
                 await chrome.storage.local.set({ pluginEnabled: false });
+                // Update stats
+                try { chrome.runtime.sendMessage({ type: 'statsUpdate', stat: 'success' }); } catch (e) { }
                 return true;
             }
 
-            // Check for errors
+            // Enhanced error detection (more patterns like eztg)
             const hasError =
                 pageText.includes('verification limit exceeded') ||
                 pageText.includes('we are unable to verify you') ||
                 pageText.includes('unable to verify') ||
                 pageText.includes('too many attempts') ||
-                pageText.includes('try again later');
+                pageText.includes('try again later') ||
+                pageText.includes('information does not match') ||
+                pageText.includes('already been used') ||
+                pageText.includes('limit exceeded') ||
+                pageText.includes('not approved') ||
+                pageHtml.includes('sid-error') ||
+                pageHtml.includes('error-message') ||
+                document.querySelector('.sid-error-message') !== null;
 
             if (hasError) {
                 retrying = true;
-                console.log('[Veterans] ❌ Error detected, returning to veterans-claim...');
+                console.log('[Veterans] ❌ Error detected!');
+                // Update stats
+                try { chrome.runtime.sendMessage({ type: 'statsUpdate', stat: 'fail' }); } catch (e) { }
+
+                // Try to click "Try Again" button first
+                const tryAgainBtn = document.querySelector('button[type="button"]') ||
+                    document.querySelector('[class*="try-again"]') ||
+                    Array.from(document.querySelectorAll('button')).find(btn =>
+                        btn.textContent.toLowerCase().includes('try again'));
+
+                if (tryAgainBtn) {
+                    console.log('[Veterans] Clicking Try Again button...');
+                    tryAgainBtn.click();
+                    // Wait for page to update before redirecting
+                    await new Promise(r => setTimeout(r, 2000));
+                }
+
+                // Redirect back to veterans-claim
+                console.log('[Veterans] Redirecting to veterans-claim...');
                 window.location.href = 'https://chatgpt.com/veterans-claim';
                 return true;
             }
@@ -144,12 +172,17 @@
             return false;
         }
 
+
         // Auto-fill the form
         async function autoFillForm() {
             if (!await isPluginEnabled()) {
                 console.log('[Veterans] Extension disabled');
                 return;
             }
+
+            // Wait for page to fully load before processing
+            console.log('[Veterans] Waiting 1.5s for page to stabilize...');
+            await new Promise(r => setTimeout(r, 1500));
 
             // Check for errors first
             if (await checkForErrorAndRetry()) return;

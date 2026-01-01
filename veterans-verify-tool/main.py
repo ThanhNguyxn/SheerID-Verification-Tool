@@ -320,14 +320,25 @@ class VeteransVerifier:
         """Step 1: Create verification ID from ChatGPT"""
         print("   -> Creating verification request...")
         
-        resp = requests.post(
-            f"{CHATGPT_API}/veterans/create_verification",
-            headers=self._get_headers(),
-            json={"program_id": self.program_id},
-            timeout=30
-        )
-        resp.raise_for_status()
-        return resp.json().get("verification_id")
+        try:
+            resp = requests.post(
+                f"{CHATGPT_API}/veterans/create_verification",
+                headers=self._get_headers(),
+                json={"program_id": self.program_id},
+                timeout=30
+            )
+            resp.raise_for_status()
+            return resp.json().get("verification_id")
+        except requests.exceptions.HTTPError as e:
+            if resp.status_code == 403:
+                print("   [ERROR] 403 Forbidden - Your accessToken may be expired!")
+                print("           1. Login again to https://chatgpt.com")
+                print("           2. Get new token from https://chatgpt.com/api/auth/session")
+                print("           3. Update accessToken in config.json")
+            elif resp.status_code == 401:
+                print("   [ERROR] 401 Unauthorized - Invalid accessToken!")
+            raise
+
     
     def submit_military_status(self, verification_id):
         """Step 2: Submit status as VETERAN"""

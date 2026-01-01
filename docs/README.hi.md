@@ -26,7 +26,7 @@
 |------|------|-------------|
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | तेज़ प्रसंस्करण के साथ वैकल्पिक टेलीग्राम बॉट |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | वियतनामी समुदाय टेलीग्राम बॉट |
-| [Veterans Verify Bot](https://t.me/Veriyferbot?start=ref_7762497789) | 🎖️ Bot | सैन्य सत्यापन बॉट |
+| [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | सैन्य सत्यापन बॉट |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | कई URL के लिए बैच सत्यापन |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | मैन्युअल सत्यापन के लिए छात्र आईडी कार्ड बनाएं |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | शिक्षक सत्यापन के लिए वेतन पर्ची बनाएं |

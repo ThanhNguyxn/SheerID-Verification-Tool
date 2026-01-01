@@ -26,7 +26,7 @@
 |------|------|-------------|
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ 봇 | 더 빠른 처리를 제공하는 대체 텔레그램 봇 |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 봇 | 베트남 커뮤니티 텔레그램 봇 |
-| [Veterans Verify Bot](https://t.me/Veriyferbot?start=ref_7762497789) | 🎖️ 봇 | 군인 인증 봇 |
+| [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ 봇 | 군인 인증 봇 |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 웹 | 여러 URL 일괄 인증 |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 도구 | 수동 인증용 학생증 생성 |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 도구 | 교사 인증용 급여 명세서 생성 |

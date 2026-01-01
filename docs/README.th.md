@@ -26,7 +26,7 @@
 |------|------|-------------|
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | บอท Telegram ทางเลือกที่มีการประมวลผลเร็วกว่า |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | บอท Telegram ชุมชนเวียดนาม |
-| [Veterans Verify Bot](https://t.me/Veriyferbot?start=ref_7762497789) | 🎖️ Bot | บอทยืนยันตัวตนทางทหาร |
+| [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | บอทยืนยันตัวตนทางทหาร |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | การยืนยันแบบกลุ่มสำหรับหลาย URL |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | สร้างบัตรนักเรียนสำหรับการยืนยันด้วยตนเอง |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | สร้างสลิปเงินเดือนสำหรับการยืนยันตัวตนครู |

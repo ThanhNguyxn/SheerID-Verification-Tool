@@ -106,14 +106,32 @@ def select_school():
 
 # ============ NAME GENERATOR ============
 FIRST_NAMES = [
+    # Male names
     "James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph",
-    "Thomas", "Christopher", "Mary", "Patricia", "Jennifer", "Linda", "Elizabeth",
-    "Barbara", "Susan", "Jessica", "Sarah", "Karen", "Daniel", "Matthew", "Anthony"
+    "Thomas", "Christopher", "Charles", "Daniel", "Matthew", "Anthony", "Mark",
+    "Donald", "Steven", "Andrew", "Paul", "Joshua", "Kenneth", "Kevin", "Brian",
+    "George", "Timothy", "Ronald", "Edward", "Jason", "Jeffrey", "Ryan",
+    "Jacob", "Nicholas", "Eric", "Jonathan", "Stephen", "Larry", "Justin", "Scott",
+    "Brandon", "Benjamin", "Samuel", "Raymond", "Gregory", "Frank", "Alexander",
+    # Female names
+    "Mary", "Patricia", "Jennifer", "Linda", "Elizabeth", "Barbara", "Susan",
+    "Jessica", "Sarah", "Karen", "Lisa", "Nancy", "Betty", "Margaret", "Sandra",
+    "Ashley", "Kimberly", "Emily", "Donna", "Michelle", "Dorothy", "Carol",
+    "Amanda", "Melissa", "Deborah", "Stephanie", "Rebecca", "Sharon", "Laura",
+    "Emma", "Olivia", "Ava", "Isabella", "Sophia", "Mia", "Charlotte", "Amelia",
+    "Harper", "Evelyn", "Abigail", "Ella", "Scarlett", "Grace", "Victoria", "Riley"
 ]
 
 LAST_NAMES = [
     "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis",
-    "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson"
+    "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson",
+    "Thomas", "Taylor", "Moore", "Jackson", "Martin", "Lee", "Perez", "Thompson",
+    "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Walker",
+    "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill",
+    "Flores", "Green", "Adams", "Nelson", "Baker", "Hall", "Rivera", "Campbell",
+    "Mitchell", "Carter", "Roberts", "Turner", "Phillips", "Evans", "Parker", "Edwards",
+    "Collins", "Stewart", "Morris", "Murphy", "Cook", "Rogers", "Morgan", "Peterson",
+    "Cooper", "Reed", "Bailey", "Bell", "Gomez", "Kelly", "Howard", "Ward"
 ]
 
 

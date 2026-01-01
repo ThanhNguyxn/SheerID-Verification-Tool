@@ -34,20 +34,46 @@ except ImportError:
 PROGRAM_ID = "68cc6a2e64f55220de204448"
 SHEERID_BASE_URL = "https://services.sheerid.com"
 
-# Universities with weights (from JS data - teacher tools use these)
+# Universities with weights (teacher verification uses these)
+# Bolt.new teacher discount is available globally
 UNIVERSITIES = [
+    # USA - High Priority
     {"id": 2565, "name": "Pennsylvania State University-Main Campus", "domain": "psu.edu", "weight": 100},
-    {"id": 1953, "name": "Massachusetts Institute of Technology", "domain": "mit.edu", "weight": 90},
-    {"id": 1426, "name": "Harvard University", "domain": "harvard.edu", "weight": 85},
-    {"id": 3113, "name": "Stanford University", "domain": "stanford.edu", "weight": 88},
-    {"id": 3491, "name": "University of California, Berkeley", "domain": "berkeley.edu", "weight": 90},
-    {"id": 698, "name": "Columbia University", "domain": "columbia.edu", "weight": 85},
-    {"id": 2285, "name": "New York University", "domain": "nyu.edu", "weight": 88},
-    {"id": 3499, "name": "University of California, Los Angeles", "domain": "ucla.edu", "weight": 92},
-    {"id": 751, "name": "Cornell University", "domain": "cornell.edu", "weight": 85},
-    {"id": 2420, "name": "Northwestern University", "domain": "northwestern.edu", "weight": 82},
-    {"id": 328355, "name": "University of Toronto", "domain": "utoronto.ca", "weight": 75},
-    {"id": 273409, "name": "University of Oxford", "domain": "ox.ac.uk", "weight": 70},
+    {"id": 3499, "name": "University of California, Los Angeles", "domain": "ucla.edu", "weight": 98},
+    {"id": 3491, "name": "University of California, Berkeley", "domain": "berkeley.edu", "weight": 97},
+    {"id": 1953, "name": "Massachusetts Institute of Technology", "domain": "mit.edu", "weight": 95},
+    {"id": 3113, "name": "Stanford University", "domain": "stanford.edu", "weight": 95},
+    {"id": 2285, "name": "New York University", "domain": "nyu.edu", "weight": 94},
+    {"id": 1426, "name": "Harvard University", "domain": "harvard.edu", "weight": 92},
+    {"id": 698, "name": "Columbia University", "domain": "columbia.edu", "weight": 92},
+    {"id": 3568, "name": "University of Michigan", "domain": "umich.edu", "weight": 93},
+    {"id": 3686, "name": "University of Texas at Austin", "domain": "utexas.edu", "weight": 92},
+    {"id": 1217, "name": "Georgia Institute of Technology", "domain": "gatech.edu", "weight": 91},
+    {"id": 602, "name": "Carnegie Mellon University", "domain": "cmu.edu", "weight": 90},
+    {"id": 751, "name": "Cornell University", "domain": "cornell.edu", "weight": 90},
+    {"id": 2420, "name": "Northwestern University", "domain": "northwestern.edu", "weight": 88},
+    {"id": 378, "name": "Arizona State University", "domain": "asu.edu", "weight": 91},
+    # Canada
+    {"id": 328355, "name": "University of Toronto", "domain": "utoronto.ca", "weight": 85},
+    {"id": 4782066, "name": "McGill University", "domain": "mcgill.ca", "weight": 82},
+    {"id": 328315, "name": "University of British Columbia", "domain": "ubc.ca", "weight": 84},
+    # UK
+    {"id": 273409, "name": "University of Oxford", "domain": "ox.ac.uk", "weight": 85},
+    {"id": 273378, "name": "University of Cambridge", "domain": "cam.ac.uk", "weight": 85},
+    {"id": 273294, "name": "Imperial College London", "domain": "imperial.ac.uk", "weight": 82},
+    {"id": 273319, "name": "University College London", "domain": "ucl.ac.uk", "weight": 80},
+    # Germany
+    {"id": 10011178, "name": "Technical University of Munich", "domain": "tum.de", "weight": 82},
+    {"id": 344450, "name": "Ludwig Maximilian University of Munich", "domain": "lmu.de", "weight": 80},
+    # Australia
+    {"id": 345301, "name": "The University of Melbourne", "domain": "unimelb.edu.au", "weight": 82},
+    {"id": 345303, "name": "The University of Sydney", "domain": "sydney.edu.au", "weight": 80},
+    # Japan
+    {"id": 354085, "name": "The University of Tokyo", "domain": "u-tokyo.ac.jp", "weight": 80},
+    {"id": 353961, "name": "Kyoto University", "domain": "kyoto-u.ac.jp", "weight": 78},
+    # Singapore
+    {"id": 356355, "name": "National University of Singapore", "domain": "nus.edu.sg", "weight": 82},
+    {"id": 356356, "name": "Nanyang Technological University", "domain": "ntu.edu.sg", "weight": 80},
 ]
 
 
@@ -65,17 +91,29 @@ def select_university():
 
 # ============ NAME GENERATOR ============
 FIRST_NAMES = [
+    # Male names
     "James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph",
-    "Thomas", "Christopher", "Mary", "Patricia", "Jennifer", "Linda", "Elizabeth",
-    "Barbara", "Susan", "Jessica", "Sarah", "Karen", "Daniel", "Matthew", "Anthony",
-    "Mark", "Donald", "Steven", "Andrew", "Paul", "Joshua", "Kenneth"
+    "Thomas", "Christopher", "Charles", "Daniel", "Matthew", "Anthony", "Mark",
+    "Donald", "Steven", "Andrew", "Paul", "Joshua", "Kenneth", "Kevin", "Brian",
+    "George", "Timothy", "Ronald", "Edward", "Jason", "Jeffrey", "Ryan",
+    "Jacob", "Nicholas", "Eric", "Jonathan", "Stephen", "Larry", "Justin", "Scott",
+    # Female names
+    "Mary", "Patricia", "Jennifer", "Linda", "Elizabeth", "Barbara", "Susan",
+    "Jessica", "Sarah", "Karen", "Lisa", "Nancy", "Betty", "Margaret", "Sandra",
+    "Ashley", "Kimberly", "Emily", "Donna", "Michelle", "Dorothy", "Carol",
+    "Amanda", "Melissa", "Deborah", "Stephanie", "Rebecca", "Sharon", "Laura",
+    "Emma", "Olivia", "Ava", "Isabella", "Sophia", "Mia", "Charlotte", "Amelia"
 ]
 
 LAST_NAMES = [
     "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis",
     "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson",
     "Thomas", "Taylor", "Moore", "Jackson", "Martin", "Lee", "Perez", "Thompson",
-    "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson"
+    "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson", "Walker",
+    "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill",
+    "Flores", "Green", "Adams", "Nelson", "Baker", "Hall", "Rivera", "Campbell",
+    "Mitchell", "Carter", "Roberts", "Turner", "Phillips", "Evans", "Parker", "Edwards",
+    "Collins", "Stewart", "Morris", "Murphy", "Cook", "Rogers", "Morgan", "Peterson"
 ]
 
 

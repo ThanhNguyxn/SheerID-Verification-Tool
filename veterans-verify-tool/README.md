@@ -58,8 +58,28 @@ Common IMAP servers:
 | Provider | IMAP Server | Port |
 |----------|-------------|------|
 | Gmail | imap.gmail.com | 993 |
-| Outlook | outlook.office365.com | 993 |
+| Outlook/Hotmail | outlook.office365.com | 993 |
 | Yahoo | imap.mail.yahoo.com | 993 |
+| iCloud | imap.mail.me.com | 993 |
+| Zoho | imap.zoho.com | 993 |
+| ProtonMail (Bridge) | 127.0.0.1 | 1143 |
+| AOL | imap.aol.com | 993 |
+| GMX | imap.gmx.com | 993 |
+| Mail.com | imap.mail.com | 993 |
+| Yandex | imap.yandex.com | 993 |
+| FastMail | imap.fastmail.com | 993 |
+| Tutanota | (No IMAP support) | - |
+| Mailbox.org | imap.mailbox.org | 993 |
+| Rambler | imap.rambler.ru | 993 |
+| 163.com | imap.163.com | 993 |
+| QQ Mail | imap.qq.com | 993 |
+| Sina Mail | imap.sina.com | 993 |
+| 126.com | imap.126.com | 993 |
+| Naver | imap.naver.com | 993 |
+| Daum | imap.daum.net | 993 |
+
+> **Note:** Most providers require "App Password" or "Less secure apps" enabled. Gmail specifically requires App Password with 2FA enabled.
+
 
 ### 3. Add veteran data
 

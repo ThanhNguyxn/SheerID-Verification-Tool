@@ -180,7 +180,7 @@ UNIVERSITIES = [
     {"id": 356356, "name": "Nanyang Technological University", "domain": "ntu.edu.sg", "weight": 83},
     # Netherlands
     {"id": 345979, "name": "Delft University of Technology", "domain": "tudelft.nl", "weight": 80},
-    {"id": 345981, "name": "University of Amsterdam", "domain": "uva.nl", "weight": "78"},
+    {"id": 345981, "name": "University of Amsterdam", "domain": "uva.nl", "weight": 78},
     # Mexico
     {"id": 10019857, "name": "Universidad Nacional Autónoma de México", "domain": "unam.mx", "weight": 80},
     {"id": 10019859, "name": "Tecnológico de Monterrey", "domain": "tec.mx", "weight": 79},

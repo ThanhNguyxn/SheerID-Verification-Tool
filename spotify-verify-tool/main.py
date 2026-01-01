@@ -88,71 +88,65 @@ class Stats:
 stats = Stats()
 
 
-# ============ UNIVERSITIES WITH WEIGHTS (full 45 from JS data) ============
+# ============ UNIVERSITIES WITH WEIGHTS ============
+# Spotify Premium Student Discount supports 35+ countries including:
+# USA, UK, Canada, Australia, Germany, France, Japan, Brazil, Mexico,
+# Netherlands, Spain, Italy, Singapore, Hong Kong, Indonesia, Turkey,
+# Chile, Colombia, Czech Republic, Denmark, Finland, Greece, Hungary,
+# Ireland, New Zealand, Philippines, Portugal, Switzerland, and more.
+
 UNIVERSITIES = [
-    # USA - Top Priority (Penn State - high success)
+    # USA - High Priority
     {"id": 2565, "name": "Pennsylvania State University-Main Campus", "domain": "psu.edu", "weight": 100},
-    # USA - Ivy League & Top Schools
-    {"id": 1953, "name": "Massachusetts Institute of Technology", "domain": "mit.edu", "weight": 90},
-    {"id": 1426, "name": "Harvard University", "domain": "harvard.edu", "weight": 85},
-    {"id": 3113, "name": "Stanford University", "domain": "stanford.edu", "weight": 88},
-    {"id": 3491, "name": "University of California, Berkeley", "domain": "berkeley.edu", "weight": 90},
-    {"id": 590759, "name": "Yale University", "domain": "yale.edu", "weight": 82},
-    {"id": 2626, "name": "Princeton University", "domain": "princeton.edu", "weight": 80},
-    {"id": 698, "name": "Columbia University", "domain": "columbia.edu", "weight": 85},
-    {"id": 2285, "name": "New York University", "domain": "nyu.edu", "weight": 88},
-    {"id": 3499, "name": "University of California, Los Angeles", "domain": "ucla.edu", "weight": 92},
-    {"id": 3508, "name": "University of Chicago", "domain": "uchicago.edu", "weight": 80},
-    {"id": 943, "name": "Duke University", "domain": "duke.edu", "weight": 82},
-    {"id": 751, "name": "Cornell University", "domain": "cornell.edu", "weight": 85},
-    {"id": 2420, "name": "Northwestern University", "domain": "northwestern.edu", "weight": 82},
+    {"id": 1953, "name": "Massachusetts Institute of Technology", "domain": "mit.edu", "weight": 95},
+    {"id": 3499, "name": "University of California, Los Angeles", "domain": "ucla.edu", "weight": 98},
+    {"id": 3491, "name": "University of California, Berkeley", "domain": "berkeley.edu", "weight": 97},
+    {"id": 3113, "name": "Stanford University", "domain": "stanford.edu", "weight": 95},
+    {"id": 2285, "name": "New York University", "domain": "nyu.edu", "weight": 96},
+    {"id": 1426, "name": "Harvard University", "domain": "harvard.edu", "weight": 92},
+    {"id": 590759, "name": "Yale University", "domain": "yale.edu", "weight": 90},
+    {"id": 698, "name": "Columbia University", "domain": "columbia.edu", "weight": 92},
+    {"id": 3568, "name": "University of Michigan", "domain": "umich.edu", "weight": 95},
+    {"id": 3686, "name": "University of Texas at Austin", "domain": "utexas.edu", "weight": 94},
+    {"id": 378, "name": "Arizona State University", "domain": "asu.edu", "weight": 92},
+    {"id": 3521, "name": "University of Florida", "domain": "ufl.edu", "weight": 90},
     # Canada
-    {"id": 328355, "name": "University of Toronto", "domain": "utoronto.ca", "weight": 75},
-    {"id": 4782066, "name": "McGill University", "domain": "mcgill.ca", "weight": 72},
-    {"id": 328315, "name": "University of British Columbia", "domain": "ubc.ca", "weight": 74},
+    {"id": 328355, "name": "University of Toronto", "domain": "utoronto.ca", "weight": 85},
+    {"id": 4782066, "name": "McGill University", "domain": "mcgill.ca", "weight": 82},
+    {"id": 328315, "name": "University of British Columbia", "domain": "ubc.ca", "weight": 84},
     # UK
-    {"id": 273409, "name": "University of Oxford", "domain": "ox.ac.uk", "weight": 70},
-    {"id": 273378, "name": "University of Cambridge", "domain": "cam.ac.uk", "weight": 70},
-    {"id": 273294, "name": "Imperial College London", "domain": "imperial.ac.uk", "weight": 68},
-    # India
-    {"id": 10007277, "name": "Indian Institute of Technology Delhi", "domain": "iitd.ac.in", "weight": 72},
-    {"id": 3819983, "name": "University of Mumbai", "domain": "mu.ac.in", "weight": 68},
-    # Vietnam
-    {"id": 588731, "name": "Hanoi University of Science and Technology", "domain": "hust.edu.vn", "weight": 95},
-    {"id": 10066238, "name": "VNU University of Engineering and Technology", "domain": "uet.vnu.edu.vn", "weight": 90},
-    {"id": 588738, "name": "VNU University of Information Technology", "domain": "uit.edu.vn", "weight": 88},
-    {"id": 588772, "name": "FPT University", "domain": "fpt.edu.vn", "weight": 92},
-    {"id": 588608, "name": "Posts and Telecommunications Institute of Technology", "domain": "ptit.edu.vn", "weight": 85},
-    {"id": 10492794, "name": "VNU University of Science", "domain": "hus.vnu.edu.vn", "weight": 85},
-    # Japan
-    {"id": 354085, "name": "The University of Tokyo", "domain": "u-tokyo.ac.jp", "weight": 70},
-    {"id": 353961, "name": "Kyoto University", "domain": "kyoto-u.ac.jp", "weight": 68},
-    # South Korea
-    {"id": 356569, "name": "Seoul National University", "domain": "snu.ac.kr", "weight": 72},
-    {"id": 356632, "name": "Yonsei University", "domain": "yonsei.ac.kr", "weight": 70},
-    {"id": 356431, "name": "Korea University", "domain": "korea.ac.kr", "weight": 68},
+    {"id": 273409, "name": "University of Oxford", "domain": "ox.ac.uk", "weight": 85},
+    {"id": 273378, "name": "University of Cambridge", "domain": "cam.ac.uk", "weight": 85},
+    {"id": 273294, "name": "Imperial College London", "domain": "imperial.ac.uk", "weight": 82},
+    {"id": 273319, "name": "University College London", "domain": "ucl.ac.uk", "weight": 80},
     # Germany
-    {"id": 10011178, "name": "Technical University of Munich", "domain": "tum.de", "weight": 72},
-    {"id": 344450, "name": "Ludwig Maximilian University of Munich", "domain": "lmu.de", "weight": 70},
+    {"id": 10011178, "name": "Technical University of Munich", "domain": "tum.de", "weight": 82},
+    {"id": 344450, "name": "Ludwig Maximilian University of Munich", "domain": "lmu.de", "weight": 80},
     # France
-    {"id": 329766, "name": "Ecole Polytechnique", "domain": "polytechnique.edu", "weight": 68},
-    {"id": 10148649, "name": "PSL Research University", "domain": "psl.eu", "weight": 66},
-    # Singapore
-    {"id": 356355, "name": "National University of Singapore", "domain": "nus.edu.sg", "weight": 72},
-    {"id": 356356, "name": "Nanyang Technological University", "domain": "ntu.edu.sg", "weight": 70},
-    # China
-    {"id": 3852634, "name": "Tsinghua University", "domain": "tsinghua.edu.cn", "weight": 72},
-    {"id": 3852964, "name": "Peking University", "domain": "pku.edu.cn", "weight": 70},
-    {"id": 3853298, "name": "Fudan University", "domain": "fudan.edu.cn", "weight": 68},
-    # Brazil
-    {"id": 10042652, "name": "University of Sao Paulo", "domain": "usp.br", "weight": 65},
-    {"id": 10059316, "name": "University of Campinas", "domain": "unicamp.br", "weight": 63},
-    {"id": 412760, "name": "Federal University of Rio de Janeiro", "domain": "ufrj.br", "weight": 62},
+    {"id": 329766, "name": "Ecole Polytechnique", "domain": "polytechnique.edu", "weight": 78},
+    {"id": 10148649, "name": "PSL Research University", "domain": "psl.eu", "weight": 76},
     # Australia
-    {"id": 345301, "name": "The University of Melbourne", "domain": "unimelb.edu.au", "weight": 68},
-    {"id": 345276, "name": "Australian National University", "domain": "anu.edu.au", "weight": 66},
-    {"id": 345303, "name": "The University of Sydney", "domain": "sydney.edu.au", "weight": 66},
+    {"id": 345301, "name": "The University of Melbourne", "domain": "unimelb.edu.au", "weight": 82},
+    {"id": 345303, "name": "The University of Sydney", "domain": "sydney.edu.au", "weight": 80},
+    {"id": 345276, "name": "Australian National University", "domain": "anu.edu.au", "weight": 78},
+    # Japan
+    {"id": 354085, "name": "The University of Tokyo", "domain": "u-tokyo.ac.jp", "weight": 80},
+    {"id": 353961, "name": "Kyoto University", "domain": "kyoto-u.ac.jp", "weight": 78},
+    # Brazil
+    {"id": 10042652, "name": "University of Sao Paulo", "domain": "usp.br", "weight": 78},
+    {"id": 10059316, "name": "University of Campinas", "domain": "unicamp.br", "weight": 75},
+    # Indonesia
+    {"id": 10008577, "name": "University of Indonesia", "domain": "ui.ac.id", "weight": 78},
+    {"id": 10008584, "name": "Institut Teknologi Bandung", "domain": "itb.ac.id", "weight": 76},
+    # Singapore
+    {"id": 356355, "name": "National University of Singapore", "domain": "nus.edu.sg", "weight": 82},
+    {"id": 356356, "name": "Nanyang Technological University", "domain": "ntu.edu.sg", "weight": 80},
+    # Netherlands
+    {"id": 345979, "name": "Delft University of Technology", "domain": "tudelft.nl", "weight": 78},
+    # Mexico
+    {"id": 10019857, "name": "Universidad Nacional Autónoma de México", "domain": "unam.mx", "weight": 76},
 ]
+
 
 
 def select_university() -> Dict:

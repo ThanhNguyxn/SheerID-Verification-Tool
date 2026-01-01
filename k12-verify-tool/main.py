@@ -34,6 +34,8 @@ PROGRAM_ID = "68d47554aa292d20b9bec8f7"
 SHEERID_BASE_URL = "https://services.sheerid.com"
 
 # ============ K12 SCHOOLS (from JS data - 50+ schools) ============
+# K12 Teacher verification is US-ONLY (High School teachers)
+# SheerID verifies against US K-12 school database
 K12_SCHOOLS = [
     # NYC Specialized High Schools
     {"id": 155694, "name": "Stuyvesant High School", "city": "New York, NY", "weight": 100},

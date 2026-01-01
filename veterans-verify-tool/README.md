@@ -222,13 +222,70 @@ The tool tracks used data in `used.txt` to prevent re-verifying the same veteran
 
 ## Troubleshooting
 
-| Error | Solution |
+### Common Errors
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `403 Forbidden` | accessToken expired | Get new token (see below) |
+| `401 Unauthorized` | Invalid token | Check token format, get new one |
+| `Not approved` | Data not in database OR IP blocked | Use proxy, try different data |
+| `Document upload required` | Auto-verify failed | Data not in DoD/DEERS database |
+| `Email connection failed` | IMAP settings wrong | Check server/port, use app password |
+| `Data already verified` | Veteran already used | Try different data |
+| `Already used, skipping` | Data in `used.txt` | Use `--no-dedup` flag |
+
+---
+
+### 🔴 403 Forbidden Error
+
+**Most common issue!** Token expires after a few hours.
+
+**Fix:**
+1. Open https://chatgpt.com and login again
+2. Go to https://chatgpt.com/api/auth/session
+3. Copy the new `accessToken` value
+4. Paste into `config.json`
+5. Run again
+
+---
+
+### 🔴 "Not approved" from SheerID
+
+**Two causes:**
+
+1. **Data not in database**
+   - SheerID checks against DoD/DEERS database
+   - If veteran info not found → "Not approved"
+   - Solution: Use verified real veteran data
+
+2. **IP blocked/dirty**
+   - Too many requests from same IP
+   - Solution: Use proxy with `--proxy` flag
+   ```bash
+   python main.py --proxy 123.45.67.89:8080
+   ```
+
+---
+
+### 🔴 Discharge Date Rules
+
+SheerID has a **12-month rule** for ChatGPT Plus:
+- Veteran must have separated within the **last 12 months**
+- If discharge date is older → verification fails
+
+**Solution:** Use a recent discharge date (e.g., current year)
+
+---
+
+### 🔴 Email Issues
+
+| Issue | Solution |
 |-------|----------|
-| `accessToken missing` | Get token from chatgpt.com/api/auth/session |
-| `Email connection failed` | Check IMAP settings, use app password for Gmail |
-| `Data already verified` | This veteran data was already used |
-| `Document upload required` | Data couldn't be verified, needs manual upload |
-| `Already used, skipping` | Data in `used.txt`, use `--no-dedup` to retry |
+| Gmail blocked | Use App Password (Security → App passwords) |
+| 2FA required | Generate app-specific password |
+| Connection timeout | Check firewall, try different port |
+| No emails received | Check spam folder, wait longer |
+
 
 ---
 

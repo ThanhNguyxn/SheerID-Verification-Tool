@@ -227,47 +227,127 @@ def generate_birth_date() -> str:
 
 
 # ============ DOCUMENT GENERATOR ============
-def generate_student_id(first: str, last: str, school: str) -> bytes:
-    """Generate fake student ID card"""
-    w, h = 650, 400
+# ============ DOCUMENT GENERATOR ============
+def generate_transcript(first: str, last: str, school: str, dob: str) -> bytes:
+    """Generate fake academic transcript (higher success rate)"""
+    w, h = 850, 1100
     img = Image.new("RGB", (w, h), (255, 255, 255))
     draw = ImageDraw.Draw(img)
     
     try:
-        font_lg = ImageFont.truetype("arial.ttf", 24)
+        font_header = ImageFont.truetype("arial.ttf", 32)
+        font_title = ImageFont.truetype("arial.ttf", 24)
+        font_text = ImageFont.truetype("arial.ttf", 16)
+        font_bold = ImageFont.truetype("arialbd.ttf", 16)
+    except:
+        font_header = font_title = font_text = font_bold = ImageFont.load_default()
+    
+    # 1. Header
+    draw.text((w//2, 50), school.upper(), fill=(0, 0, 0), font=font_header, anchor="mm")
+    draw.text((w//2, 90), "OFFICIAL ACADEMIC TRANSCRIPT", fill=(50, 50, 50), font=font_title, anchor="mm")
+    draw.line([(50, 110), (w-50, 110)], fill=(0, 0, 0), width=2)
+    
+    # 2. Student Info
+    y = 150
+    draw.text((50, y), f"Student Name: {first} {last}", fill=(0, 0, 0), font=font_bold)
+    draw.text((w-300, y), f"Student ID: {random.randint(10000000, 99999999)}", fill=(0, 0, 0), font=font_text)
+    y += 30
+    draw.text((50, y), f"Date of Birth: {dob}", fill=(0, 0, 0), font=font_text)
+    draw.text((w-300, y), f"Date Issued: {time.strftime('%Y-%m-%d')}", fill=(0, 0, 0), font=font_text)
+    y += 40
+    
+    # 3. Current Enrollment Status
+    draw.rectangle([(50, y), (w-50, y+40)], fill=(240, 240, 240))
+    draw.text((w//2, y+20), "CURRENT STATUS: ENROLLED (SPRING 2025)", fill=(0, 100, 0), font=font_bold, anchor="mm")
+    y += 70
+    
+    # 4. Courses
+    courses = [
+        ("CS 101", "Intro to Computer Science", "4.0", "A"),
+        ("MATH 201", "Calculus I", "3.0", "A-"),
+        ("ENG 102", "Academic Writing", "3.0", "B+"),
+        ("PHYS 150", "Physics for Engineers", "4.0", "A"),
+        ("HIST 110", "World History", "3.0", "A")
+    ]
+    
+    # Table Header
+    draw.text((50, y), "Course Code", font=font_bold, fill=(0,0,0))
+    draw.text((200, y), "Course Title", font=font_bold, fill=(0,0,0))
+    draw.text((600, y), "Credits", font=font_bold, fill=(0,0,0))
+    draw.text((700, y), "Grade", font=font_bold, fill=(0,0,0))
+    y += 20
+    draw.line([(50, y), (w-50, y)], fill=(0, 0, 0), width=1)
+    y += 20
+    
+    for code, title, cred, grade in courses:
+        draw.text((50, y), code, font=font_text, fill=(0,0,0))
+        draw.text((200, y), title, font=font_text, fill=(0,0,0))
+        draw.text((600, y), cred, font=font_text, fill=(0,0,0))
+        draw.text((700, y), grade, font=font_text, fill=(0,0,0))
+        y += 30
+    
+    y += 20
+    draw.line([(50, y), (w-50, y)], fill=(0, 0, 0), width=1)
+    y += 30
+    
+    # 5. Summary
+    draw.text((50, y), "Cumulative GPA: 3.85", font=font_bold, fill=(0,0,0))
+    draw.text((w-300, y), "Academic Standing: Good", font=font_bold, fill=(0,0,0))
+    
+    # 6. Watermark / Footer
+    draw.text((w//2, h-50), "This document is electronically generated and valid without signature.", fill=(100, 100, 100), font=font_text, anchor="mm")
+    
+    buf = BytesIO()
+    img.save(buf, format="PNG")
+    return buf.getvalue()
+
+def generate_student_id(first: str, last: str, school: str) -> bytes:
+    """Generate fake student ID card (Improved)"""
+    w, h = 650, 400
+    # Randomize background color slightly
+    bg_color = (random.randint(240, 255), random.randint(240, 255), random.randint(240, 255))
+    img = Image.new("RGB", (w, h), bg_color)
+    draw = ImageDraw.Draw(img)
+    
+    try:
+        font_lg = ImageFont.truetype("arial.ttf", 26)
         font_md = ImageFont.truetype("arial.ttf", 18)
         font_sm = ImageFont.truetype("arial.ttf", 14)
+        font_bold = ImageFont.truetype("arialbd.ttf", 20)
     except:
-        font_lg = font_md = font_sm = ImageFont.load_default()
+        font_lg = font_md = font_sm = font_bold = ImageFont.load_default()
     
-    # Header
-    draw.rectangle([(0, 0), (w, 60)], fill=(0, 51, 102))
-    draw.text((w//2, 30), "STUDENT IDENTIFICATION CARD", fill=(255, 255, 255), font=font_lg, anchor="mm")
+    # Header color based on school name hash to be consistent but varied
+    header_color = (random.randint(0, 50), random.randint(0, 50), random.randint(50, 150))
     
-    # School
-    draw.text((w//2, 90), school[:50], fill=(0, 51, 102), font=font_md, anchor="mm")
+    draw.rectangle([(0, 0), (w, 80)], fill=header_color)
+    draw.text((w//2, 40), school.upper(), fill=(255, 255, 255), font=font_lg, anchor="mm")
     
     # Photo placeholder
-    draw.rectangle([(30, 120), (150, 280)], outline=(180, 180, 180), width=2)
-    draw.text((90, 200), "PHOTO", fill=(180, 180, 180), font=font_md, anchor="mm")
+    draw.rectangle([(30, 100), (160, 280)], outline=(100, 100, 100), width=2, fill=(220, 220, 220))
+    draw.text((95, 190), "PHOTO", fill=(150, 150, 150), font=font_md, anchor="mm")
     
     # Info
-    student_id = f"STU{random.randint(100000, 999999)}"
-    y = 130
-    for line in [f"Name: {first} {last}", f"ID: {student_id}", "Status: Full-time Student",
-                 "Major: Computer Science", f"Valid: {time.strftime('%Y')}-{int(time.strftime('%Y'))+1}"]:
-        draw.text((175, y), line, fill=(51, 51, 51), font=font_md)
-        y += 28
+    x_info = 190
+    y = 110
+    draw.text((x_info, y), f"{first} {last}", fill=(0, 0, 0), font=font_bold)
+    y += 40
+    draw.text((x_info, y), "Student ID:", fill=(100, 100, 100), font=font_sm)
+    draw.text((x_info + 80, y), str(random.randint(10000000, 99999999)), fill=(0, 0, 0), font=font_md)
+    y += 30
+    draw.text((x_info, y), "Role:", fill=(100, 100, 100), font=font_sm)
+    draw.text((x_info + 80, y), "Student", fill=(0, 0, 0), font=font_md)
+    y += 30
+    draw.text((x_info, y), "Valid Thru:", fill=(100, 100, 100), font=font_sm)
+    draw.text((x_info + 80, y), f"05/{int(time.strftime('%Y'))+1}", fill=(0, 0, 0), font=font_md)
     
-    # Footer
-    draw.rectangle([(0, h-40), (w, h)], fill=(0, 51, 102))
-    draw.text((w//2, h-20), "Property of University", fill=(255, 255, 255), font=font_sm, anchor="mm")
-    
-    # Barcode
-    for i in range(20):
-        x = 480 + i * 7
-        draw.rectangle([(x, 280), (x+3, 280+random.randint(30, 50))], fill=(0, 0, 0))
-    
+    # Barcode strip
+    draw.rectangle([(0, 320), (w, 380)], fill=(255, 255, 255))
+    for i in range(40):
+        x = 50 + i * 14
+        if random.random() > 0.3:
+            draw.rectangle([(x, 330), (x+8, 370)], fill=(0, 0, 0))
+            
     buf = BytesIO()
     img.save(buf, format="PNG")
     return buf.getvalue()
@@ -353,8 +433,15 @@ class GeminiVerifier:
             print(f"   📍 Starting step: {current_step}")
             
             # Step 1: Generate document
-            print("\n   ▶ Step 1/3: Generating student ID...")
-            doc = generate_student_id(first, last, self.org["name"])
+            doc_type = "transcript" if random.random() < 0.7 else "id_card"
+            if doc_type == "transcript":
+                print("\n   ▶ Step 1/3: Generating academic transcript...")
+                doc = generate_transcript(first, last, self.org["name"], dob)
+                filename = "transcript.png"
+            else:
+                print("\n   ▶ Step 1/3: Generating student ID...")
+                doc = generate_student_id(first, last, self.org["name"])
+                filename = "student_card.png"
             print(f"     📄 Size: {len(doc)/1024:.1f} KB")
             
             # Step 2: Submit info (skip if already past this step)
@@ -400,7 +487,7 @@ class GeminiVerifier:
             
             # Step 4: Upload document
             print("   ▶ Step 4/5: Uploading document...")
-            upload_body = {"files": [{"fileName": "student_card.png", "mimeType": "image/png", "fileSize": len(doc)}]}
+            upload_body = {"files": [{"fileName": filename, "mimeType": "image/png", "fileSize": len(doc)}]}
             data, status = self._request("POST", f"/verification/{self.vid}/step/docUpload", upload_body)
             
             if not data.get("documents"):

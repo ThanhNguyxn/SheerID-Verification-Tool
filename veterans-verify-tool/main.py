@@ -31,6 +31,15 @@ except ImportError:
     print("Error: requests library required. Install with: pip install requests")
     exit(1)
 
+# Try cloudscraper for Cloudflare bypass (optional but recommended)
+try:
+    import cloudscraper
+    HAS_CLOUDSCRAPER = True
+except ImportError:
+    HAS_CLOUDSCRAPER = False
+    print("[WARN] cloudscraper not installed. Install for better Cloudflare bypass:")
+    print("       pip install cloudscraper")
+
 
 
 # Constants
@@ -294,6 +303,16 @@ class VeteransVerifier:
             self.proxies = {"http": proxy, "https": proxy}
         else:
             self.proxies = None
+        
+        # Create session for ChatGPT API (use cloudscraper if available for Cloudflare bypass)
+        if HAS_CLOUDSCRAPER:
+            self.session = cloudscraper.create_scraper(
+                browser={'browser': 'chrome', 'platform': 'windows', 'mobile': False}
+            )
+            print("[INFO] Using cloudscraper for Cloudflare bypass")
+        else:
+            self.session = requests.Session()
+            print("[INFO] Using requests (no Cloudflare bypass)")
     
     def _get_headers(self, sheerid=False):
         base = {
@@ -338,7 +357,8 @@ class VeteransVerifier:
         print("   -> Creating verification request...")
         
         try:
-            resp = requests.post(
+            # Use self.session (cloudscraper if available)
+            resp = self.session.post(
                 f"{CHATGPT_API}/veterans/create_verification",
                 headers=self._get_headers(),
                 json={"program_id": self.program_id},
@@ -362,7 +382,7 @@ class VeteransVerifier:
         """Step 2: Submit status as VETERAN"""
         print("   -> Submitting military status (VETERAN)...")
         
-        resp = requests.post(
+        resp = self.session.post(
             f"{SHEERID_API}/verification/{verification_id}/step/collectMilitaryStatus",
             headers=self._get_headers(sheerid=True),
             json={"status": "VETERAN"},
@@ -400,7 +420,7 @@ class VeteransVerifier:
         headers = self._get_headers(sheerid=True)
         headers["referer"] = referer
         
-        resp = requests.post(
+        resp = self.session.post(
             f"{SHEERID_API}/verification/{verification_id}/step/collectInactiveMilitaryPersonalInfo",
             headers=headers,
             json=payload,
@@ -438,7 +458,7 @@ class VeteransVerifier:
         """Step 5: Submit email token"""
         print(f"   -> Submitting email token: {email_token}...")
         
-        resp = requests.post(
+        resp = self.session.post(
             f"{SHEERID_API}/verification/{verification_id}/step/emailLoop",
             headers=self._get_headers(sheerid=True),
             json={

@@ -278,11 +278,22 @@ class EmailClient:
 class VeteransVerifier:
     """Veterans verification handler"""
     
-    def __init__(self, config):
+    def __init__(self, config, proxy: str = None):
         self.access_token = config.get("accessToken", "")
         self.program_id = config.get("programId", DEFAULT_PROGRAM_ID)
         self.email_client = EmailClient(config.get("email", {}))
         self.email_address = config.get("email", {}).get("email_address", "")
+        # Setup proxy
+        if proxy:
+            if "://" not in proxy:
+                parts = proxy.split(":")
+                if len(parts) == 2:
+                    proxy = f"http://{parts[0]}:{parts[1]}"
+                elif len(parts) == 4:
+                    proxy = f"http://{parts[2]}:{parts[3]}@{parts[0]}:{parts[1]}"
+            self.proxies = {"http": proxy, "https": proxy}
+        else:
+            self.proxies = None
     
     def _get_headers(self, sheerid=False):
         base = {
@@ -331,7 +342,8 @@ class VeteransVerifier:
                 f"{CHATGPT_API}/veterans/create_verification",
                 headers=self._get_headers(),
                 json={"program_id": self.program_id},
-                timeout=30
+                timeout=30,
+                proxies=self.proxies
             )
             resp.raise_for_status()
             return resp.json().get("verification_id")
@@ -354,7 +366,8 @@ class VeteransVerifier:
             f"{SHEERID_API}/verification/{verification_id}/step/collectMilitaryStatus",
             headers=self._get_headers(sheerid=True),
             json={"status": "VETERAN"},
-            timeout=30
+            timeout=30,
+            proxies=self.proxies
         )
         resp.raise_for_status()
     
@@ -391,7 +404,8 @@ class VeteransVerifier:
             f"{SHEERID_API}/verification/{verification_id}/step/collectInactiveMilitaryPersonalInfo",
             headers=headers,
             json=payload,
-            timeout=30
+            timeout=30,
+            proxies=self.proxies
         )
         
         data = resp.json()
@@ -431,7 +445,8 @@ class VeteransVerifier:
                 "emailToken": email_token,
                 "deviceFingerprintHash": generate_fingerprint()
             },
-            timeout=30
+            timeout=30,
+            proxies=self.proxies
         )
         return resp.json()
     
@@ -543,7 +558,7 @@ def main():
     print()
 
     
-    verifier = VeteransVerifier(config)
+    verifier = VeteransVerifier(config, proxy=proxies[0] if proxies else None)
     
     success = 0
     fail = 0

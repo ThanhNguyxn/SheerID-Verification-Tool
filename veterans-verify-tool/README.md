@@ -148,7 +148,13 @@ python main.py --proxy YOUR_PROXY:PORT
 
 ### Option 2: Proxy file
 
-Create `proxy.txt` with one proxy per line:
+Copy `proxy.example.txt` to `proxy.txt`:
+
+```bash
+cp proxy.example.txt proxy.txt
+```
+
+Edit `proxy.txt` with one proxy per line:
 
 ```
 # Format: host:port or host:port:user:pass

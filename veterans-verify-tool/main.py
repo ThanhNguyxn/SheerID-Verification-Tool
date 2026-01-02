@@ -515,6 +515,11 @@ class VeteransVerifier:
                 
                 return {"success": False, "message": f"Email verify failed: {email_result.get('errorIds')}"}
             
+            if step == "collectInactiveMilitaryPersonalInfo":
+                if result.get("errorIds"):
+                    return {"success": False, "message": f"Error: {result.get('errorIds')}"}
+                return {"success": False, "message": "Stuck on personal info step (check data format/validity)"}
+            
             return {"success": False, "message": f"Unknown step: {step}"}
             
         except Exception as e:

@@ -319,10 +319,14 @@ class GeminiVerifier:
             return {"valid": False, "error": f"HTTP {status}"}
         
         step = data.get("currentStep", "")
-        if step == "collectStudentPersonalInfo":
+        # Accept multiple valid steps - handle re-upload after rejection
+        valid_steps = ["collectStudentPersonalInfo", "docUpload", "sso"]
+        if step in valid_steps:
             return {"valid": True, "step": step}
         elif step == "success":
             return {"valid": False, "error": "Already verified"}
+        elif step == "pending":
+            return {"valid": False, "error": "Already pending review"}
         return {"valid": False, "error": f"Invalid step: {step}"}
     
     def verify(self) -> Dict:
@@ -331,6 +335,10 @@ class GeminiVerifier:
             return {"success": False, "error": "Invalid verification URL"}
         
         try:
+            # Check current step first
+            check_data, check_status = self._request("GET", f"/verification/{self.vid}")
+            current_step = check_data.get("currentStep", "") if check_status == 200 else ""
+            
             # Generate info
             first, last = generate_name()
             self.org = select_university()
@@ -342,42 +350,48 @@ class GeminiVerifier:
             print(f"   🏫 School: {self.org['name']}")
             print(f"   🎂 DOB: {dob}")
             print(f"   🔑 ID: {self.vid[:20]}...")
+            print(f"   📍 Starting step: {current_step}")
             
             # Step 1: Generate document
             print("\n   ▶ Step 1/3: Generating student ID...")
             doc = generate_student_id(first, last, self.org["name"])
             print(f"     📄 Size: {len(doc)/1024:.1f} KB")
             
-            # Step 2: Submit info
-            print("   ▶ Step 2/3: Submitting student info...")
-            body = {
-                "firstName": first, "lastName": last, "birthDate": dob,
-                "email": email, "phoneNumber": "",
-                "organization": {"id": self.org["id"], "idExtended": self.org["idExtended"], 
-                                "name": self.org["name"]},
-                "deviceFingerprintHash": self.fingerprint,
-                "locale": "en-US",
-                "metadata": {
-                    "marketConsentValue": False,
-                    "verificationId": self.vid,
-                    "refererUrl": f"https://services.sheerid.com/verify/{PROGRAM_ID}/?verificationId={self.vid}",
-                    "flags": '{"collect-info-step-email-first":"default","doc-upload-considerations":"default","doc-upload-may24":"default","doc-upload-redesign-use-legacy-message-keys":false,"docUpload-assertion-checklist":"default","font-size":"default","include-cvec-field-france-student":"not-labeled-optional"}',
-                    "submissionOptIn": "By submitting the personal information above, I acknowledge that my personal information is being collected under the privacy policy of the business from which I am seeking a discount"
+            # Step 2: Submit info (skip if already past this step)
+            if current_step == "collectStudentPersonalInfo":
+                print("   ▶ Step 2/3: Submitting student info...")
+                body = {
+                    "firstName": first, "lastName": last, "birthDate": dob,
+                    "email": email, "phoneNumber": "",
+                    "organization": {"id": self.org["id"], "idExtended": self.org["idExtended"], 
+                                    "name": self.org["name"]},
+                    "deviceFingerprintHash": self.fingerprint,
+                    "locale": "en-US",
+                    "metadata": {
+                        "marketConsentValue": False,
+                        "verificationId": self.vid,
+                        "refererUrl": f"https://services.sheerid.com/verify/{PROGRAM_ID}/?verificationId={self.vid}",
+                        "flags": '{"collect-info-step-email-first":"default","doc-upload-considerations":"default","doc-upload-may24":"default","doc-upload-redesign-use-legacy-message-keys":false,"docUpload-assertion-checklist":"default","font-size":"default","include-cvec-field-france-student":"not-labeled-optional"}',
+                        "submissionOptIn": "By submitting the personal information above, I acknowledge that my personal information is being collected under the privacy policy of the business from which I am seeking a discount"
+                    }
                 }
-            }
-            
-            data, status = self._request("POST", f"/verification/{self.vid}/step/collectStudentPersonalInfo", body)
-            
-            if status != 200:
-                stats.record(self.org["name"], False)
-                return {"success": False, "error": f"Submit failed: {status}"}
-            
-            if data.get("currentStep") == "error":
-                stats.record(self.org["name"], False)
-                return {"success": False, "error": f"Error: {data.get('errorIds', [])}"}
-            
-            print(f"     📍 Current step: {data.get('currentStep')}")
-            current_step = data.get("currentStep", "")
+                
+                data, status = self._request("POST", f"/verification/{self.vid}/step/collectStudentPersonalInfo", body)
+                
+                if status != 200:
+                    stats.record(self.org["name"], False)
+                    return {"success": False, "error": f"Submit failed: {status}"}
+                
+                if data.get("currentStep") == "error":
+                    stats.record(self.org["name"], False)
+                    return {"success": False, "error": f"Error: {data.get('errorIds', [])}"}
+                
+                print(f"     📍 Current step: {data.get('currentStep')}")
+                current_step = data.get("currentStep", "")
+            elif current_step in ["docUpload", "sso"]:
+                print("   ▶ Step 2/3: Skipping (already past info submission)...")
+            else:
+                print(f"   ▶ Step 2/3: Unknown step '{current_step}', attempting to continue...")
             
             # Step 3: Skip SSO if needed (PastKing logic)
             if current_step in ["sso", "collectStudentPersonalInfo"]:

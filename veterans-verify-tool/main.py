@@ -312,7 +312,7 @@ class VeteransVerifier:
             **base,
             "authorization": f"Bearer {self.access_token}",
             "origin": "https://chatgpt.com",
-            "referer": "https://chatgpt.com/",
+            "referer": "https://chatgpt.com/veterans-claim",
             # Critical headers for Cloudflare bypass
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",

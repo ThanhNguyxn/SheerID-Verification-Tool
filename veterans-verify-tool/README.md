@@ -6,13 +6,14 @@ ChatGPT Plus verification tool for US Veterans using SheerID.
 
 - Python 3.8+
 - `requests` library
+- `cloudscraper` library (recommended for Cloudflare bypass)
 
 ## Quick Start
 
 ### 1. Install dependencies
 
 ```bash
-pip install requests
+pip install requests cloudscraper
 ```
 
 ### 2. Configure

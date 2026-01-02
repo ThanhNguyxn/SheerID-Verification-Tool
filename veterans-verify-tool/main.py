@@ -307,13 +307,19 @@ class VeteransVerifier:
                 "origin": "https://services.sheerid.com"
             }
         
+        # Enhanced headers for ChatGPT API to bypass Cloudflare
         return {
             **base,
             "authorization": f"Bearer {self.access_token}",
             "origin": "https://chatgpt.com",
+            "referer": "https://chatgpt.com/",
+            # Critical headers for Cloudflare bypass
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            # OpenAI specific headers
             "oai-device-id": str(uuid.uuid4()),
             "oai-language": "en-US",
-            "referer": "https://chatgpt.com/veterans-claim"
         }
     
     def create_verification(self):

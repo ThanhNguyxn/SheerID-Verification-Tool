@@ -15,7 +15,7 @@ import random
 import hashlib
 from pathlib import Path
 from io import BytesIO
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional, Tuple, Any
 
 try:
     import httpx
@@ -221,11 +221,16 @@ def generate_teacher_badge(first_name: str, last_name: str, school_name: str) ->
 class K12Verifier:
     """K12 Teacher Verification"""
     
-    def __init__(self, verification_url: str):
+    def __init__(self, verification_url: str, proxy: str = None):
         self.verification_url = verification_url
         self.verification_id = self._parse_verification_id(verification_url)
         self.device_fingerprint = generate_fingerprint()
-        self.client = httpx.Client(timeout=30.0)
+        
+        proxies = None
+        if proxy:
+            proxies = {"http://": proxy, "https://": proxy}
+            
+        self.client = httpx.Client(timeout=30.0, proxies=proxies)
     
     def __del__(self):
         if hasattr(self, "client"):
@@ -363,6 +368,8 @@ class K12Verifier:
             )
             
             if status != 200 or not isinstance(data, dict) or not data.get("documents"):
+                print(f"   [ERROR] Upload init failed. Status: {status}")
+                print(f"   [DEBUG] Response: {json.dumps(data)}")
                 return {"success": False, "error": "Failed to get upload URL"}
             
             upload_url = data["documents"][0].get("uploadUrl")
@@ -402,8 +409,14 @@ def main():
     print("=" * 55)
     print()
     
-    if len(sys.argv) > 1:
-        url = sys.argv[1]
+    import argparse
+    parser = argparse.ArgumentParser(description="K12 Teacher Verification Tool")
+    parser.add_argument("url", nargs="?", help="Verification URL")
+    parser.add_argument("--proxy", help="Proxy URL (e.g., http://user:pass@host:port)")
+    args = parser.parse_args()
+
+    if args.url:
+        url = args.url
     else:
         url = input("Enter verification URL: ").strip()
     
@@ -412,8 +425,10 @@ def main():
         return
     
     print(f"\n[INFO] Processing URL...")
+    if args.proxy:
+        print(f"[INFO] Using proxy: {args.proxy}")
     
-    verifier = K12Verifier(url)
+    verifier = K12Verifier(url, proxy=args.proxy)
     result = verifier.verify()
     
     print()

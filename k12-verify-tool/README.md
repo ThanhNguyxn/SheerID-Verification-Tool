@@ -38,6 +38,21 @@ pip install httpx Pillow
 python main.py "https://services.sheerid.com/verify/xxx?verificationId=abc123"
 ```
 
+### 5. Run with Proxy (Optional)
+
+```bash
+python main.py --proxy "http://user:pass@host:port"
+```
+
+---
+
+## 🛠 CLI Options
+
+| Option | Description |
+|--------|-------------|
+| `url` | Verification URL (optional, can be pasted interactively) |
+| `--proxy` | HTTP/HTTPS proxy URL (e.g., `http://user:pass@host:port`) |
+
 ---
 
 ## 🧠 Intelligent Strategy: K12 Teacher

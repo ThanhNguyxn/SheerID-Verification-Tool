@@ -291,13 +291,25 @@ class PerplexityVerifier:
     
     @staticmethod
     def _parse_id(url: str) -> Optional[str]:
+        # Format 1: verificationId=XXX (query param)
         match = re.search(r"verificationId=([a-f0-9]+)", url, re.IGNORECASE)
-        return match.group(1) if match else None
+        if match:
+            return match.group(1)
+        # Format 2: /verify/PROGRAM_ID/?verificationId=XXX or /verify/XXX (direct ID in path)
+        match = re.search(r"/verify/([a-f0-9]{24,})/?\?", url, re.IGNORECASE)
+        if match:
+            # This is program ID, not verification ID, skip
+            pass
+        # Format 3: Direct verification ID in URL (no verificationId param)
+        match = re.search(r"/verification/([a-f0-9]+)", url, re.IGNORECASE)
+        if match:
+            return match.group(1)
+        return None
 
     @staticmethod
     def _parse_program_id(url: str) -> Optional[str]:
         # Extract program ID from URL: https://services.sheerid.com/verify/PROGRAM_ID/...
-        match = re.search(r"/verify/([a-f0-9]+)/", url, re.IGNORECASE)
+        match = re.search(r"/verify/([a-f0-9]+)/?", url, re.IGNORECASE)
         return match.group(1) if match else None
     
     def _request(self, method: str, endpoint: str, body: Dict = None) -> Tuple[Dict, int]:

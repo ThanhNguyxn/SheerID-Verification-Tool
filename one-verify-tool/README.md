@@ -38,7 +38,24 @@ pip install httpx Pillow
 python main.py "https://services.sheerid.com/verify/xxx?verificationId=abc123"
 ```
 
+**With proxy (recommended to avoid fraud detection):**
+```bash
+python main.py "URL" --proxy 123.45.67.89:8080
+python main.py "URL" --proxy http://user:pass@proxy.example.com:8080
+```
+
 ---
+
+## 🛡️ Avoiding Fraud Detection (`fraudRulesReject`)
+
+If you encounter `fraudRulesReject` error, try:
+
+| Solution | Description |
+|----------|-------------|
+| **Residential Proxy** | Use `--proxy` flag with residential IP (not datacenter) |
+| **Wait Between Attempts** | 5-10 minutes between verifications |
+| **Different University** | Tool uses weighted selection for higher success |
+| **Fresh Verification Link** | Get a new link if previous one failed |
 
 ## ⚙️ How It Works
 

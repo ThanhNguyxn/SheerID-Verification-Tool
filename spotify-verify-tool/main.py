@@ -240,7 +240,30 @@ def random_delay():
 
 
 def generate_fingerprint() -> str:
-    components = [str(time.time()), str(random.random()), "1920x1080"]
+    """Generate realistic browser fingerprint to avoid fraud detection"""
+    # Realistic screen resolutions
+    resolutions = ["1920x1080", "1366x768", "1536x864", "1440x900", "1280x720", "2560x1440"]
+    # Common timezones
+    timezones = [-8, -7, -6, -5, -4, 0, 1, 2, 3, 5.5, 8, 9, 10]
+    # Common languages
+    languages = ["en-US", "en-GB", "en-CA", "en-AU", "es-ES", "fr-FR", "de-DE", "pt-BR"]
+    # Common platforms
+    platforms = ["Win32", "MacIntel", "Linux x86_64"]
+    # Browser vendors
+    vendors = ["Google Inc.", "Apple Computer, Inc.", ""]
+    
+    components = [
+        str(int(time.time() * 1000)),
+        str(random.random()),
+        random.choice(resolutions),
+        str(random.choice(timezones)),
+        random.choice(languages),
+        random.choice(platforms),
+        random.choice(vendors),
+        str(random.randint(1, 16)),  # hardware concurrency (CPU cores)
+        str(random.randint(2, 32)),  # device memory GB
+        str(random.randint(0, 1)),   # touch support
+    ]
     return hashlib.md5("|".join(components).encode()).hexdigest()
 
 
@@ -315,12 +338,38 @@ def generate_student_id(first: str, last: str, school: str) -> bytes:
 class SpotifyVerifier:
     """Spotify Student Verification with enhanced features"""
     
-    def __init__(self, url: str):
+    def __init__(self, url: str, proxy: str = None):
         self.url = url
         self.vid = self._parse_id(url)
         self.fingerprint = generate_fingerprint()
-        self.client = httpx.Client(timeout=30)
+        
+        # Configure proxy if provided
+        proxies = None
+        if proxy:
+            if not proxy.startswith("http"):
+                proxy = f"http://{proxy}"
+            proxies = {"all://": proxy}
+        
+        self.client = httpx.Client(timeout=30, proxies=proxies)
         self.org = None
+    
+    def __del__(self):
+        if hasattr(self, "client"):
+            self.client.close()
+    
+    @staticmethod
+    def _parse_id(url: str) -> Optional[str]:
+        match = re.search(r"verificationId=([a-f0-9]+)", url, re.IGNORECASE)
+        return match.group(1) if match else None
+    
+    def _request(self, method: str, endpoint: str, body: Dict = None) -> Tuple[Dict, int]:
+        random_delay()
+        try:
+            resp = self.client.request(method, f"{SHEERID_API_URL}{endpoint}", 
+                                       json=body, headers={"Content-Type": "application/json"})
+            return resp.json() if resp.text else {}, resp.status_code
+        except Exception as e:
+            raise Exception(f"Request failed: {e}")
     
     def __del__(self):
         if hasattr(self, "client"):
@@ -462,6 +511,12 @@ class SpotifyVerifier:
 
 # ============ MAIN ============
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Spotify Student Verification Tool")
+    parser.add_argument("url", nargs="?", help="Verification URL")
+    parser.add_argument("--proxy", help="Proxy server (host:port or http://user:pass@host:port)")
+    args = parser.parse_args()
+    
     print()
     print("╔" + "═" * 56 + "╗")
     print("║" + " 🎵 Spotify Student Verification Tool".center(56) + "║")
@@ -470,8 +525,8 @@ def main():
     print()
     
     # Get URL
-    if len(sys.argv) > 1:
-        url = sys.argv[1]
+    if args.url:
+        url = args.url
     else:
         url = input("   Enter verification URL: ").strip()
     
@@ -479,9 +534,13 @@ def main():
         print("\n   ❌ Invalid URL. Must contain sheerid.com")
         return
     
+    # Show proxy info
+    if args.proxy:
+        print(f"   🔒 Using proxy: {args.proxy}")
+    
     print("\n   ⏳ Processing...")
     
-    verifier = SpotifyVerifier(url)
+    verifier = SpotifyVerifier(url, proxy=args.proxy)
     
     # Check link first
     check = verifier.check_link()

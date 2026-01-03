@@ -39,11 +39,38 @@ pip install httpx Pillow
 python main.py "https://services.sheerid.com/verify/xxx?verificationId=abc123"
 ```
 
+**With proxy (recommended to avoid fraud detection):**
+```bash
+python main.py "URL" --proxy 123.45.67.89:8080
+python main.py "URL" --proxy http://user:pass@proxy.example.com:8080
+```
+
 **Interactive mode:**
 ```bash
 python main.py
 # Enter your SheerID URL when prompted
 ```
+
+---
+
+## 🛡️ Avoiding Fraud Detection (`fraudRulesReject`)
+
+If you encounter `fraudRulesReject` error, try these solutions:
+
+### 1. Use Residential Proxy
+```bash
+python main.py "URL" --proxy residential-proxy.com:8080
+```
+- **Datacenter IPs** are more likely to be blocked
+- **Residential proxies** have higher success rate
+
+### 2. Wait Between Attempts
+- Don't run too many verifications in a row
+- Wait at least 5-10 minutes between attempts
+
+### 3. Try Different Universities
+- Some universities have higher success rates
+- The tool uses weighted selection based on historical success
 
 ---
 

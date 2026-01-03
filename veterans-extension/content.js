@@ -5,6 +5,142 @@
     const PROGRAM_ID = '690415d58971e73ca187d8c9';
     const currentUrl = window.location.href;
 
+    // ============ TEMPMAIL API HELPERS ============
+    const TempMailAPI = {
+        // Detect which tempmail service based on email domain
+        getService(email) {
+            if (!email) return null;
+            const domain = email.split('@')[1]?.toLowerCase();
+            if (!domain) return null;
+
+            // Mail.tm domains (common ones)
+            const mailtmDomains = ['mail.tm', 'mail.gw', 'sharklasers.com', 'guerrillamail.com'];
+            // 1secmail domains
+            const secmailDomains = ['1secmail.com', '1secmail.org', '1secmail.net', 'wwjmp.com', 'esiix.com', 'xojxe.com', 'yoggm.com'];
+
+            if (mailtmDomains.some(d => domain.includes(d))) return 'mailtm';
+            if (secmailDomains.some(d => domain === d)) return '1secmail';
+            return null;
+        },
+
+        // Fetch emails from 1secmail
+        async fetch1secmail(email) {
+            try {
+                const [login, domain] = email.split('@');
+                const resp = await fetch(`https://www.1secmail.com/api/v1/?action=getMessages&login=${login}&domain=${domain}`);
+                if (!resp.ok) return [];
+                const messages = await resp.json();
+
+                // Get full content of latest messages
+                const emails = [];
+                for (const msg of messages.slice(0, 5)) {
+                    const msgResp = await fetch(`https://www.1secmail.com/api/v1/?action=readMessage&login=${login}&domain=${domain}&id=${msg.id}`);
+                    if (msgResp.ok) {
+                        const data = await msgResp.json();
+                        emails.push({
+                            id: msg.id,
+                            from: data.from,
+                            subject: data.subject,
+                            content: data.htmlBody || data.body || ''
+                        });
+                    }
+                }
+                return emails;
+            } catch (e) {
+                console.error('[TempMail] 1secmail error:', e);
+                return [];
+            }
+        },
+
+        // Fetch emails from Mail.tm (requires account token)
+        async fetchMailtm(email, token) {
+            try {
+                const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
+                const resp = await fetch('https://api.mail.tm/messages', { headers });
+                if (!resp.ok) return [];
+                const data = await resp.json();
+                const messages = data['hydra:member'] || [];
+
+                const emails = [];
+                for (const msg of messages.slice(0, 5)) {
+                    const msgResp = await fetch(`https://api.mail.tm/messages/${msg.id}`, { headers });
+                    if (msgResp.ok) {
+                        const msgData = await msgResp.json();
+                        let content = msgData.html || [];
+                        if (Array.isArray(content)) content = content.join('');
+                        emails.push({
+                            id: msg.id,
+                            from: msg.from?.address || '',
+                            subject: msg.subject,
+                            content: content
+                        });
+                    }
+                }
+                return emails;
+            } catch (e) {
+                console.error('[TempMail] Mail.tm error:', e);
+                return [];
+            }
+        },
+
+        // Extract SheerID verification token from email content
+        extractToken(content) {
+            if (!content) return null;
+            // Look for emailToken in URL
+            const tokenMatch = content.match(/emailToken=(\d+)/i);
+            if (tokenMatch) return tokenMatch[1];
+            // Look for verification link
+            const linkMatch = content.match(/href="([^"]*sheerid[^"]*emailToken=\d+[^"]*)"/i);
+            if (linkMatch) {
+                const tokenMatch2 = linkMatch[1].match(/emailToken=(\d+)/i);
+                if (tokenMatch2) return tokenMatch2[1];
+            }
+            return null;
+        },
+
+        // Poll for verification email
+        async pollForEmail(email, token, maxAttempts = 20, interval = 5000) {
+            const service = this.getService(email);
+            if (!service) {
+                console.log('[TempMail] Email domain not supported:', email);
+                return null;
+            }
+
+            console.log(`[TempMail] Polling ${service} for verification email...`);
+
+            for (let i = 0; i < maxAttempts; i++) {
+                console.log(`[TempMail] Check ${i + 1}/${maxAttempts}...`);
+
+                let emails = [];
+                if (service === '1secmail') {
+                    emails = await this.fetch1secmail(email);
+                } else if (service === 'mailtm') {
+                    emails = await this.fetchMailtm(email, token);
+                }
+
+                // Look for SheerID email
+                for (const mail of emails) {
+                    if (mail.from?.toLowerCase().includes('sheerid') ||
+                        mail.subject?.toLowerCase().includes('verification') ||
+                        mail.content?.toLowerCase().includes('sheerid')) {
+                        const emailToken = this.extractToken(mail.content);
+                        if (emailToken) {
+                            console.log('[TempMail] Found verification token:', emailToken);
+                            return emailToken;
+                        }
+                    }
+                }
+
+                if (i < maxAttempts - 1) {
+                    await new Promise(r => setTimeout(r, interval));
+                }
+            }
+
+            console.log('[TempMail] No verification email found');
+            return null;
+        }
+    };
+
     // Check if plugin is enabled
     async function isPluginEnabled() {
         const stored = await chrome.storage.local.get(['pluginEnabled']);
@@ -431,6 +567,40 @@
             if (submitBtn) {
                 console.log('[Veterans] Clicking submit...');
                 submitBtn.click();
+
+                // 10. Check if TempMail is being used - start polling for verification email
+                if (data.email && TempMailAPI.getService(data.email)) {
+                    console.log('[Veterans] TempMail detected, starting email poll...');
+
+                    // Wait for page to transition to emailLoop step
+                    await new Promise(r => setTimeout(r, 5000));
+
+                    // Get Mail.tm token if stored
+                    const tempMailStored = await chrome.storage.local.get(['mailtmToken']);
+
+                    // Poll for verification email
+                    const emailToken = await TempMailAPI.pollForEmail(data.email, tempMailStored.mailtmToken);
+
+                    if (emailToken) {
+                        console.log('[Veterans] Auto-submitting email token:', emailToken);
+
+                        // Find and fill the token input
+                        const tokenInput = document.querySelector('input[name*="token"], input[id*="token"], input[type="text"]');
+                        if (tokenInput) {
+                            setInputValue(tokenInput, emailToken);
+                            await new Promise(r => setTimeout(r, 500));
+
+                            // Click verify button
+                            const verifyBtn = document.querySelector('button[type="submit"], button[id*="submit"], button[class*="submit"]');
+                            if (verifyBtn) {
+                                verifyBtn.click();
+                                console.log('[Veterans] Token submitted!');
+                            }
+                        }
+                    } else {
+                        console.log('[Veterans] Could not find verification email. Manual check required.');
+                    }
+                }
             }
         }
 

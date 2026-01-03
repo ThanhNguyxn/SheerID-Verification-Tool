@@ -23,6 +23,7 @@
 | 📊 **Statistics** | Track Success / Failed / Skipped |
 | 📤 **Export/Import** | Backup and restore config |
 | 💾 **Persistence** | Save config & track entries |
+| 📧 **TempMail Support** | Auto-verify with 1secmail, Mail.tm |
 
 ---
 
@@ -98,6 +99,28 @@ JANE|SMITH|Navy|1990-03-20|2025-08-15
 - ✅ Success = Verification passed
 - ❌ Failed = Error, will auto-retry
 - ⏭️ Skipped = Data was skipped
+
+---
+
+## 📧 TempMail Auto-Verify
+
+The extension can automatically check TempMail inboxes for verification emails and submit the token.
+
+### Supported TempMail Services
+
+| Service | Domains |
+|---------|---------|
+| **1secmail** | 1secmail.com, 1secmail.org, 1secmail.net, wwjmp.com, esiix.com |
+| **Mail.tm** | mail.tm, mail.gw |
+
+### How It Works
+
+1. Enter a TempMail email address in the Email field (e.g., `myname@1secmail.com`)
+2. The extension will auto-detect the TempMail service
+3. After form submission, it polls the TempMail API for verification email
+4. When found, it extracts the token and auto-submits
+
+> **Note:** For Mail.tm, you may need to create the account first on mail.tm website.
 
 ---
 

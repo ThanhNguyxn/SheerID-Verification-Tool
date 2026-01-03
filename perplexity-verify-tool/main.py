@@ -304,6 +304,14 @@ class PerplexityVerifier:
         match = re.search(r"/verification/([a-f0-9]+)", url, re.IGNORECASE)
         if match:
             return match.group(1)
+            
+        # Check for externalUserId (Landing URL)
+        if "externalUserId" in url:
+            print("\n   ⚠️  WARNING: You provided the initial landing URL.")
+            print("      Please wait for the form to fully load in the browser.")
+            print("      The URL should change to include 'verificationId=...'")
+            return None
+            
         return None
 
     @staticmethod

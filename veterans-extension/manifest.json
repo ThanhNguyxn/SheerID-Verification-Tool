@@ -13,7 +13,9 @@
         "https://*.sheerid.com/*",
         "https://*.openai.com/*",
         "https://chatgpt.com/*",
-        "https://services.sheerid.com/*"
+        "https://services.sheerid.com/*",
+        "https://api.mail.tm/*",
+        "https://www.1secmail.com/*"
     ],
     "content_scripts": [
         {

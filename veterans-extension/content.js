@@ -13,8 +13,8 @@
             const domain = email.split('@')[1]?.toLowerCase();
             if (!domain) return null;
 
-            // Mail.tm domains (common ones)
-            const mailtmDomains = ['mail.tm', 'mail.gw', 'sharklasers.com', 'guerrillamail.com'];
+            // Mail.tm domains (common ones + airsworld.net)
+            const mailtmDomains = ['mail.tm', 'mail.gw', 'sharklasers.com', 'guerrillamail.com', 'airsworld.net'];
             // 1secmail domains
             const secmailDomains = ['1secmail.com', '1secmail.org', '1secmail.net', 'wwjmp.com', 'esiix.com', 'xojxe.com', 'yoggm.com'];
 
@@ -48,6 +48,9 @@
                 return emails;
             } catch (e) {
                 console.error('[TempMail] 1secmail error:', e);
+                if (e.message.includes('403')) {
+                    console.log('[TempMail] 1secmail blocked. Please use mail.tm (Generate Email button in popup).');
+                }
                 return [];
             }
         },
@@ -100,7 +103,9 @@
 
         // Poll for verification email
         async pollForEmail(email, token, maxAttempts = 20, interval = 5000) {
-            const service = this.getService(email);
+            // If we have a token, it's definitely mail.tm (regardless of domain)
+            let service = token ? 'mailtm' : this.getService(email);
+
             if (!service) {
                 console.log('[TempMail] Email domain not supported:', email);
                 return null;

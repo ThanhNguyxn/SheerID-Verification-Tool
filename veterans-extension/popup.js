@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         failCount: document.getElementById('failCount'),
         skipCount: document.getElementById('skipCount'),
         exportBtn: document.getElementById('exportBtn'),
-        importBtn: document.getElementById('importBtn')
+        importBtn: document.getElementById('importBtn'),
+        genEmailBtn: document.getElementById('genEmailBtn')
     };
 
     // Load saved data
@@ -160,4 +161,60 @@ document.addEventListener('DOMContentLoaded', async () => {
             updateStats(message.stat);
         }
     });
+
+    // Generate Email Button
+    if (elements.genEmailBtn) {
+        elements.genEmailBtn.addEventListener('click', async () => {
+            elements.genEmailBtn.textContent = '...';
+            elements.genEmailBtn.disabled = true;
+
+            try {
+                // 1. Get domains
+                const domainResp = await fetch('https://api.mail.tm/domains');
+                if (!domainResp.ok) throw new Error('Failed to get domains');
+                const domainData = await domainResp.json();
+                const domains = domainData['hydra:member'];
+                const domain = domains[Math.floor(Math.random() * domains.length)].domain;
+
+                // 2. Create account
+                const username = 'user' + Math.random().toString(36).substring(7);
+                const password = Math.random().toString(36).substring(2) + 'A1!';
+                const email = `${username}@${domain}`;
+
+                const accResp = await fetch('https://api.mail.tm/accounts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ address: email, password: password })
+                });
+
+                if (!accResp.ok) throw new Error('Failed to create account');
+
+                // 3. Get token
+                const tokenResp = await fetch('https://api.mail.tm/token', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ address: email, password: password })
+                });
+
+                if (!tokenResp.ok) throw new Error('Failed to get token');
+                const tokenData = await tokenResp.json();
+                const token = tokenData.token;
+
+                // 4. Save
+                elements.email.value = email;
+                await chrome.storage.local.set({
+                    email: email,
+                    mailtmToken: token
+                });
+
+                showStatus('✅ Generated mail.tm email!', 'success');
+            } catch (err) {
+                console.error(err);
+                showStatus('❌ Failed to generate email', 'error');
+            } finally {
+                elements.genEmailBtn.textContent = 'Generate';
+                elements.genEmailBtn.disabled = false;
+            }
+        });
+    }
 });

@@ -78,6 +78,43 @@ Common IMAP servers:
 | 126.com | imap.126.com | 993 |
 | Naver | imap.naver.com | 993 |
 | Daum | imap.daum.net | 993 |
+| Comcast | imap.comcast.net | 993 |
+| AT&T | imap.mail.att.net | 993 |
+| Verizon | pop.verizon.net | 995 |
+| Earthlink | imap.earthlink.net | 143 |
+| Cox | imap.cox.net | 993 |
+| Charter/Spectrum | mobile.charter.net | 993 |
+| BellSouth | imap.mail.yahoo.com | 993 |
+| Shaw.ca | imap.shaw.ca | 993 |
+| Telus.net | imap.telus.net | 993 |
+| Rogers.com | imap.mail.yahoo.com | 993 |
+| Orange.fr | imap.orange.fr | 993 |
+| Wanadoo.fr | imap.wanadoo.fr | 993 |
+| Free.fr | imap.free.fr | 993 |
+| SFR.fr | imap.sfr.fr | 993 |
+| Laposte.net | imap.laposte.net | 993 |
+| Web.de | imap.web.de | 993 |
+| T-Online.de | secureimap.t-online.de | 993 |
+| Freenet.de | mx.freenet.de | 993 |
+| Mail.ru | imap.mail.ru | 993 |
+| Libero.it | imapmail.libero.it | 993 |
+| Virgilio.it | in.virgilio.it | 993 |
+| Alice.it | in.alice.it | 993 |
+| Tin.it | box.tin.it | 143 |
+| Bol.com.br | imap.bol.com.br | 993 |
+| Terra.com.br | imap.terra.com.br | 993 |
+| UOL.com.br | imap.uol.com.br | 993 |
+| IG.com.br | imap.ig.com.br | 993 |
+| Rediffmail | imap.rediffmail.com | 993 |
+| Indiatimes | imap.indiatimes.com | 993 |
+| BigPond | imap.telstra.com | 993 |
+| Optus | mail.optusnet.com.au | 993 |
+| NetEase (163) | imap.163.com | 993 |
+| NetEase (126) | imap.126.com | 993 |
+| NetEase (yeah) | imap.yeah.net | 993 |
+| Sohu | imap.sohu.com | 993 |
+| 21cn | imap.21cn.com | 993 |
+| Aliyun | imap.aliyun.com | 993 |
 
 > **Note:** Most providers require "App Password" or "Less secure apps" enabled. Gmail specifically requires App Password with 2FA enabled.
 

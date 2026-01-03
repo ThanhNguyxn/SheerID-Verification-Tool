@@ -54,7 +54,7 @@ Or download ZIP and extract.
 
 ---
 
-## � How to Use (Step-by-Step)
+## 📚 How to Use (Step-by-Step)
 
 ### Step 1: Login to ChatGPT
 
@@ -144,7 +144,7 @@ The extension can automatically check TempMail inboxes for verification emails a
 
 ---
 
-## � Workflow Diagram
+## 📚 Workflow Diagram
 
 ```
 📍 You visit: chatgpt.com/veterans-claim
@@ -176,7 +176,7 @@ The extension can automatically check TempMail inboxes for verification emails a
 
 ---
 
-## � Error Detection
+## 🔍 Error Detection
 
 The extension automatically detects and handles these errors:
 
@@ -218,7 +218,7 @@ This means SheerID couldn't verify the data. Possible causes:
 
 ---
 
-## � Files
+## 📁 Files
 
 ```
 veterans-extension/

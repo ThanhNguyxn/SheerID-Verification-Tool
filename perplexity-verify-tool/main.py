@@ -89,86 +89,22 @@ class Stats:
 stats = Stats()
 
 
-# ============ UNIVERSITIES WITH WEIGHTS ============
-# NOTE: As of Jan 2026, new Perplexity student sign-ups are US-ONLY
-# Other countries may work for existing users but new sign-ups restricted
+# ============ UNIVERSITY ============
+# STRATEGY: Netherlands IP + Groningen = click SSO portal then cancel = instant docUpload!
+# This bypass works as of Jan 2026
 
-UNIVERSITIES = [
-    # =========== USA - HIGH PRIORITY ===========
-    # These have highest success rates for new sign-ups
-    {"id": 2565, "name": "Pennsylvania State University-Main Campus", "domain": "psu.edu", "weight": 100},
-    {"id": 3499, "name": "University of California, Los Angeles", "domain": "ucla.edu", "weight": 98},
-    {"id": 3491, "name": "University of California, Berkeley", "domain": "berkeley.edu", "weight": 97},
-    {"id": 1953, "name": "Massachusetts Institute of Technology", "domain": "mit.edu", "weight": 95},
-    {"id": 3113, "name": "Stanford University", "domain": "stanford.edu", "weight": 95},
-    {"id": 2285, "name": "New York University", "domain": "nyu.edu", "weight": 96},
-    {"id": 1426, "name": "Harvard University", "domain": "harvard.edu", "weight": 92},
-    {"id": 590759, "name": "Yale University", "domain": "yale.edu", "weight": 90},
-    {"id": 2626, "name": "Princeton University", "domain": "princeton.edu", "weight": 90},
-    {"id": 698, "name": "Columbia University", "domain": "columbia.edu", "weight": 92},
-    {"id": 3508, "name": "University of Chicago", "domain": "uchicago.edu", "weight": 88},
-    {"id": 943, "name": "Duke University", "domain": "duke.edu", "weight": 88},
-    {"id": 751, "name": "Cornell University", "domain": "cornell.edu", "weight": 90},
-    {"id": 2420, "name": "Northwestern University", "domain": "northwestern.edu", "weight": 88},
-    # More US Universities
-    {"id": 3568, "name": "University of Michigan", "domain": "umich.edu", "weight": 95},
-    {"id": 3686, "name": "University of Texas at Austin", "domain": "utexas.edu", "weight": 94},
-    {"id": 1217, "name": "Georgia Institute of Technology", "domain": "gatech.edu", "weight": 93},
-    {"id": 602, "name": "Carnegie Mellon University", "domain": "cmu.edu", "weight": 92},
-    {"id": 3477, "name": "University of California, San Diego", "domain": "ucsd.edu", "weight": 93},
-    {"id": 3600, "name": "University of North Carolina at Chapel Hill", "domain": "unc.edu", "weight": 90},
-    {"id": 3645, "name": "University of Southern California", "domain": "usc.edu", "weight": 91},
-    {"id": 3629, "name": "University of Pennsylvania", "domain": "upenn.edu", "weight": 90},
-    {"id": 1603, "name": "Indiana University Bloomington", "domain": "iu.edu", "weight": 88},
-    {"id": 2506, "name": "Ohio State University", "domain": "osu.edu", "weight": 90},
-    {"id": 2700, "name": "Purdue University", "domain": "purdue.edu", "weight": 89},
-    {"id": 3761, "name": "University of Washington", "domain": "uw.edu", "weight": 90},
-    {"id": 3770, "name": "University of Wisconsin-Madison", "domain": "wisc.edu", "weight": 88},
-    {"id": 3562, "name": "University of Maryland", "domain": "umd.edu", "weight": 87},
-    {"id": 519, "name": "Boston University", "domain": "bu.edu", "weight": 86},
-    {"id": 378, "name": "Arizona State University", "domain": "asu.edu", "weight": 92},
-    {"id": 3521, "name": "University of Florida", "domain": "ufl.edu", "weight": 90},
-    {"id": 3535, "name": "University of Illinois at Urbana-Champaign", "domain": "illinois.edu", "weight": 91},
-    {"id": 3557, "name": "University of Minnesota Twin Cities", "domain": "umn.edu", "weight": 88},
-    {"id": 3483, "name": "University of California, Davis", "domain": "ucdavis.edu", "weight": 89},
-    {"id": 3487, "name": "University of California, Irvine", "domain": "uci.edu", "weight": 88},
-    {"id": 3502, "name": "University of California, Santa Barbara", "domain": "ucsb.edu", "weight": 87},
-    # Community Colleges (may have higher success)
-    {"id": 2874, "name": "Santa Monica College", "domain": "smc.edu", "weight": 85},
-    {"id": 2350, "name": "Northern Virginia Community College", "domain": "nvcc.edu", "weight": 84},
-    
-    # =========== OTHER COUNTRIES (Lower priority - may not work for new sign-ups) ===========
-    # Canada
-    {"id": 328355, "name": "University of Toronto", "domain": "utoronto.ca", "weight": 40},
-    {"id": 328315, "name": "University of British Columbia", "domain": "ubc.ca", "weight": 38},
-    # UK
-    {"id": 273409, "name": "University of Oxford", "domain": "ox.ac.uk", "weight": 35},
-    {"id": 273378, "name": "University of Cambridge", "domain": "cam.ac.uk", "weight": 35},
-    # India (likely blocked for new sign-ups)
-    {"id": 10007277, "name": "Indian Institute of Technology Delhi", "domain": "iitd.ac.in", "weight": 20},
-    {"id": 3819983, "name": "University of Mumbai", "domain": "mu.ac.in", "weight": 15},
-    # Australia
-    {"id": 345301, "name": "The University of Melbourne", "domain": "unimelb.edu.au", "weight": 30},
-    {"id": 345303, "name": "The University of Sydney", "domain": "sydney.edu.au", "weight": 28},
-]
+GRONINGEN = {"id": 291085, "name": "University of Groningen", "domain": "rug.nl"}
 
 
+def select_groningen() -> Dict:
+    """Select University of Groningen for NL IP bypass"""
+    return {**GRONINGEN, "idExtended": str(GRONINGEN["id"])}
+
+
+# Alias for compatibility
 def select_university() -> Dict:
-    """Weighted random selection based on success rates"""
-    weights = []
-    for uni in UNIVERSITIES:
-        weight = uni["weight"] * (stats.get_rate(uni["name"]) / 50)
-        weights.append(max(1, weight))
-    
-    total = sum(weights)
-    r = random.uniform(0, total)
-    
-    cumulative = 0
-    for uni, weight in zip(UNIVERSITIES, weights):
-        cumulative += weight
-        if r <= cumulative:
-            return {**uni, "idExtended": str(uni["id"])}
-    return {**UNIVERSITIES[0], "idExtended": str(UNIVERSITIES[0]["id"])}
+    """Always returns Groningen for this tool"""
+    return select_groningen()
 
 
 # ============ UTILITIES ============
@@ -224,53 +160,101 @@ def generate_birth_date() -> str:
 
 
 # ============ DOCUMENT GENERATOR ============
-def generate_student_id(first: str, last: str, school: str) -> bytes:
-    """Generate fake student ID card"""
-    w, h = 650, 400
+def generate_groningen_invoice(first: str, last: str, dob: str) -> bytes:
+    """Generate Groningen tuition fee invoice (matching Canva template)"""
+    w, h = 595, 842  # A4 size at 72 DPI
     img = Image.new("RGB", (w, h), (255, 255, 255))
     draw = ImageDraw.Draw(img)
     
     try:
-        font_lg = ImageFont.truetype("arial.ttf", 24)
-        font_md = ImageFont.truetype("arial.ttf", 18)
-        font_sm = ImageFont.truetype("arial.ttf", 14)
+        font_title = ImageFont.truetype("arial.ttf", 28)
+        font_header = ImageFont.truetype("arial.ttf", 14)
+        font_text = ImageFont.truetype("arial.ttf", 12)
+        font_small = ImageFont.truetype("arial.ttf", 10)
     except:
-        font_lg = font_md = font_sm = ImageFont.load_default()
+        font_title = font_header = font_text = font_small = ImageFont.load_default()
     
-    # Header
-    draw.rectangle([(0, 0), (w, 60)], fill=(0, 51, 102))
-    draw.text((w//2, 30), "STUDENT IDENTIFICATION CARD", fill=(255, 255, 255), font=font_lg, anchor="mm")
+    # Colors matching Groningen branding
+    rug_red = (200, 16, 46)  # University of Groningen red
+    dark_gray = (51, 51, 51)
+    light_gray = (128, 128, 128)
     
-    # School
-    draw.text((w//2, 90), school[:50], fill=(0, 51, 102), font=font_md, anchor="mm")
+    # Header - University of Groningen
+    draw.text((40, 40), "University of Groningen", fill=rug_red, font=font_title)
+    draw.text((40, 75), "Dienst Financiële en Economische Zaken", fill=light_gray, font=font_small)
     
-    # Photo placeholder
-    draw.rectangle([(30, 120), (150, 280)], outline=(180, 180, 180), width=2)
-    draw.text((90, 200), "PHOTO", fill=(180, 180, 180), font=font_md, anchor="mm")
+    # Title
+    draw.text((40, 130), "TUITION FEE INVOICE", fill=dark_gray, font=font_header)
+    draw.line([(40, 155), (555, 155)], fill=rug_red, width=2)
     
-    # Info
-    student_id = f"STU{random.randint(100000, 999999)}"
-    y = 130
-    for line in [f"Name: {first} {last}", f"ID: {student_id}", "Status: Full-time Student",
-                 "Major: Computer Science", f"Valid: {time.strftime('%Y')}-{int(time.strftime('%Y'))+1}"]:
-        draw.text((175, y), line, fill=(51, 51, 51), font=font_md)
-        y += 28
+    # Student info section
+    student_id = f"S{random.randint(3000000, 3999999)}"
+    current_year = int(time.strftime("%Y"))
+    academic_year = f"{current_year}-{current_year + 1}"
+    
+    y = 180
+    info_lines = [
+        ("Student number:", student_id),
+        ("Name:", f"{first} {last}"),
+        ("Date of birth:", dob),
+        ("For academic year:", academic_year),
+    ]
+    
+    for label, value in info_lines:
+        draw.text((40, y), label, fill=light_gray, font=font_text)
+        draw.text((180, y), value, fill=dark_gray, font=font_text)
+        y += 25
+    
+    # Tuition fees section
+    y += 20
+    draw.text((40, y), "TUITION FEES", fill=dark_gray, font=font_header)
+    y += 30
+    
+    # Fee table
+    tuition_fee = f"€ {random.randint(2200, 2400)},00"
+    draw.text((40, y), "Statutory tuition fee", fill=dark_gray, font=font_text)
+    draw.text((450, y), tuition_fee, fill=dark_gray, font=font_text)
+    y += 25
+    
+    draw.line([(40, y), (555, y)], fill=light_gray, width=1)
+    y += 10
+    draw.text((40, y), "Total amount due", fill=dark_gray, font=font_header)
+    draw.text((450, y), tuition_fee, fill=rug_red, font=font_header)
+    
+    # Payment info
+    y += 50
+    draw.text((40, y), "Payment details:", fill=dark_gray, font=font_header)
+    y += 25
+    
+    bank_info = [
+        ("Bank:", "Rabobank"),
+        ("IBAN:", f"NL{random.randint(10, 99)} RABO 0{random.randint(100000000, 999999999)}"),
+        ("BIC:", "RABONL2U"),
+        ("Reference:", f"TF{current_year}{random.randint(10000, 99999)}"),
+    ]
+    
+    for label, value in bank_info:
+        draw.text((40, y), label, fill=light_gray, font=font_text)
+        draw.text((120, y), value, fill=dark_gray, font=font_text)
+        y += 20
     
     # Footer
-    draw.rectangle([(0, h-40), (w, h)], fill=(0, 51, 102))
-    draw.text((w//2, h-20), "Property of University", fill=(255, 255, 255), font=font_sm, anchor="mm")
-    
-    # Barcode
-    for i in range(20):
-        x = 480 + i * 7
-        draw.rectangle([(x, 280), (x+3, 280+random.randint(30, 50))], fill=(0, 0, 0))
-    
-    # Add Perplexity specific watermark/style if needed
-    # For now, generic student ID is fine
+    draw.line([(40, h - 80), (555, h - 80)], fill=light_gray, width=1)
+    draw.text((40, h - 65), "Rijksuniversiteit Groningen", fill=light_gray, font=font_small)
+    draw.text((40, h - 50), "Broerstraat 5, 9712 CP Groningen, Netherlands", fill=light_gray, font=font_small)
+    draw.text((40, h - 35), "www.rug.nl", fill=rug_red, font=font_small)
     
     buf = BytesIO()
     img.save(buf, format="PNG")
     return buf.getvalue()
+
+
+# Legacy alias
+def generate_student_id(first: str, last: str, school: str) -> bytes:
+    """Generate document for verification - now uses Groningen invoice"""
+    # Generate DOB for ~2005 (student age)
+    dob = f"2005-{random.randint(1, 12):02d}-{random.randint(1, 28):02d}"
+    return generate_groningen_invoice(first, last, dob)
 
 
 # ============ VERIFIER ============
@@ -356,7 +340,7 @@ class PerplexityVerifier:
             return {"valid": False, "error": "Already pending review"}
         return {"valid": False, "error": f"Invalid step: {step}"}
     
-    def verify(self) -> Dict:
+    def verify(self, use_groningen: bool = False) -> Dict:
         """Run full verification"""
         if not self.vid:
             return {"success": False, "error": "Invalid verification URL"}
@@ -368,7 +352,9 @@ class PerplexityVerifier:
             
             # Generate info
             first, last = generate_name()
-            self.org = select_university()
+            # Use pre-set org (from --groningen flag) or select randomly
+            if not self.org:
+                self.org = select_groningen() if use_groningen else select_university()
             email = generate_email(first, last, self.org["domain"])
             dob = generate_birth_date()
             
@@ -465,6 +451,8 @@ class PerplexityVerifier:
 
 # ============ MAIN ============
 def main():
+    import argparse
+    
     print()
     print("╔" + "═" * 56 + "╗")
     print("║" + " 🤖 Perplexity AI Verification Tool".center(56) + "║")
@@ -472,9 +460,15 @@ def main():
     print("╚" + "═" * 56 + "╝")
     print()
     
+    parser = argparse.ArgumentParser(description="Perplexity AI Student Verification Tool")
+    parser.add_argument("url", nargs="?", help="SheerID verification URL")
+    parser.add_argument("--groningen", "-g", action="store_true", 
+                        help="Use Groningen bypass (requires Netherlands IP)")
+    args = parser.parse_args()
+    
     # Get URL
-    if len(sys.argv) > 1:
-        url = sys.argv[1]
+    if args.url:
+        url = args.url
     else:
         print("   💡 TIP: To get the verification URL:")
         print("   1. Go to Perplexity student verification page")
@@ -488,9 +482,19 @@ def main():
         print("\n   ❌ Invalid URL. Must contain sheerid.com")
         return
     
+    # Show strategy being used
+    if args.groningen:
+        print("\n   🇳🇱 Using GRONINGEN BYPASS strategy!")
+        print("   Requires: Netherlands IP + SSO portal cancel")
+    
     print("\n   ⏳ Processing...")
     
     verifier = PerplexityVerifier(url)
+    
+    # Override university selection if using Groningen bypass
+    if args.groningen:
+        verifier.org = select_groningen()
+        print(f"   🏫 Forced: {verifier.org['name']}")
     
     # Check link first
     check = verifier.check_link()
@@ -498,7 +502,7 @@ def main():
         print(f"\n   ❌ Link Error: {check.get('error')}")
         return
     
-    result = verifier.verify()
+    result = verifier.verify(use_groningen=args.groningen)
     
     print()
     print("─" * 58)

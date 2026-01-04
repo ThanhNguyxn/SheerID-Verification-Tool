@@ -108,3 +108,25 @@ Questo progetto è solo a **scopo educativo**. Gli strumenti dimostrano come fun
 ## 🤝 Contribuire
 
 I contributi sono benvenuti! Sentiti libero di inviare una Pull Request.
+
+---
+
+## 🦊 Partner Ufficiale: RoxyBrowser
+
+🛡 **Protezione Anti-Rilevamento** — Impronta digitale unica per ogni account, sembrano dispositivi reali diversi.
+
+📉 **Previeni Collegamento** — Impedisce a SheerID e piattaforme di collegare i tuoi account.
+
+🚀 **Ideale per Utenti di Massa** — Gestisci in sicurezza centinaia di account verificati.
+
+[![Prova Gratuita](https://img.shields.io/badge/Prova%20Gratuita-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
+
+---
+
+## 🌐 Lingue
+
+| 🇺🇸 [English](../README.md) | 🇻🇳 [Tiếng Việt](./README.vi.md) | 🇨🇳 [中文](./README.zh.md) | 🇯🇵 [日本語](./README.ja.md) | 🇰🇷 [한국어](./README.ko.md) |
+|:---:|:---:|:---:|:---:|:---:|
+| 🇪🇸 [Español](./README.es.md) | 🇫🇷 [Français](./README.fr.md) | 🇩🇪 [Deutsch](./README.de.md) | 🇧🇷 [Português](./README.pt-BR.md) | 🇷🇺 [Русский](./README.ru.md) |
+| 🇸🇦 [العربية](./README.ar.md) | 🇮🇳 [हिन्दी](./README.hi.md) | 🇹🇭 [ไทย](./README.th.md) | 🇹🇷 [Türkçe](./README.tr.md) | 🇵🇱 [Polski](./README.pl.md) |
+| 🇮🇹 [Italiano](./README.it.md) | 🇮🇩 [Bahasa Indonesia](./README.id.md) | | | |

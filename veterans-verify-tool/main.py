@@ -227,6 +227,11 @@ class EmailClient:
             return True
         except Exception as e:
             print(f"   [ERROR] Email connection failed: {e}")
+            self.conn = None  # Reset connection on failure
+            if "LOGIN failed" in str(e):
+                print("   [TIP] Check your email/password.")
+                print("         - If using Gmail/Outlook/Yahoo with 2FA, use an App Password.")
+                print("         - Check if IMAP is enabled in your email settings.")
             return False
     
     def get_latest_emails(self, count=5):

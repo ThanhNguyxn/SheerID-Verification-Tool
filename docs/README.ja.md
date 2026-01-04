@@ -108,3 +108,34 @@ Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動�
 ## 🤝 貢献
 
 貢献は大歓迎です！プルリクエストを送信してください。
+
+---
+
+## 🦊 公式パートナー: RoxyBrowser
+
+🛡 **アンチ検出保護** — 各アカウントに固有のフィンガープリントを持ち、異なる実際のデバイスのように見えます。
+
+📉 **リンケージ防止** — SheerIDやプラットフォームがアカウントを関連付けることを阻止します。
+
+🚀 **大量ユーザーに最適** — 数百の認証済みアカウントを安全に管理できます。
+
+[![無料トライアル](https://img.shields.io/badge/無料トライアル-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
+
+---
+
+## ⚠️ 免責事項
+
+このプロジェクトは**教育目的のみ**です。これらのツールは、認証システムがどのように機能し、どのようにテストできるかを示しています。
+- 詐欺目的で使用しないでください。
+- 作成者は誤用について一切の責任を負いません。
+- すべてのプラットフォームの利用規約を尊重してください。
+
+---
+
+## 🌐 言語
+
+| 🇺🇸 [English](../README.md) | 🇻🇳 [Tiếng Việt](./README.vi.md) | 🇨🇳 [中文](./README.zh.md) | 🇯🇵 [日本語](./README.ja.md) | 🇰🇷 [한국어](./README.ko.md) |
+|:---:|:---:|:---:|:---:|:---:|
+| 🇪🇸 [Español](./README.es.md) | 🇫🇷 [Français](./README.fr.md) | 🇩🇪 [Deutsch](./README.de.md) | 🇧🇷 [Português](./README.pt-BR.md) | 🇷🇺 [Русский](./README.ru.md) |
+| 🇸🇦 [العربية](./README.ar.md) | 🇮🇳 [हिन्दी](./README.hi.md) | 🇹🇭 [ไทย](./README.th.md) | 🇹🇷 [Türkçe](./README.tr.md) | 🇵🇱 [Polski](./README.pl.md) |
+| 🇮🇹 [Italiano](./README.it.md) | 🇮🇩 [Bahasa Indonesia](./README.id.md) | | | |

@@ -321,14 +321,50 @@ SheerID has a **12-month rule** for ChatGPT Plus:
 
 ---
 
-### 🔴 Email Issues
+### 🔴 Email Connection Failed
 
-| Issue | Solution |
-|-------|----------|
-| Gmail blocked | Use App Password (Security → App passwords) |
-| 2FA required | Generate app-specific password |
-| Connection timeout | Check firewall, try different port |
-| No emails received | Check spam folder, wait longer |
+If you see `[ERROR] Email connection failed: b'LOGIN failed.'`, your email provider rejected the login.
+
+**Common Causes:**
+1. **2-Step Verification (2FA) is ON**: You cannot use your regular password. You MUST use an **App Password**.
+2. **IMAP is OFF**: You must enable IMAP in your email settings.
+3. **Less Secure Apps**: Some providers block third-party apps unless you allow them.
+
+**How to fix (by provider):**
+
+#### Gmail
+1. Go to [Google Account Security](https://myaccount.google.com/security).
+2. Enable **2-Step Verification**.
+3. Go to **App Passwords** (search for it in the search bar).
+4. Create new app password (Select "Mail" and "Windows Computer").
+5. Use this 16-character password in `config.json`.
+
+#### Outlook / Hotmail
+1. Go to [Microsoft Account Security](https://account.live.com/proofs/manage/additional).
+2. Enable **Two-step verification**.
+3. Scroll down to **App passwords**.
+4. Create a new app password and use it in `config.json`.
+
+#### Yahoo Mail
+1. Go to Account Security.
+2. Generate a **Third-party app password**.
+3. Use that password.
+
+#### iCloud
+1. Go to appleid.apple.com.
+2. Generate an **App-Specific Password**.
+
+> **Note:** If you still get errors, check if your firewall/antivirus is blocking the connection.
+
+### 🛠 Debugging Tool
+
+If you are unsure why the email connection is failing, run the included debug script:
+
+```bash
+python debug_email.py
+```
+
+This will test the connection to your email server and print detailed error messages to help you identify the problem (e.g., wrong password, blocked IP, SSL issues).
 
 
 ---

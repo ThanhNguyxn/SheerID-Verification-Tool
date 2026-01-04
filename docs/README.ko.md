@@ -108,3 +108,34 @@
 ## 🤝 기여
 
 기여는 언제나 환영합니다! Pull Request를 보내주세요.
+
+---
+
+## 🦊 공식 파트너: RoxyBrowser
+
+🛡 **안티 탐지 보호** — 각 계정마다 고유한 핑거프린트를 가지며, 다른 실제 기기처럼 보입니다.
+
+📉 **연결 방지** — SheerID와 플랫폼이 계정을 연결하는 것을 방지합니다.
+
+🚀 **대량 사용자에 적합** — 수백 개의 인증된 계정을 안전하게 관리합니다.
+
+[![무료 체험](https://img.shields.io/badge/무료%20체험-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
+
+---
+
+## ⚠️ 면책 조항
+
+이 프로젝트는 **교육 목적으로만** 제공됩니다. 이 도구는 인증 시스템의 작동 방식과 테스트 방법을 보여줍니다.
+- 사기 목적으로 사용하지 마십시오.
+- 작성자는 오용에 대해 책임을 지지 않습니다.
+- 모든 플랫폼의 서비스 약관을 준수하십시오.
+
+---
+
+## 🌐 언어
+
+| 🇺🇸 [English](../README.md) | 🇻🇳 [Tiếng Việt](./README.vi.md) | 🇨🇳 [中文](./README.zh.md) | 🇯🇵 [日本語](./README.ja.md) | 🇰🇷 [한국어](./README.ko.md) |
+|:---:|:---:|:---:|:---:|:---:|
+| 🇪🇸 [Español](./README.es.md) | 🇫🇷 [Français](./README.fr.md) | 🇩🇪 [Deutsch](./README.de.md) | 🇧🇷 [Português](./README.pt-BR.md) | 🇷🇺 [Русский](./README.ru.md) |
+| 🇸🇦 [العربية](./README.ar.md) | 🇮🇳 [हिन्दी](./README.hi.md) | 🇹🇭 [ไทย](./README.th.md) | 🇹🇷 [Türkçe](./README.tr.md) | 🇵🇱 [Polski](./README.pl.md) |
+| 🇮🇹 [Italiano](./README.it.md) | 🇮🇩 [Bahasa Indonesia](./README.id.md) | | | |

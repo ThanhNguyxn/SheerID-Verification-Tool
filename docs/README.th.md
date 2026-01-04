@@ -108,3 +108,25 @@
 ## 🤝 การมีส่วนร่วม
 
 ยินดีต้อนรับการมีส่วนร่วม! โปรดส่ง Pull Request
+
+---
+
+## 🦊 พันธมิตรอย่างเป็นทางการ: RoxyBrowser
+
+🛡 **การป้องกันการตรวจจับ** — ลายนิ้วมือเฉพาะสำหรับแต่ละบัญชี ดูเหมือนอุปกรณ์จริงที่แตกต่างกัน
+
+📉 **ป้องกันการเชื่อมโยง** — หยุด SheerID และแพลตฟอร์มจากการเชื่อมโยงบัญชีของคุณ
+
+🚀 **เหมาะสำหรับผู้ใช้จำนวนมาก** — จัดการบัญชีที่ยืนยันแล้วหลายร้อยบัญชีอย่างปลอดภัย
+
+[![ทดลองใช้ฟรี](https://img.shields.io/badge/ทดลองใช้ฟรี-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
+
+---
+
+## 🌐 ภาษา
+
+| 🇺🇸 [English](../README.md) | 🇻🇳 [Tiếng Việt](./README.vi.md) | 🇨🇳 [中文](./README.zh.md) | 🇯🇵 [日本語](./README.ja.md) | 🇰🇷 [한국어](./README.ko.md) |
+|:---:|:---:|:---:|:---:|:---:|
+| 🇪🇸 [Español](./README.es.md) | 🇫🇷 [Français](./README.fr.md) | 🇩🇪 [Deutsch](./README.de.md) | 🇧🇷 [Português](./README.pt-BR.md) | 🇷🇺 [Русский](./README.ru.md) |
+| 🇸🇦 [العربية](./README.ar.md) | 🇮🇳 [हिन्दी](./README.hi.md) | 🇹🇭 [ไทย](./README.th.md) | 🇹🇷 [Türkçe](./README.tr.md) | 🇵🇱 [Polski](./README.pl.md) |
+| 🇮🇹 [Italiano](./README.it.md) | 🇮🇩 [Bahasa Indonesia](./README.id.md) | | | |

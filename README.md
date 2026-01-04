@@ -97,6 +97,18 @@ The tools follow a standardized "Waterfall" process:
 
 ---
 
+## 🦊 Official Partner: RoxyBrowser
+
+🛡 **Anti-Detect Protection** — Unique fingerprint for each account, looks like different real devices.
+
+📉 **Prevent Linkage** — Stops SheerID and platforms from linking your accounts.
+
+🚀 **Ideal for Bulk Users** — Safely manage hundreds of verified accounts.
+
+[![Try for free](https://img.shields.io/badge/Try%20for%20free-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
+
+---
+
 ## ⚠️ Disclaimer
 
 This project is for **educational purposes only**. The tools demonstrate how verification systems work and how they can be tested.
@@ -109,3 +121,13 @@ This project is for **educational purposes only**. The tools demonstrate how ver
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+
+## 🌐 Translations
+
+| 🇺🇸 [English](./README.md) | 🇻🇳 [Tiếng Việt](./docs/README.vi.md) | 🇨🇳 [中文](./docs/README.zh.md) | 🇯🇵 [日本語](./docs/README.ja.md) | 🇰🇷 [한국어](./docs/README.ko.md) |
+|:---:|:---:|:---:|:---:|:---:|
+| 🇪🇸 [Español](./docs/README.es.md) | 🇫🇷 [Français](./docs/README.fr.md) | 🇩🇪 [Deutsch](./docs/README.de.md) | 🇧🇷 [Português](./docs/README.pt-BR.md) | 🇷🇺 [Русский](./docs/README.ru.md) |
+| 🇸🇦 [العربية](./docs/README.ar.md) | 🇮🇳 [हिन्दी](./docs/README.hi.md) | 🇹🇭 [ไทย](./docs/README.th.md) | 🇹🇷 [Türkçe](./docs/README.tr.md) | 🇵🇱 [Polski](./docs/README.pl.md) |
+| 🇮🇹 [Italiano](./docs/README.it.md) | 🇮🇩 [Bahasa Indonesia](./docs/README.id.md) | | | |

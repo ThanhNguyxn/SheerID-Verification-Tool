@@ -96,6 +96,18 @@ Các công cụ tuân theo quy trình "Thác nước" (Waterfall) tiêu chuẩn:
 
 ---
 
+## 🦊 Đối Tác Chính Thức: RoxyBrowser
+
+🛡 **Chống Phát Hiện** — Mỗi tài khoản có fingerprint riêng biệt, trông như trên các thiết bị khác nhau.
+
+📉 **Ngăn Liên Kết** — Ngăn SheerID và các nền tảng liên kết các tài khoản của bạn.
+
+🚀 **Lý Tưởng Cho Người Dùng Số Lượng Lớn** — Quản lý an toàn hàng trăm tài khoản đã xác minh.
+
+[![Dùng thử miễn phí](https://img.shields.io/badge/Dùng%20thử%20miễn%20phí-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
+
+---
+
 ## ⚠️ Tuyên Bố Miễn Trừ Trách Nhiệm
 
 Dự án này chỉ dành cho **mục đích giáo dục**. Các công cụ minh họa cách hệ thống xác minh hoạt động và cách chúng có thể được kiểm thử.
@@ -108,3 +120,13 @@ Dự án này chỉ dành cho **mục đích giáo dục**. Các công cụ minh
 ## 🤝 Đóng Góp
 
 Hoan nghênh mọi đóng góp! Vui lòng gửi Pull Request.
+
+---
+
+## 🌐 Ngôn Ngữ
+
+| 🇺🇸 [English](../README.md) | 🇻🇳 [Tiếng Việt](./README.vi.md) | 🇨🇳 [中文](./README.zh.md) | 🇯🇵 [日本語](./README.ja.md) | 🇰🇷 [한국어](./README.ko.md) |
+|:---:|:---:|:---:|:---:|:---:|
+| 🇪🇸 [Español](./README.es.md) | 🇫🇷 [Français](./README.fr.md) | 🇩🇪 [Deutsch](./README.de.md) | 🇧🇷 [Português](./README.pt-BR.md) | 🇷🇺 [Русский](./README.ru.md) |
+| 🇸🇦 [العربية](./README.ar.md) | 🇮🇳 [हिन्दी](./README.hi.md) | 🇹🇭 [ไทย](./README.th.md) | 🇹🇷 [Türkçe](./README.tr.md) | 🇵🇱 [Polski](./README.pl.md) |
+| 🇮🇹 [Italiano](./README.it.md) | 🇮🇩 [Bahasa Indonesia](./README.id.md) | | | |

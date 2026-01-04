@@ -160,6 +160,14 @@ def generate_fingerprint() -> str:
 
 
 # ============ IMAGE GENERATOR ============
+def generate_white_image() -> bytes:
+    """Generate pure white image for bypass when stuck on emailLoop"""
+    img = Image.new("RGB", (100, 100), color=(255, 255, 255))
+    buffer = BytesIO()
+    img.save(buffer, format="PNG")
+    return buffer.getvalue()
+
+
 def generate_teacher_badge(first_name: str, last_name: str, school_name: str) -> bytes:
     """Generate fake K12 teacher badge PNG"""
     width, height = 500, 350
@@ -351,6 +359,20 @@ class K12Verifier:
                         "auto_pass": True
                     }
             
+            # Handle emailLoop step - API does NOT allow docUpload when stuck here!
+            # SheerID requires clicking email verification link before allowing doc upload
+            # Return special status so caller can request new link and retry
+            if current_step == "emailLoop":
+                print(f"\n   ⚠️  emailLoop triggered for: {school['name']}")
+                print(f"      This school/data combo requires email verification")
+                return {
+                    "success": False,
+                    "email_loop": True,
+                    "school": school["name"],
+                    "teacher": f"{first_name} {last_name}",
+                    "error": "emailLoop - need new verification link"
+                }
+            
             # Step 4: Upload document
             print("   -> Step 4/4: Uploading teacher badge...")
             step4_body = {
@@ -437,6 +459,22 @@ def main():
         print("  [SUCCESS] Verification submitted!")
         print(f"  Teacher: {result.get('teacher')}")
         print(f"  Email: {result.get('email')}")
+        print("-" * 55)
+    elif result.get("email_loop"):
+        print("-" * 55)
+        print("  ⚠️  EMAIL VERIFICATION REQUIRED")
+        print("-" * 55)
+        print(f"  School: {result.get('school')}")
+        print(f"  Teacher: {result.get('teacher')}")
+        print()
+        print("  This school/data combination triggered SheerID's")
+        print("  email verification loop. The API does not allow")
+        print("  bypassing this step.")
+        print()
+        print("  📋 SOLUTION:")
+        print("  1. Get a NEW verification link from ChatGPT K12 page")
+        print("  2. Run this tool again with the new link")
+        print("  3. Tool will use DIFFERENT random data which may auto-pass")
         print("-" * 55)
     else:
         print(f"  [FAILED] {result.get('error')}")

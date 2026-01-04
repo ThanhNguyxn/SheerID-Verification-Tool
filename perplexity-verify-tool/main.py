@@ -160,101 +160,246 @@ def generate_birth_date() -> str:
 
 
 # ============ DOCUMENT GENERATOR ============
+# Get assets directory
+ASSETS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
+
+
+def generate_from_pdf(first: str, last: str, dob: str) -> bytes:
+    """Generate invoice by replacing text in PDF template using PyMuPDF"""
+    import fitz  # PyMuPDF
+    
+    pdf_path = os.path.join(ASSETS_DIR, "docs.pdf")
+    doc = fitz.open(pdf_path)
+    page = doc[0]
+    
+    # Generate random values
+    student_num = str(random.randint(5000000, 5999999))
+    current_year = int(time.strftime("%Y"))
+    academic_year = f"{current_year}-{current_year + 1}"
+    tuition = f"€{random.randint(10, 12)},{random.randint(100, 999)}.00"
+    
+    # Text replacements: (old_text, new_text)
+    replacements = [
+        ("7777777", student_num),
+        ("Safouane Rodermond", f"{first} {last}"),
+        ("7 July 2005", dob),
+        ("2025-2026", academic_year),
+        ("THANH NGUYXN", f"{first.upper()} {last.upper()}"),
+        ("€11,200.00", tuition),
+    ]
+    
+    # Collect positions before redacting
+    positions = {}
+    for old_text, new_text in replacements:
+        areas = page.search_for(old_text)
+        if areas:
+            positions[old_text] = (areas[0], new_text)
+    
+    # Apply redactions (white boxes over old text)
+    for old_text, new_text in replacements:
+        areas = page.search_for(old_text)
+        for rect in areas:
+            page.add_redact_annot(rect, fill=(1, 1, 1))
+    page.apply_redactions()
+    
+    # Insert new text at saved positions
+    for old_text, (rect, new_text) in positions.items():
+        text_point = fitz.Point(rect.x0, rect.y1 - 2)
+        page.insert_text(text_point, new_text, fontsize=10, color=(0, 0, 0))
+    
+    # Convert to PNG
+    pix = page.get_pixmap(matrix=fitz.Matrix(2, 2))  # 2x for high quality
+    
+    # Convert pixmap to bytes
+    return pix.tobytes("png")
+
+
+# Legacy function - now uses PDF method
+def generate_from_template(first: str, last: str, dob: str) -> bytes:
+    """Generate invoice from PDF template (wrapper for generate_from_pdf)"""
+    return generate_from_pdf(first, last, dob)
+
+
 def generate_groningen_invoice(first: str, last: str, dob: str) -> bytes:
-    """Generate Groningen tuition fee invoice (matching Canva template)"""
+    """Generate Groningen tuition fee invoice (EXACT match to Canva template)"""
     w, h = 595, 842  # A4 size at 72 DPI
     img = Image.new("RGB", (w, h), (255, 255, 255))
     draw = ImageDraw.Draw(img)
     
     try:
-        font_title = ImageFont.truetype("arial.ttf", 28)
-        font_header = ImageFont.truetype("arial.ttf", 14)
-        font_text = ImageFont.truetype("arial.ttf", 12)
-        font_small = ImageFont.truetype("arial.ttf", 10)
+        font_uni = ImageFont.truetype("arial.ttf", 16)
+        font_header = ImageFont.truetype("arial.ttf", 10)
+        font_title = ImageFont.truetype("arial.ttf", 12)
+        font_text = ImageFont.truetype("arial.ttf", 10)
+        font_small = ImageFont.truetype("arial.ttf", 8)
+        font_bold = ImageFont.truetype("arialbd.ttf", 10)
     except:
-        font_title = font_header = font_text = font_small = ImageFont.load_default()
+        font_uni = font_header = font_title = font_text = font_small = font_bold = ImageFont.load_default()
     
-    # Colors matching Groningen branding
-    rug_red = (200, 16, 46)  # University of Groningen red
-    dark_gray = (51, 51, 51)
-    light_gray = (128, 128, 128)
+    # Colors
+    rug_red = (204, 0, 0)
+    black = (0, 0, 0)
+    gray = (100, 100, 100)
     
-    # Header - University of Groningen
-    draw.text((40, 40), "University of Groningen", fill=rug_red, font=font_title)
-    draw.text((40, 75), "Dienst Financiële en Economische Zaken", fill=light_gray, font=font_small)
+    # ===== HEADER - LOGO =====
+    try:
+        logo_path = os.path.join(ASSETS_DIR, "groningen_logo.png")
+        logo = Image.open(logo_path)
+        # Resize logo to fit header (width ~180px)
+        logo_ratio = logo.width / logo.height
+        logo_height = 50
+        logo_width = int(logo_height * logo_ratio)
+        logo = logo.resize((logo_width, logo_height), Image.Resampling.LANCZOS)
+        img.paste(logo, (30, 25), logo if logo.mode == 'RGBA' else None)
+    except:
+        # Fallback to text if logo not found
+        draw.rectangle([(40, 30), (65, 70)], fill=rug_red)
+        draw.text((70, 35), "university of", fill=rug_red, font=font_header)
+        draw.text((70, 48), "groningen", fill=rug_red, font=font_uni)
     
-    # Title
-    draw.text((40, 130), "TUITION FEE INVOICE", fill=dark_gray, font=font_header)
-    draw.line([(40, 155), (555, 155)], fill=rug_red, width=2)
+    # Middle header
+    draw.text((200, 35), "university services", fill=gray, font=font_header)
     
-    # Student info section
-    student_id = f"S{random.randint(3000000, 3999999)}"
+    # Right header
+    draw.text((380, 30), "student information and", fill=gray, font=font_header)
+    draw.text((380, 42), "administration", fill=gray, font=font_header)
+    draw.text((380, 56), "050 363 8233", fill=gray, font=font_small)
+    draw.text((380, 68), "www.rug.nl/insandouts", fill=gray, font=font_small)
+    
+    # Address block (right)
+    draw.text((420, 90), "Broerstraat 5", fill=gray, font=font_small)
+    draw.text((420, 100), "Groningen", fill=gray, font=font_small)
+    draw.text((420, 110), "PO Box 72", fill=gray, font=font_small)
+    draw.text((420, 120), "9700 AB Groningen", fill=gray, font=font_small)
+    draw.text((420, 130), "The Netherlands", fill=gray, font=font_small)
+    draw.text((420, 145), "www.rug.nl/SIA", fill=gray, font=font_small)
+    
+    # Recipient name (left)
+    name_full = f"{first.upper()} {last.upper()}"
+    draw.text((40, 100), name_full, fill=black, font=font_title)
+    
+    # ===== DATE & REFERENCE LINE =====
     current_year = int(time.strftime("%Y"))
+    invoice_date = f"{random.randint(1, 28)} {'January February March April May June July August September October November December'.split()[random.randint(0, 11)]} {current_year}"
+    ref_code = f"5Re9fe6r4en6ce{random.randint(10, 99)}"
+    
+    draw.text((40, 180), "Date", fill=gray, font=font_small)
+    draw.text((200, 180), "Concerning", fill=gray, font=font_small)
+    draw.text((450, 180), ref_code, fill=gray, font=font_small)
+    
+    draw.text((40, 192), invoice_date, fill=black, font=font_text)
+    draw.text((200, 192), "Tuition Fees", fill=black, font=font_text)
+    
+    # ===== INVOICE TITLE =====
+    draw.text((40, 215), "Invoice tuition fees", fill=black, font=font_title)
+    
+    # ===== STUDENT INFO =====
+    student_num = str(random.randint(5000000, 5999999))
     academic_year = f"{current_year}-{current_year + 1}"
     
-    y = 180
-    info_lines = [
-        ("Student number:", student_id),
-        ("Name:", f"{first} {last}"),
-        ("Date of birth:", dob),
-        ("For academic year:", academic_year),
+    y = 240
+    labels = ["Student number:", "Name:", "Date of birth:", "For academic year:", "For the study programme(s):", "Tuition fees:"]
+    values = [
+        student_num,
+        f"{first} {last}",
+        dob.replace("-", " ").replace("2005", "2005"),  # Format: 15 May 2005
+        academic_year,
+        "Bachelor International Business (English taught) Full-time\nGroningen",
+        f"€{random.randint(10, 12)},{random.randint(100, 999)}.00"
     ]
     
-    for label, value in info_lines:
-        draw.text((40, y), label, fill=light_gray, font=font_text)
-        draw.text((180, y), value, fill=dark_gray, font=font_text)
-        y += 25
+    for label, value in zip(labels, values):
+        draw.text((40, y), label, fill=black, font=font_text)
+        if "\n" in value:
+            lines = value.split("\n")
+            draw.text((180, y), lines[0], fill=black, font=font_text)
+            draw.text((180, y + 12), lines[1], fill=black, font=font_text)
+            y += 12
+        else:
+            draw.text((180, y), value, fill=black, font=font_text)
+        y += 18
     
-    # Tuition fees section
+    # ===== TRANSFER DETAILS =====
+    y += 15
+    draw.text((40, y), "Transfer details", fill=black, font=font_bold)
+    y += 18
+    
+    iban = f"NL{random.randint(10, 99)}MLKP{random.randint(1000000000, 9999999999)}"
+    transfer_labels = ["Bank account holder:", "IBAN:", "Bank name:", "BIC/SWIFT code:", "Bank address:", "Payment reference:"]
+    transfer_values = [
+        f"Rijksuniversiteit Groningen {iban} ABN",
+        f"AMRO ABNANL2A Gustav Mahlerlaan 10, 1082 PP",
+        "Amsterdam, the Netherlands Tuition fees S5643302, Y.",
+        "Amman",
+        "",
+        ""
+    ]
+    
+    for label, value in zip(transfer_labels, transfer_values):
+        draw.text((40, y), label, fill=black, font=font_text)
+        draw.text((130, y), value, fill=black, font=font_text)
+        y += 14
+    
+    # ===== WARNING TEXT (red) =====
     y += 20
-    draw.text((40, y), "TUITION FEES", fill=dark_gray, font=font_header)
-    y += 30
+    draw.text((40, y), "Make sure to transfer the tuition fees before the starting date of the programme.", fill=rug_red, font=font_text)
+    y += 20
     
-    # Fee table
-    tuition_fee = f"€ {random.randint(2200, 2400)},00"
-    draw.text((40, y), "Statutory tuition fee", fill=dark_gray, font=font_text)
-    draw.text((450, y), tuition_fee, fill=dark_gray, font=font_text)
-    y += 25
+    warning_text = "Please note that if you are a non-EU student who needs an MVV and/or Dutch residence permit,\nplease uphold the deadline that the Immigration Service Desk of the University of Groningen\nhas given to you."
+    for line in warning_text.split("\n"):
+        draw.text((40, y), line, fill=black, font=font_small)
+        y += 12
     
-    draw.line([(40, y), (555, y)], fill=light_gray, width=1)
-    y += 10
-    draw.text((40, y), "Total amount due", fill=dark_gray, font=font_header)
-    draw.text((450, y), tuition_fee, fill=rug_red, font=font_header)
+    # ===== SIGNATURE =====
+    y += 20
+    try:
+        sig_path = os.path.join(ASSETS_DIR, "signature.png")
+        sig = Image.open(sig_path)
+        # Resize signature to fit (width ~100px)
+        sig_ratio = sig.width / sig.height
+        sig_height = 40
+        sig_width = int(sig_height * sig_ratio)
+        sig = sig.resize((sig_width, sig_height), Image.Resampling.LANCZOS)
+        img.paste(sig, (40, y), sig if sig.mode == 'RGBA' else None)
+        y += sig_height + 10
+    except:
+        # Fallback to lines if signature not found
+        draw.line([(40, y), (120, y + 20)], fill=black, width=1)
+        draw.line([(60, y + 5), (100, y + 15)], fill=black, width=1)
+        y += 30
     
-    # Payment info
-    y += 50
-    draw.text((40, y), "Payment details:", fill=dark_gray, font=font_header)
-    y += 25
+    draw.text((40, y), "T.K. Idema", fill=black, font=font_text)
+    y += 12
+    draw.text((40, y), "Head of the Student Information and Administration", fill=black, font=font_text)
     
-    bank_info = [
-        ("Bank:", "Rabobank"),
-        ("IBAN:", f"NL{random.randint(10, 99)} RABO 0{random.randint(100000000, 999999999)}"),
-        ("BIC:", "RABONL2U"),
-        ("Reference:", f"TF{current_year}{random.randint(10000, 99999)}"),
-    ]
-    
-    for label, value in bank_info:
-        draw.text((40, y), label, fill=light_gray, font=font_text)
-        draw.text((120, y), value, fill=dark_gray, font=font_text)
-        y += 20
-    
-    # Footer
-    draw.line([(40, h - 80), (555, h - 80)], fill=light_gray, width=1)
-    draw.text((40, h - 65), "Rijksuniversiteit Groningen", fill=light_gray, font=font_small)
-    draw.text((40, h - 50), "Broerstraat 5, 9712 CP Groningen, Netherlands", fill=light_gray, font=font_small)
-    draw.text((40, h - 35), "www.rug.nl", fill=rug_red, font=font_small)
+    # ===== PAGE NUMBER =====
+    draw.text((40, h - 30), "1 - 1", fill=gray, font=font_small)
     
     buf = BytesIO()
     img.save(buf, format="PNG")
     return buf.getvalue()
 
 
+# Format DOB for display
+def format_dob_display(dob: str) -> str:
+    """Convert 2005-05-15 to 15 May 2005"""
+    months = ["January", "February", "March", "April", "May", "June", 
+              "July", "August", "September", "October", "November", "December"]
+    parts = dob.split("-")
+    if len(parts) == 3:
+        year, month, day = parts
+        return f"{int(day)} {months[int(month)-1]} {year}"
+    return dob
+
+
 # Legacy alias
 def generate_student_id(first: str, last: str, school: str) -> bytes:
     """Generate document for verification - now uses Groningen invoice"""
     # Generate DOB for ~2005 (student age)
-    dob = f"2005-{random.randint(1, 12):02d}-{random.randint(1, 28):02d}"
-    return generate_groningen_invoice(first, last, dob)
+    month = random.randint(1, 12)
+    day = random.randint(1, 28)
+    dob_display = format_dob_display(f"2005-{month:02d}-{day:02d}")
+    return generate_from_pdf(first, last, dob_display)
 
 
 # ============ VERIFIER ============
@@ -340,7 +485,7 @@ class PerplexityVerifier:
             return {"valid": False, "error": "Already pending review"}
         return {"valid": False, "error": f"Invalid step: {step}"}
     
-    def verify(self, use_groningen: bool = False) -> Dict:
+    def verify(self) -> Dict:
         """Run full verification"""
         if not self.vid:
             return {"success": False, "error": "Invalid verification URL"}
@@ -352,9 +497,9 @@ class PerplexityVerifier:
             
             # Generate info
             first, last = generate_name()
-            # Use pre-set org (from --groningen flag) or select randomly
+            # Always use Groningen
             if not self.org:
-                self.org = select_groningen() if use_groningen else select_university()
+                self.org = select_groningen()
             email = generate_email(first, last, self.org["domain"])
             dob = generate_birth_date()
             
@@ -462,8 +607,6 @@ def main():
     
     parser = argparse.ArgumentParser(description="Perplexity AI Student Verification Tool")
     parser.add_argument("url", nargs="?", help="SheerID verification URL")
-    parser.add_argument("--groningen", "-g", action="store_true", 
-                        help="Use Groningen bypass (requires Netherlands IP)")
     args = parser.parse_args()
     
     # Get URL
@@ -482,19 +625,13 @@ def main():
         print("\n   ❌ Invalid URL. Must contain sheerid.com")
         return
     
-    # Show strategy being used
-    if args.groningen:
-        print("\n   🇳🇱 Using GRONINGEN BYPASS strategy!")
-        print("   Requires: Netherlands IP + SSO portal cancel")
+    # Always use Groningen logic
+    print("\n   🇳🇱 Using GRONINGEN BYPASS strategy!")
+    print("   Requires: Netherlands IP + SSO portal cancel")
     
     print("\n   ⏳ Processing...")
     
     verifier = PerplexityVerifier(url)
-    
-    # Override university selection if using Groningen bypass
-    if args.groningen:
-        verifier.org = select_groningen()
-        print(f"   🏫 Forced: {verifier.org['name']}")
     
     # Check link first
     check = verifier.check_link()
@@ -502,7 +639,7 @@ def main():
         print(f"\n   ❌ Link Error: {check.get('error')}")
         return
     
-    result = verifier.verify(use_groningen=args.groningen)
+    result = verifier.verify()
     
     print()
     print("─" * 58)

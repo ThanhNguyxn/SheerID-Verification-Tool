@@ -6,19 +6,28 @@ Automated SheerID verification for Perplexity Pro student discount.
 
 - **Automated Verification**: Generates student info, documents, and handles the verification flow.
 - **Smart University Selection**: Picks universities with high success rates.
+- **Groningen Bypass**: Specialized mode for University of Groningen using high-quality PDF invoice generation.
 - **Success Tracking**: Logs success rates per university to `stats.json`.
 
 ## Requirements
 
 - Python 3.8+
 - `httpx`
-- `Pillow` (for document generation)
+- `Pillow` (for image processing)
+- `PyMuPDF` (for PDF text replacement)
 
 ## Installation
 
 ```bash
-pip install httpx Pillow
+pip install httpx Pillow PyMuPDF
 ```
+
+## Setup
+
+1. Ensure the `assets` folder contains:
+   - `docs.pdf`: The base tuition fee invoice template (University of Groningen).
+   - `groningen_logo.png`: (Optional) Logo for fallback generation.
+   - `signature.png`: (Optional) Signature for fallback generation.
 
 ## Usage
 
@@ -41,12 +50,14 @@ console.log(Array.from(document.querySelectorAll('iframe, embed, object')).map(e
 ### Step 2: Run the Tool
 
 ```bash
-# Option 1: Pass URL as argument
-python main.py "https://services.sheerid.com/verify/...?verificationId=..."
-
-# Option 2: Run interactively (paste URL when prompted)
+# Option 1: Standard run (interactive)
 python main.py
+
+# Option 2: Pass URL as argument
+python main.py "https://services.sheerid.com/verify/...?verificationId=..."
 ```
+
+**Note:** This tool is configured to use the **University of Groningen** bypass strategy by default. You must use a **Netherlands IP address** for this to work.
 
 ## Configuration
 

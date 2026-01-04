@@ -30,6 +30,7 @@
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Birden fazla URL için toplu doğrulama |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Manuel doğrulama için öğrenci kimlik kartları oluşturun |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Öğretmen doğrulaması için maaş bordroları oluşturun |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Anti-tespit tarayıcı** — Yasaklanmadan birden fazla doğrulanmış hesabı güvenle yönetin |
 
 ---
 
@@ -120,6 +121,15 @@ Katkılar memnuniyetle karşılanır! Lütfen bir Pull Request göndermekten çe
 🚀 **Toplu Kullanıcılar için İdeal** — Yüzlerce doğrulanmış hesabı güvenle yönetin.
 
 [![Ücretsiz Dene](https://img.shields.io/badge/Ücretsiz%20Dene-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
+
+---
+
+## ❤️ Destek
+
+Bu projeyi yararlı bulduysanız, beni desteklemeyi düşünün:
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/ThanhNguyxn)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/thanhnguyxn)
 
 ---
 

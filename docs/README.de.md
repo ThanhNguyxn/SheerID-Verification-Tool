@@ -30,6 +30,7 @@ Eine umfassende Sammlung von Tools zur Automatisierung von SheerID-Verifizierung
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Batch-Verifizierung für mehrere URLs |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Erstellen von Studentenausweisen für manuelle Verifizierung |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Erstellen von Gehaltsabrechnungen für Lehrerverifizierung |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Anti-Erkennungs-Browser** — Mehrere verifizierte Konten ohne Sperrung verwalten |
 
 ---
 
@@ -120,6 +121,15 @@ Beiträge sind willkommen! Bitte zögern Sie nicht, einen Pull Request einzureic
 🚀 **Ideal für Großnutzer** — Verwalten Sie sicher hunderte verifizierte Konten.
 
 [![Kostenlos Testen](https://img.shields.io/badge/Kostenlos%20Testen-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
+
+---
+
+## ❤️ Unterstützung
+
+Wenn Sie dieses Projekt hilfreich finden, erwägen Sie bitte, mich zu unterstützen:
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/ThanhNguyxn)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/thanhnguyxn)
 
 ---
 

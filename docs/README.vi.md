@@ -30,6 +30,7 @@ Một bộ công cụ toàn diện để tự động hóa quy trình xác minh 
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Xác minh hàng loạt cho nhiều URL |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Tạo thẻ sinh viên để xác minh thủ công |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Tạo phiếu lương cho xác minh giáo viên |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Trình duyệt chống phát hiện** — Quản lý nhiều tài khoản đã xác minh mà không bị cấm |
 
 ---
 
@@ -120,6 +121,15 @@ Dự án này chỉ dành cho **mục đích giáo dục**. Các công cụ minh
 ## 🤝 Đóng Góp
 
 Hoan nghênh mọi đóng góp! Vui lòng gửi Pull Request.
+
+---
+
+## ❤️ Ủng Hộ
+
+Nếu bạn thấy dự án này hữu ích, hãy cân nhắc ủng hộ tôi:
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/ThanhNguyxn)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/thanhnguyxn)
 
 ---
 

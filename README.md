@@ -31,6 +31,7 @@ A comprehensive collection of tools for automating SheerID verification workflow
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Batch verification for multiple URLs |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Create student cards for manual verification |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Generate payslips for teacher verification |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Anti-detect browser** — Safely manage multiple verified accounts without getting banned |
 
 ---
 
@@ -121,6 +122,15 @@ This project is for **educational purposes only**. The tools demonstrate how ver
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+
+## ❤️ Support
+
+If you find this project helpful, consider supporting me:
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/ThanhNguyxn)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/thanhnguyxn)
 
 ---
 

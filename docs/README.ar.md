@@ -30,6 +30,7 @@
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | التحقق المجمع لعناوين URL متعددة |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | إنشاء بطاقات هوية الطالب للتحقق اليدوي |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | إنشاء قسائم رواتب للتحقق من المعلمين |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **متصفح مضاد للكشف** — إدارة حسابات متعددة تم التحقق منها بأمان دون حظر |
 
 ---
 
@@ -120,6 +121,15 @@
 🚀 **مثالي للمستخدمين بكميات كبيرة** — إدارة مئات الحسابات المُتحقق منها بأمان.
 
 [![تجربة مجانية](https://img.shields.io/badge/تجربة%20مجانية-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
+
+---
+
+## ❤️ الدعم
+
+إذا وجدت هذا المشروع مفيدًا، يرجى التفكير في دعمي:
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/ThanhNguyxn)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/thanhnguyxn)
 
 ---
 

@@ -30,6 +30,7 @@ Koleksi alat komprehensif untuk mengotomatiskan alur kerja verifikasi SheerID un
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Verifikasi batch untuk beberapa URL |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Buat kartu mahasiswa untuk verifikasi manual |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Hasilkan slip gaji untuk verifikasi guru |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Browser anti-deteksi** — Kelola beberapa akun terverifikasi dengan aman tanpa diblokir |
 
 ---
 
@@ -120,6 +121,15 @@ Kontribusi dipersilakan! Jangan ragu untuk mengirimkan Pull Request.
 🚀 **Ideal untuk Pengguna Massal** — Kelola ratusan akun terverifikasi dengan aman.
 
 [![Coba Gratis](https://img.shields.io/badge/Coba%20Gratis-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
+
+---
+
+## ❤️ Dukungan
+
+Jika Anda merasa proyek ini bermanfaat, pertimbangkan untuk mendukung saya:
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/ThanhNguyxn)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/thanhnguyxn)
 
 ---
 

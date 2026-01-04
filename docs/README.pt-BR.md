@@ -30,6 +30,7 @@ Uma coleção abrangente de ferramentas para automatizar fluxos de trabalho de v
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Verificação em lote para várias URLs |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Criar carteiras de estudante para verificação manual |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Gerar contracheques para verificação de professores |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Navegador anti-detecção** — Gerencie múltiplas contas verificadas sem ser banido |
 
 ---
 
@@ -120,6 +121,15 @@ Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request
 🚀 **Ideal para Usuários em Massa** — Gerencie com segurança centenas de contas verificadas.
 
 [![Teste Grátis](https://img.shields.io/badge/Teste%20Grátis-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
+
+---
+
+## ❤️ Apoio
+
+Se você achar este projeto útil, considere me apoiar:
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/ThanhNguyxn)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/thanhnguyxn)
 
 ---
 

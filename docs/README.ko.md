@@ -30,6 +30,7 @@
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 웹 | 여러 URL 일괄 인증 |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 도구 | 수동 인증용 학생증 생성 |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 도구 | 교사 인증용 급여 명세서 생성 |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 브라우저 | **안티 탐지 브라우저** — 밴 없이 여러 인증된 계정을 안전하게 관리 |
 
 ---
 
@@ -129,6 +130,15 @@
 - 사기 목적으로 사용하지 마십시오.
 - 작성자는 오용에 대해 책임을 지지 않습니다.
 - 모든 플랫폼의 서비스 약관을 준수하십시오.
+
+---
+
+## ❤️ 후원
+
+이 프로젝트가 도움이 되었다면 후원을 고려해 주세요:
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/ThanhNguyxn)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/thanhnguyxn)
 
 ---
 

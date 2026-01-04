@@ -30,6 +30,7 @@
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | कई URL के लिए बैच सत्यापन |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | मैन्युअल सत्यापन के लिए छात्र आईडी कार्ड बनाएं |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | शिक्षक सत्यापन के लिए वेतन पर्ची बनाएं |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **एंटी-डिटेक्ट ब्राउज़र** — बैन हुए बिना कई सत्यापित खातों को सुरक्षित रूप से प्रबंधित करें |
 
 ---
 
@@ -120,6 +121,15 @@
 🚀 **बल्क उपयोगकर्ताओं के लिए आदर्श** — सैकड़ों सत्यापित खातों को सुरक्षित रूप से प्रबंधित करें।
 
 [![मुफ्त में आज़माएं](https://img.shields.io/badge/मुफ्त%20में%20आज़माएं-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
+
+---
+
+## ❤️ सहायता
+
+यदि आपको यह परियोजना उपयोगी लगी, तो मुझे सहायता करने पर विचार करें:
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/ThanhNguyxn)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/thanhnguyxn)
 
 ---
 

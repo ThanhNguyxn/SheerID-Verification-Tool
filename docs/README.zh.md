@@ -30,6 +30,7 @@
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | 多个 URL 的批量验证 |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | 创建用于手动验证的学生证 |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | 生成用于教师验证的工资单 |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **反检测浏览器** — 安全管理多个已验证账户而不被封禁 |
 
 ---
 
@@ -120,6 +121,15 @@
 🚀 **适合批量用户** — 安全管理数百个已验证账户。
 
 [![免费试用](https://img.shields.io/badge/免费试用-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
+
+---
+
+## ❤️ 支持
+
+如果您觉得这个项目有帮助，请考虑支持我：
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/ThanhNguyxn)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/thanhnguyxn)
 
 ---
 

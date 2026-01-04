@@ -30,6 +30,7 @@ Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動�
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | 複数のURLの一括認証 |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | 手動認証用の学生証を作成 |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | 教師認証用の給与明細を作成 |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **アンチ検出ブラウザ** — 複数の認証済みアカウントをBANなしで安全に管理 |
 
 ---
 
@@ -129,6 +130,15 @@ Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動�
 - 詐欺目的で使用しないでください。
 - 作成者は誤用について一切の責任を負いません。
 - すべてのプラットフォームの利用規約を尊重してください。
+
+---
+
+## ❤️ サポート
+
+このプロジェクトが役に立った場合は、サポートをご検討ください：
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/ThanhNguyxn)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/thanhnguyxn)
 
 ---
 

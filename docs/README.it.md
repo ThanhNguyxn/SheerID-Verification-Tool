@@ -30,6 +30,7 @@ Una raccolta completa di strumenti per automatizzare i flussi di lavoro di verif
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Verifica in batch per più URL |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Crea tessere studentesche per la verifica manuale |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Genera buste paga per la verifica degli insegnanti |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Browser anti-rilevamento** — Gestisci in sicurezza più account verificati senza ban |
 
 ---
 
@@ -120,6 +121,15 @@ I contributi sono benvenuti! Sentiti libero di inviare una Pull Request.
 🚀 **Ideale per Utenti di Massa** — Gestisci in sicurezza centinaia di account verificati.
 
 [![Prova Gratuita](https://img.shields.io/badge/Prova%20Gratuita-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
+
+---
+
+## ❤️ Supporto
+
+Se trovi utile questo progetto, considera di supportarmi:
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/ThanhNguyxn)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/thanhnguyxn)
 
 ---
 

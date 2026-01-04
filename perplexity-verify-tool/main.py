@@ -152,6 +152,9 @@ def generate_email(first: str, last: str, domain: str) -> str:
     return f"{random.choice(patterns)}@{domain}"
 
 
+
+
+
 def generate_birth_date() -> str:
     year = random.randint(2000, 2006)
     month = random.randint(1, 12)
@@ -411,7 +414,16 @@ class PerplexityVerifier:
         self.vid = self._parse_id(url)
         self.program_id = self._parse_program_id(url)
         self.fingerprint = generate_fingerprint()
-        self.client = httpx.Client(timeout=30)
+        self.client = httpx.Client(
+            timeout=30,
+            headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                "Accept": "application/json",
+                "Accept-Language": "en-US,en;q=0.9",
+                "Origin": "https://services.sheerid.com",
+                "Referer": "https://services.sheerid.com/"
+            }
+        )
         self.org = None
     
     def __del__(self):
@@ -464,6 +476,26 @@ class PerplexityVerifier:
             return 200 <= resp.status_code < 300
         except:
             return False
+
+    def search_organization(self, query: str) -> Optional[Dict]:
+        """Search for organization ID dynamically"""
+        print(f"   🔍 Searching for '{query}'...")
+        # Use global organization search endpoint
+        endpoint = f"/organization?searchTerm={query}&programId={self.program_id}"
+        data, status = self._request("GET", endpoint)
+        
+        if status != 200:
+            print(f"     ⚠️ Search API Error: {status} - {data}")
+            return None
+            
+        if isinstance(data, list):
+            print(f"     ℹ️  Found {len(data)} results")
+            if len(data) > 0:
+                return data[0]
+        else:
+            print(f"     ⚠️ Unexpected search response format: {type(data)}")
+            
+        return None
     
     def check_link(self) -> Dict:
         """Check if verification link is valid"""
@@ -499,8 +531,25 @@ class PerplexityVerifier:
             first, last = generate_name()
             # Always use Groningen
             if not self.org:
-                self.org = select_groningen()
-            email = generate_email(first, last, self.org["domain"])
+                # Try to search dynamically first to get correct ID
+                # Try Dutch name first as seen in user screenshot
+                found_org = self.search_organization("Rijksuniversiteit Groningen")
+                if not found_org:
+                    found_org = self.search_organization("University of Groningen")
+                if not found_org:
+                    found_org = self.search_organization("Groningen")
+                
+                if found_org:
+                    self.org = found_org
+                    # Ensure domain is set (search result might not have it, but we know it's rug.nl)
+                    if "domain" not in self.org:
+                        self.org["domain"] = "rug.nl"
+                    print(f"     ✅ Found Org ID: {self.org['id']}")
+                else:
+                    print("     ⚠️ Search failed, using hardcoded fallback...")
+                    self.org = select_groningen()
+
+            email = generate_email(first, last, self.org.get("domain", "rug.nl"))
             dob = generate_birth_date()
             
             print(f"\n   🎓 Student: {first} {last}")
@@ -528,9 +577,6 @@ class PerplexityVerifier:
                     "metadata": {
                         "marketConsentValue": False,
                         "verificationId": self.vid,
-                        "refererUrl": f"https://services.sheerid.com/verify/{self.program_id}/?verificationId={self.vid}",
-                        "flags": '{"collect-info-step-email-first":"default","doc-upload-considerations":"default","doc-upload-may24":"default","doc-upload-redesign-use-legacy-message-keys":false,"docUpload-assertion-checklist":"default","font-size":"default","include-cvec-field-france-student":"not-labeled-optional"}',
-                        "submissionOptIn": "By submitting the personal information above, I acknowledge that my personal information is being collected under the privacy policy of the business from which I am seeking a discount"
                     }
                 }
                 
@@ -538,6 +584,7 @@ class PerplexityVerifier:
                 
                 if status != 200:
                     stats.record(self.org["name"], False)
+                    print(f"     ❌ Error details: {data}")
                     return {"success": False, "error": f"Submit failed: {status}"}
                 
                 if data.get("currentStep") == "error":
@@ -614,10 +661,10 @@ def main():
         url = args.url
     else:
         print("   💡 TIP: To get the verification URL:")
-        print("   1. Go to Perplexity student verification page")
-        print("   2. Open Console (F12)")
-        print("   3. Run this code:")
-        print("      console.log(Array.from(document.querySelectorAll('iframe, embed, object')).map(el => el.src || el.data).filter(src => src && src.includes('sheerid'))[0]);")
+        print("   1. Open Developer Tools (F12) -> Network tab")
+        print("   2. Filter by 'sheerid'")
+        print("   3. Find request starting with 'verification' or ID")
+        print("   4. Right-click -> Copy URL")
         print()
         url = input("   Enter verification URL: ").strip()
     
@@ -628,6 +675,8 @@ def main():
     # Always use Groningen logic
     print("\n   🇳🇱 Using GRONINGEN BYPASS strategy!")
     print("   Requires: Netherlands IP + SSO portal cancel")
+    
+    print("\n   ⏳ Processing...")
     
     print("\n   ⏳ Processing...")
     

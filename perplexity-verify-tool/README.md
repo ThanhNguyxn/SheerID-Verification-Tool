@@ -36,17 +36,11 @@ pip install httpx Pillow PyMuPDF
 1. **IMPORTANT**: Switch your IP to **Netherlands** (VPN/Proxy) *before* accessing Perplexity.
 2. Go to [Perplexity Settings](https://www.perplexity.ai/settings/account) or the student discount page.
 3. When the SheerID verification popup/iframe appears, open **DevTools** (press `F12`).
-4. Go to the **Console** tab.
-5. Paste and run this JavaScript code:
-
-```javascript
-console.log(Array.from(document.querySelectorAll('iframe, embed, object')).map(el => el.src || el.data).filter(src => src && src.includes('sheerid'))[0]);
-```
-
-6. Copy the URL that appears in the console. It should look like:
-   ```
-   https://services.sheerid.com/verify/XXXXXXX/?verificationId=XXXXXXX
-   ```
+4. Go to the **Network** tab.
+5. Filter by `sheerid`.
+6. Look for a request that starts with `verification` or the ID (e.g., `695a...`).
+7. Right-click the request -> **Copy URL**.
+   - The URL should look like: `https://services.sheerid.com/rest/v2/verification/695a...`
 
 ### Step 2: Run the Tool
 

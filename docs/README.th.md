@@ -24,6 +24,7 @@
 
 | เครื่องมือ | ประเภท | คำอธิบาย |
 |------|------|-------------|
+| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | บอทยืนยันอัตโนมัติโดย [@PastKing](https://github.com/PastKing) |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | บอท Telegram ทางเลือกที่มีการประมวลผลเร็วกว่า |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | บอท Telegram ชุมชนเวียดนาม |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | บอทยืนยันตัวตนทางทหาร |

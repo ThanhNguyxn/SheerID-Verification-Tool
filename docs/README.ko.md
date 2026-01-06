@@ -24,6 +24,7 @@
 
 | 도구 | 유형 | 설명 |
 |------|------|-------------|
+| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 봇 | [@PastKing](https://github.com/PastKing) 개발 자동 인증 봇 |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ 봇 | 더 빠른 처리를 제공하는 대체 텔레그램 봇 |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 봇 | 베트남 커뮤니티 텔레그램 봇 |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ 봇 | 군인 인증 봇 |

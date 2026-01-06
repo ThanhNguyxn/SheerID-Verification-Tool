@@ -24,6 +24,7 @@ Uma coleção abrangente de ferramentas para automatizar fluxos de trabalho de v
 
 | Ferramenta | Tipo | Descrição |
 |------|------|-------------|
+| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | Bot de verificação automática por [@PastKing](https://github.com/PastKing) |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | Bot do Telegram alternativo com processamento mais rápido |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | Bot do Telegram da comunidade vietnamita |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | Bot de verificação militar |

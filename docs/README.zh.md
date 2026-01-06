@@ -24,6 +24,7 @@
 
 | 工具 | 类型 | 描述 |
 |------|------|-------------|
+| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | [@PastKing](https://github.com/PastKing) 开发的自动验证机器人 |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | 处理速度更快的替代 Telegram 机器人 |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | 越南社区 Telegram 机器人 |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | 军事验证机器人 |

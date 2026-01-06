@@ -24,6 +24,7 @@ Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動�
 
 | ツール | タイプ | 説明 |
 |------|------|-------------|
+| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | [@PastKing](https://github.com/PastKing) による自動認証ボット |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | より高速な処理を備えた代替Telegramボット |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | ベトナムコミュニティTelegramボット |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | 軍隊認証ボット |

@@ -162,55 +162,89 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // Generate Email Button
+    // Generate Email Button - supports mail.tm and tinyhost.shop
     if (elements.genEmailBtn) {
         elements.genEmailBtn.addEventListener('click', async () => {
             elements.genEmailBtn.textContent = '...';
             elements.genEmailBtn.disabled = true;
 
+            const provider = document.getElementById('emailProvider')?.value || 'mailtm';
+
             try {
-                // 1. Get domains
-                const domainResp = await fetch('https://api.mail.tm/domains');
-                if (!domainResp.ok) throw new Error('Failed to get domains');
-                const domainData = await domainResp.json();
-                const domains = domainData['hydra:member'];
-                const domain = domains[Math.floor(Math.random() * domains.length)].domain;
+                let email, token;
 
-                // 2. Create account
-                const username = 'user' + Math.random().toString(36).substring(7);
-                const password = Math.random().toString(36).substring(2) + 'A1!';
-                const email = `${username}@${domain}`;
+                if (provider === 'tinyhost') {
+                    // ============ tinyhost.shop - simpler API ============
+                    // Get random domains
+                    const domainResp = await fetch('https://tinyhost.shop/api/random-domains/?limit=5');
+                    if (!domainResp.ok) throw new Error('Failed to get tinyhost domains');
+                    const domainData = await domainResp.json();
+                    const domains = domainData.domains || ['tinyhost.shop'];
+                    const domain = domains[Math.floor(Math.random() * domains.length)];
 
-                const accResp = await fetch('https://api.mail.tm/accounts', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ address: email, password: password })
-                });
+                    // Generate random username
+                    const username = 'user' + Math.random().toString(36).substring(2, 10);
+                    email = `${username}@${domain}`;
 
-                if (!accResp.ok) throw new Error('Failed to create account');
+                    // No account creation needed for tinyhost!
+                    // Save email and provider info
+                    elements.email.value = email;
+                    await chrome.storage.local.set({
+                        email: email,
+                        emailProvider: 'tinyhost',
+                        tinyhostDomain: domain,
+                        tinyhostUser: username
+                    });
 
-                // 3. Get token
-                const tokenResp = await fetch('https://api.mail.tm/token', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ address: email, password: password })
-                });
+                    showStatus(`✅ Generated tinyhost email!`, 'success');
 
-                if (!tokenResp.ok) throw new Error('Failed to get token');
-                const tokenData = await tokenResp.json();
-                const token = tokenData.token;
+                } else {
+                    // ============ mail.tm - original logic ============
+                    // 1. Get domains
+                    const domainResp = await fetch('https://api.mail.tm/domains');
+                    if (!domainResp.ok) throw new Error('Failed to get mail.tm domains');
+                    const domainData = await domainResp.json();
+                    const domains = domainData['hydra:member'];
+                    if (!domains || domains.length === 0) throw new Error('No mail.tm domains available');
+                    const domain = domains[Math.floor(Math.random() * domains.length)].domain;
 
-                // 4. Save
-                elements.email.value = email;
-                await chrome.storage.local.set({
-                    email: email,
-                    mailtmToken: token
-                });
+                    // 2. Create account
+                    const username = 'user' + Math.random().toString(36).substring(7);
+                    const password = Math.random().toString(36).substring(2) + 'A1!';
+                    email = `${username}@${domain}`;
 
-                showStatus('✅ Generated mail.tm email!', 'success');
+                    const accResp = await fetch('https://api.mail.tm/accounts', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ address: email, password: password })
+                    });
+
+                    if (!accResp.ok) throw new Error('Failed to create mail.tm account');
+
+                    // 3. Get token
+                    const tokenResp = await fetch('https://api.mail.tm/token', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ address: email, password: password })
+                    });
+
+                    if (!tokenResp.ok) throw new Error('Failed to get mail.tm token');
+                    const tokenData = await tokenResp.json();
+                    token = tokenData.token;
+
+                    // 4. Save
+                    elements.email.value = email;
+                    await chrome.storage.local.set({
+                        email: email,
+                        emailProvider: 'mailtm',
+                        mailtmToken: token
+                    });
+
+                    showStatus('✅ Generated mail.tm email!', 'success');
+                }
             } catch (err) {
                 console.error(err);
-                showStatus('❌ Failed to generate email', 'error');
+                showStatus(`❌ ${err.message || 'Failed to generate email'}`, 'error');
             } finally {
                 elements.genEmailBtn.textContent = 'Generate';
                 elements.genEmailBtn.disabled = false;

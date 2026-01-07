@@ -12,8 +12,6 @@
 
 | 도구 | 유형 | 대상 | 설명 |
 |------|------|--------|-------------|
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 브라우저 | **안티 탐지 브라우저** — 밴 없이 여러 인증된 계정을 안전하게 관리 |
-| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | **Easiest web solution** — Just paste the URL and get verified instantly |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 학생 | Spotify Premium | 대학생 인증 |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 학생 | YouTube Premium | 대학생 인증 |
 | [one-verify-tool](../one-verify-tool/) | 🤖 학생 | Gemini Advanced | Google One AI Premium 인증 |

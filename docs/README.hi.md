@@ -12,8 +12,6 @@
 
 | उपकरण | प्रकार | लक्ष्य | विवरण |
 |------|------|--------|-------------|
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **एंटी-डिटेक्ट ब्राउज़र** — बैन हुए बिना कई सत्यापित खातों को सुरक्षित रूप से प्रबंधित करें |
-| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | **Easiest web solution** — Just paste the URL and get verified instantly |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 छात्र | Spotify Premium | विश्वविद्यालय छात्र सत्यापन |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 छात्र | YouTube Premium | विश्वविद्यालय छात्र सत्यापन |
 | [one-verify-tool](../one-verify-tool/) | 🤖 छात्र | Gemini Advanced | Google One AI Premium सत्यापन |

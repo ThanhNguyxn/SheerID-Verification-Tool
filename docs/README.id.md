@@ -12,8 +12,6 @@ Koleksi alat komprehensif untuk mengotomatiskan alur kerja verifikasi SheerID un
 
 | Alat | Tipe | Target | Deskripsi |
 |------|------|--------|-------------|
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Browser anti-deteksi** — Kelola beberapa akun terverifikasi dengan aman tanpa diblokir |
-| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | **Easiest web solution** — Just paste the URL and get verified instantly |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 Mahasiswa | Spotify Premium | Verifikasi mahasiswa universitas |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Mahasiswa | YouTube Premium | Verifikasi mahasiswa universitas |
 | [one-verify-tool](../one-verify-tool/) | 🤖 Mahasiswa | Gemini Advanced | Verifikasi Google One AI Premium |

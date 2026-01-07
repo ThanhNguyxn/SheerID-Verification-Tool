@@ -12,8 +12,6 @@ Kompleksowy zestaw narzędzi do automatyzacji przepływów pracy weryfikacji She
 
 | Narzędzie | Typ | Cel | Opis |
 |------|------|--------|-------------|
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Przeglądarka antywykrywania** — Bezpiecznie zarządzaj wieloma zweryfikowanymi kontami bez bana |
-| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | **Easiest web solution** — Just paste the URL and get verified instantly |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 Student | Spotify Premium | Weryfikacja studenta uniwersytetu |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Student | YouTube Premium | Weryfikacja studenta uniwersytetu |
 | [one-verify-tool](../one-verify-tool/) | 🤖 Student | Gemini Advanced | Weryfikacja Google One AI Premium |

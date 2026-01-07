@@ -12,8 +12,6 @@ Una raccolta completa di strumenti per automatizzare i flussi di lavoro di verif
 
 | Strumento | Tipo | Obiettivo | Descrizione |
 |------|------|--------|-------------|
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Browser anti-rilevamento** — Gestisci in sicurezza più account verificati senza ban |
-| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | **Easiest web solution** — Just paste the URL and get verified instantly |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 Studente | Spotify Premium | Verifica studente universitario |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Studente | YouTube Premium | Verifica studente universitario |
 | [one-verify-tool](../one-verify-tool/) | 🤖 Studente | Gemini Advanced | Verifica Google One AI Premium |

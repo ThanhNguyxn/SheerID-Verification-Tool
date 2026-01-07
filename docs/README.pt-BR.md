@@ -12,8 +12,6 @@ Uma coleção abrangente de ferramentas para automatizar fluxos de trabalho de v
 
 | Ferramenta | Tipo | Alvo | Descrição |
 |------|------|--------|-------------|
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Navegador anti-detecção** — Gerencie múltiplas contas verificadas sem ser banido |
-| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | **Easiest web solution** — Just paste the URL and get verified instantly |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 Estudante | Spotify Premium | Verificação de estudante universitário |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Estudante | YouTube Premium | Verificação de estudante universitário |
 | [one-verify-tool](../one-verify-tool/) | 🤖 Estudante | Gemini Advanced | Verificação Google One AI Premium |

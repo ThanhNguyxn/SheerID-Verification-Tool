@@ -12,8 +12,6 @@
 
 | Araç | Tür | Hedef | Açıklama |
 |------|------|--------|-------------|
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Anti-tespit tarayıcı** — Yasaklanmadan birden fazla doğrulanmış hesabı güvenle yönetin |
-| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | **Easiest web solution** — Just paste the URL and get verified instantly |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 Öğrenci | Spotify Premium | Üniversite öğrencisi doğrulaması |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Öğrenci | YouTube Premium | Üniversite öğrencisi doğrulaması |
 | [one-verify-tool](../one-verify-tool/) | 🤖 Öğrenci | Gemini Advanced | Google One AI Premium doğrulaması |

@@ -12,8 +12,6 @@ Una colección completa de herramientas para automatizar los flujos de trabajo d
 
 | Herramienta | Tipo | Objetivo | Descripción |
 |------|------|--------|-------------|
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Navegador anti-detección** — Gestione múltiples cuentas verificadas sin ser baneado |
-| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | **Easiest web solution** — Just paste the URL and get verified instantly |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 Estudiante | Spotify Premium | Verificación de estudiantes universitarios |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Estudiante | YouTube Premium | Verificación de estudiantes universitarios |
 | [one-verify-tool](../one-verify-tool/) | 🤖 Estudiante | Gemini Advanced | Verificación de Google One AI Premium |

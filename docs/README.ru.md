@@ -12,8 +12,6 @@
 
 | Инструмент | Тип | Цель | Описание |
 |------|------|--------|-------------|
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Антидетект браузер** — Безопасное управление несколькими верифицированными аккаунтами без бана |
-| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | **Easiest web solution** — Just paste the URL and get verified instantly |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 Студент | Spotify Premium | Верификация студентов университетов |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Студент | YouTube Premium | Верификация студентов университетов |
 | [one-verify-tool](../one-verify-tool/) | 🤖 Студент | Gemini Advanced | Верификация Google One AI Premium |

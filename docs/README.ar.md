@@ -12,8 +12,6 @@
 
 | الأداة | النوع | الهدف | الوصف |
 |------|------|--------|-------------|
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **متصفح مضاد للكشف** — إدارة حسابات متعددة تم التحقق منها بأمان دون حظر |
-| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | **Easiest web solution** — Just paste the URL and get verified instantly |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 طالب | Spotify Premium | التحقق من طالب جامعي |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 طالب | YouTube Premium | التحقق من طالب جامعي |
 | [one-verify-tool](../one-verify-tool/) | 🤖 طالب | Gemini Advanced | التحقق من Google One AI Premium |

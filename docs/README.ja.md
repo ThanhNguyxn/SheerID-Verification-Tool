@@ -1,4 +1,4 @@
-﻿# 🔐 SheerID認証ツール
+# 🔐 SheerID認証ツール
 
 [![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -12,6 +12,8 @@ Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動�
 
 | ツール | タイプ | ターゲット | 説明 |
 |------|------|--------|-------------|
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **アンチ検出ブラウザ** — 複数の認証済みアカウントをBANなしで安全に管理 |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | RoxyBrowser 内蔵の SheerID 認証ツール |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 学生 | Spotify Premium | 大学生認証 |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 学生 | YouTube Premium | 大学生認証 |
 | [one-verify-tool](../one-verify-tool/) | 🤖 学生 | Gemini Advanced | Google One AI Premium認証 |
@@ -24,14 +26,15 @@ Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動�
 
 | ツール | タイプ | 説明 |
 |------|------|-------------|
-| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | [@PastKing](https://github.com/PastKing) による自動認証ボット |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **アンチ検出ブラウザ** — 複数の認証済みアカウントをBANなしで安全に管理 |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | RoxyBrowser 内蔵の SheerID 認証ツール |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | より高速な処理を備えた代替Telegramボット |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | ベトナムコミュニティTelegramボット |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | 軍隊認証ボット |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | 複数のURLの一括認証 |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | 手動認証用の学生証を作成 |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | 教師認証用の給与明細を作成 |
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **アンチ検出ブラウザ** — 複数の認証済みアカウントをBANなしで安全に管理 |
+
 
 ---
 

@@ -1,4 +1,4 @@
-﻿# 🔐 Ferramenta de Verificação SheerID
+# 🔐 Ferramenta de Verificação SheerID
 
 [![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -12,6 +12,8 @@ Uma coleção abrangente de ferramentas para automatizar fluxos de trabalho de v
 
 | Ferramenta | Tipo | Alvo | Descrição |
 |------|------|--------|-------------|
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Navegador anti-detecção** — Gerencie múltiplas contas verificadas sem ser banido |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | Ferramenta de verificação SheerID da RoxyBrowser |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 Estudante | Spotify Premium | Verificação de estudante universitário |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Estudante | YouTube Premium | Verificação de estudante universitário |
 | [one-verify-tool](../one-verify-tool/) | 🤖 Estudante | Gemini Advanced | Verificação Google One AI Premium |
@@ -24,14 +26,14 @@ Uma coleção abrangente de ferramentas para automatizar fluxos de trabalho de v
 
 | Ferramenta | Tipo | Descrição |
 |------|------|-------------|
-| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | Bot de verificação automática por [@PastKing](https://github.com/PastKing) |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Navegador anti-detecção** — Gerencie múltiplas contas verificadas sem ser banido |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | Ferramenta de verificação SheerID da RoxyBrowser |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | Bot do Telegram alternativo com processamento mais rápido |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | Bot do Telegram da comunidade vietnamita |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | Bot de verificação militar |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Verificação em lote para várias URLs |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Criar carteiras de estudante para verificação manual |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Gerar contracheques para verificação de professores |
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Navegador anti-detecção** — Gerencie múltiplas contas verificadas sem ser banido |
 
 ---
 

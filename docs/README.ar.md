@@ -1,4 +1,4 @@
-﻿# 🔐 أداة التحقق SheerID
+# 🔐 أداة التحقق SheerID
 
 [![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -12,6 +12,8 @@
 
 | الأداة | النوع | الهدف | الوصف |
 |------|------|--------|-------------|
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **متصفح مضاد للكشف** — إدارة حسابات متعددة تم التحقق منها بأمان دون حظر |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | أداة التحقق SheerID من RoxyBrowser |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 طالب | Spotify Premium | التحقق من طالب جامعي |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 طالب | YouTube Premium | التحقق من طالب جامعي |
 | [one-verify-tool](../one-verify-tool/) | 🤖 طالب | Gemini Advanced | التحقق من Google One AI Premium |
@@ -24,14 +26,14 @@
 
 | الأداة | النوع | الوصف |
 |------|------|-------------|
-| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | بوت تحقق تلقائي من [@PastKing](https://github.com/PastKing) |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **متصفح مضاد للكشف** — إدارة حسابات متعددة تم التحقق منها بأمان دون حظر |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | أداة التحقق SheerID من RoxyBrowser |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | بوت Telegram بديل مع معالجة أسرع |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | بوت Telegram للمجتمع الفيتنامي |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | بوت التحقق العسكري |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | التحقق المجمع لعناوين URL متعددة |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | إنشاء بطاقات هوية الطالب للتحقق اليدوي |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | إنشاء قسائم رواتب للتحقق من المعلمين |
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **متصفح مضاد للكشف** — إدارة حسابات متعددة تم التحقق منها بأمان دون حظر |
 
 ---
 

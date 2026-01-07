@@ -1,4 +1,4 @@
-﻿# 🔐 SheerID 验证工具
+# 🔐 SheerID 验证工具
 
 [![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -12,6 +12,8 @@
 
 | 工具 | 类型 | 目标 | 描述 |
 |------|------|--------|-------------|
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **反检测浏览器** — 安全管理多个已验证账户而不被封禁 |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | RoxyBrowser 内置的 SheerID 验证工具 |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 学生 | Spotify Premium | 大学生验证 |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 学生 | YouTube Premium | 大学生验证 |
 | [one-verify-tool](../one-verify-tool/) | 🤖 学生 | Gemini Advanced | Google One AI Premium 验证 |
@@ -24,14 +26,15 @@
 
 | 工具 | 类型 | 描述 |
 |------|------|-------------|
-| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | [@PastKing](https://github.com/PastKing) 开发的自动验证机器人 |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **反检测浏览器** — 安全管理多个已验证账户而不被封禁 |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | RoxyBrowser 内置的 SheerID 验证工具 |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | 处理速度更快的替代 Telegram 机器人 |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | 越南社区 Telegram 机器人 |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | 军事验证机器人 |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | 多个 URL 的批量验证 |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | 创建用于手动验证的学生证 |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | 生成用于教师验证的工资单 |
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **反检测浏览器** — 安全管理多个已验证账户而不被封禁 |
+
 
 ---
 

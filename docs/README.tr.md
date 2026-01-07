@@ -1,4 +1,4 @@
-﻿# 🔐 SheerID Doğrulama Aracı
+# 🔐 SheerID Doğrulama Aracı
 
 [![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -12,6 +12,8 @@
 
 | Araç | Tür | Hedef | Açıklama |
 |------|------|--------|-------------|
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Anti-tespit tarayıcı** — Yasaklanmadan birden fazla doğrulanmış hesabı güvenle yönetin |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | RoxyBrowser tarafından SheerID doğrulama aracı |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 Öğrenci | Spotify Premium | Üniversite öğrencisi doğrulaması |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Öğrenci | YouTube Premium | Üniversite öğrencisi doğrulaması |
 | [one-verify-tool](../one-verify-tool/) | 🤖 Öğrenci | Gemini Advanced | Google One AI Premium doğrulaması |
@@ -24,14 +26,14 @@
 
 | Araç | Tür | Açıklama |
 |------|------|-------------|
-| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | [@PastKing](https://github.com/PastKing) tarafından otomatik doğrulama botu |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Anti-tespit tarayıcı** — Yasaklanmadan birden fazla doğrulanmış hesabı güvenle yönetin |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | RoxyBrowser tarafından SheerID doğrulama aracı |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | Daha hızlı işlem yapan alternatif Telegram botu |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | Vietnam topluluğu Telegram botu |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | Askeri doğrulama botu |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Birden fazla URL için toplu doğrulama |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Manuel doğrulama için öğrenci kimlik kartları oluşturun |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Öğretmen doğrulaması için maaş bordroları oluşturun |
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Anti-tespit tarayıcı** — Yasaklanmadan birden fazla doğrulanmış hesabı güvenle yönetin |
 
 ---
 

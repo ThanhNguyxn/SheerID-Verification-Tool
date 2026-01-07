@@ -1,4 +1,4 @@
-﻿# 🔐 Alat Verifikasi SheerID
+# 🔐 Alat Verifikasi SheerID
 
 [![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -12,6 +12,8 @@ Koleksi alat komprehensif untuk mengotomatiskan alur kerja verifikasi SheerID un
 
 | Alat | Tipe | Target | Deskripsi |
 |------|------|--------|-------------|
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Browser anti-deteksi** — Kelola beberapa akun terverifikasi dengan aman tanpa diblokir |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | Alat verifikasi SheerID dari RoxyBrowser |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 Mahasiswa | Spotify Premium | Verifikasi mahasiswa universitas |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Mahasiswa | YouTube Premium | Verifikasi mahasiswa universitas |
 | [one-verify-tool](../one-verify-tool/) | 🤖 Mahasiswa | Gemini Advanced | Verifikasi Google One AI Premium |
@@ -24,14 +26,14 @@ Koleksi alat komprehensif untuk mengotomatiskan alur kerja verifikasi SheerID un
 
 | Alat | Tipe | Deskripsi |
 |------|------|-------------|
-| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | Bot verifikasi otomatis oleh [@PastKing](https://github.com/PastKing) |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Browser anti-deteksi** — Kelola beberapa akun terverifikasi dengan aman tanpa diblokir |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | Alat verifikasi SheerID dari RoxyBrowser |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | Bot Telegram alternatif dengan pemrosesan lebih cepat |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | Bot Telegram komunitas Vietnam |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | Bot verifikasi militer |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Verifikasi batch untuk beberapa URL |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Buat kartu mahasiswa untuk verifikasi manual |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Hasilkan slip gaji untuk verifikasi guru |
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Browser anti-deteksi** — Kelola beberapa akun terverifikasi dengan aman tanpa diblokir |
 
 ---
 

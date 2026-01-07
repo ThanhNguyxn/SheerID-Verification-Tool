@@ -1,4 +1,4 @@
-﻿# 🔐 Công cụ Xác minh SheerID
+# 🔐 Công cụ Xác minh SheerID
 
 [![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -24,14 +24,15 @@ Một bộ công cụ toàn diện để tự động hóa quy trình xác minh 
 
 | Công cụ | Loại | Mô tả |
 |------|------|-------------|
-| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | Bot xác minh tự động bởi [@PastKing](https://github.com/PastKing) |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Trình duyệt chống phát hiện** — Quản lý nhiều tài khoản đã xác minh mà không bị cấm |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | Công cụ xác minh SheerID bởi RoxyBrowser |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | Bot Telegram thay thế với tốc độ xử lý nhanh hơn |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | Bot Telegram cộng đồng Việt Nam |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | Bot xác minh Quân đội |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Xác minh hàng loạt cho nhiều URL |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Tạo thẻ sinh viên để xác minh thủ công |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Tạo phiếu lương cho xác minh giáo viên |
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Trình duyệt chống phát hiện** — Quản lý nhiều tài khoản đã xác minh mà không bị cấm |
+
 
 ---
 

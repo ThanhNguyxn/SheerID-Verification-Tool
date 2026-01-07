@@ -25,14 +25,14 @@ A comprehensive collection of tools for automating SheerID verification workflow
 
 | Tool | Type | Description |
 |------|------|-------------|
-| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | Automated verification bot by [@PastKing](https://github.com/PastKing) |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Anti-detect browser** — Safely manage multiple verified accounts without getting banned |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | Built-in SheerID verification tool by RoxyBrowser |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | Alternative Telegram bot with faster processing |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | Vietnamese community Telegram bot |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | Military verification bot |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Batch verification for multiple URLs |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Create student cards for manual verification |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Generate payslips for teacher verification |
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Anti-detect browser** — Safely manage multiple verified accounts without getting banned |
 
 ---
 

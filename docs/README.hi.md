@@ -1,4 +1,4 @@
-﻿# 🔐 SheerID सत्यापन उपकरण
+# 🔐 SheerID सत्यापन उपकरण
 
 [![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -12,6 +12,8 @@
 
 | उपकरण | प्रकार | लक्ष्य | विवरण |
 |------|------|--------|-------------|
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **एंटी-डिटेक्ट ब्राउज़र** — बैन हुए बिना कई सत्यापित खातों को सुरक्षित रूप से प्रबंधित करें |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | RoxyBrowser द्वारा SheerID सत्यापन उपकरण |
 | [spotify-verify-tool](../spotify-verify-tool/) | 🎵 छात्र | Spotify Premium | विश्वविद्यालय छात्र सत्यापन |
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 छात्र | YouTube Premium | विश्वविद्यालय छात्र सत्यापन |
 | [one-verify-tool](../one-verify-tool/) | 🤖 छात्र | Gemini Advanced | Google One AI Premium सत्यापन |
@@ -24,14 +26,14 @@
 
 | उपकरण | प्रकार | विवरण |
 |------|------|-------------|
-| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | [@PastKing](https://github.com/PastKing) द्वारा स्वचालित सत्यापन बॉट |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **एंटी-डिटेक्ट ब्राउज़र** — बैन हुए बिना कई सत्यापित खातों को सुरक्षित रूप से प्रबंधित करें |
+| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | RoxyBrowser द्वारा SheerID सत्यापन उपकरण |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | तेज़ प्रसंस्करण के साथ वैकल्पिक टेलीग्राम बॉट |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | वियतनामी समुदाय टेलीग्राम बॉट |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | सैन्य सत्यापन बॉट |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | कई URL के लिए बैच सत्यापन |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | मैन्युअल सत्यापन के लिए छात्र आईडी कार्ड बनाएं |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | शिक्षक सत्यापन के लिए वेतन पर्ची बनाएं |
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **एंटी-डिटेक्ट ब्राउज़र** — बैन हुए बिना कई सत्यापित खातों को सुरक्षित रूप से प्रबंधित करें |
 
 ---
 

@@ -28,6 +28,7 @@
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | بوت Telegram بديل مع معالجة أسرع |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | بوت Telegram للمجتمع الفيتنامي |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | بوت التحقق العسكري |
+| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | بوت التحقق الآلي |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | التحقق المجمع لعناوين URL متعددة |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | إنشاء بطاقات هوية الطالب للتحقق اليدوي |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | إنشاء قسائم رواتب للتحقق من المعلمين |

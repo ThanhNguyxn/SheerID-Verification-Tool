@@ -28,6 +28,7 @@ Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動�
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | より高速な処理を備えた代替Telegramボット |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | ベトナムコミュニティTelegramボット |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | 軍隊認証ボット |
+| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | 自動検証ボット |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | 複数のURLの一括認証 |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | 手動認証用の学生証を作成 |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | 教師認証用の給与明細を作成 |

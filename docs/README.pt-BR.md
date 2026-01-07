@@ -28,6 +28,7 @@ Uma coleção abrangente de ferramentas para automatizar fluxos de trabalho de v
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | Bot do Telegram alternativo com processamento mais rápido |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | Bot do Telegram da comunidade vietnamita |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | Bot de verificação militar |
+| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | Bot de verificação automatizado |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Verificação em lote para várias URLs |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Criar carteiras de estudante para verificação manual |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Gerar contracheques para verificação de professores |

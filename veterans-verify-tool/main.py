@@ -374,12 +374,21 @@ class VeteransVerifier:
             return resp.json().get("verification_id")
         except requests.exceptions.HTTPError as e:
             if resp.status_code == 403:
-                print("   [ERROR] 403 Forbidden - Your accessToken may be expired!")
-                print("           1. Login again to https://chatgpt.com")
-                print("           2. Get new token from https://chatgpt.com/api/auth/session")
-                print("           3. Update accessToken in config.json")
+                print("   [ERROR] 403 Forbidden - AccessToken expired or invalid!")
+                print("")
+                print("   ┌─────────────────────────────────────────────────────┐")
+                print("   │  HOW TO FIX:                                        │")
+                print("   │                                                     │")
+                print("   │  1. Open https://chatgpt.com in your browser        │")
+                print("   │  2. Make sure you are LOGGED IN                     │")
+                print("   │  3. Visit: https://chatgpt.com/api/auth/session     │")
+                print("   │  4. Copy the 'accessToken' value (long string)      │")
+                print("   │  5. Paste into config.json -> accessToken field     │")
+                print("   │  6. Run this tool again                             │")
+                print("   └─────────────────────────────────────────────────────┘")
             elif resp.status_code == 401:
                 print("   [ERROR] 401 Unauthorized - Invalid accessToken!")
+                print("           Please check your accessToken in config.json")
             raise
 
     

@@ -17,9 +17,12 @@
             const mailtmDomains = ['mail.tm', 'mail.gw', 'sharklasers.com', 'guerrillamail.com', 'airsworld.net'];
             // 1secmail domains
             const secmailDomains = ['1secmail.com', '1secmail.org', '1secmail.net', 'wwjmp.com', 'esiix.com', 'xojxe.com', 'yoggm.com'];
+            // tinyhost.shop domains
+            const tinyhostDomains = ['tinyhost.shop', 'smartnomad.net', 'memsg.net', 'mailinator.com'];
 
             if (mailtmDomains.some(d => domain.includes(d))) return 'mailtm';
             if (secmailDomains.some(d => domain === d)) return '1secmail';
+            if (tinyhostDomains.some(d => domain === d || domain.endsWith('.' + d))) return 'tinyhost';
             return null;
         },
 
@@ -86,6 +89,50 @@
             }
         },
 
+        // Fetch emails from tinyhost.shop
+        async fetchTinyhost(email) {
+            try {
+                // tinyhost.shop API: GET /api/inbox/{email}/
+                const resp = await fetch(`https://tinyhost.shop/api/inbox/${encodeURIComponent(email)}/`);
+                if (!resp.ok) {
+                    console.log('[TempMail] tinyhost.shop API error:', resp.status);
+                    return [];
+                }
+                const data = await resp.json();
+                const messages = data.emails || data.messages || data || [];
+
+                const emails = [];
+                for (const msg of (Array.isArray(messages) ? messages : []).slice(0, 5)) {
+                    // Try to get full message content
+                    let content = msg.body || msg.html || msg.text || msg.content || '';
+
+                    // If there's a message ID, try to fetch full content
+                    if (msg.id && !content) {
+                        try {
+                            const msgResp = await fetch(`https://tinyhost.shop/api/inbox/${encodeURIComponent(email)}/${msg.id}/`);
+                            if (msgResp.ok) {
+                                const msgData = await msgResp.json();
+                                content = msgData.body || msgData.html || msgData.text || msgData.content || '';
+                            }
+                        } catch (e) {
+                            console.log('[TempMail] Failed to fetch tinyhost message:', e);
+                        }
+                    }
+
+                    emails.push({
+                        id: msg.id || msg.uid || Date.now(),
+                        from: msg.from || msg.sender || '',
+                        subject: msg.subject || '',
+                        content: content
+                    });
+                }
+                return emails;
+            } catch (e) {
+                console.error('[TempMail] tinyhost.shop error:', e);
+                return [];
+            }
+        },
+
         // Extract SheerID verification token from email content
         extractToken(content) {
             if (!content) return null;
@@ -103,8 +150,16 @@
 
         // Poll for verification email
         async pollForEmail(email, token, maxAttempts = 20, interval = 5000) {
+            // Check storage for provider hint
+            let storedProvider = null;
+            try {
+                const stored = await chrome.storage.local.get(['emailProvider']);
+                storedProvider = stored.emailProvider;
+            } catch (e) { }
+
             // If we have a token, it's definitely mail.tm (regardless of domain)
-            let service = token ? 'mailtm' : this.getService(email);
+            // If stored provider is tinyhost, use that
+            let service = token ? 'mailtm' : (storedProvider === 'tinyhost' ? 'tinyhost' : this.getService(email));
 
             if (!service) {
                 console.log('[TempMail] Email domain not supported:', email);
@@ -121,12 +176,15 @@
                     emails = await this.fetch1secmail(email);
                 } else if (service === 'mailtm') {
                     emails = await this.fetchMailtm(email, token);
+                } else if (service === 'tinyhost') {
+                    emails = await this.fetchTinyhost(email);
                 }
 
                 // Look for SheerID email
                 for (const mail of emails) {
                     if (mail.from?.toLowerCase().includes('sheerid') ||
                         mail.subject?.toLowerCase().includes('verification') ||
+                        mail.subject?.toLowerCase().includes('openai') ||
                         mail.content?.toLowerCase().includes('sheerid')) {
                         const emailToken = this.extractToken(mail.content);
                         if (emailToken) {

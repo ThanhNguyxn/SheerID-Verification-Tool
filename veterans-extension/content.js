@@ -204,6 +204,66 @@
         }
     };
 
+    // ============ EMAIL GENERATOR ============
+    const EmailGenerator = {
+        async generate(provider = 'mailtm') {
+            try {
+                if (provider === 'tinyhost') {
+                    const domainResp = await fetch('https://tinyhost.shop/api/random-domains/?limit=5');
+                    if (!domainResp.ok) throw new Error('Failed to get tinyhost domains');
+                    const domainData = await domainResp.json();
+                    const domains = domainData.domains || ['tinyhost.shop'];
+                    const domain = domains[Math.floor(Math.random() * domains.length)];
+                    const username = 'user' + Math.random().toString(36).substring(2, 10);
+                    const email = `${username}@${domain}`;
+
+                    return {
+                        email,
+                        provider: 'tinyhost',
+                        tinyhostDomain: domain,
+                        tinyhostUser: username
+                    };
+                } else {
+                    // mail.tm
+                    const domainResp = await fetch('https://api.mail.tm/domains');
+                    if (!domainResp.ok) throw new Error('Failed to get mail.tm domains');
+                    const domainData = await domainResp.json();
+                    const domains = domainData['hydra:member'];
+                    if (!domains || domains.length === 0) throw new Error('No mail.tm domains available');
+                    const domain = domains[Math.floor(Math.random() * domains.length)].domain;
+
+                    const username = 'user' + Math.random().toString(36).substring(7);
+                    const password = Math.random().toString(36).substring(2) + 'A1!';
+                    const email = `${username}@${domain}`;
+
+                    const accResp = await fetch('https://api.mail.tm/accounts', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ address: email, password: password })
+                    });
+                    if (!accResp.ok) throw new Error('Failed to create mail.tm account');
+
+                    const tokenResp = await fetch('https://api.mail.tm/token', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ address: email, password: password })
+                    });
+                    if (!tokenResp.ok) throw new Error('Failed to get mail.tm token');
+                    const tokenData = await tokenResp.json();
+
+                    return {
+                        email,
+                        provider: 'mailtm',
+                        mailtmToken: tokenData.token
+                    };
+                }
+            } catch (e) {
+                console.error('[Veterans] Email generation failed:', e);
+                return null;
+            }
+        }
+    };
+
     // Check if plugin is enabled
     async function isPluginEnabled() {
         const stored = await chrome.storage.local.get(['pluginEnabled']);
@@ -345,11 +405,34 @@
 
             if (hasError) {
                 retrying = true;
-                console.log('[Veterans] ❌ Error detected!');
+                console.log('[Veterans] ❌ Error detected! Moving to next entry...');
                 // Update stats
                 try { chrome.runtime.sendMessage({ type: 'statsUpdate', stat: 'fail' }); } catch (e) { }
 
-                // Try to click "Try Again" button first
+                // 1. Increment Index
+                const stored = await chrome.storage.local.get(['currentIndex', 'email', 'emailProvider']);
+                const nextIndex = (stored.currentIndex || 0) + 1;
+
+                // 2. Generate New Email if using TempMail
+                let updates = { currentIndex: nextIndex };
+
+                // Check if current email is temp mail
+                const currentEmail = stored.email;
+                const isTemp = TempMailAPI.getService(currentEmail) !== null;
+
+                if (isTemp) {
+                    console.log('[Veterans] Generating new temp email for next attempt...');
+                    const provider = stored.emailProvider || 'mailtm';
+                    const newEmailData = await EmailGenerator.generate(provider);
+                    if (newEmailData) {
+                        updates = { ...updates, ...newEmailData };
+                        console.log('[Veterans] New email generated:', newEmailData.email);
+                    }
+                }
+
+                await chrome.storage.local.set(updates);
+
+                // 3. Try to click "Try Again" button first (sometimes it resets state)
                 const tryAgainBtn = document.querySelector('button[type="button"]') ||
                     document.querySelector('[class*="try-again"]') ||
                     Array.from(document.querySelectorAll('button')).find(btn =>
@@ -358,11 +441,10 @@
                 if (tryAgainBtn) {
                     console.log('[Veterans] Clicking Try Again button...');
                     tryAgainBtn.click();
-                    // Wait for page to update before redirecting
                     await new Promise(r => setTimeout(r, 2000));
                 }
 
-                // Redirect back to veterans-claim
+                // 4. Redirect back to veterans-claim
                 console.log('[Veterans] Redirecting to veterans-claim...');
                 window.location.href = 'https://chatgpt.com/veterans-claim';
                 return true;
@@ -410,7 +492,7 @@
                 return;
             }
 
-            const [firstName, lastName, branch, dob, dod] = parts;
+            const [firstName, lastName, branch, dob, dod, batchEmail] = parts;
             const dobParts = dob.split('-');
             const dodParts = dod.split('-');
 
@@ -424,7 +506,7 @@
                 dodMonth: parseInt(dodParts[1]),
                 dodDay: parseInt(dodParts[2]),
                 dodYear: dodParts[0],
-                email: stored.email || ''
+                email: (batchEmail && batchEmail.includes('@')) ? batchEmail.trim() : (stored.email || '')
             };
 
             console.log('[Veterans] Filling data:', fillData);
@@ -443,10 +525,14 @@
             const usedStored = await chrome.storage.local.get(['usedItems']);
             const usedItems = usedStored.usedItems || [];
             usedItems.push(usedItem);
-            await chrome.storage.local.set({
+
+            // Prepare updates for NEXT successful iteration
+            let updates = {
                 usedItems,
                 currentIndex: idx + 1
-            });
+            };
+
+            await chrome.storage.local.set(updates);
         }
 
         function waitForForm() {

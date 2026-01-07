@@ -259,37 +259,38 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label>Program ID</label>
-        <input type="text" id="programId" placeholder="690415d58971e73ca187d8c9">
-        <p class="help-text">Leave empty to use default ChatGPT Veterans ID</p>
-    </div>
-
-    <div class="form-group">
-        <label>Batch Data (one per line: First|Last|Branch|DOB|Discharge)</label>
-        <textarea id="inputData"
-            placeholder="JOHN|DOE|US ARMY|1985-01-15|2024-06-01&#10;JANE|SMITH|US NAVY|1990-03-20|2024-08-15"></textarea>
-    </div>
-
     <div class="row">
-        <div class="form-group">
+        <div class="form-group" style="flex: 2;">
+            <label>Program ID</label>
+            <input type="text" id="programId" placeholder="690415d58971e73ca187d8c9">
+        </div>
+        <div class="form-group" style="flex: 1;">
             <label>Current Index</label>
             <input type="number" id="currentIndex" value="0" min="0">
         </div>
-        <div class="form-group">
-            <label>Email (supports TempMail)</label>
-            <div style="display: flex; gap: 5px; margin-bottom: 5px;">
-                <select id="emailProvider"
-                    style="padding: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; font-size: 12px; cursor: pointer;">
-                    <option value="mailtm">📧 mail.tm</option>
-                    <option value="tinyhost">🏠 tinyhost.shop</option>
-                </select>
-                <input type="text" id="email" placeholder="abc123@domain.com" style="flex: 1;">
-                <button id="genEmailBtn"
-                    style="padding: 0 12px; background: #2563eb; border: none; border-radius: 8px; color: white; cursor: pointer; font-size: 12px;">Generate</button>
-            </div>
-            <p class="help-text">Select provider → Click Generate. tinyhost.shop = simpler API, no account needed.</p>
+    </div>
+    <p class="help-text" style="margin-top: -10px; margin-bottom: 15px;">Leave empty to use default ChatGPT Veterans ID
+    </p>
+
+    <div class="form-group">
+        <label>Batch Data (one per line: First|Last|Branch|DOB|Discharge|Email)</label>
+        <textarea id="inputData"
+            placeholder="JOHN|DOE|US ARMY|1985-01-15|2024-06-01|john.doe@gmail.com&#10;JANE|SMITH|US NAVY|1990-03-20|2024-08-15"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Email (supports TempMail)</label>
+        <div style="display: flex; gap: 5px; margin-bottom: 5px;">
+            <select id="emailProvider"
+                style="padding: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; font-size: 12px; cursor: pointer;">
+                <option value="mailtm">📧 mail.tm</option>
+                <option value="tinyhost">🏠 tinyhost.shop</option>
+            </select>
+            <input type="text" id="email" placeholder="abc123@domain.com" style="flex: 1;">
+            <button id="genEmailBtn"
+                style="padding: 0 12px; background: #2563eb; border: none; border-radius: 8px; color: white; cursor: pointer; font-size: 12px;">Generate</button>
         </div>
+        <p class="help-text">Select provider → Click Generate. tinyhost.shop = simpler API, no account needed.</p>
     </div>
 
     <button class="btn btn-primary" id="saveBtn">💾 Save Configuration</button>

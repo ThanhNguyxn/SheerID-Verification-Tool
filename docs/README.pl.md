@@ -25,7 +25,6 @@ Kompleksowy zestaw narzędzi do automatyzacji przepływów pracy weryfikacji She
 | Narzędzie | Typ | Opis |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Przeglądarka antywykrywania** — Bezpiecznie zarządzaj wieloma zweryfikowanymi kontami bez bana |
-| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | **Najprostsze rozwiązanie webowe** — Po prostu wklej URL i uzyskaj weryfikację natychmiast |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | Alternatywny bot Telegram z szybszym przetwarzaniem |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | Bot Telegram społeczności wietnamskiej |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | Bot weryfikacji wojskowej |

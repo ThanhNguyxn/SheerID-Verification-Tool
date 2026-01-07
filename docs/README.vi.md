@@ -25,7 +25,6 @@ Một bộ công cụ toàn diện để tự động hóa quy trình xác minh 
 | Công cụ | Loại | Mô tả |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Trình duyệt chống phát hiện** — Quản lý nhiều tài khoản đã xác minh mà không bị cấm |
-| [RoxyBrowser SheerID](https://www.roxybrowser.com/en/sheerid?code=01045PFA) | 🔧 Web | **Giải pháp web dễ nhất** — Chỉ cần dán URL và xác minh ngay lập tức |
 | [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | Bot Telegram thay thế với tốc độ xử lý nhanh hơn |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | Bot Telegram cộng đồng Việt Nam |
 | [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | Bot xác minh Quân đội |

@@ -30,6 +30,15 @@ except ImportError:
     print("Error: Pillow required. Install: pip install Pillow")
     sys.exit(1)
 
+# Import anti-detection module
+try:
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    from anti_detect import get_headers, get_fingerprint, get_random_user_agent
+    HAS_ANTI_DETECT = True
+    print("[INFO] Anti-detection module loaded")
+except ImportError:
+    HAS_ANTI_DETECT = False
+
 # ============ CONFIG ============
 PROGRAM_ID = "68cc6a2e64f55220de204448"
 SHEERID_BASE_URL = "https://services.sheerid.com"

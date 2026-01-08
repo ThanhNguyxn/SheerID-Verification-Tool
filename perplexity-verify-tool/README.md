@@ -22,6 +22,12 @@ Automated SheerID verification for Perplexity Pro student discount.
 pip install httpx Pillow PyMuPDF
 ```
 
+**[Optional] Enhanced Anti-Detection:**
+```bash
+pip install curl_cffi cloudscraper
+```
+> `curl_cffi` spoofs TLS fingerprint to look like real Chrome browser
+
 ## Setup
 
 1. Ensure the `assets` folder contains:

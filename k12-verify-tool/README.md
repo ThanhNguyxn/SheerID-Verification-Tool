@@ -32,6 +32,12 @@ cd SheerID-Verification-Tool/k12-verify-tool
 pip install httpx Pillow
 ```
 
+**[Optional] Enhanced Anti-Detection:**
+```bash
+pip install curl_cffi cloudscraper
+```
+> `curl_cffi` spoofs TLS fingerprint to look like real Chrome browser
+
 ### 4. Run Tool
 
 ```bash

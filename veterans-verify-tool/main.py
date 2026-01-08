@@ -8,6 +8,7 @@ Author: ThanhNguyxn
 Features:
 - Proxy support
 - Deduplication tracking
+- Anti-detection with random User-Agents
 """
 
 import json
@@ -40,6 +41,16 @@ except ImportError:
     print("[WARN] cloudscraper not installed. Install for better Cloudflare bypass:")
     print("       pip install cloudscraper")
 
+# Import anti-detection module
+try:
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    from anti_detect import get_headers, get_fingerprint, get_random_user_agent, random_delay, create_session
+    HAS_ANTI_DETECT = True
+    print("[INFO] Anti-detection module loaded")
+except ImportError:
+    HAS_ANTI_DETECT = False
+    print("[WARN] anti_detect.py not found, using basic headers")
+
 
 
 # Constants
@@ -68,6 +79,7 @@ BRANCH_ORG_MAP = {
     "Coast Guard Reserve": {"id": 4081, "name": "Coast Guard Reserve"},
 }
 
+# Fallback User-Agent if anti_detect not available
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36"
 
 

@@ -70,6 +70,14 @@ The tools follow a standardized "Waterfall" process:
 - **Authoritative Check**: SheerID verifies against DoD/DEERS database.
 - **Logic**: Defaults to recent discharge dates to maximize auto-approval chances.
 
+#### 🛡️ Anti-Detection Module
+All tools now include `anti_detect.py` which provides:
+- **Random User-Agents**: 10+ real browser UA strings (Chrome, Firefox, Edge, Safari)
+- **Browser-like Headers**: Proper `sec-ch-ua`, `Accept-Language`, etc.
+- **TLS Fingerprint Spoofing**: Uses `curl_cffi` to impersonate Chrome's JA3/JA4 fingerprint
+- **Random Delays**: Avoids rate limiting with randomized request timing
+- **Smart Session**: Auto-selects best available HTTP library (curl_cffi > cloudscraper > httpx > requests)
+
 ---
 
 ## 📋 Quick Start
@@ -91,7 +99,14 @@ The tools follow a standardized "Waterfall" process:
     pip install httpx Pillow
     ```
 
-3.  **Run a tool (e.g., Spotify):**
+3.  **[Optional] Enhanced Anti-Detection:**
+    ```bash
+    pip install curl_cffi cloudscraper
+    ```
+    - `curl_cffi`: Spoofs TLS fingerprint (JA3/JA4) to look like real Chrome
+    - `cloudscraper`: Bypasses Cloudflare protection
+
+4.  **Run a tool (e.g., Spotify):**
     ```bash
     cd spotify-verify-tool
     python main.py "YOUR_SHEERID_URL"

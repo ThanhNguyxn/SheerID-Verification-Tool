@@ -7,6 +7,7 @@ Enhanced with:
 - Weighted university selection
 - Retry with exponential backoff
 - Rate limiting avoidance
+- Anti-detection with random User-Agents
 
 Author: ThanhNguyxn
 """
@@ -34,6 +35,16 @@ try:
 except ImportError:
     print("❌ Error: Pillow required. Install: pip install Pillow")
     sys.exit(1)
+
+# Import anti-detection module
+try:
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    from anti_detect import get_headers, get_fingerprint, get_random_user_agent, random_delay as anti_delay
+    HAS_ANTI_DETECT = True
+    print("[INFO] Anti-detection module loaded")
+except ImportError:
+    HAS_ANTI_DETECT = False
+    print("[WARN] anti_detect.py not found, using basic headers")
 
 
 # ============ CONFIG ============

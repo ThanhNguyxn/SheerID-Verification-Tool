@@ -1,0 +1,63 @@
+{
+    "manifest_version": 3,
+    "name": "Veterans Autofill",
+    "version": "1.1.0",
+    "description": "Auto-fill SheerID Veterans verification forms with fingerprint spoofing",
+    "permissions": [
+        "storage",
+        "activeTab",
+        "tabs"
+    ],
+    "host_permissions": [
+        "https://services.sheerid.com/*",
+        "https://api.mail.tm/*",
+        "https://www.1secmail.com/*",
+        "https://tinyhost.shop/*",
+        "https://chatgpt.com/*"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icon16.png",
+            "48": "icon48.png",
+            "128": "icon128.png"
+        }
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://services.sheerid.com/*"
+            ],
+            "js": [
+                "fingerprint-spoofer.js"
+            ],
+            "run_at": "document_start",
+            "world": "MAIN"
+        },
+        {
+            "matches": [
+                "https://services.sheerid.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_idle",
+            "world": "ISOLATED"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "fingerprint-spoofer.js"
+            ],
+            "matches": [
+                "https://services.sheerid.com/*"
+            ]
+        }
+    ],
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    }
+}

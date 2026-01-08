@@ -16,6 +16,12 @@ ChatGPT Plus verification tool for US Veterans using SheerID.
 pip install requests cloudscraper
 ```
 
+**[Optional] Enhanced Anti-Detection:**
+```bash
+pip install curl_cffi
+```
+> `curl_cffi` spoofs TLS fingerprint to look like real Chrome browser
+
 ### 2. Configure
 
 Copy `config.example.json` to `config.json`:

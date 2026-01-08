@@ -35,6 +35,15 @@ except ImportError:
     print("❌ Error: Pillow required. Install: pip install Pillow")
     sys.exit(1)
 
+# Import anti-detection module
+try:
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    from anti_detect import get_headers, get_fingerprint, get_random_user_agent, random_delay as anti_delay
+    HAS_ANTI_DETECT = True
+    print("[INFO] Anti-detection module loaded")
+except ImportError:
+    HAS_ANTI_DETECT = False
+
 
 # ============ CONFIG ============
 # Perplexity Program ID (will be parsed from URL usually, but this is a common one if needed)

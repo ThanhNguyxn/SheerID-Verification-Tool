@@ -25,7 +25,7 @@ Uma coleção abrangente de ferramentas para automatizar fluxos de trabalho de v
 | Ferramenta | Tipo | Descrição |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Navegador anti-detecção** — Gerencie múltiplas contas verificadas sem ser banido |
-| [SheerID VIP Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ Bot | Bot do Telegram alternativo com processamento mais rápido |
+| [SheerID Discord Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ Bot | Bot do Discord alternativo com processamento mais rápido |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | Bot do Telegram da comunidade vietnamita |
 | [Veterans Verify Bot](https://t.me/gpt_veterans_bot?start=ref_7762497789) | 🎖️ Bot | Bot de verificação militar |
 | [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | Bot de verificação automatizado |

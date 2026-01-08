@@ -25,7 +25,7 @@ Koleksi alat komprehensif untuk mengotomatiskan alur kerja verifikasi SheerID un
 | Alat | Tipe | Deskripsi |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Browser anti-deteksi** — Kelola beberapa akun terverifikasi dengan aman tanpa diblokir |
-| [SheerID VIP Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ Bot | Bot Telegram alternatif dengan pemrosesan lebih cepat |
+| [SheerID Discord Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ Bot | Bot Discord alternatif dengan pemrosesan lebih cepat |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | Bot Telegram komunitas Vietnam |
 | [Veterans Verify Bot](https://t.me/gpt_veterans_bot?start=ref_7762497789) | 🎖️ Bot | Bot verifikasi militer |
 | [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | Bot verifikasi otomatis |

@@ -25,7 +25,7 @@ Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動�
 | ツール | タイプ | 説明 |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **アンチ検出ブラウザ** — 複数の認証済みアカウントをBANなしで安全に管理 |
-| [SheerID VIP Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ Bot | より高速な処理を備えた代替Telegramボット |
+| [SheerID Discord Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ Bot | より高速な処理を備えた代替Discordボット |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | ベトナムコミュニティTelegramボット |
 | [Veterans Verify Bot](https://t.me/gpt_veterans_bot?start=ref_7762497789) | 🎖️ Bot | 軍隊認証ボット |
 | [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | 自動検証ボット |

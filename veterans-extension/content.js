@@ -4,6 +4,80 @@
 (function () {
     const PROGRAM_ID = '690415d58971e73ca187d8c9';
     const currentUrl = window.location.href;
+    let isRunning = false;
+    let currentMailtmToken = null;
+
+    // ============ MESSAGE LISTENER FOR SIDE PANEL ============
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+        if (message.action === 'startVerification') {
+            isRunning = true;
+            currentMailtmToken = message.mailtmToken;
+            handleStartVerification(message.data);
+            sendResponse({ success: true });
+        } else if (message.action === 'stopVerification') {
+            isRunning = false;
+            sendResponse({ success: true });
+        } else if (message.action === 'fillForm') {
+            fillVeteranFormWithData(message.data);
+            sendResponse({ success: true });
+        }
+        return true;
+    });
+
+    // Handle start verification from side panel
+    async function handleStartVerification(data) {
+        try {
+            sendStatusUpdate('Filling form...', 'loading');
+            await fillVeteranFormWithData(data);
+
+            // Wait for form to be submitted and poll for email
+            if (data.email && TempMailAPI.getService(data.email)) {
+                sendStatusUpdate('Waiting for verification email...', 'loading');
+                const token = await TempMailAPI.pollForEmail(data.email, currentMailtmToken, 20, 5000);
+
+                if (token) {
+                    sendStatusUpdate('Got token! Verifying...', 'loading');
+                    // Click verify link or submit token
+                    const verifyUrl = window.location.href.replace(/emailToken=\d+/, `emailToken=${token}`);
+                    if (!window.location.href.includes(`emailToken=${token}`)) {
+                        window.location.href = verifyUrl + (verifyUrl.includes('?') ? '&' : '?') + `emailToken=${token}`;
+                    }
+
+                    // Notify success
+                    chrome.runtime.sendMessage({ action: 'verificationComplete', success: true });
+                } else {
+                    sendStatusUpdate('No verification email found', 'error');
+                    chrome.runtime.sendMessage({ action: 'verificationComplete', success: false });
+                }
+            }
+        } catch (e) {
+            console.error('[Veterans] Error:', e);
+            sendStatusUpdate('Error: ' + e.message, 'error');
+            chrome.runtime.sendMessage({ action: 'verificationComplete', success: false });
+        }
+    }
+
+    // Fill form with data from side panel
+    async function fillVeteranFormWithData(data) {
+        const fillData = {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            branch: data.branch,
+            dobMonth: data.dobMonth,
+            dobDay: data.dobDay,
+            dobYear: data.dobYear,
+            email: data.email
+        };
+        await fillVeteranForm(fillData);
+    }
+
+    // Send status update to side panel
+    function sendStatusUpdate(status, type = 'ready') {
+        try {
+            chrome.runtime.sendMessage({ action: 'updateStatus', status, type });
+        } catch (e) { }
+    }
+
 
     // ============ TEMPMAIL API HELPERS ============
     const TempMailAPI = {

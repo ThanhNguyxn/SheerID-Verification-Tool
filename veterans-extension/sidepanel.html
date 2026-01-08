@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterans Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e4e4e7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 16px;
+        }
+
+        .header {
+            padding: 12px 0;
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 18px;
+            color: #4ade80;
+        }
+
+        .header p {
+            font-size: 11px;
+            color: #9ca3af;
+            margin-top: 4px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #9ca3af;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .stat-box {
+            flex: 1;
+            text-align: center;
+            padding: 10px 8px;
+            border-radius: 8px;
+        }
+
+        .stat-box.success {
+            background: rgba(74, 222, 128, 0.15);
+        }
+
+        .stat-box.failed {
+            background: rgba(248, 113, 113, 0.15);
+        }
+
+        .stat-box.skipped {
+            background: rgba(251, 191, 36, 0.15);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .stat-box.success .stat-value {
+            color: #4ade80;
+        }
+
+        .stat-box.failed .stat-value {
+            color: #f87171;
+        }
+
+        .stat-box.skipped .stat-value {
+            color: #fbbf24;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            color: #9ca3af;
+            margin-top: 2px;
+        }
+
+        .index-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(74, 222, 128, 0.1);
+            border-radius: 8px;
+        }
+
+        .index-num {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4ade80;
+        }
+
+        .index-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .index-btn {
+            width: 28px;
+            height: 20px;
+            border: none;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            cursor: pointer;
+            font-size: 10px;
+        }
+
+        .index-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .current-entry {
+            margin-top: 10px;
+            padding: 8px;
+            background: rgba(74, 222, 128, 0.1);
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 11px;
+            color: #4ade80;
+            word-break: break-all;
+        }
+
+        .input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 12px;
+            font-family: inherit;
+        }
+
+        .input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #4ade80;
+        }
+
+        textarea {
+            font-family: 'Consolas', monospace;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .format-hint {
+            font-size: 10px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.1);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: #000;
+        }
+
+        .btn-stop {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #fff;
+        }
+
+        .btn-skip {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: #fff;
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #000;
+        }
+
+        .email-row {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .email-row select {
+            flex: 0 0 120px;
+        }
+
+        .email-row .input {
+            flex: 1;
+        }
+
+        .email-row .btn {
+            flex: 0 0 80px;
+            padding: 8px;
+        }
+
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            margin-top: 12px;
+        }
+
+        .status-ready {
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+        }
+
+        .status-loading {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        .status-error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer a {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 12px;
+            margin: 0 4px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .footer .coffee {
+            background: #FFDD00;
+            color: #000;
+        }
+
+        .footer .sponsor {
+            background: #EA4AAA;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>🎖️ Veterans Verification</h1>
+        <p>Auto-fill SheerID forms for ChatGPT Plus</p>
+    </div>
+
+    <!-- Statistics -->
+    <div class="section">
+        <div class="section-title">Statistics</div>
+        <div class="stats-row">
+            <div class="stat-box success">
+                <div class="stat-value" id="successCount">0</div>
+                <div class="stat-label">✅ Success</div>
+            </div>
+            <div class="stat-box failed">
+                <div class="stat-value" id="failCount">0</div>
+                <div class="stat-label">❌ Failed</div>
+            </div>
+            <div class="stat-box skipped">
+                <div class="stat-value" id="skipCount">0</div>
+                <div class="stat-label">⏭️ Skipped</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Index -->
+    <div class="section">
+        <div class="section-title">Current Index</div>
+        <div class="index-display">
+            <span class="index-num" id="indexNum">0</span>
+            <div class="index-controls">
+                <button class="index-btn" id="indexUp">▲</button>
+                <button class="index-btn" id="indexDown">▼</button>
+            </div>
+        </div>
+        <div class="current-entry" id="currentEntry">No data loaded</div>
+    </div>
+
+    <!-- Email -->
+    <div class="section">
+        <div class="section-title">Email (TempMail)</div>
+        <div class="email-row">
+            <select id="emailProvider">
+                <option value="mailtm">📧 mail.tm</option>
+                <option value="tinyhost">🏠 tinyhost</option>
+            </select>
+            <input type="text" class="input" id="emailInput" placeholder="Click Generate...">
+            <button class="btn btn-primary" id="genEmailBtn">Generate</button>
+        </div>
+    </div>
+
+    <!-- Batch Data -->
+    <div class="section">
+        <div class="section-title">Batch Data</div>
+        <textarea id="batchData" placeholder="JOHN|DOE|US ARMY|1985-01-15|2024-06-01|john@mail.tm
+JANE|SMITH|US NAVY|1990-03-20|2024-08-15|jane@mail.tm"></textarea>
+        <div class="format-hint">Format: First|Last|Branch|DOB|DischargeDate|Email (one per line)</div>
+    </div>
+
+    <!-- Controls -->
+    <div class="section">
+        <div class="section-title">Controls</div>
+        <div class="btn-row" style="margin-bottom: 8px;">
+            <button class="btn btn-start" id="startBtn">▶️ Start</button>
+            <button class="btn btn-stop" id="stopBtn" disabled>⏹️ Stop</button>
+        </div>
+        <div class="btn-row">
+            <button class="btn btn-skip" id="skipBtn">⏭️ Skip</button>
+            <button class="btn btn-secondary" id="fillBtn">📝 Fill Now</button>
+        </div>
+    </div>
+
+    <!-- Utilities -->
+    <div class="section">
+        <div class="section-title">Utilities</div>
+        <div class="btn-row">
+            <button class="btn btn-warning" id="clearCookiesBtn">🍪 Clear Cookies</button>
+            <button class="btn btn-secondary" id="downloadLogBtn">📥 Download Log</button>
+        </div>
+    </div>
+
+    <!-- Status -->
+    <div class="status-bar status-ready" id="statusBar">
+        <span>✓</span>
+        <span id="statusText">Ready</span>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <a href="https://buymeacoffee.com/thanhnguyxn" target="_blank" class="coffee">☕ Buy Me Coffee</a>
+        <a href="https://github.com/sponsors/ThanhNguyxn" target="_blank" class="sponsor">💖 Sponsor</a>
+    </div>
+
+    <script src="sidepanel.js"></script>
+</body>
+
+</html>

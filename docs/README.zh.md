@@ -25,6 +25,7 @@
 | 工具 | 类型 | 描述 |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **反检测浏览器** — 安全管理多个已验证账户而不被封禁 |
+| [SheerID Auto Verify](https://ip123.in/sheerid/?code=01045PFA) | 🔐 Web | **自动验证工具** — 快速自动化SheerID验证 |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | 越南社区 Telegram 机器人 |
 | [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | 自动验证机器人 |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | 创建用于手动验证的学生证 |

@@ -25,6 +25,7 @@ Kompleksowy zestaw narzędzi do automatyzacji przepływów pracy weryfikacji She
 | Narzędzie | Typ | Opis |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Przeglądarka antywykrywania** — Bezpiecznie zarządzaj wieloma zweryfikowanymi kontami bez bana |
+| [SheerID Auto Verify](https://ip123.in/sheerid/?code=01045PFA) | 🔐 Web | **Narzędzie automatycznej weryfikacji** — Szybka automatyczna weryfikacja SheerID |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Bot Telegram społeczności wietnamskiej |
 | [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | Bot do automatycznej weryfikacji |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Tworzenie legitymacji studenckich do weryfikacji ręcznej |

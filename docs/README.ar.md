@@ -25,11 +25,8 @@
 | الأداة | النوع | الوصف |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **متصفح مضاد للكشف** — إدارة حسابات متعددة تم التحقق منها بأمان دون حظر |
-| [SheerID Discord Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ Bot | بوت Discord بديل مع معالجة أسرع |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | بوت Telegram للمجتمع الفيتنامي |
-| [Veterans Verify Bot](https://t.me/gpt_veterans_bot?start=ref_7762497789) | 🎖️ Bot | بوت التحقق العسكري |
 | [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | بوت التحقق الآلي |
-| [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | التحقق المجمع لعناوين URL متعددة |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | إنشاء بطاقات هوية الطالب للتحقق اليدوي |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | إنشاء قسائم رواتب للتحقق من المعلمين |
 

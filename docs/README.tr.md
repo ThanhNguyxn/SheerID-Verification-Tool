@@ -25,11 +25,8 @@
 | Araç | Tür | Açıklama |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Anti-tespit tarayıcı** — Yasaklanmadan birden fazla doğrulanmış hesabı güvenle yönetin |
-| [SheerID Discord Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ Bot | Daha hızlı işlem yapan alternatif Discord botu |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Vietnam topluluğu Telegram botu |
-| [Veterans Verify Bot](https://t.me/gpt_veterans_bot?start=ref_7762497789) | 🎖️ Bot | Askeri doğrulama botu |
 | [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | Otomatik doğrulama botu |
-| [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Birden fazla URL için toplu doğrulama |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Manuel doğrulama için öğrenci kimlik kartları oluşturun |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Öğretmen doğrulaması için maaş bordroları oluşturun |
 

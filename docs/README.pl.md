@@ -25,11 +25,8 @@ Kompleksowy zestaw narzędzi do automatyzacji przepływów pracy weryfikacji She
 | Narzędzie | Typ | Opis |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Przeglądarka antywykrywania** — Bezpiecznie zarządzaj wieloma zweryfikowanymi kontami bez bana |
-| [SheerID Discord Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ Bot | Alternatywny bot Discord z szybszym przetwarzaniem |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Bot Telegram społeczności wietnamskiej |
-| [Veterans Verify Bot](https://t.me/gpt_veterans_bot?start=ref_7762497789) | 🎖️ Bot | Bot weryfikacji wojskowej |
 | [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | Bot do automatycznej weryfikacji |
-| [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Weryfikacja wsadowa dla wielu adresów URL |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Tworzenie legitymacji studenckich do weryfikacji ręcznej |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Generowanie odcinków wypłat do weryfikacji nauczycieli |
 

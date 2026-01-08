@@ -353,13 +353,13 @@ class SpotifyVerifier:
         self.fingerprint = generate_fingerprint()
         
         # Configure proxy if provided
-        proxies = None
+        proxy_url = None
         if proxy:
             if not proxy.startswith("http"):
                 proxy = f"http://{proxy}"
-            proxies = {"all://": proxy}
+            proxy_url = proxy
         
-        self.client = httpx.Client(timeout=30, proxies=proxies)
+        self.client = httpx.Client(timeout=30, proxy=proxy_url)
         self.org = None
     
     def __del__(self):

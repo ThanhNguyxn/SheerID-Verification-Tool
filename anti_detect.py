@@ -182,7 +182,8 @@ def create_session(proxy: str = None):
     # Try httpx
     try:
         import httpx
-        session = httpx.Client(timeout=30, proxies=proxies)
+        proxy_url = proxies.get("all://") if proxies else None
+        session = httpx.Client(timeout=30, proxy=proxy_url)
         return session, "httpx"
     except ImportError:
         pass

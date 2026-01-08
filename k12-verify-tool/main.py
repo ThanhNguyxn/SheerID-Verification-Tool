@@ -243,11 +243,13 @@ class K12Verifier:
         self.verification_id = self._parse_verification_id(verification_url)
         self.device_fingerprint = generate_fingerprint()
         
-        proxies = None
+        proxy_url = None
         if proxy:
-            proxies = {"http://": proxy, "https://": proxy}
+            if not proxy.startswith("http"):
+                proxy = f"http://{proxy}"
+            proxy_url = proxy
             
-        self.client = httpx.Client(timeout=30.0, proxies=proxies)
+        self.client = httpx.Client(timeout=30.0, proxy=proxy_url)
     
     def __del__(self):
         if hasattr(self, "client"):

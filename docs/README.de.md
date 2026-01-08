@@ -25,9 +25,9 @@ Eine umfassende Sammlung von Tools zur Automatisierung von SheerID-Verifizierung
 | Tool | Typ | Beschreibung |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Anti-Erkennungs-Browser** — Mehrere verifizierte Konten ohne Sperrung verwalten |
-| [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | Alternativer Telegram-Bot mit schnellerer Verarbeitung |
+| [SheerID VIP Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ Bot | Alternativer Telegram-Bot mit schnellerer Verarbeitung |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | Telegram-Bot der vietnamesischen Community |
-| [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | Militär-Verifizierungs-Bot |
+| [Veterans Verify Bot](https://t.me/gpt_veterans_bot?start=ref_7762497789) | 🎖️ Bot | Militär-Verifizierungs-Bot |
 | [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | Automatisierter Verifizierungs-Bot |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Batch-Verifizierung für mehrere URLs |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Erstellen von Studentenausweisen für manuelle Verifizierung |

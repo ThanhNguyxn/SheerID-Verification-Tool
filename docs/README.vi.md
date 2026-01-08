@@ -25,9 +25,9 @@ Một bộ công cụ toàn diện để tự động hóa quy trình xác minh 
 | Công cụ | Loại | Mô tả |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Trình duyệt chống phát hiện** — Quản lý nhiều tài khoản đã xác minh mà không bị cấm |
-| [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ Bot | Bot Telegram thay thế với tốc độ xử lý nhanh hơn |
+| [SheerID VIP Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ Bot | Bot Telegram thay thế với tốc độ xử lý nhanh hơn |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | Bot Telegram cộng đồng Việt Nam |
-| [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ Bot | Bot xác minh Quân đội |
+| [Veterans Verify Bot](https://t.me/gpt_veterans_bot?start=ref_7762497789) | 🎖️ Bot | Bot xác minh Quân đội |
 | [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | Bot xác minh tự động |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Xác minh hàng loạt cho nhiều URL |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Tạo thẻ sinh viên để xác minh thủ công |

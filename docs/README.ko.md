@@ -25,9 +25,9 @@
 | 도구 | 유형 | 설명 |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 브라우저 | **안티 탐지 브라우저** — 밴 없이 여러 인증된 계정을 안전하게 관리 |
-| [SheerID VIP Bot](https://t.me/SheerID_VIP_Bot?start=ref_REF001124) | ⚡ 봇 | 더 빠른 처리를 제공하는 대체 텔레그램 봇 |
+| [SheerID VIP Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ 봇 | 더 빠른 처리를 제공하는 대체 텔레그램 봇 |
 | [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 봇 | 베트남 커뮤니티 텔레그램 봇 |
-| [Veterans Verify Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🎖️ 봇 | 군인 인증 봇 |
+| [Veterans Verify Bot](https://t.me/gpt_veterans_bot?start=ref_7762497789) | 🎖️ 봇 | 군인 인증 봇 |
 | [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 봇 | 자동 인증 봇 |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 웹 | 여러 URL 일괄 인증 |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 도구 | 수동 인증용 학생증 생성 |

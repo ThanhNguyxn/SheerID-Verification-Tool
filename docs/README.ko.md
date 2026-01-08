@@ -26,7 +26,7 @@
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 브라우저 | **안티 탐지 브라우저** — 밴 없이 여러 인증된 계정을 안전하게 관리 |
 | [SheerID Discord Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ 봇 | 더 빠른 처리를 제공하는 대체 텔레그램 봇 |
-| [SheerID VN Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🇻🇳 봇 | 베트남 커뮤니티 텔레그램 봇 |
+| [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🇻🇳 봇 | 베트남 커뮤니티 텔레그램 봇 |
 | [Veterans Verify Bot](https://t.me/gpt_veterans_bot?start=ref_7762497789) | 🎖️ 봇 | 군인 인증 봇 |
 | [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 봇 | 자동 인증 봇 |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 웹 | 여러 URL 일괄 인증 |

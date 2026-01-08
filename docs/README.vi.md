@@ -26,7 +26,7 @@ Một bộ công cụ toàn diện để tự động hóa quy trình xác minh 
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Trình duyệt chống phát hiện** — Quản lý nhiều tài khoản đã xác minh mà không bị cấm |
 | [SheerID Discord Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ Bot | Bot Discord thay thế với tốc độ xử lý nhanh hơn |
-| [SheerID VN Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🇻🇳 Bot | Bot Telegram cộng đồng Việt Nam |
+| [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Bot Telegram cộng đồng Việt Nam |
 | [Veterans Verify Bot](https://t.me/gpt_veterans_bot?start=ref_7762497789) | 🎖️ Bot | Bot xác minh Quân đội |
 | [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | Bot xác minh tự động |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Xác minh hàng loạt cho nhiều URL |

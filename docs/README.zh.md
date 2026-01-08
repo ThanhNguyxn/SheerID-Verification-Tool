@@ -26,7 +26,7 @@
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **反检测浏览器** — 安全管理多个已验证账户而不被封禁 |
 | [SheerID Discord Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ Bot | 处理速度更快的替代 Discord 机器人 |
-| [SheerID VN Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🇻🇳 Bot | 越南社区 Telegram 机器人 |
+| [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | 越南社区 Telegram 机器人 |
 | [Veterans Verify Bot](https://t.me/gpt_veterans_bot?start=ref_7762497789) | 🎖️ Bot | 军事验证机器人 |
 | [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | 自动验证机器人 |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | 多个 URL 的批量验证 |

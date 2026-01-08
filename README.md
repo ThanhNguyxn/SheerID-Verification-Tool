@@ -27,7 +27,7 @@ A comprehensive collection of tools for automating SheerID verification workflow
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Anti-detect browser** — Safely manage multiple verified accounts without getting banned |
 | [SheerID Discord Bot](https://discord.com/invite/7mt422QN9Y) | ⚡ Bot | Alternative Discord bot with faster processing |
-| [SheerID VN Bot](https://t.me/sheeridvn_bot?start=invite_7762497789) | 🇻🇳 Bot | Vietnamese community Telegram bot |
+| [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Automated Telegram verification bot |
 | [Veterans Verify Bot](https://t.me/gpt_veterans_bot?start=ref_7762497789) | 🎖️ Bot | Military verification bot |
 | [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | Automated verification bot |
 | [Batch 1Key.me](https://batch.1key.me/) | 📦 Web | Batch verification for multiple URLs |

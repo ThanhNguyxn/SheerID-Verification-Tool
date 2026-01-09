@@ -1,3 +1,2 @@
-httpx
 pymupdf
 pillow

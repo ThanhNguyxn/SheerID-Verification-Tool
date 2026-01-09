@@ -17,6 +17,7 @@ A comprehensive collection of tools for automating SheerID verification workflow
 | [youtube-verify-tool](./youtube-verify-tool/) | 🎬 Student | YouTube Premium | University student verification |
 | [one-verify-tool](./one-verify-tool/) | 🤖 Student | Gemini Advanced | Google One AI Premium verification |
 | [boltnew-verify-tool](./boltnew-verify-tool/) | 👨‍🏫 Teacher | Bolt.new | Teacher verification (University) |
+| [canva-teacher-tool](./canva-teacher-tool/) | 🇬🇧 Teacher | Canva Education | UK Teacher verification (K-12) |
 | [k12-verify-tool](./k12-verify-tool/) | 🏫 K12 | ChatGPT Plus | K12 Teacher verification (High School) |
 | [veterans-verify-tool](./veterans-verify-tool/) | 🎖️ Military | General | Military status verification |
 | [veterans-extension](./veterans-extension/) | 🧩 Chrome | Browser | Chrome extension for military verification |

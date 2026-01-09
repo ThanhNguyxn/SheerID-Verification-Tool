@@ -1,0 +1,3 @@
+httpx
+pymupdf
+pillow

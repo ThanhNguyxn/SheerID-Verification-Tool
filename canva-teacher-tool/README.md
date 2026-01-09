@@ -2,13 +2,36 @@
 
 Generate UK Teacher documents for Canva Education verification.
 
-> ⚠️ **Note**: Canva Education does NOT use SheerID. You must upload documents manually at [canva.com/education](https://canva.com/education).
+## ⚠️ Important Notes
 
-## Features
+- **Canva uses Goodstack** (not SheerID) for teacher verification
+- **Requires 2 documents**: Teaching ID + Teaching licence
+- Documents must show: **Full name + School name + Teaching position**
+- Upload manually at [canva.com/education](https://canva.com/education)
 
-- 📝 **Employment Letter** - UK school letterhead with teacher details
-- 🪪 **Teacher ID Card** - School staff ID card
-- 📜 **Teaching License** - DfE QTS certificate style document
+## Verification Workflow
+
+Based on [Issue #49](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues/49) and [Issue #55](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues/55):
+
+| Step | Action |
+|------|--------|
+| 1 | Go to canva.com/education → Click "Get Verified" |
+| 2 | Select Country: **United Kingdom** |
+| 3 | Enter School email (or tick "I don't have a school email") |
+| 4 | Enter School location (e.g. "London SW19 4TT") |
+| 5 | Search and select School name (e.g. "King's College School") |
+| 6 | **Upload Document 1**: Teaching ID |
+| 7 | **Upload Document 2**: Teaching licence |
+| 8 | Enter Full name (must match documents) |
+| 9 | Wait 24-48h for Goodstack review |
+
+## Documents This Tool Generates
+
+| Document | Filename | Use As |
+|----------|----------|--------|
+| Employment Letter | `employment_letter_*.png` | Teaching licence |
+| Teacher ID Card | `teacher_id_*.png` | Teaching ID |
+| Teaching License | `teaching_license_*.png` | Teaching licence (alternative) |
 
 ## Requirements
 
@@ -18,18 +41,17 @@ pip install pymupdf pillow
 
 ## Usage
 
-### Generate All Documents
+### Generate All Documents (Recommended)
 
 ```bash
 python main.py
 ```
 
-### Generate Specific Document Type
+### Generate Specific Document
 
 ```bash
-python main.py -d employment_letter
-python main.py -d teacher_id
-python main.py -d teaching_license
+python main.py -d teacher_id          # For "Document 1: Teaching ID"
+python main.py -d employment_letter   # For "Document 2: Teaching licence"
 ```
 
 ### Custom Teacher Details
@@ -46,29 +68,14 @@ python main.py --list-schools
 
 ## Output
 
-Documents are saved to the `./output/` folder as PNG files.
-
-## How to Verify on Canva
-
-1. Go to [canva.com/education](https://canva.com/education)
-2. Click "Get Verified" or "I'm a Teacher"
-3. Fill in your details
-4. Upload one of the generated documents
-5. Wait 24-48 hours for manual review
-
-## Templates
-
-Based on templates from [GitHub Issue #49](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/issues/49):
-
-- `Employment_Letter.pdf` - UK school employment confirmation
-- `Teacher_ID_Card.pdf` - Staff ID card template  
-- `Teaching_License.pdf` - DfE QTS certificate
+Documents saved to `./output/` folder as PNG files.
 
 ## Credits
 
-- Templates: [cruzzzdev](https://github.com/cruzzzdev)
+- Templates: [cruzzzdev](https://github.com/cruzzzdev) (Issue #49)
+- Workflow research: Issue #55
 - Tool: [ThanhNguyxn](https://github.com/ThanhNguyxn)
 
 ## Disclaimer
 
-⚠️ This tool is for educational purposes only. Using fake documents for fraud is illegal.
+⚠️ Educational purposes only. Using fake documents for fraud is illegal.

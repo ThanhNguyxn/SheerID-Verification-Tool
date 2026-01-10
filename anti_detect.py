@@ -8,35 +8,39 @@ Features:
 - Random fingerprint generation
 - Request delay randomization
 - TLS fingerprint spoofing (if curl_cffi available)
+- NewRelic tracking headers (required for SheerID)
 
 Usage:
     from anti_detect import get_headers, get_fingerprint, random_delay, create_session
+    from anti_detect import generate_newrelic_headers  # For SheerID API calls
 """
 
 import random
 import hashlib
 import time
 import uuid
+import base64
+import json
 
 # ============ USER AGENTS ============
-# Real browser User-Agents (updated Jan 2025)
+# Real browser User-Agents (updated Jan 2026)
 USER_AGENTS = [
     # Chrome Windows
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
     # Chrome Mac
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
     # Firefox Windows
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko/20100101 Firefox/134.0",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0",
     # Firefox Mac
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:133.0) Gecko/20100101 Firefox/133.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:134.0) Gecko/20100101 Firefox/134.0",
     # Edge
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Edg/132.0.0.0",
     # Safari Mac
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Safari/605.1.15",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.2 Safari/605.1.15",
 ]
 
 # ============ SCREEN RESOLUTIONS ============
@@ -59,10 +63,10 @@ LANGUAGES = [
 
 # ============ PLATFORMS ============
 PLATFORMS = [
+    ("Windows", '"Windows"', '"Chromium";v="132", "Google Chrome";v="132"'),
     ("Windows", '"Windows"', '"Chromium";v="131", "Google Chrome";v="131"'),
-    ("Windows", '"Windows"', '"Chromium";v="130", "Google Chrome";v="130"'),
-    ("macOS", '"macOS"', '"Chromium";v="131", "Google Chrome";v="131"'),
-    ("Linux", '"Linux"', '"Chromium";v="131", "Google Chrome";v="131"'),
+    ("macOS", '"macOS"', '"Chromium";v="132", "Google Chrome";v="132"'),
+    ("Linux", '"Linux"', '"Chromium";v="132", "Google Chrome";v="132"'),
 ]
 
 
@@ -87,6 +91,35 @@ def get_fingerprint() -> str:
         str(uuid.uuid4()),            # Session ID
     ]
     return hashlib.md5("|".join(components).encode()).hexdigest()
+
+
+def generate_newrelic_headers() -> dict:
+    """
+    Generate NewRelic tracking headers required by SheerID API
+    These headers help make requests look like they're from real browsers
+    """
+    trace_id = uuid.uuid4().hex + uuid.uuid4().hex[:8]
+    trace_id = trace_id[:32]
+    span_id = uuid.uuid4().hex[:16]
+    timestamp = int(time.time() * 1000)
+    
+    payload = {
+        "v": [0, 1],
+        "d": {
+            "ty": "Browser",
+            "ac": "364029",
+            "ap": "134291347",
+            "id": span_id,
+            "tr": trace_id,
+            "ti": timestamp
+        }
+    }
+    
+    return {
+        "newrelic": base64.b64encode(json.dumps(payload).encode()).decode(),
+        "traceparent": f"00-{trace_id}-{span_id}-01",
+        "tracestate": f"364029@nr=0-1-364029-134291347-{span_id}----{timestamp}"
+    }
 
 
 def get_headers(for_sheerid: bool = True, with_auth: str = None) -> dict:
@@ -118,12 +151,14 @@ def get_headers(for_sheerid: bool = True, with_auth: str = None) -> dict:
     }
     
     if for_sheerid:
+        nr_headers = generate_newrelic_headers()
         headers.update({
             "content-type": "application/json",
-            "clientversion": "2.157.0",
+            "clientversion": "2.158.0",
             "clientname": "jslib",
             "origin": "https://services.sheerid.com",
             "referer": "https://services.sheerid.com/",
+            **nr_headers  # Include NewRelic tracking headers
         })
     
     if with_auth:
@@ -162,7 +197,7 @@ def create_session(proxy: str = None):
     # Try curl_cffi first (best TLS fingerprint spoofing)
     try:
         from curl_cffi import requests as curl_requests
-        session = curl_requests.Session(impersonate="chrome131", proxies=proxies)
+        session = curl_requests.Session(impersonate="chrome132", proxies=proxies)
         return session, "curl_cffi"
     except ImportError:
         pass

@@ -33,7 +33,7 @@ except ImportError:
 # Import anti-detection module
 try:
     sys.path.insert(0, str(Path(__file__).parent.parent))
-    from anti_detect import get_headers, get_fingerprint, get_random_user_agent
+    from anti_detect import get_headers, get_fingerprint, get_random_user_agent, create_session
     HAS_ANTI_DETECT = True
     print("[INFO] Anti-detection module loaded")
 except ImportError:
@@ -210,11 +210,18 @@ def generate_teacher_document(first_name: str, last_name: str, school_name: str)
 class BoltnewVerifier:
     """Bolt.new Teacher Verification"""
     
-    def __init__(self, verification_url: str):
+    def __init__(self, verification_url: str, proxy: str = None):
         self.verification_url = verification_url
         self.verification_id = self._parse_verification_id(verification_url)
         self.device_fingerprint = generate_fingerprint()
-        self.client = httpx.Client(timeout=30.0)
+        
+        # Use enhanced anti-detection session
+        if HAS_ANTI_DETECT:
+            self.client, self.lib_name = create_session(proxy)
+            print(f"[INFO] Using {self.lib_name} for HTTP requests")
+        else:
+            self.client = httpx.Client(timeout=30.0)
+            self.lib_name = "httpx"
     
     def __del__(self):
         if hasattr(self, "client"):

@@ -38,7 +38,7 @@ except ImportError:
 # Import anti-detection module
 try:
     sys.path.insert(0, str(Path(__file__).parent.parent))
-    from anti_detect import get_headers, get_fingerprint, get_random_user_agent, random_delay as anti_delay
+    from anti_detect import get_headers, get_fingerprint, get_random_user_agent, random_delay as anti_delay, create_session
     HAS_ANTI_DETECT = True
     print("[INFO] Anti-detection module loaded")
 except ImportError:
@@ -352,14 +352,20 @@ class SpotifyVerifier:
         self.vid = self._parse_id(url)
         self.fingerprint = generate_fingerprint()
         
-        # Configure proxy if provided
-        proxy_url = None
-        if proxy:
-            if not proxy.startswith("http"):
-                proxy = f"http://{proxy}"
-            proxy_url = proxy
+        # Use enhanced anti-detection session
+        if HAS_ANTI_DETECT:
+            self.client, self.lib_name = create_session(proxy)
+            print(f"[INFO] Using {self.lib_name} for HTTP requests")
+        else:
+            # Fallback to httpx
+            proxy_url = None
+            if proxy:
+                if not proxy.startswith("http"):
+                    proxy = f"http://{proxy}"
+                proxy_url = proxy
+            self.client = httpx.Client(timeout=30, proxy=proxy_url)
+            self.lib_name = "httpx"
         
-        self.client = httpx.Client(timeout=30, proxy=proxy_url)
         self.org = None
     
     def __del__(self):
@@ -392,8 +398,10 @@ class SpotifyVerifier:
     def _request(self, method: str, endpoint: str, body: Dict = None) -> Tuple[Dict, int]:
         random_delay()
         try:
+            # Use anti-detect headers if available
+            headers = get_headers(for_sheerid=True) if HAS_ANTI_DETECT else {"Content-Type": "application/json"}
             resp = self.client.request(method, f"{SHEERID_API_URL}{endpoint}", 
-                                       json=body, headers={"Content-Type": "application/json"})
+                                       json=body, headers=headers)
             return resp.json() if resp.text else {}, resp.status_code
         except Exception as e:
             raise Exception(f"Request failed: {e}")
@@ -475,10 +483,16 @@ class SpotifyVerifier:
             print(f"     📍 Current step: {data.get('currentStep')}")
             current_step = data.get("currentStep", "")
             
-            # Step 3: Skip SSO if needed (PastKing logic)
-            if current_step in ["sso", "collectStudentPersonalInfo"]:
-                print("   ▶ Step 3/4: Skipping SSO...")
+            # Step 3: Handle SSO step
+            if current_step == "sso":
+                print("   ⚠️  SSO step detected - data likely not in authoritative database")
+                print("   ▶ Step 3/4: Skipping SSO (will require document review)...")
                 self._request("DELETE", f"/verification/{self.vid}/step/sso")
+            elif current_step == "success":
+                # Instant verification success!
+                print("   ✅ Instant verification via authoritative data!")
+                stats.record(self.org["name"], True)
+                return {"success": True, "message": "Instant verification!", "student": f"{first} {last}", "email": email, "school": self.org["name"]}
             
             # Step 4: Upload document
             print("   ▶ Step 4/5: Uploading document...")

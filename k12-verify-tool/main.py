@@ -32,7 +32,7 @@ except ImportError:
 # Import anti-detection module
 try:
     sys.path.insert(0, str(Path(__file__).parent.parent))
-    from anti_detect import get_headers, get_fingerprint, get_random_user_agent
+    from anti_detect import get_headers, get_fingerprint, get_random_user_agent, create_session
     HAS_ANTI_DETECT = True
     print("[INFO] Anti-detection module loaded")
 except ImportError:
@@ -243,13 +243,18 @@ class K12Verifier:
         self.verification_id = self._parse_verification_id(verification_url)
         self.device_fingerprint = generate_fingerprint()
         
-        proxy_url = None
-        if proxy:
-            if not proxy.startswith("http"):
-                proxy = f"http://{proxy}"
-            proxy_url = proxy
-            
-        self.client = httpx.Client(timeout=30.0, proxy=proxy_url)
+        # Use enhanced anti-detection session
+        if HAS_ANTI_DETECT:
+            self.client, self.lib_name = create_session(proxy)
+            print(f"[INFO] Using {self.lib_name} for HTTP requests")
+        else:
+            proxy_url = None
+            if proxy:
+                if not proxy.startswith("http"):
+                    proxy = f"http://{proxy}"
+                proxy_url = proxy
+            self.client = httpx.Client(timeout=30.0, proxy=proxy_url)
+            self.lib_name = "httpx"
     
     def __del__(self):
         if hasattr(self, "client"):

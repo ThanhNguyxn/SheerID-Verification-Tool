@@ -76,6 +76,18 @@ All tools now include `anti_detect.py` which provides:
 - **TLS Fingerprint Spoofing**: Uses `curl_cffi` to impersonate Chrome's JA3/JA4 fingerprint
 - **Random Delays**: Avoids rate limiting with randomized request timing
 - **Smart Session**: Auto-selects best available HTTP library (curl_cffi > cloudscraper > httpx > requests)
+- **NewRelic Headers**: Required tracking headers for SheerID API calls
+
+> [!WARNING]
+> **API-Based Tools Have Inherent Limitations**
+>
+> SheerID uses advanced detection including:
+> - **TLS Fingerprinting**: Python `requests`/`httpx` have detectable signatures
+> - **Signal Intelligence**: IP address, device attributes, email age analysis
+> - **AI Document Review**: Detects forged/template documents
+>
+> For best results: Use **residential proxies** + install `curl_cffi` for TLS spoofing.
+> Browser extensions generally have higher success rates than API tools.
 
 ---
 

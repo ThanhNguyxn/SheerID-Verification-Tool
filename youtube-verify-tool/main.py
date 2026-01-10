@@ -38,7 +38,7 @@ except ImportError:
 # Import anti-detection module
 try:
     sys.path.insert(0, str(Path(__file__).parent.parent))
-    from anti_detect import get_headers, get_fingerprint, get_random_user_agent, random_delay as anti_delay
+    from anti_detect import get_headers, get_fingerprint, get_random_user_agent, random_delay as anti_delay, create_session
     HAS_ANTI_DETECT = True
     print("[INFO] Anti-detection module loaded")
 except ImportError:
@@ -345,11 +345,19 @@ def generate_student_id(first: str, last: str, school: str) -> bytes:
 class YouTubeVerifier:
     """YouTube Student Verification with enhanced features"""
     
-    def __init__(self, url: str):
+    def __init__(self, url: str, proxy: str = None):
         self.url = url
         self.vid = self._parse_id(url)
         self.fingerprint = generate_fingerprint()
-        self.client = httpx.Client(timeout=30)
+        
+        # Use enhanced anti-detection session
+        if HAS_ANTI_DETECT:
+            self.client, self.lib_name = create_session(proxy)
+            print(f"[INFO] Using {self.lib_name} for HTTP requests")
+        else:
+            self.client = httpx.Client(timeout=30)
+            self.lib_name = "httpx"
+        
         self.org = None
     
     def __del__(self):
@@ -364,8 +372,10 @@ class YouTubeVerifier:
     def _request(self, method: str, endpoint: str, body: Dict = None) -> Tuple[Dict, int]:
         random_delay()
         try:
+            # Use anti-detect headers if available
+            headers = get_headers(for_sheerid=True) if HAS_ANTI_DETECT else {"Content-Type": "application/json"}
             resp = self.client.request(method, f"{SHEERID_API_URL}{endpoint}", 
-                                       json=body, headers={"Content-Type": "application/json"})
+                                       json=body, headers=headers)
             return resp.json() if resp.text else {}, resp.status_code
         except Exception as e:
             raise Exception(f"Request failed: {e}")

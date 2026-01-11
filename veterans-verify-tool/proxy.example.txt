@@ -1,0 +1,9 @@
+# Proxy Configuration
+# Format: host:port or host:port:user:pass
+# One proxy per line
+# Lines starting with # are comments
+
+# Examples:
+# 192.168.1.100:8080
+# proxy.example.com:1080:username:password
+# socks5://user:pass@proxy.example.com:1080

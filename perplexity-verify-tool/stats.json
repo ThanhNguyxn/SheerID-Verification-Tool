@@ -1,0 +1,11 @@
+{
+  "total": 12,
+  "success": 12,
+  "failed": 0,
+  "orgs": {
+    "University of Groningen": {
+      "success": 12,
+      "failed": 0
+    }
+  }
+}

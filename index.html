@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>SheerID Verification · Documentation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #050505;
+      --glass-bg: rgba(20, 20, 20, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --primary: #3b82f6;
+      --accent: #8b5cf6;
+      --text-main: #ffffff;
+      --text-muted: #888888;
+      --font-sans: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 0;
+      background-image: radial-gradient(circle at 50% 0%, #1a1a1a, #050505);
+    }
+
+    .glow-orb {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.15;
+      z-index: -1;
+    }
+
+    .orb-1 {
+      top: -200px;
+      left: -100px;
+      background: var(--primary);
+    }
+
+    .orb-2 {
+      bottom: -200px;
+      right: -100px;
+      background: var(--accent);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 720px;
+      padding: 24px;
+      z-index: 1;
+    }
+
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(40px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 48px;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    h2 {
+      margin: 0 0 32px 0;
+      font-size: 20px;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 6px;
+    }
+
+    .section-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 32px 0 16px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .section-title:first-of-type {
+      margin-top: 0;
+    }
+
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 8px;
+    }
+
+    .doc-link {
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .doc-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .method-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .method-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 20px;
+      text-decoration: none;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .method-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-4px);
+    }
+
+    .method-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .method-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .method-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .method-tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+    }
+
+    .tag-bot {
+      background: rgba(236, 72, 153, 0.2);
+      color: #ec4899;
+    }
+
+    .tag-web {
+      background: rgba(59, 130, 246, 0.2);
+      color: #3b82f6;
+    }
+
+    .tag-tool {
+      background: rgba(74, 222, 128, 0.2);
+      color: #4ade80;
+    }
+
+    .footer {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 12px;
+      color: #444;
+      font-family: var(--font-mono);
+    }
+
+    .footer a {
+      color: #666;
+      text-decoration: none;
+      margin: 0 16px;
+    }
+
+    .footer a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 16px;
+      }
+
+      .glass-card {
+        padding: 24px;
+      }
+
+      .method-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+
+  <div class="container">
+    <div class="glass-card">
+      <h2>SHEERID VERIFICATION</h2>
+
+      <!-- Documentation Links -->
+      <div class="section-title">📖 Documentation</div>
+      <div class="docs-grid">
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/README.md" target="_blank"
+          class="doc-link">🇺🇸 EN</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.vi.md" target="_blank"
+          class="doc-link">🇻🇳 VI</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.zh.md" target="_blank"
+          class="doc-link">🇨🇳 中文</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.ja.md" target="_blank"
+          class="doc-link">🇯🇵 日本語</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.ko.md" target="_blank"
+          class="doc-link">🇰🇷 한국어</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.es.md" target="_blank"
+          class="doc-link">🇪🇸 ES</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.fr.md" target="_blank"
+          class="doc-link">🇫🇷 FR</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.de.md" target="_blank"
+          class="doc-link">🇩🇪 DE</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.ru.md" target="_blank"
+          class="doc-link">🇷🇺 RU</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.pt-BR.md"
+          target="_blank" class="doc-link">🇧🇷 PT</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.it.md" target="_blank"
+          class="doc-link">🇮🇹 IT</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.tr.md" target="_blank"
+          class="doc-link">🇹🇷 TR</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.pl.md" target="_blank"
+          class="doc-link">🇵🇱 PL</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.id.md" target="_blank"
+          class="doc-link">🇮🇩 ID</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.th.md" target="_blank"
+          class="doc-link">🇹🇭 TH</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.hi.md" target="_blank"
+          class="doc-link">🇮🇳 HI</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/docs/README.ar.md" target="_blank"
+          class="doc-link">🇸🇦 AR</a>
+      </div>
+
+      <!-- Tool Documentation Links -->
+      <div class="section-title">🛠️ Tool Guides</div>
+      <div class="docs-grid">
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/spotify-verify-tool/README.md"
+          target="_blank" class="doc-link">🎵 Spotify</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/youtube-verify-tool/README.md"
+          target="_blank" class="doc-link">🎬 YouTube</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/one-verify-tool/README.md"
+          target="_blank" class="doc-link">🤖 Gemini</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/boltnew-verify-tool/README.md"
+          target="_blank" class="doc-link">⚡ Bolt.new</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/k12-verify-tool/README.md"
+          target="_blank" class="doc-link">🏫 K12</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/veterans-verify-tool/README.md"
+          target="_blank" class="doc-link">🎖️ Veterans</a>
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool/blob/master/veterans-extension/README.md"
+          target="_blank" class="doc-link">🧩 Extension</a>
+      </div>
+
+      <!-- Other Methods -->
+      <div class="section-title">🔗 Other Methods</div>
+      <div class="method-cards">
+        <a href="https://roxybrowser.com?code=01045PFA" target="_blank" class="method-card">
+          <div class="method-icon">🦊</div>
+          <div class="method-name">RoxyBrowser</div>
+          <div class="method-desc">Anti-detect browser for multi-account management</div>
+          <span class="method-tag tag-tool">BROWSER</span>
+        </a>
+        <a href="https://ip123.in/sheerid/?code=01045PFA" target="_blank" class="method-card">
+          <div class="method-icon">🔐</div>
+          <div class="method-name">SheerID Auto Verify</div>
+          <div class="method-desc">Auto verification tool — Fast automated SheerID verification</div>
+          <span class="method-tag tag-web">WEB</span>
+        </a>
+        <a href="https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej" target="_blank" class="method-card">
+          <div class="method-icon">🤖</div>
+          <div class="method-name">SheerID Verification Bot</div>
+          <div class="method-desc">Automated Telegram verification bot</div>
+          <span class="method-tag tag-bot">BOT</span>
+        </a>
+        <a href="https://t.me/auto_sheerid_bot?start=7762497789" target="_blank" class="method-card">
+          <div class="method-icon">🤖</div>
+          <div class="method-name">Auto SheerID Bot</div>
+          <div class="method-desc">Automated verification bot</div>
+          <span class="method-tag tag-bot">BOT</span>
+        </a>
+        <a href="https://thanhnguyxn.github.io/student-card-generator/" target="_blank" class="method-card">
+          <div class="method-icon">🎓</div>
+          <div class="method-name">Student Card Generator</div>
+          <div class="method-desc">Create student card for manual verification</div>
+          <span class="method-tag tag-tool">TOOL</span>
+        </a>
+        <a href="https://thanhnguyxn.github.io/payslip-generator/" target="_blank" class="method-card">
+          <div class="method-icon">💰</div>
+          <div class="method-name">Payslip Generator</div>
+          <div class="method-desc">Generate payslip documents</div>
+          <span class="method-tag tag-tool">TOOL</span>
+        </a>
+      </div>
+
+      <div class="footer">
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool" target="_blank">GITHUB</a>
+        <a href="https://buymeacoffee.com/thanhnguyxn" target="_blank">DONATE</a>
+        <a href="https://github.com/sponsors/ThanhNguyxn" target="_blank">SUPPORT</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

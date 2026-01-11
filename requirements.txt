@@ -1,0 +1,4 @@
+httpx
+Pillow
+requests
+cloudscraper

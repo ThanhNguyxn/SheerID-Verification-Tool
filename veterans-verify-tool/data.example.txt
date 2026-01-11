@@ -1,0 +1,15 @@
+# Veterans Data File
+# Format: firstName|lastName|branch|birthDate|dischargeDate
+# 
+# Branches: Army, Navy, Air Force, Marine Corps, Coast Guard, Space Force
+#           Army National Guard, Army Reserve, Air National Guard, Air Force Reserve
+#           Navy Reserve, Marine Corps Reserve, Coast Guard Reserve
+#
+# Dates: YYYY-MM-DD format
+#
+# Example:
+# JOHN|SMITH|Army|1990-05-15|2023-06-01
+# DAVID|JOHNSON|Marine Corps|1988-12-20|2022-03-15
+# MICHAEL|WILLIAMS|Navy|1992-08-10|2024-01-10
+
+# Add your real veteran data below:

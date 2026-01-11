@@ -1,0 +1,12 @@
+{
+    "accessToken": "YOUR_CHATGPT_ACCESS_TOKEN_HERE",
+    "programId": "690415d58971e73ca187d8c9",
+    "_comment": "Get accessToken: Login chatgpt.com → Visit chatgpt.com/api/auth/session → Copy accessToken value",
+    "email": {
+        "imap_server": "imap.gmail.com",
+        "imap_port": 993,
+        "email_address": "your_email@gmail.com",
+        "email_password": "your_app_password",
+        "use_ssl": true
+    }
+}

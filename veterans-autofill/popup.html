@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterans Autofill</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 340px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            padding: 16px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header h1 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #4a5568;
+            border-radius: 24px;
+            transition: 0.3s;
+        }
+
+        .toggle-slider:before {
+            content: "";
+            position: absolute;
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background: #fff;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .toggle input:checked+.toggle-slider {
+            background: #10b981;
+        }
+
+        .toggle input:checked+.toggle-slider:before {
+            transform: translateX(20px);
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #9ca3af;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .row:last-child {
+            margin-bottom: 0;
+        }
+
+        .field {
+            flex: 1;
+        }
+
+        .field label {
+            display: block;
+            font-size: 11px;
+            color: #9ca3af;
+            margin-bottom: 4px;
+        }
+
+        .field input,
+        .field textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 13px;
+        }
+
+        .field input:focus,
+        .field textarea:focus {
+            outline: none;
+            border-color: #10b981;
+        }
+
+        textarea {
+            font-family: 'Consolas', 'Monaco', monospace;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .index-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+        }
+
+        .index-num {
+            font-size: 32px;
+            font-weight: 700;
+            color: #10b981;
+        }
+
+        .index-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .index-btn {
+            width: 28px;
+            height: 20px;
+            border: none;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .index-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .current-entry {
+            margin-top: 10px;
+            padding: 8px;
+            background: rgba(16, 185, 129, 0.15);
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 11px;
+            color: #10b981;
+            word-break: break-all;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.9;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: #fff;
+        }
+
+        .otp-display {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+            margin: 12px 0;
+        }
+
+        .otp-digit {
+            width: 32px;
+            height: 40px;
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: #10b981;
+        }
+
+        .otp-digit.filled {
+            border-style: solid;
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .link-display {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            padding: 8px;
+            font-size: 11px;
+            color: #9ca3af;
+            word-break: break-all;
+            max-height: 60px;
+            overflow-y: auto;
+        }
+
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            margin-top: 12px;
+        }
+
+        .status-ready {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .status-loading {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        .status-error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .format-hint {
+            font-size: 10px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>🎖️ Veterans Autofill</h1>
+        <label class="toggle">
+            <input type="checkbox" id="enableToggle">
+            <span class="toggle-slider"></span>
+        </label>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Current Index</div>
+        <div class="index-display">
+            <span class="index-num" id="indexNum">1</span>
+            <div class="index-controls">
+                <button class="index-btn" id="indexUp">▲</button>
+                <button class="index-btn" id="indexDown">▼</button>
+            </div>
+        </div>
+        <div class="current-entry" id="currentEntry">No data loaded</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Email</div>
+        <div class="row">
+            <div class="field" style="flex: 2;">
+                <input type="text" id="emailInput" placeholder="Click Generate or enter email">
+            </div>
+            <button class="btn btn-secondary" id="generateEmailBtn" style="flex: 1;">Generate</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Batch Data</div>
+        <div class="field">
+            <textarea id="batchData" placeholder="JOHN|DOE|Army|1985-01-15|2025-06-01
+JANE|SMITH|Navy|1990-03-20|2025-08-15
+BOB|WILSON|Air Force|1988-07-10|2025-05-20"></textarea>
+            <div class="format-hint">Format: FirstName|LastName|Branch|DOB|DischargeDate (one per line)</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Actions</div>
+        <div class="btn-row">
+            <button class="btn btn-primary" id="fillFormBtn">Fill Form</button>
+            <button class="btn btn-secondary" id="nextEntryBtn">Next ▶</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="btn-row">
+            <button class="btn btn-success" id="openChatGPTBtn">🚀 Open ChatGPT Veterans</button>
+        </div>
+    </div>
+
+    <div class="status-bar status-ready" id="statusBar">
+        <span>✓</span>
+        <span id="statusText">Ready</span>
+    </div>
+
+    <div style="display:flex;justify-content:center;gap:8px;margin-top:12px;">
+        <a href="https://buymeacoffee.com/thanhnguyxn" target="_blank"
+            style="display:flex;align-items:center;gap:4px;padding:6px 10px;background:#FFDD00;color:#000;border-radius:6px;text-decoration:none;font-size:11px;font-weight:600;">
+            ☕ Buy Me A Coffee
+        </a>
+        <a href="https://github.com/sponsors/ThanhNguyxn" target="_blank"
+            style="display:flex;align-items:center;gap:4px;padding:6px 10px;background:#EA4AAA;color:#fff;border-radius:6px;text-decoration:none;font-size:11px;font-weight:600;">
+            💖 Sponsor
+        </a>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

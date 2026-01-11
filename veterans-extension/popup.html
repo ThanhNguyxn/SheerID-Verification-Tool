@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterans Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 400px;
+            min-height: 500px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #4ade80;
+        }
+
+        .header p {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .toggle-container span {
+            font-size: 14px;
+        }
+
+        .toggle {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #475569;
+            transition: .3s;
+            border-radius: 26px;
+        }
+
+        .toggle .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        .toggle input:checked+.slider {
+            background-color: #4ade80;
+        }
+
+        .toggle input:checked+.slider:before {
+            transform: translateX(24px);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #4ade80;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: none;
+            font-family: monospace;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .row .form-group {
+            flex: 1;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .status {
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+
+        .status.success {
+            color: #4ade80;
+        }
+
+        .status.error {
+            color: #f87171;
+        }
+
+        .used-list {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 10px;
+            max-height: 100px;
+            overflow-y: auto;
+            font-size: 11px;
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+
+        .used-list:empty::before {
+            content: "No entries used yet";
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer a {
+            color: #4ade80;
+            text-decoration: none;
+            font-size: 12px;
+            margin: 0 10px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .help-text {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>🎖️ Veterans Verification</h1>
+        <p>Auto-fill SheerID forms for ChatGPT Plus</p>
+    </div>
+
+    <div class="toggle-container">
+        <span>Enable Extension</span>
+        <label class="toggle">
+            <input type="checkbox" id="pluginEnabled" checked>
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Statistics Panel -->
+    <div class="stats-panel" style="display: flex; gap: 10px; margin-bottom: 15px;">
+        <div
+            style="flex: 1; background: rgba(74, 222, 128, 0.2); padding: 12px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 20px; font-weight: bold; color: #4ade80;" id="successCount">0</div>
+            <div style="font-size: 11px; color: #94a3b8;">✅ Success</div>
+        </div>
+        <div
+            style="flex: 1; background: rgba(248, 113, 113, 0.2); padding: 12px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 20px; font-weight: bold; color: #f87171;" id="failCount">0</div>
+            <div style="font-size: 11px; color: #94a3b8;">❌ Failed</div>
+        </div>
+        <div
+            style="flex: 1; background: rgba(251, 191, 36, 0.2); padding: 12px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 20px; font-weight: bold; color: #fbbf24;" id="skipCount">0</div>
+            <div style="font-size: 11px; color: #94a3b8;">⏭️ Skipped</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group" style="flex: 2;">
+            <label>Program ID</label>
+            <input type="text" id="programId" placeholder="690415d58971e73ca187d8c9">
+        </div>
+        <div class="form-group" style="flex: 1;">
+            <label>Current Index</label>
+            <input type="number" id="currentIndex" value="0" min="0">
+        </div>
+    </div>
+    <p class="help-text" style="margin-top: -10px; margin-bottom: 15px;">Leave empty to use default ChatGPT Veterans ID
+    </p>
+
+    <div class="form-group">
+        <label>Batch Data (one per line: First|Last|Branch|DOB|Discharge|Email)</label>
+        <textarea id="inputData"
+            placeholder="JOHN|DOE|US ARMY|1985-01-15|2024-06-01|john.doe@gmail.com&#10;JANE|SMITH|US NAVY|1990-03-20|2024-08-15"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Email (supports TempMail)</label>
+        <div style="display: flex; gap: 5px; margin-bottom: 5px;">
+            <select id="emailProvider"
+                style="padding: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; font-size: 12px; cursor: pointer;">
+                <option value="mailtm">📧 mail.tm</option>
+                <option value="tinyhost">🏠 tinyhost.shop</option>
+            </select>
+            <input type="text" id="email" placeholder="abc123@domain.com" style="flex: 1;">
+            <button id="genEmailBtn"
+                style="padding: 0 12px; background: #2563eb; border: none; border-radius: 8px; color: white; cursor: pointer; font-size: 12px;">Generate</button>
+        </div>
+        <p class="help-text">Select provider → Click Generate. tinyhost.shop = simpler API, no account needed.</p>
+    </div>
+
+    <button class="btn btn-primary" id="saveBtn">💾 Save Configuration</button>
+    <button class="btn btn-secondary" id="fillBtn">📝 Fill Form Now</button>
+
+    <div class="form-group">
+        <label>Used Entries</label>
+        <div class="used-list" id="usedList"></div>
+    </div>
+
+    <button class="btn btn-secondary" id="clearBtn">🗑️ Clear Used List</button>
+
+    <!-- Export/Import -->
+    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+        <button class="btn btn-secondary" id="exportBtn" style="flex: 1;">📤 Export</button>
+        <button class="btn btn-secondary" id="importBtn" style="flex: 1;">📥 Import</button>
+    </div>
+
+    <div class="status" id="status"></div>
+
+    <div class="footer">
+        <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool" target="_blank">GitHub</a>
+        <a href="https://buymeacoffee.com/thanhnguyxn" target="_blank">☕ Donate</a>
+        <a href="https://github.com/sponsors/ThanhNguyxn" target="_blank">❤️ Sponsor</a>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

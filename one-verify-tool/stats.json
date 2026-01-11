@@ -1,6 +1,6 @@
 {
-  "total": 4,
-  "success": 1,
+  "total": 5,
+  "success": 2,
   "failed": 3,
   "orgs": {
     "University of Michigan": {
@@ -16,6 +16,10 @@
       "failed": 1
     },
     "Arizona State University": {
+      "success": 1,
+      "failed": 0
+    },
+    "University of British Columbia": {
       "success": 1,
       "failed": 0
     }

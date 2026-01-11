@@ -197,7 +197,13 @@ def create_session(proxy: str = None):
     # Try curl_cffi first (best TLS fingerprint spoofing)
     try:
         from curl_cffi import requests as curl_requests
-        session = curl_requests.Session(impersonate="chrome132", proxies=proxies)
+        # Avoid specifying `impersonate` at creation time because some
+        # curl_cffi builds raise ImpersonateError for unsupported values.
+        try:
+            session = curl_requests.Session(proxies=proxies)
+        except Exception:
+            # Fallback to a plain session if proxies cause issues
+            session = curl_requests.Session()
         return session, "curl_cffi"
     except ImportError:
         pass

@@ -427,16 +427,52 @@ class GeminiVerifier:
             headers = get_headers(for_sheerid=True) if HAS_ANTI_DETECT else {"Content-Type": "application/json"}
             resp = self.client.request(method, f"{SHEERID_API_URL}{endpoint}", 
                                        json=body, headers=headers)
-            return resp.json() if resp.text else {}, resp.status_code
+            try:
+                parsed = resp.json() if resp.text else {}
+            except Exception:
+                parsed = {"_text": resp.text}
+            return parsed, resp.status_code
         except Exception as e:
             raise Exception(f"Request failed: {e}")
     
     def _upload_s3(self, url: str, data: bytes) -> bool:
-        try:
-            resp = self.client.put(url, content=data, headers={"Content-Type": "image/png"}, timeout=60)
-            return 200 <= resp.status_code < 300
-        except:
-            return False
+        # Different session implementations accept different kw names
+        # Try several variants to maximize compatibility (curl_cffi, httpx, requests)
+        attempts = []
+        # First try: common httpx signature
+        attempts.append(lambda: self.client.put(url, content=data, headers={"Content-Type": "image/png"}, timeout=60))
+        # Second try: requests-like signature
+        attempts.append(lambda: self.client.put(url, data=data, headers={"Content-Type": "image/png"}, timeout=60))
+        # Third try: generic request method
+        attempts.append(lambda: self.client.request("PUT", url, data=data, headers={"Content-Type": "image/png"}, timeout=60))
+
+        last_exc = None
+        for fn in attempts:
+            try:
+                resp = fn()
+                if hasattr(resp, "status_code"):
+                    if 200 <= resp.status_code < 300:
+                        return True
+                    try:
+                        body = resp.json()
+                    except Exception:
+                        body = getattr(resp, "text", str(resp))
+                    print(f"     ❗ S3 upload failed: HTTP {resp.status_code} | {body}")
+                    return False
+                else:
+                    # If resp is not a requests-like object, treat success if truthy
+                    if resp:
+                        return True
+                    return False
+            except TypeError as e:
+                last_exc = e
+                continue
+            except Exception as e:
+                last_exc = e
+                continue
+
+        print(f"     ❗ S3 upload failed after attempts. Last error: {last_exc}")
+        return False
     
     def check_link(self) -> Dict:
         """Check if verification link is valid"""
@@ -513,10 +549,12 @@ class GeminiVerifier:
                 }
                 
                 data, status = self._request("POST", f"/verification/{self.vid}/step/collectStudentPersonalInfo", body)
-                
+
                 if status != 200:
                     stats.record(self.org["name"], False)
-                    return {"success": False, "error": f"Submit failed: {status}"}
+                    print(f"     ❗ Submit failed: HTTP {status}")
+                    print(f"     ❗ Response body: {data}")
+                    return {"success": False, "error": f"Submit failed: {status} - {data}"}
                 
                 if data.get("currentStep") == "error":
                     stats.record(self.org["name"], False)

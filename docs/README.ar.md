@@ -26,8 +26,8 @@
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **متصفح مضاد للكشف** — إدارة حسابات متعددة تم التحقق منها بأمان دون حظر |
 | [SheerID Auto Verify](https://ip123.in/sheerid/?code=01045PFA) | 🔐 Web | **أداة التحقق التلقائي** — التحقق التلقائي السريع من SheerID |
-| [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | بوت Telegram للمجتمع الفيتنامي |
-| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Bot | بوت التحقق الآلي |
+| [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | بوت Telegram للتحقق الآلي |
+| [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Bot | بوت التحقق الآلي |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | إنشاء بطاقات هوية الطالب للتحقق اليدوي |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | إنشاء قسائم رواتب للتحقق من المعلمين |
 

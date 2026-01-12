@@ -26,8 +26,8 @@
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Антидетект браузер** — Безопасное управление несколькими верифицированными аккаунтами без бана |
 | [SheerID Auto Verify](https://ip123.in/sheerid/?code=01045PFA) | 🔐 Web | **Инструмент автоматической верификации** — Быстрая автоматическая верификация SheerID |
-| [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🇻🇳 Бот | Telegram-бот вьетнамского сообщества |
-| [Auto SheerID Bot](https://t.me/auto_sheerid_bot?start=7762497789) | 🤖 Бот | Бот автоматической проверки |
+| [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Бот | Автоматический бот верификации Telegram |
+| [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Бот | Бот автоматической проверки |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Создание студенческих билетов для ручной верификации |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Генерация расчетных листков для верификации учителей |
 

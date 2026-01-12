@@ -380,38 +380,44 @@ class SpotifyVerifier:
     def _request(self, method: str, endpoint: str, body: Dict = None) -> Tuple[Dict, int]:
         random_delay()
         try:
-            resp = self.client.request(method, f"{SHEERID_API_URL}{endpoint}", 
-                                       json=body, headers={"Content-Type": "application/json"})
-            return resp.json() if resp.text else {}, resp.status_code
-        except Exception as e:
-            raise Exception(f"Request failed: {e}")
-    
-    def __del__(self):
-        if hasattr(self, "client"):
-            self.client.close()
-    
-    @staticmethod
-    def _parse_id(url: str) -> Optional[str]:
-        match = re.search(r"verificationId=([a-f0-9]+)", url, re.IGNORECASE)
-        return match.group(1) if match else None
-    
-    def _request(self, method: str, endpoint: str, body: Dict = None) -> Tuple[Dict, int]:
-        random_delay()
-        try:
             # Use anti-detect headers if available
             headers = get_headers(for_sheerid=True) if HAS_ANTI_DETECT else {"Content-Type": "application/json"}
             resp = self.client.request(method, f"{SHEERID_API_URL}{endpoint}", 
                                        json=body, headers=headers)
-            return resp.json() if resp.text else {}, resp.status_code
+            try:
+                parsed = resp.json() if resp.text else {}
+            except Exception:
+                parsed = {"_text": resp.text}
+            return parsed, resp.status_code
         except Exception as e:
             raise Exception(f"Request failed: {e}")
     
     def _upload_s3(self, url: str, data: bytes) -> bool:
-        try:
-            resp = self.client.put(url, content=data, headers={"Content-Type": "image/png"}, timeout=60)
-            return 200 <= resp.status_code < 300
-        except:
-            return False
+        """Upload to S3 with multiple signature attempts for library compatibility"""
+        signatures = [
+            lambda: self.client.put(url, content=data, headers={"Content-Type": "image/png"}, timeout=60),
+            lambda: self.client.put(url, data=data, headers={"Content-Type": "image/png"}, timeout=60),
+            lambda: self.client.request("PUT", url, content=data, headers={"Content-Type": "image/png"}, timeout=60),
+        ]
+        
+        last_exc = None
+        for sig in signatures:
+            try:
+                resp = sig()
+                if hasattr(resp, 'status_code'):
+                    if 200 <= resp.status_code < 300:
+                        return True
+                elif resp:
+                    return True
+            except TypeError as e:
+                last_exc = e
+                continue
+            except Exception as e:
+                last_exc = e
+                continue
+        
+        print(f"     ❗ S3 upload failed. Last error: {last_exc}")
+        return False
     
     def check_link(self) -> Dict:
         """Check if verification link is valid"""

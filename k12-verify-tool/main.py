@@ -278,13 +278,31 @@ class K12Verifier:
             raise Exception(f"Request failed: {e}")
     
     def _upload_to_s3(self, upload_url: str, data: bytes, mime_type: str) -> bool:
-        try:
-            response = self.client.put(upload_url, content=data, 
-                                       headers={"Content-Type": mime_type}, timeout=60.0)
-            return 200 <= response.status_code < 300
-        except Exception as e:
-            print(f"   [ERROR] S3 upload failed: {e}")
-            return False
+        """Upload file to S3 with multiple signature attempts for library compatibility"""
+        signatures = [
+            lambda: self.client.put(upload_url, content=data, headers={"Content-Type": mime_type}, timeout=60.0),
+            lambda: self.client.put(upload_url, data=data, headers={"Content-Type": mime_type}, timeout=60.0),
+            lambda: self.client.request("PUT", upload_url, content=data, headers={"Content-Type": mime_type}, timeout=60.0),
+        ]
+        
+        last_exc = None
+        for sig in signatures:
+            try:
+                resp = sig()
+                if hasattr(resp, 'status_code'):
+                    if 200 <= resp.status_code < 300:
+                        return True
+                elif resp:
+                    return True
+            except TypeError as e:
+                last_exc = e
+                continue
+            except Exception as e:
+                last_exc = e
+                continue
+        
+        print(f"   [ERROR] S3 upload failed. Last error: {last_exc}")
+        return False
     
     def verify(self) -> Dict:
         if not self.verification_id:

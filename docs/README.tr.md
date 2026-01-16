@@ -25,7 +25,7 @@
 | Araç | Tür | Açıklama |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Anti-tespit tarayıcı** — Yasaklanmadan birden fazla doğrulanmış hesabı güvenle yönetin |
-| [SheerID Auto Verify](https://ip123.in/sheerid/?code=01045PFA) | 🔐 Web | **Otomatik doğrulama aracı** — Hızlı otomatik SheerID doğrulaması |
+| [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Check IP** — Check your IP address and proxy status |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Otomatik doğrulama Telegram botu |
 | [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Bot | Otomatik doğrulama botu |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Manuel doğrulama için öğrenci kimlik kartları oluşturun |

@@ -25,7 +25,7 @@
 | Инструмент | Тип | Описание |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Антидетект браузер** — Безопасное управление несколькими верифицированными аккаунтами без бана |
-| [SheerID Auto Verify](https://ip123.in/sheerid/?code=01045PFA) | 🔐 Web | **Инструмент автоматической верификации** — Быстрая автоматическая верификация SheerID |
+| [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Check IP** — Check your IP address and proxy status |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Бот | Автоматический бот верификации Telegram |
 | [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Бот | Бот автоматической проверки |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Создание студенческих билетов для ручной верификации |

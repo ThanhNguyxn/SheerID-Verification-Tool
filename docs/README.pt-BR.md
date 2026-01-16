@@ -25,7 +25,7 @@ Uma coleção abrangente de ferramentas para automatizar fluxos de trabalho de v
 | Ferramenta | Tipo | Descrição |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Navegador anti-detecção** — Gerencie múltiplas contas verificadas sem ser banido |
-| [SheerID Auto Verify](https://ip123.in/sheerid/?code=01045PFA) | 🔐 Web | **Ferramenta de verificação automática** — Verificação SheerID rápida e automática |
+| [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Check IP** — Check your IP address and proxy status |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Bot de Telegram de verificação automatizado |
 | [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Bot | Bot de verificação automatizado |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Criar carteiras de estudante para verificação manual |

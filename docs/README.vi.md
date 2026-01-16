@@ -25,7 +25,7 @@ Một bộ công cụ toàn diện để tự động hóa quy trình xác minh 
 | Công cụ | Loại | Mô tả |
 |------|------|-------------|
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Trình duyệt chống phát hiện** — Quản lý nhiều tài khoản đã xác minh mà không bị cấm |
-| [SheerID Auto Verify](https://ip123.in/sheerid/?code=01045PFA) | 🔐 Web | **Công cụ xác minh tự động** — Xác minh SheerID tự động nhanh chóng |
+| [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Kiểm tra IP** — Kiểm tra địa chỉ IP và trạng thái proxy |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Bot Telegram xác minh tự động |
 | [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Bot | Bot xác minh tự động |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Tạo thẻ sinh viên để xác minh thủ công |

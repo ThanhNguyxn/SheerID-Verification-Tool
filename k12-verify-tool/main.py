@@ -2,6 +2,15 @@
 K12 Teacher Verification Tool
 SheerID K12 Teacher Verification (High School)
 
+⚠️  IMPORTANT (Jan 2026):
+K12 verification is US-ONLY and verifies against US K-12 school database.
+Auto-approval is possible if school/teacher info matches database.
+Document upload is fallback if auto-approval fails.
+
+Requirements:
+- curl_cffi: pip install curl_cffi (CRITICAL for TLS spoofing)
+- US residential proxy (STRONGLY recommended)
+
 Written from scratch based on SheerID API flow
 Author: ThanhNguyxn
 """
@@ -20,23 +29,28 @@ from typing import Dict, Optional, Tuple, Any
 try:
     import httpx
 except ImportError:
-    print("Error: httpx required. Install: pip install httpx")
+    print("❌ Error: httpx required. Install: pip install httpx")
     sys.exit(1)
 
 try:
     from PIL import Image, ImageDraw, ImageFont
 except ImportError:
-    print("Error: Pillow required. Install: pip install Pillow")
+    print("❌ Error: Pillow required. Install: pip install Pillow")
     sys.exit(1)
 
 # Import anti-detection module
 try:
     sys.path.insert(0, str(Path(__file__).parent.parent))
-    from anti_detect import get_headers, get_fingerprint, get_random_user_agent, create_session
+    from anti_detect import (
+        get_headers, get_fingerprint, get_random_user_agent, 
+        create_session, check_proxy_type, random_delay
+    )
     HAS_ANTI_DETECT = True
     print("[INFO] Anti-detection module loaded")
 except ImportError:
     HAS_ANTI_DETECT = False
+    print("[WARN] anti_detect.py not found - HIGH detection risk!")
+    print("[WARN] Install: pip install curl_cffi for better success rate")
 
 # ============ CONFIG ============
 PROGRAM_ID = "68d47554aa292d20b9bec8f7"
@@ -245,8 +259,10 @@ class K12Verifier:
         
         # Use enhanced anti-detection session
         if HAS_ANTI_DETECT:
-            self.client, self.lib_name = create_session(proxy)
+            self.client, self.lib_name, self.impersonate = create_session(proxy)
             print(f"[INFO] Using {self.lib_name} for HTTP requests")
+            if self.impersonate:
+                print(f"[INFO] TLS fingerprint: {self.impersonate}")
         else:
             proxy_url = None
             if proxy:
@@ -255,6 +271,7 @@ class K12Verifier:
                 proxy_url = proxy
             self.client = httpx.Client(timeout=30.0, proxy=proxy_url)
             self.lib_name = "httpx"
+            self.impersonate = None
     
     def __del__(self):
         if hasattr(self, "client"):
@@ -276,6 +293,39 @@ class K12Verifier:
             return data, response.status_code
         except Exception as e:
             raise Exception(f"Request failed: {e}")
+    
+    def verify_school_type(self, school_name: str) -> bool:
+        """
+        Verify that the school type is K12 (not HIGH_SCHOOL)
+        K12 schools often auto-approve without document upload!
+        
+        From azx.us tutorial: Must check orgsearch endpoint to confirm type is K12
+        """
+        try:
+            resp = self.client.get(
+                "https://orgsearch.sheerid.net/rest/organization/search",
+                params={
+                    "country": "US",
+                    "programId": PROGRAM_ID,
+                    "term": school_name[:20]  # First 20 chars for search
+                },
+                headers={"Accept": "application/json"},
+                timeout=15
+            )
+            if resp.status_code == 200:
+                data = resp.json()
+                for org in data:
+                    if org.get("name", "").lower() == school_name.lower():
+                        org_type = org.get("type", "")
+                        if org_type == "K12":
+                            print(f"      ✅ School type verified: K12 (auto-pass chance!)")
+                            return True
+                        else:
+                            print(f"      ⚠️  School type: {org_type} (may need document)")
+                            return False
+        except Exception as e:
+            print(f"      [WARN] Could not verify school type: {e}")
+        return True  # Assume K12 if can't verify
     
     def _upload_to_s3(self, upload_url: str, data: bytes, mime_type: str) -> bool:
         """Upload file to S3 with multiple signature attempts for library compatibility"""
@@ -320,13 +370,17 @@ class K12Verifier:
             print(f"   Birth Date: {birth_date}")
             print(f"   Verification ID: {self.verification_id}")
             
+            # Step 0: Verify school type is K12 (not HIGH_SCHOOL)
+            print("\n   -> Step 0/5: Verifying school type...")
+            self.verify_school_type(school["name"])
+            
             # Step 1: Generate teacher badge
-            print("\n   -> Step 1/4: Generating teacher badge...")
+            print("   -> Step 1/5: Generating teacher badge...")
             doc_data = generate_teacher_badge(first_name, last_name, school["name"])
             print(f"      Document size: {len(doc_data)/1024:.2f} KB")
             
             # Step 2: Submit teacher info
-            print("   -> Step 2/4: Submitting teacher info...")
+            print("   -> Step 2/5: Submitting teacher info...")
             step2_body = {
                 "firstName": first_name,
                 "lastName": last_name,
@@ -408,7 +462,7 @@ class K12Verifier:
                 }
             
             # Step 4: Upload document
-            print("   -> Step 4/4: Uploading teacher badge...")
+            print("   -> Step 4/5: Uploading teacher badge...")
             step4_body = {
                 "files": [{
                     "fileName": "teacher_badge.png",

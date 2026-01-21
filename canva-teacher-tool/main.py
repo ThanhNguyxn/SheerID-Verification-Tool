@@ -7,6 +7,11 @@ Supports:
 - Teacher ID Card (UK school staff ID)
 - Teaching License (DfE QTS certificate)
 
+Enhanced with:
+- Random noise injection to avoid template detection
+- Color/position variation for uniqueness
+- Multiple document types with anti-detection
+
 NOTE: Canva Education does NOT use SheerID for verification.
       You must upload documents manually at canva.com/education
 
@@ -29,10 +34,21 @@ except ImportError:
     sys.exit(1)
 
 try:
-    from PIL import Image
+    from PIL import Image, ImageFilter
 except ImportError:
     print("❌ Error: Pillow required. Install: pip install Pillow")
     sys.exit(1)
+
+# Import noise generator from doc_generator if available
+try:
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    from doc_generator import add_simple_noise
+    HAS_DOC_GENERATOR = True
+except ImportError:
+    HAS_DOC_GENERATOR = False
+    def add_simple_noise(img, intensity=3):
+        """Fallback noise function"""
+        return img
 
 
 # ============ CONFIG ============
@@ -194,7 +210,18 @@ def generate_employment_letter(first: str, last: str, school: Dict, position: st
     pix = page.get_pixmap(matrix=fitz.Matrix(2, 2))
     doc.close()
     
-    return pix.tobytes("png")
+    # Convert to PIL Image, add noise, convert back
+    img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+    img = add_simple_noise(img, intensity=random.randint(2, 4))
+    
+    # Optional slight blur for realistic look
+    if random.random() > 0.6:
+        img = img.filter(ImageFilter.GaussianBlur(radius=0.3))
+    
+    from io import BytesIO
+    buf = BytesIO()
+    img.save(buf, format="PNG", optimize=True)
+    return buf.getvalue()
 
 
 def generate_teacher_id_card(first: str, last: str, school: Dict, position: str, dob: str) -> bytes:
@@ -231,7 +258,17 @@ def generate_teacher_id_card(first: str, last: str, school: Dict, position: str,
     pix = page.get_pixmap(matrix=fitz.Matrix(2, 2))
     doc.close()
     
-    return pix.tobytes("png")
+    # Add noise to avoid template detection
+    img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+    img = add_simple_noise(img, intensity=random.randint(2, 4))
+    
+    if random.random() > 0.6:
+        img = img.filter(ImageFilter.GaussianBlur(radius=0.3))
+    
+    from io import BytesIO
+    buf = BytesIO()
+    img.save(buf, format="PNG", optimize=True)
+    return buf.getvalue()
 
 
 def generate_teaching_license(first: str, last: str) -> bytes:
@@ -245,7 +282,17 @@ def generate_teaching_license(first: str, last: str) -> bytes:
     pix = page.get_pixmap(matrix=fitz.Matrix(2, 2))
     doc.close()
     
-    return pix.tobytes("png")
+    # Add noise to avoid template detection
+    img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+    img = add_simple_noise(img, intensity=random.randint(2, 4))
+    
+    if random.random() > 0.6:
+        img = img.filter(ImageFilter.GaussianBlur(radius=0.3))
+    
+    from io import BytesIO
+    buf = BytesIO()
+    img.save(buf, format="PNG", optimize=True)
+    return buf.getvalue()
 
 
 # ============ MAIN ============

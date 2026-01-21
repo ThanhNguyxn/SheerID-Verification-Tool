@@ -8,7 +8,16 @@ Author: ThanhNguyxn
 Features:
 - Proxy support
 - Deduplication tracking
-- Anti-detection with random User-Agents
+- Anti-detection with Chrome TLS impersonation
+- Enhanced fingerprinting
+
+Requirements:
+- curl_cffi: pip install curl_cffi (CRITICAL for TLS spoofing)
+- US IP/residential proxy recommended
+
+⚠️ WARNING: 
+US-based services have STRICT detection. Datacenter proxies often fail.
+Use residential proxies or real US IP for best results.
 """
 
 import json
@@ -44,12 +53,17 @@ except ImportError:
 # Import anti-detection module
 try:
     sys.path.insert(0, str(Path(__file__).parent.parent))
-    from anti_detect import get_headers, get_fingerprint, get_random_user_agent, random_delay, create_session
+    from anti_detect import (
+        get_headers, get_fingerprint, get_random_user_agent, 
+        random_delay, create_session, check_proxy_type,
+        get_matched_ua_for_impersonate, make_request
+    )
     HAS_ANTI_DETECT = True
-    print("[INFO] Anti-detection module loaded")
+    print("[INFO] Anti-detection module loaded with Chrome TLS impersonation")
 except ImportError:
     HAS_ANTI_DETECT = False
     print("[WARN] anti_detect.py not found, using basic headers")
+    print("[TIP] Install curl_cffi for better TLS fingerprinting: pip install curl_cffi")
 
 
 

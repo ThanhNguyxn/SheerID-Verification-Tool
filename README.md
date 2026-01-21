@@ -74,9 +74,21 @@ All tools now include `anti_detect.py` which provides:
 - **Random User-Agents**: 10+ real browser UA strings (Chrome, Firefox, Edge, Safari)
 - **Browser-like Headers**: Proper `sec-ch-ua`, `Accept-Language`, etc.
 - **TLS Fingerprint Spoofing**: Uses `curl_cffi` to impersonate Chrome's JA3/JA4 fingerprint
-- **Random Delays**: Avoids rate limiting with randomized request timing
+- **Random Delays**: Gamma distribution timing to mimic human behavior
 - **Smart Session**: Auto-selects best available HTTP library (curl_cffi > cloudscraper > httpx > requests)
 - **NewRelic Headers**: Required tracking headers for SheerID API calls
+- **Session Warming**: Pre-verification requests to establish legitimate browser session
+- **Email Generation**: Creates realistic student emails matching university domains
+- **Proxy Geo-Matching**: Matches proxy location to university country for consistency
+- **Multi-Browser Impersonation**: Rotates between Chrome, Edge, and Safari fingerprints
+
+#### 📄 Document Generation Module
+New `doc_generator.py` provides anti-detection for generated documents:
+- **Noise Injection**: Random pixel noise to avoid template detection
+- **Color Variation**: 6 different color schemes for uniqueness
+- **Dynamic Positioning**: ±3px variance on element positions
+- **Multiple Types**: Student ID, Transcript, Teacher Badge
+- **Realistic Details**: Random barcodes, QR codes, course grades
 
 > [!WARNING]
 > **API-Based Tools Have Inherent Limitations**
@@ -88,6 +100,11 @@ All tools now include `anti_detect.py` which provides:
 >
 > For best results: Use **residential proxies** + install `curl_cffi` for TLS spoofing.
 > Browser extensions generally have higher success rates than API tools.
+
+> [!IMPORTANT]
+> **Gemini/Google One is US-ONLY (since Jan 2026)**
+>
+> The `one-verify-tool` only works with US IPs. International users will see verification failures.
 
 ---
 

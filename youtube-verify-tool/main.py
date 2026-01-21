@@ -3,10 +3,15 @@ YouTube Student Verification Tool
 SheerID Student Verification for YouTube Premium
 
 Enhanced with:
+- Chrome TLS impersonation (curl_cffi)
 - Success rate tracking per organization
 - Weighted university selection
 - Retry with exponential backoff
 - Rate limiting avoidance
+
+Requirements:
+- curl_cffi: pip install curl_cffi (CRITICAL for TLS spoofing)
+- Pillow: pip install Pillow
 
 Author: ThanhNguyxn
 """
@@ -38,11 +43,16 @@ except ImportError:
 # Import anti-detection module
 try:
     sys.path.insert(0, str(Path(__file__).parent.parent))
-    from anti_detect import get_headers, get_fingerprint, get_random_user_agent, random_delay as anti_delay, create_session
+    from anti_detect import (
+        get_headers, get_fingerprint, get_random_user_agent, 
+        random_delay as anti_delay, create_session,
+        get_matched_ua_for_impersonate, make_request, check_proxy_type
+    )
     HAS_ANTI_DETECT = True
-    print("[INFO] Anti-detection module loaded")
+    print("[INFO] Anti-detection module loaded with Chrome TLS impersonation")
 except ImportError:
     HAS_ANTI_DETECT = False
+    print("[WARN] anti_detect.py not found - install curl_cffi for better results")
 
 
 # ============ CONFIG ============

@@ -2,6 +2,13 @@
 Bolt.new Teacher Verification Tool
 SheerID Teacher Verification for Bolt.new
 
+Teacher verification for Bolt.new (globally available).
+Uses teacher/faculty verification flow instead of student.
+
+Requirements:
+- curl_cffi: pip install curl_cffi (CRITICAL for TLS spoofing)
+- Residential proxy matching university country (recommended)
+
 Written from scratch based on SheerID API flow
 Author: ThanhNguyxn
 """
@@ -21,23 +28,28 @@ from typing import Dict, Optional, Tuple
 try:
     import httpx
 except ImportError:
-    print("Error: httpx required. Install: pip install httpx")
+    print("❌ Error: httpx required. Install: pip install httpx")
     sys.exit(1)
 
 try:
     from PIL import Image, ImageDraw, ImageFont
 except ImportError:
-    print("Error: Pillow required. Install: pip install Pillow")
+    print("❌ Error: Pillow required. Install: pip install Pillow")
     sys.exit(1)
 
 # Import anti-detection module
 try:
     sys.path.insert(0, str(Path(__file__).parent.parent))
-    from anti_detect import get_headers, get_fingerprint, get_random_user_agent, create_session
+    from anti_detect import (
+        get_headers, get_fingerprint, get_random_user_agent, 
+        create_session, check_proxy_type, random_delay
+    )
     HAS_ANTI_DETECT = True
     print("[INFO] Anti-detection module loaded")
 except ImportError:
     HAS_ANTI_DETECT = False
+    print("[WARN] anti_detect.py not found - HIGH detection risk!")
+    print("[WARN] Install: pip install curl_cffi for better success rate")
 
 # ============ CONFIG ============
 PROGRAM_ID = "68cc6a2e64f55220de204448"

@@ -1,4 +1,15 @@
+# Core HTTP Libraries
 httpx
-Pillow
 requests
 cloudscraper
+
+# CRITICAL: TLS Fingerprint Spoofing
+# curl_cffi impersonates Chrome's TLS signature
+curl_cffi>=0.5.0
+
+# Image/Document Processing
+Pillow
+PyMuPDF  # For PDF manipulation (optional, for canva-teacher-tool)
+
+# Optional but recommended
+colorama  # For colored terminal output

@@ -4,9 +4,14 @@ SheerID Student Verification for Spotify Premium
 
 Enhanced with:
 - Success rate tracking per organization
-- Weighted university selection
+- Weighted university selection (35+ countries supported)
 - Retry with exponential backoff
 - Rate limiting avoidance
+- Anti-detection with Chrome TLS impersonation
+
+Requirements:
+- curl_cffi: pip install curl_cffi (CRITICAL for TLS spoofing)
+- Residential proxy (STRONGLY recommended for better success rate)
 
 Author: ThanhNguyxn
 """
@@ -38,11 +43,17 @@ except ImportError:
 # Import anti-detection module
 try:
     sys.path.insert(0, str(Path(__file__).parent.parent))
-    from anti_detect import get_headers, get_fingerprint, get_random_user_agent, random_delay as anti_delay, create_session
+    from anti_detect import (
+        get_headers, get_fingerprint, get_random_user_agent, 
+        random_delay as anti_delay, create_session,
+        get_matched_ua_for_impersonate, make_request, check_proxy_type
+    )
     HAS_ANTI_DETECT = True
     print("[INFO] Anti-detection module loaded")
 except ImportError:
     HAS_ANTI_DETECT = False
+    print("[WARN] anti_detect.py not found - detection risk is HIGH!")
+    print("[WARN] Install: pip install curl_cffi for better success rate")
 
 
 # ============ CONFIG ============
@@ -345,19 +356,27 @@ def generate_student_id(first: str, last: str, school: str) -> bytes:
 
 # ============ VERIFIER ============
 class SpotifyVerifier:
-    """Spotify Student Verification with enhanced features"""
+    """Spotify Student Verification with enhanced anti-detection"""
     
     def __init__(self, url: str, proxy: str = None):
         self.url = url
         self.vid = self._parse_id(url)
         self.fingerprint = generate_fingerprint()
+        self.impersonate = None
         
         # Use enhanced anti-detection session
         if HAS_ANTI_DETECT:
-            self.client, self.lib_name = create_session(proxy)
-            print(f"[INFO] Using {self.lib_name} for HTTP requests")
+            self.client, self.lib_name, self.impersonate = create_session(proxy)
+            if self.impersonate:
+                print(f"[INFO] TLS Fingerprint: Impersonating {self.impersonate}")
+            
+            # Warn about proxy type
+            if proxy:
+                proxy_type = check_proxy_type(proxy)
+                if proxy_type == "datacenter":
+                    print("[WARN] ⚠️  Datacenter proxy detected - may be blocked!")
         else:
-            # Fallback to httpx
+            # Fallback to httpx (HIGH detection risk)
             proxy_url = None
             if proxy:
                 if not proxy.startswith("http"):
@@ -365,12 +384,16 @@ class SpotifyVerifier:
                 proxy_url = proxy
             self.client = httpx.Client(timeout=30, proxy=proxy_url)
             self.lib_name = "httpx"
+            print("[WARN] ❌ Using httpx without TLS spoofing - HIGH detection risk!")
         
         self.org = None
     
     def __del__(self):
         if hasattr(self, "client"):
-            self.client.close()
+            try:
+                self.client.close()
+            except:
+                pass
     
     @staticmethod
     def _parse_id(url: str) -> Optional[str]:

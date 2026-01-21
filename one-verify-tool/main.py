@@ -2,12 +2,20 @@
 Google One (Gemini) Student Verification Tool
 SheerID Student Verification for Google One AI Premium
 
+⚠️  IMPORTANT NOTICE (Jan 2026):
+Google has changed Gemini student verification to US-ONLY for new sign-ups.
+Users from other countries may experience high failure rates.
+
 Enhanced with:
 - Success rate tracking per organization
-- Weighted university selection
+- Weighted university selection (US schools prioritized)
 - Retry with exponential backoff
 - Rate limiting avoidance
-- Anti-detection with random User-Agents
+- Anti-detection with Chrome TLS impersonation
+
+Requirements:
+- curl_cffi: pip install curl_cffi (CRITICAL for TLS spoofing)
+- Residential proxy matching US location (STRONGLY recommended)
 
 Author: ThanhNguyxn
 """
@@ -39,12 +47,17 @@ except ImportError:
 # Import anti-detection module
 try:
     sys.path.insert(0, str(Path(__file__).parent.parent))
-    from anti_detect import get_headers, get_fingerprint, get_random_user_agent, random_delay as anti_delay, create_session
+    from anti_detect import (
+        get_headers, get_fingerprint, get_random_user_agent, 
+        random_delay as anti_delay, create_session,
+        get_matched_ua_for_impersonate, make_request
+    )
     HAS_ANTI_DETECT = True
     print("[INFO] Anti-detection module loaded")
 except ImportError:
     HAS_ANTI_DETECT = False
     print("[WARN] anti_detect.py not found, using basic headers")
+    print("[WARN] Detection risk is HIGH without anti_detect module!")
 
 
 # ============ CONFIG ============
@@ -616,6 +629,7 @@ def main():
     parser = argparse.ArgumentParser(description="Google One (Gemini) Student Verification Tool")
     parser.add_argument("url", nargs="?", help="Verification URL")
     parser.add_argument("--proxy", help="Proxy server (host:port or http://user:pass@host:port)")
+    parser.add_argument("--force", action="store_true", help="Force run even with warnings")
     args = parser.parse_args()
     
     print()
@@ -625,11 +639,32 @@ def main():
     print("╚" + "═" * 56 + "╝")
     print()
     
+    # ⚠️ US-ONLY WARNING
+    print("   " + "⚠" * 20)
+    print("   ⚠️  IMPORTANT WARNING (Jan 2026):")
+    print("   ⚠️  Gemini student verification is now US-ONLY!")
+    print("   ⚠️  ")
+    print("   ⚠️  Requirements for success:")
+    print("   ⚠️  1. US residential proxy (datacenter IPs blocked)")
+    print("   ⚠️  2. curl_cffi installed (pip install curl_cffi)")
+    print("   ⚠️  3. US university selection")
+    print("   ⚠️  ")
+    print("   ⚠️  Non-US users: Consider using perplexity-verify-tool")
+    print("   ⚠️  or spotify-verify-tool instead.")
+    print("   " + "⚠" * 20)
+    print()
+    
+    if not args.force:
+        confirm = input("   Continue anyway? (y/N): ").strip().lower()
+        if confirm != 'y':
+            print("\n   Aborted. Use --force to skip this warning.")
+            return
+    
     # Get URL
     if args.url:
         url = args.url
     else:
-        url = input("   Enter verification URL: ").strip()
+        url = input("\n   Enter verification URL: ").strip()
     
     if not url or "sheerid.com" not in url:
         print("\n   ❌ Invalid URL. Must contain sheerid.com")
@@ -638,6 +673,9 @@ def main():
     # Show proxy info
     if args.proxy:
         print(f"   🔒 Using proxy: {args.proxy}")
+    else:
+        print("   ⚠️  No proxy specified! Using direct connection.")
+        print("   ⚠️  This may result in verification failure.")
     
     print("\n   ⏳ Processing...")
     

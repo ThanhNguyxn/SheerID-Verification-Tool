@@ -3,6 +3,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![Documentation](https://img.shields.io/badge/Docs-Website-2ea44f?style=flat&logo=github&logoColor=white)](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
 
 Una colección completa de herramientas para automatizar los flujos de trabajo de verificación de SheerID para varios servicios (Spotify, YouTube, Google One, etc.).
 
@@ -16,6 +17,7 @@ Una colección completa de herramientas para automatizar los flujos de trabajo d
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Estudiante | YouTube Premium | Verificación de estudiantes universitarios |
 | [one-verify-tool](../one-verify-tool/) | 🤖 Estudiante | Gemini Advanced | Verificación de Google One AI Premium |
 | [boltnew-verify-tool](../boltnew-verify-tool/) | 👨‍🏫 Profesor | Bolt.new | Verificación de profesores (Universidad) |
+| [canva-teacher-tool](../canva-teacher-tool/) | 🇬🇧 Profesor | Canva Education | Verificación de profesores del Reino Unido (K-12) |
 | [k12-verify-tool](../k12-verify-tool/) | 🏫 K12 | ChatGPT Plus | Verificación de profesores K12 (Escuela Secundaria) |
 | [veterans-verify-tool](../veterans-verify-tool/) | 🎖️ Militar | General | Verificación de estatus militar |
 | [veterans-extension](../veterans-extension/) | 🧩 Chrome | Navegador | Extensión de Chrome para verificación militar |
@@ -24,13 +26,12 @@ Una colección completa de herramientas para automatizar los flujos de trabajo d
 
 | Herramienta | Tipo | Descripción |
 |------|------|-------------|
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Navegador anti-detección** — Gestione múltiples cuentas verificadas sin ser baneado |
-| [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Check IP** — Check your IP address and proxy status |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Navegador | **Navegador anti-detección** — Gestione múltiples cuentas verificadas sin ser baneado |
+| [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Verificar IP** — Compruebe su dirección IP y estado del proxy |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Bot de Telegram de verificación automatizado |
 | [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Bot | Bot de verificación automatizado |
-| [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Crear tarjetas de estudiante para verificación manual |
-| [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Generar nóminas para verificación de profesores |
-
+| [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Herramienta | Crear tarjetas de estudiante para verificación manual |
+| [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Herramienta | Generar nóminas para verificación de profesores |
 
 ---
 
@@ -68,6 +69,43 @@ Las herramientas siguen un proceso estandarizado de "Cascada":
 - **Verificación Autorizada**: SheerID verifica contra la base de datos DoD/DEERS.
 - **Lógica**: Utiliza por defecto fechas de baja recientes para maximizar las posibilidades de aprobación automática.
 
+#### 🛡️ Módulo Anti-Detección
+Todas las herramientas ahora incluyen `anti_detect.py` que proporciona:
+- **User-Agents Aleatorios**: 10+ cadenas UA de navegadores reales (Chrome, Firefox, Edge, Safari)
+- **Encabezados Tipo Navegador**: `sec-ch-ua`, `Accept-Language` apropiados, etc.
+- **Suplantación de Huella TLS**: Usa `curl_cffi` para imitar la huella JA3/JA4 de Chrome
+- **Retrasos Aleatorios**: Temporización de distribución gamma para imitar comportamiento humano
+- **Sesión Inteligente**: Selecciona automáticamente la mejor biblioteca HTTP disponible (curl_cffi > cloudscraper > httpx > requests)
+- **Encabezados NewRelic**: Encabezados de seguimiento requeridos para llamadas a la API de SheerID
+- **Calentamiento de Sesión**: Solicitudes previas a la verificación para establecer una sesión de navegador legítima
+- **Generación de Email**: Crea emails de estudiantes realistas que coinciden con dominios universitarios
+- **Coincidencia Geográfica de Proxy**: Coincide la ubicación del proxy con el país de la universidad para consistencia
+- **Suplantación Multi-Navegador**: Rota entre huellas de Chrome, Edge y Safari
+
+#### 📄 Módulo de Generación de Documentos
+El nuevo `doc_generator.py` proporciona anti-detección para documentos generados:
+- **Inyección de Ruido**: Ruido de píxeles aleatorio para evitar la detección de plantillas
+- **Variación de Color**: 6 esquemas de colores diferentes para unicidad
+- **Posicionamiento Dinámico**: Varianza de ±3px en las posiciones de los elementos
+- **Múltiples Tipos**: ID de estudiante, Transcripción, Insignia de profesor
+- **Detalles Realistas**: Códigos de barras, códigos QR, calificaciones de cursos aleatorios
+
+> [!WARNING]
+> **Las Herramientas Basadas en API Tienen Limitaciones Inherentes**
+>
+> SheerID utiliza detección avanzada que incluye:
+> - **Huella TLS**: Python `requests`/`httpx` tienen firmas detectables
+> - **Inteligencia de Señales**: Dirección IP, atributos del dispositivo, análisis de antigüedad del email
+> - **Revisión de Documentos por IA**: Detecta documentos falsificados/de plantilla
+>
+> Para mejores resultados: Use **proxies residenciales** + instale `curl_cffi` para suplantación TLS.
+> Las extensiones de navegador generalmente tienen tasas de éxito más altas que las herramientas API.
+
+> [!IMPORTANT]
+> **Gemini/Google One es SOLO EE.UU. (desde enero 2026)**
+>
+> El `one-verify-tool` solo funciona con IPs de EE.UU. Los usuarios internacionales verán fallos de verificación.
+
 ---
 
 ## 📋 Inicio Rápido
@@ -89,26 +127,18 @@ Las herramientas siguen un proceso estandarizado de "Cascada":
     pip install httpx Pillow
     ```
 
-3.  **Ejecutar una herramienta (ej. Spotify):**
+3.  **[Opcional] Anti-Detección Mejorada:**
+    ```bash
+    pip install curl_cffi cloudscraper
+    ```
+    - `curl_cffi`: Suplanta la huella TLS (JA3/JA4) para parecer Chrome real
+    - `cloudscraper`: Evita la protección de Cloudflare
+
+4.  **Ejecutar una herramienta (ej. Spotify):**
     ```bash
     cd spotify-verify-tool
     python main.py "YOUR_SHEERID_URL"
     ```
-
----
-
-## ⚠️ Descargo de Responsabilidad
-
-Este proyecto es solo para **fines educativos**. Las herramientas demuestran cómo funcionan los sistemas de verificación y cómo se pueden probar.
-- No utilizar para fines fraudulentos.
-- Los autores no son responsables de ningún mal uso.
-- Respete los Términos de Servicio de todas las plataformas.
-
----
-
-## 🤝 Contribuir
-
-¡Las contribuciones son bienvenidas! No dude en enviar una Pull Request.
 
 ---
 
@@ -130,6 +160,12 @@ Este proyecto es solo para **fines educativos**. Las herramientas demuestran có
 - No utilizar para fines fraudulentos.
 - Los autores no son responsables de ningún mal uso.
 - Respete los Términos de Servicio de todas las plataformas.
+
+---
+
+## 🤝 Contribuir
+
+¡Las contribuciones son bienvenidas! No dude en enviar una Pull Request.
 
 ---
 

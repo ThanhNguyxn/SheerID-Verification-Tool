@@ -3,6 +3,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![Documentation](https://img.shields.io/badge/Docs-Website-2ea44f?style=flat&logo=github&logoColor=white)](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
 
 Một bộ công cụ toàn diện để tự động hóa quy trình xác minh SheerID cho các dịch vụ khác nhau (Spotify, YouTube, Google One, v.v.).
 
@@ -16,6 +17,7 @@ Một bộ công cụ toàn diện để tự động hóa quy trình xác minh 
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Sinh viên | YouTube Premium | Xác minh sinh viên đại học |
 | [one-verify-tool](../one-verify-tool/) | 🤖 Sinh viên | Gemini Advanced | Xác minh Google One AI Premium |
 | [boltnew-verify-tool](../boltnew-verify-tool/) | 👨‍🏫 Giáo viên | Bolt.new | Xác minh giáo viên (Đại học) |
+| [canva-teacher-tool](../canva-teacher-tool/) | 🇬🇧 Giáo viên | Canva Education | Xác minh giáo viên Anh (K-12) |
 | [k12-verify-tool](../k12-verify-tool/) | 🏫 K12 | ChatGPT Plus | Xác minh giáo viên K12 (Trung học) |
 | [veterans-verify-tool](../veterans-verify-tool/) | 🎖️ Quân đội | Chung | Xác minh tình trạng quân nhân |
 | [veterans-extension](../veterans-extension/) | 🧩 Chrome | Trình duyệt | Tiện ích Chrome xác minh quân nhân |
@@ -68,6 +70,43 @@ Các công cụ tuân theo quy trình "Thác nước" (Waterfall) tiêu chuẩn:
 - **Kiểm Tra Chính Thức**: SheerID xác minh dựa trên cơ sở dữ liệu DoD/DEERS.
 - **Logic**: Mặc định ngày xuất ngũ gần đây để tối đa hóa cơ hội tự động duyệt.
 
+#### 🛡️ Module Chống Phát Hiện
+Tất cả các công cụ hiện bao gồm `anti_detect.py` cung cấp:
+- **User-Agent Ngẫu Nhiên**: 10+ chuỗi UA trình duyệt thực (Chrome, Firefox, Edge, Safari)
+- **Headers Giống Trình Duyệt**: `sec-ch-ua`, `Accept-Language` chính xác, v.v.
+- **Giả Mạo TLS Fingerprint**: Sử dụng `curl_cffi` để mô phỏng JA3/JA4 fingerprint của Chrome
+- **Độ Trễ Ngẫu Nhiên**: Thời gian phân phối gamma để mô phỏng hành vi con người
+- **Session Thông Minh**: Tự động chọn thư viện HTTP tốt nhất (curl_cffi > cloudscraper > httpx > requests)
+- **Headers NewRelic**: Headers theo dõi cần thiết cho API SheerID
+- **Làm Ấm Session**: Yêu cầu trước xác minh để thiết lập phiên trình duyệt hợp lệ
+- **Tạo Email**: Tạo email sinh viên thực tế khớp với tên miền trường
+- **Khớp Địa Lý Proxy**: Khớp vị trí proxy với quốc gia trường để đảm bảo tính nhất quán
+- **Mô Phỏng Đa Trình Duyệt**: Xoay vòng giữa các fingerprint Chrome, Edge và Safari
+
+#### 📄 Module Tạo Tài Liệu
+`doc_generator.py` mới cung cấp chống phát hiện cho tài liệu được tạo:
+- **Tiêm Nhiễu**: Nhiễu pixel ngẫu nhiên để tránh phát hiện mẫu
+- **Biến Thể Màu Sắc**: 6 bảng màu khác nhau để tạo sự độc đáo
+- **Định Vị Động**: Phương sai ±3px trên vị trí phần tử
+- **Nhiều Loại**: Thẻ sinh viên, Bảng điểm, Thẻ giáo viên
+- **Chi Tiết Thực Tế**: Mã vạch, mã QR, điểm khóa học ngẫu nhiên
+
+> [!WARNING]
+> **Công Cụ Dựa Trên API Có Giới Hạn Vốn Có**
+>
+> SheerID sử dụng phát hiện nâng cao bao gồm:
+> - **TLS Fingerprinting**: Python `requests`/`httpx` có chữ ký có thể phát hiện
+> - **Phân Tích Tín Hiệu**: Địa chỉ IP, thuộc tính thiết bị, phân tích tuổi email
+> - **AI Xem Xét Tài Liệu**: Phát hiện tài liệu giả mạo/mẫu
+>
+> Để có kết quả tốt nhất: Sử dụng **proxy dân cư** + cài đặt `curl_cffi` để giả mạo TLS.
+> Tiện ích mở rộng trình duyệt thường có tỷ lệ thành công cao hơn công cụ API.
+
+> [!IMPORTANT]
+> **Gemini/Google One CHỈ Hỗ Trợ Mỹ (từ tháng 1/2026)**
+>
+> `one-verify-tool` chỉ hoạt động với IP Mỹ. Người dùng quốc tế sẽ thấy xác minh thất bại.
+
 ---
 
 ## 📋 Bắt Đầu Nhanh
@@ -89,7 +128,14 @@ Các công cụ tuân theo quy trình "Thác nước" (Waterfall) tiêu chuẩn:
     pip install httpx Pillow
     ```
 
-3.  **Chạy công cụ (ví dụ: Spotify):**
+3.  **[Tùy Chọn] Chống Phát Hiện Nâng Cao:**
+    ```bash
+    pip install curl_cffi cloudscraper
+    ```
+    - `curl_cffi`: Giả mạo TLS fingerprint (JA3/JA4) để trông giống Chrome thật
+    - `cloudscraper`: Vượt qua bảo vệ Cloudflare
+
+4.  **Chạy công cụ (ví dụ: Spotify):**
     ```bash
     cd spotify-verify-tool
     python main.py "YOUR_SHEERID_URL"

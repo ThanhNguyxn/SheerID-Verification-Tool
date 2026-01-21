@@ -3,6 +3,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![Documentation](https://img.shields.io/badge/Docs-Website-2ea44f?style=flat&logo=github&logoColor=white)](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
 
 Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動化するための包括的なツールコレクション。
 
@@ -16,6 +17,7 @@ Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動�
 | [youtube-verify-tool](../youtube-verify-tool/) | 🎬 学生 | YouTube Premium | 大学生認証 |
 | [one-verify-tool](../one-verify-tool/) | 🤖 学生 | Gemini Advanced | Google One AI Premium認証 |
 | [boltnew-verify-tool](../boltnew-verify-tool/) | 👨‍🏫 教師 | Bolt.new | 教師認証（大学） |
+| [canva-teacher-tool](../canva-teacher-tool/) | 🇬🇧 教師 | Canva Education | 英国教師認証 (K-12) |
 | [k12-verify-tool](../k12-verify-tool/) | 🏫 K12 | ChatGPT Plus | K12教師認証（高校） |
 | [veterans-verify-tool](../veterans-verify-tool/) | 🎖️ 軍隊 | 一般 | 軍人ステータス認証 |
 | [veterans-extension](../veterans-extension/) | 🧩 Chrome | ブラウザ | 軍人認証用Chrome拡張機能 |
@@ -24,13 +26,12 @@ Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動�
 
 | ツール | タイプ | 説明 |
 |------|------|-------------|
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **アンチ検出ブラウザ** — 複数の認証済みアカウントをBANなしで安全に管理 |
-| [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Check IP** — Check your IP address and proxy status |
-| [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | 自動検証Telegramボット |
-| [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Bot | 自動検証ボット |
-| [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | 手動認証用の学生証を作成 |
-| [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | 教師認証用の給与明細を作成 |
-
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 ブラウザ | **アンチ検出ブラウザ** — 複数の認証済みアカウントをBANなしで安全に管理 |
+| [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 ウェブ | **IP確認** — IPアドレスとプロキシステータスを確認 |
+| [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 ボット | 自動検証Telegramボット |
+| [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 ボット | 自動検証ボット |
+| [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 ツール | 手動認証用の学生証を作成 |
+| [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 ツール | 教師認証用の給与明細を作成 |
 
 ---
 
@@ -68,6 +69,43 @@ Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動�
 - **権威あるチェック**: SheerIDはDoD/DEERSデータベースと照合して検証します。
 - **ロジック**: 自動承認の可能性を最大化するために、デフォルトで最近の除隊日を使用します。
 
+#### 🛡️ アンチ検出モジュール
+すべてのツールに `anti_detect.py` が含まれ、以下を提供します：
+- **ランダムユーザーエージェント**: 10以上の実際のブラウザUA文字列（Chrome、Firefox、Edge、Safari）
+- **ブラウザライクなヘッダー**: 適切な `sec-ch-ua`、`Accept-Language` など
+- **TLSフィンガープリントスプーフィング**: `curl_cffi` を使用してChromeのJA3/JA4フィンガープリントを模倣
+- **ランダム遅延**: 人間の行動を模倣するガンマ分布タイミング
+- **スマートセッション**: 最適なHTTPライブラリを自動選択（curl_cffi > cloudscraper > httpx > requests）
+- **NewRelicヘッダー**: SheerID API呼び出しに必要な追跡ヘッダー
+- **セッションウォーミング**: 正当なブラウザセッションを確立するための事前認証リクエスト
+- **メール生成**: 大学ドメインに一致するリアルな学生メールを作成
+- **プロキシジオマッチング**: 一貫性のためにプロキシの場所を大学の国に合わせる
+- **マルチブラウザ偽装**: Chrome、Edge、Safariのフィンガープリント間でローテーション
+
+#### 📄 ドキュメント生成モジュール
+新しい `doc_generator.py` は生成されたドキュメントのアンチ検出を提供します：
+- **ノイズ注入**: テンプレート検出を避けるためのランダムピクセルノイズ
+- **カラーバリエーション**: ユニークさのための6つの異なる配色
+- **動的ポジショニング**: 要素位置の±3pxの変化
+- **複数タイプ**: 学生証、成績証明書、教師バッジ
+- **リアルな詳細**: ランダムなバーコード、QRコード、コースの成績
+
+> [!WARNING]
+> **APIベースのツールには固有の制限があります**
+>
+> SheerIDは以下を含む高度な検出を使用します：
+> - **TLSフィンガープリンティング**: Python `requests`/`httpx` は検出可能な署名を持っています
+> - **シグナルインテリジェンス**: IPアドレス、デバイス属性、メールの年齢分析
+> - **AIドキュメントレビュー**: 偽造/テンプレートドキュメントを検出
+>
+> 最良の結果を得るには：**住宅用プロキシ** + TLSスプーフィング用の `curl_cffi` をインストールしてください。
+> ブラウザ拡張機能は一般的にAPIツールよりも成功率が高いです。
+
+> [!IMPORTANT]
+> **Gemini/Google Oneは米国のみ（2026年1月以降）**
+>
+> `one-verify-tool` は米国のIPでのみ動作します。海外ユーザーは認証失敗が表示されます。
+
 ---
 
 ## 📋 クイックスタート
@@ -89,26 +127,18 @@ Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動�
     pip install httpx Pillow
     ```
 
-3.  **ツールを実行 (例: Spotify):**
+3.  **[オプション] 強化されたアンチ検出:**
+    ```bash
+    pip install curl_cffi cloudscraper
+    ```
+    - `curl_cffi`: TLSフィンガープリント（JA3/JA4）を偽装して本物のChromeのように見せる
+    - `cloudscraper`: Cloudflare保護をバイパス
+
+4.  **ツールを実行 (例: Spotify):**
     ```bash
     cd spotify-verify-tool
     python main.py "YOUR_SHEERID_URL"
     ```
-
----
-
-## ⚠️ 免責事項
-
-このプロジェクトは**教育目的のみ**です。これらのツールは、認証システムがどのように機能し、どのようにテストできるかを示しています。
-- 詐欺目的で使用しないでください。
-- 作成者は誤用について一切の責任を負いません。
-- すべてのプラットフォームの利用規約を尊重してください。
-
----
-
-## 🤝 貢献
-
-貢献は大歓迎です！プルリクエストを送信してください。
 
 ---
 
@@ -130,6 +160,12 @@ Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動�
 - 詐欺目的で使用しないでください。
 - 作成者は誤用について一切の責任を負いません。
 - すべてのプラットフォームの利用規約を尊重してください。
+
+---
+
+## 🤝 貢献
+
+貢献は大歓迎です！プルリクエストを送信してください。
 
 ---
 

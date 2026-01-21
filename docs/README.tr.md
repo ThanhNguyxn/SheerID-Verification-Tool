@@ -3,8 +3,9 @@
 [![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![Documentation](https://img.shields.io/badge/Docs-Website-2ea44f?style=flat&logo=github&logoColor=white)](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
 
-Çeşitli hizmetler (Spotify, YouTube, Google One vb.) için SheerID doğrulama iş akışlarını otomatikleştirmek için kapsamlı bir araç koleksiyonu.
+Çeşitli hizmetler (Spotify, YouTube, Google One vb.) için SheerID doğrulama iş akışlarını otomatikleştirmek için kapsamlı araç koleksiyonu.
 
 ---
 
@@ -12,24 +13,25 @@
 
 | Araç | Tür | Hedef | Açıklama |
 |------|------|--------|-------------|
-| [spotify-verify-tool](../spotify-verify-tool/) | 🎵 Öğrenci | Spotify Premium | Üniversite öğrencisi doğrulaması |
-| [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Öğrenci | YouTube Premium | Üniversite öğrencisi doğrulaması |
+| [spotify-verify-tool](../spotify-verify-tool/) | 🎵 Öğrenci | Spotify Premium | Üniversite öğrenci doğrulaması |
+| [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Öğrenci | YouTube Premium | Üniversite öğrenci doğrulaması |
 | [one-verify-tool](../one-verify-tool/) | 🤖 Öğrenci | Gemini Advanced | Google One AI Premium doğrulaması |
 | [boltnew-verify-tool](../boltnew-verify-tool/) | 👨‍🏫 Öğretmen | Bolt.new | Öğretmen doğrulaması (Üniversite) |
-| [k12-verify-tool](../k12-verify-tool/) | 🏫 K12 | ChatGPT Plus | K12 Öğretmen doğrulaması (Lise) |
+| [canva-teacher-tool](../canva-teacher-tool/) | 🇬🇧 Öğretmen | Canva Education | UK Öğretmen doğrulaması (K-12) |
+| [k12-verify-tool](../k12-verify-tool/) | 🏫 K12 | ChatGPT Plus | K12 öğretmen doğrulaması |
 | [veterans-verify-tool](../veterans-verify-tool/) | 🎖️ Askeri | Genel | Askeri durum doğrulaması |
-| [veterans-extension](../veterans-extension/) | 🧩 Chrome | Tarayıcı | Askeri doğrulama için Chrome uzantısı |
+| [veterans-extension](../veterans-extension/) | 🧩 Chrome | Tarayıcı | Askeri doğrulama için Chrome eklentisi |
 
 ### 🔗 Harici Araçlar
 
 | Araç | Tür | Açıklama |
 |------|------|-------------|
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Anti-tespit tarayıcı** — Yasaklanmadan birden fazla doğrulanmış hesabı güvenle yönetin |
-| [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Check IP** — Check your IP address and proxy status |
-| [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Otomatik doğrulama Telegram botu |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Tarayıcı | **Anti-tespit tarayıcı** — Yasaklanmadan birden fazla doğrulanmış hesabı güvenle yönetin |
+| [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **IP Kontrol** — IP adresinizi ve proxy durumunuzu kontrol edin |
+| [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Otomatik Telegram doğrulama botu |
 | [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Bot | Otomatik doğrulama botu |
-| [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Manuel doğrulama için öğrenci kimlik kartları oluşturun |
-| [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Öğretmen doğrulaması için maaş bordroları oluşturun |
+| [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Araç | Manuel doğrulama için öğrenci kartları oluşturun |
+| [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Araç | Öğretmen doğrulaması için bordro oluşturun |
 
 ---
 
@@ -37,95 +39,77 @@
 
 Bu depodaki tüm Python araçları, yüksek başarı oranları için optimize edilmiş ortak bir mimariyi paylaşır.
 
-### 1. Doğrulama Akışı (The Verification Flow)
-Araçlar standartlaştırılmış bir "Şelale" sürecini izler:
-1.  **Veri Oluşturma (Data Generation)**: Hedef demografiye uygun gerçekçi bir kimlik (İsim, Doğum Tarihi, E-posta) oluşturur.
-2.  **Gönderim (`collectStudentPersonalInfo`)**: Verileri SheerID API'sine gönderir.
-3.  **SSO Atlama (`DELETE /step/sso`)**: Kritik adım. Bir okul portalına giriş yapma gereksinimini atlar.
-4.  **Belge Yükleme (`docUpload`)**: Oluşturulan bir kanıt belgesini (Öğrenci Kimliği, Transkript veya Öğretmen Rozeti) yükler.
-5.  **Tamamlama (`completeDocUpload`)**: Yüklemenin bittiğini SheerID'ye bildirir.
+### 1. Doğrulama Akışı
+1. **Veri Oluşturma**: Hedef demografiye uyan gerçekçi kimlik oluşturur
+2. **Gönderim**: SheerID API'ye veri gönderir
+3. **SSO Atlama**: Okul portalına giriş gereksinimini atlar
+4. **Belge Yükleme**: Oluşturulan kanıt belgesini yükler
+5. **Tamamlama**: Yüklemenin bittiğini SheerID'ye bildirir
 
-### 2. Akıllı Stratejiler (Intelligent Strategies)
+### 2. Akıllı Stratejiler
 
 #### 🎓 Üniversite Stratejisi (Spotify, YouTube, Gemini)
-- **Ağırlıklı Seçim**: **45+ Üniversite** (ABD, VN, JP, KR vb.) içeren küratörlü bir liste kullanır.
-- **Başarı Takibi**: Daha yüksek başarı oranlarına sahip üniversiteler daha sık seçilir.
-- **Belge Oluşturma**: Dinamik isimler ve tarihlerle gerçekçi görünen Öğrenci Kimlik kartları oluşturur.
+- **45+ Üniversite** listesi kullanır
+- Başarı oranı yüksek üniversiteler daha sık seçilir
+- Gerçekçi öğrenci kimlik kartları oluşturur
 
 #### 👨‍🏫 Öğretmen Stratejisi (Bolt.new)
-- **Yaş Hedefleme**: Öğretmen demografisine uyması için daha yaşlı kimlikler (25-55 yaş) oluşturur.
-- **Belge Oluşturma**: Öğrenci Kimlikleri yerine "İstihdam Sertifikaları" oluşturur.
-- **Uç Nokta**: Öğrenci uç noktaları yerine `collectTeacherPersonalInfo` hedeflenir.
+- 25-55 yaş arası kimlikler oluşturur
+- Öğrenci kartları yerine "İstihdam Sertifikası" oluşturur
 
 #### 🏫 K12 Stratejisi (ChatGPT Plus)
-- **Okul Türü Hedefleme**: Özellikle `type: "K12"` ( `HIGH_SCHOOL` değil) olan okulları hedefler.
-- **Otomatik Geçiş Mantığı (Auto-Pass)**: Okul ve öğretmen bilgileri eşleşirse, K12 doğrulaması genellikle belge yüklemesi olmadan **otomatik olarak onaylanır**.
-- **Yedek**: Yükleme gerekirse, bir Öğretmen Rozeti oluşturur.
+- `type: "K12"` olan okulları hedefler
+- Genellikle belge yüklemeden otomatik onaylanır
 
 #### 🎖️ Gaziler Stratejisi (ChatGPT Plus)
-- **Sıkı Uygunluk**: Muvazzaf Askeri Personeli veya **son 12 ay** içinde terhis olan Gazileri hedefler.
-- **Yetkili Kontrol**: SheerID, DoD/DEERS veritabanına karşı doğrular.
-- **Mantık**: Otomatik onay şansını en üst düzeye çıkarmak için varsayılan olarak yakın tarihli terhis tarihlerini kullanır.
+- Son 12 ay içinde terhis olan askerleri hedefler
+- DoD/DEERS veritabanına karşı doğrular
+
+#### 🛡️ Anti-Tespit Modülü
+- Rastgele User-Agents (10+ gerçek tarayıcı)
+- TLS parmak izi sahteciliği (`curl_cffi`)
+- Rastgele gecikmeler
+- Gerçekçi e-posta oluşturma
+
+#### 📄 Belge Oluşturma Modülü
+- Piksel gürültüsü enjeksiyonu
+- 6 farklı renk şeması
+- ±3px dinamik konumlandırma
+
+> [!WARNING]
+> **API Tabanlı Araçların Doğal Sınırlamaları Var** — Konut proxy'leri + `curl_cffi` kullanın.
+
+> [!IMPORTANT]
+> **Gemini/Google One YALNIZCA ABD (Ocak 2026'dan beri)**
 
 ---
 
 ## 📋 Hızlı Başlangıç
 
-### Önkoşullar
-- Python 3.8+
-- `pip`
-
-### Kurulum
-
-1.  **Depoyu klonlayın:**
-    ```bash
-    git clone https://github.com/ThanhNguyxn/SheerID-Verification-Tool.git
-    cd SheerID-Verification-Tool
-    ```
-
-2.  **Bağımlılıkları yükleyin:**
-    ```bash
-    pip install httpx Pillow
-    ```
-
-3.  **Bir aracı çalıştırın (ör. Spotify):**
-    ```bash
-    cd spotify-verify-tool
-    python main.py "YOUR_SHEERID_URL"
-    ```
-
----
-
-## ⚠️ Sorumluluk Reddi
-
-Bu proje sadece **eğitim amaçlıdır**. Araçlar, doğrulama sistemlerinin nasıl çalıştığını ve nasıl test edilebileceğini gösterir.
-- Dolandırıcılık amacıyla kullanmayın.
-- Yazarlar herhangi bir kötüye kullanımdan sorumlu değildir.
-- Tüm platformların Hizmet Şartlarına saygı gösterin.
-
----
-
-## 🤝 Katkıda Bulunma
-
-Katkılar memnuniyetle karşılanır! Lütfen bir Pull Request göndermekten çekinmeyin.
+```bash
+git clone https://github.com/ThanhNguyxn/SheerID-Verification-Tool.git
+cd SheerID-Verification-Tool
+pip install httpx Pillow
+pip install curl_cffi cloudscraper  # İsteğe bağlı
+cd spotify-verify-tool
+python main.py "YOUR_SHEERID_URL"
+```
 
 ---
 
 ## 🦊 Resmi Ortak: RoxyBrowser
 
-🛡 **Anti-Tespit Koruması** — Her hesap için benzersiz parmak izi, farklı gerçek cihazlar gibi görünür.
-
-📉 **Bağlantıyı Önle** — SheerID ve platformların hesaplarınızı bağlamasını engeller.
-
-🚀 **Toplu Kullanıcılar için İdeal** — Yüzlerce doğrulanmış hesabı güvenle yönetin.
-
 [![Ücretsiz Dene](https://img.shields.io/badge/Ücretsiz%20Dene-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
 
 ---
 
-## ❤️ Destek
+## ⚠️ Sorumluluk Reddi
 
-Bu projeyi yararlı bulduysanız, beni desteklemeyi düşünün:
+Bu proje yalnızca **eğitim amaçlıdır**. Dolandırıcılık amaçlı kullanmayın.
+
+---
+
+## ❤️ Destek
 
 [![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/ThanhNguyxn)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/thanhnguyxn)

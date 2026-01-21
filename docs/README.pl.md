@@ -3,8 +3,9 @@
 [![GitHub Stars](https://img.shields.io/github/stars/ThanhNguyxn/SheerID-Verification-Tool?style=social)](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![Documentation](https://img.shields.io/badge/Docs-Website-2ea44f?style=flat&logo=github&logoColor=white)](https://thanhnguyxn.github.io/SheerID-Verification-Tool/)
 
-Kompleksowy zestaw narzędzi do automatyzacji przepływów pracy weryfikacji SheerID dla różnych usług (Spotify, YouTube, Google One itp.).
+Kompleksowa kolekcja narzędzi do automatyzacji workflow weryfikacji SheerID dla różnych usług (Spotify, YouTube, Google One itp.).
 
 ---
 
@@ -12,11 +13,12 @@ Kompleksowy zestaw narzędzi do automatyzacji przepływów pracy weryfikacji She
 
 | Narzędzie | Typ | Cel | Opis |
 |------|------|--------|-------------|
-| [spotify-verify-tool](../spotify-verify-tool/) | 🎵 Student | Spotify Premium | Weryfikacja studenta uniwersytetu |
-| [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Student | YouTube Premium | Weryfikacja studenta uniwersytetu |
+| [spotify-verify-tool](../spotify-verify-tool/) | 🎵 Student | Spotify Premium | Weryfikacja studentów uniwersytetu |
+| [youtube-verify-tool](../youtube-verify-tool/) | 🎬 Student | YouTube Premium | Weryfikacja studentów uniwersytetu |
 | [one-verify-tool](../one-verify-tool/) | 🤖 Student | Gemini Advanced | Weryfikacja Google One AI Premium |
-| [boltnew-verify-tool](../boltnew-verify-tool/) | 👨‍🏫 Nauczyciel | Bolt.new | Weryfikacja nauczyciela (Uniwersytet) |
-| [k12-verify-tool](../k12-verify-tool/) | 🏫 K12 | ChatGPT Plus | Weryfikacja nauczyciela K12 (Szkoła średnia) |
+| [boltnew-verify-tool](../boltnew-verify-tool/) | 👨‍🏫 Nauczyciel | Bolt.new | Weryfikacja nauczycieli (Uniwersytet) |
+| [canva-teacher-tool](../canva-teacher-tool/) | 🇬🇧 Nauczyciel | Canva Education | Weryfikacja nauczycieli UK (K-12) |
+| [k12-verify-tool](../k12-verify-tool/) | 🏫 K12 | ChatGPT Plus | Weryfikacja nauczycieli K12 |
 | [veterans-verify-tool](../veterans-verify-tool/) | 🎖️ Wojsko | Ogólne | Weryfikacja statusu wojskowego |
 | [veterans-extension](../veterans-extension/) | 🧩 Chrome | Przeglądarka | Rozszerzenie Chrome do weryfikacji wojskowej |
 
@@ -24,108 +26,90 @@ Kompleksowy zestaw narzędzi do automatyzacji przepływów pracy weryfikacji She
 
 | Narzędzie | Typ | Opis |
 |------|------|-------------|
-| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Przeglądarka antywykrywania** — Bezpiecznie zarządzaj wieloma zweryfikowanymi kontami bez bana |
-| [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Check IP** — Check your IP address and proxy status |
-| [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Automatyczny bot weryfikacyjny Telegram |
-| [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Bot | Bot do automatycznej weryfikacji |
-| [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Tworzenie legitymacji studenckich do weryfikacji ręcznej |
-| [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Generowanie odcinków wypłat do weryfikacji nauczycieli |
+| [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Przeglądarka | **Przeglądarka anty-detekcyjna** — Bezpiecznie zarządzaj wieloma zweryfikowanymi kontami |
+| [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Sprawdź IP** — Sprawdź swój adres IP i status proxy |
+| [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Automatyczny bot Telegram |
+| [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Bot | Automatyczny bot weryfikacyjny |
+| [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Narzędzie | Tworzenie legitymacji studenckich |
+| [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Narzędzie | Generowanie odcinków wypłaty |
 
 ---
 
-## 🧠 Podstawowa Architektura i Logika
+## 🧠 Główna Architektura i Logika
 
-Wszystkie narzędzia Python w tym repozytorium dzielą wspólną, zoptymalizowaną architekturę zaprojektowaną dla wysokich wskaźników sukcesu.
+Wszystkie narzędzia Python w tym repozytorium współdzielą wspólną architekturę zoptymalizowaną pod wysoki wskaźnik sukcesu.
 
-### 1. Przepływ Weryfikacji (The Verification Flow)
-Narzędzia postępują zgodnie ze standardowym procesem "Wodospadu" (Waterfall):
-1.  **Generowanie Danych (Data Generation)**: Tworzy realistyczną tożsamość (Imię, Data urodzenia, Email) pasującą do docelowej grupy demograficznej.
-2.  **Przesłanie (`collectStudentPersonalInfo`)**: Przesyła dane do API SheerID.
-3.  **Pominięcie SSO (`DELETE /step/sso`)**: Kluczowy krok. Pomija wymóg logowania się do portalu szkolnego.
-4.  **Przesłanie Dokumentu (`docUpload`)**: Przesyła wygenerowany dokument dowodowy (Legitymacja studencka, Transkrypt lub Odznaka nauczyciela).
-5.  **Zakończenie (`completeDocUpload`)**: Sygnalizuje SheerID, że przesyłanie zostało zakończone.
+### 1. Przepływ Weryfikacji
+1. **Generowanie Danych**: Tworzy realistyczną tożsamość
+2. **Wysyłanie**: Wysyła dane do API SheerID
+3. **Pominięcie SSO**: Omija wymóg logowania do portalu szkolnego
+4. **Przesyłanie Dokumentu**: Przesyła wygenerowany dokument dowodowy
+5. **Zakończenie**: Sygnalizuje SheerID zakończenie przesyłania
 
-### 2. Inteligentne Strategie (Intelligent Strategies)
+### 2. Inteligentne Strategie
 
 #### 🎓 Strategia Uniwersytecka (Spotify, YouTube, Gemini)
-- **Wybór Ważony**: Używa wyselekcjonowanej listy **45+ Uniwersytetów** (USA, VN, JP, KR itp.).
-- **Śledzenie Sukcesu**: Uniwersytety z wyższymi wskaźnikami sukcesu są wybierane częściej.
-- **Generowanie Dokumentów**: Generuje realistycznie wyglądające legitymacje studenckie z dynamicznymi nazwiskami i datami.
+- Lista **45+ Uniwersytetów**
+- Uniwersytety z wyższym wskaźnikiem sukcesu wybierane częściej
+- Generuje realistyczne legitymacje studenckie
 
-#### 👨‍🏫 Strategia Nauczycielska (Bolt.new)
-- **Targetowanie Wiekowe**: Generuje starsze tożsamości (25-55 lat), aby pasowały do demografii nauczycieli.
-- **Generowanie Dokumentów**: Tworzy "Zaświadczenia o Zatrudnieniu" zamiast legitymacji studenckich.
-- **Punkt Końcowy**: Celuje w `collectTeacherPersonalInfo` zamiast punktów końcowych dla studentów.
+#### 👨‍🏫 Strategia Nauczyciela (Bolt.new)
+- Generuje tożsamości 25-55 lat
+- Tworzy "Zaświadczenia o Zatrudnieniu"
 
 #### 🏫 Strategia K12 (ChatGPT Plus)
-- **Targetowanie Typu Szkoły**: Specjalnie celuje w szkoły z `type: "K12"` (nie `HIGH_SCHOOL`).
-- **Logika Automatycznego Przejścia (Auto-Pass)**: Weryfikacja K12 jest często **automatycznie zatwierdzana** bez przesyłania dokumentów, jeśli informacje o szkole i nauczycielu są zgodne.
-- **Rezerwa**: Jeśli wymagane jest przesłanie, generuje Odznakę Nauczyciela.
+- Celuje w szkoły `type: "K12"`
+- Często automatycznie zatwierdzane
 
 #### 🎖️ Strategia Weteranów (ChatGPT Plus)
-- **Ścisła Kwalifikowalność**: Celuje w czynny personel wojskowy lub weteranów zwolnionych w ciągu **ostatnich 12 miesięcy**.
-- **Autorytatywne Sprawdzenie**: SheerID weryfikuje w bazie danych DoD/DEERS.
-- **Logika**: Domyślnie używa niedawnych dat zwolnienia, aby zmaksymalizować szanse na automatyczne zatwierdzenie.
+- Celuje w weteranów zwolnionych w ciągu ostatnich 12 miesięcy
+- Weryfikuje z bazy DoD/DEERS
+
+#### 🛡️ Moduł Anty-Detekcji
+- Losowe User-Agents (10+ prawdziwych przeglądarek)
+- Spoofing odcisku TLS (`curl_cffi`)
+- Losowe opóźnienia
+- Generowanie realistycznych e-maili
+
+#### 📄 Moduł Generowania Dokumentów
+- Wstrzykiwanie szumu pikselowego
+- 6 różnych schematów kolorów
+- Dynamiczne pozycjonowanie ±3px
+
+> [!WARNING]
+> **Narzędzia API mają naturalne ograniczenia** — Użyj residential proxy + `curl_cffi`.
+
+> [!IMPORTANT]
+> **Gemini/Google One TYLKO USA (od stycznia 2026)**
 
 ---
 
 ## 📋 Szybki Start
 
-### Wymagania wstępne
-- Python 3.8+
-- `pip`
-
-### Instalacja
-
-1.  **Sklonuj repozytorium:**
-    ```bash
-    git clone https://github.com/ThanhNguyxn/SheerID-Verification-Tool.git
-    cd SheerID-Verification-Tool
-    ```
-
-2.  **Zainstaluj zależności:**
-    ```bash
-    pip install httpx Pillow
-    ```
-
-3.  **Uruchom narzędzie (np. Spotify):**
-    ```bash
-    cd spotify-verify-tool
-    python main.py "YOUR_SHEERID_URL"
-    ```
-
----
-
-## ⚠️ Zrzeczenie się Odpowiedzialności
-
-Ten projekt służy wyłącznie do **celów edukacyjnych**. Narzędzia pokazują, jak działają systemy weryfikacji i jak można je testować.
-- Nie używać do celów oszukańczych.
-- Autorzy nie ponoszą odpowiedzialności za jakiekolwiek niewłaściwe użycie.
-- Przestrzegaj Warunków Świadczenia Usług wszystkich platform.
-
----
-
-## 🤝 Współpraca
-
-Wkład jest mile widziany! Zapraszam do przesłania Pull Request.
+```bash
+git clone https://github.com/ThanhNguyxn/SheerID-Verification-Tool.git
+cd SheerID-Verification-Tool
+pip install httpx Pillow
+pip install curl_cffi cloudscraper  # Opcjonalnie
+cd spotify-verify-tool
+python main.py "YOUR_SHEERID_URL"
+```
 
 ---
 
 ## 🦊 Oficjalny Partner: RoxyBrowser
 
-🛡 **Ochrona Przed Wykryciem** — Unikalny odcisk palca dla każdego konta, wygląda jak różne prawdziwe urządzenia.
-
-📉 **Zapobiegaj Łączeniu** — Blokuje SheerID i platformy przed łączeniem Twoich kont.
-
-🚀 **Idealny dla Użytkowników Masowych** — Bezpiecznie zarządzaj setkami zweryfikowanych kont.
-
 [![Wypróbuj Za Darmo](https://img.shields.io/badge/Wypróbuj%20Za%20Darmo-RoxyBrowser-ff6b35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://roxybrowser.com?code=01045PFA)
 
 ---
 
-## ❤️ Wsparcie
+## ⚠️ Wyłączenie Odpowiedzialności
 
-Jeśli uważasz ten projekt za przydatny, rozważ wsparcie mnie:
+Ten projekt jest przeznaczony wyłącznie do **celów edukacyjnych**. Nie używaj do celów oszukańczych.
+
+---
+
+## ❤️ Wsparcie
 
 [![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=for-the-badge&logo=github)](https://github.com/sponsors/ThanhNguyxn)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/thanhnguyxn)

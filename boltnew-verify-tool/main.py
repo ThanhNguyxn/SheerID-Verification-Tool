@@ -229,7 +229,7 @@ class BoltnewVerifier:
         
         # Use enhanced anti-detection session
         if HAS_ANTI_DETECT:
-            self.client, self.lib_name = create_session(proxy)
+            self.client, self.lib_name, _ = create_session(proxy)
             print(f"[INFO] Using {self.lib_name} for HTTP requests")
         else:
             self.client = httpx.Client(timeout=30.0)

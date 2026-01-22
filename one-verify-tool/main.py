@@ -411,8 +411,8 @@ class GeminiVerifier:
         
         # Use enhanced anti-detection session
         if HAS_ANTI_DETECT:
-            self.client, self.lib_name = create_session(proxy)
-            print(f"[INFO] Using {self.lib_name} for HTTP requests")
+            self.client, self.lib_name, self.impersonate_target = create_session(proxy)
+            print(f"[INFO] Session created using {self.lib_name} (Impersonating: {self.impersonate_target})")
         else:
             proxy_url = None
             if proxy:

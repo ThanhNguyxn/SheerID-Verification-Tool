@@ -29,7 +29,7 @@ Una colección completa de herramientas para automatizar los flujos de trabajo d
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Navegador | **Navegador anti-detección** — Gestione múltiples cuentas verificadas sin ser baneado |
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Verificar IP** — Compruebe su dirección IP y estado del proxy |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Bot de Telegram de verificación automatizado |
-| [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Bot | Bot de verificación automatizado |
+| [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 Bot | Crea cuentas de Gmail automáticamente |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Herramienta | Crear tarjetas de estudiante para verificación manual |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Herramienta | Generar nóminas para verificación de profesores |
 

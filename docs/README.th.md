@@ -29,7 +29,7 @@
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 เบราว์เซอร์ | **เบราว์เซอร์ป้องกันการตรวจจับ** |
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 เว็บ | **ตรวจสอบ IP** |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 บอท | บอท Telegram |
-| [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 บอท | บอทยืนยัน |
+| [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 บอท | สร้างบัญชี Gmail อัตโนมัติ |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 เครื่องมือ | สร้างบัตรนักศึกษา |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 เครื่องมือ | สร้างสลิปเงินเดือน |
 

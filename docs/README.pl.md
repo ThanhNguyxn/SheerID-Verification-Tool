@@ -29,7 +29,7 @@ Kompleksowa kolekcja narzędzi do automatyzacji workflow weryfikacji SheerID dla
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Przeglądarka | **Przeglądarka anty-detekcyjna** — Bezpiecznie zarządzaj wieloma zweryfikowanymi kontami |
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Sprawdź IP** — Sprawdź swój adres IP i status proxy |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Automatyczny bot Telegram |
-| [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Bot | Automatyczny bot weryfikacyjny |
+| [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 Bot | Automatyczne tworzenie kont Gmail |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Narzędzie | Tworzenie legitymacji studenckich |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Narzędzie | Generowanie odcinków wypłaty |
 

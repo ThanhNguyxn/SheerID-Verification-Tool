@@ -29,7 +29,7 @@
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 브라우저 | **안티 탐지 브라우저** — 밴 없이 여러 인증된 계정을 안전하게 관리 |
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 웹 | **IP 확인** — IP 주소 및 프록시 상태 확인 |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 봇 | 자동 인증 텔레그램 봇 |
-| [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 봇 | 자동 인증 봇 |
+| [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 봇 | Gmail 계정 자동 생성 |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 도구 | 수동 인증용 학생증 생성 |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 도구 | 교사 인증용 급여 명세서 생성 |
 

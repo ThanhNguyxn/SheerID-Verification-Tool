@@ -29,7 +29,7 @@
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 متصفح | **متصفح مضاد للكشف** — إدارة حسابات متعددة موثقة بأمان دون حظر |
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 ويب | **فحص IP** — تحقق من عنوان IP الخاص بك وحالة البروكسي |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 بوت | بوت تيليجرام للتحقق الآلي |
-| [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 بوت | بوت التحقق الآلي |
+| [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 بوت | إنشاء حسابات Gmail تلقائياً |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 أداة | إنشاء بطاقات طلابية للتحقق اليدوي |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 أداة | إنشاء قسائم الرواتب للتحقق من المعلمين |
 

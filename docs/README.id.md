@@ -29,7 +29,7 @@ Koleksi lengkap alat untuk mengotomatisasi alur kerja verifikasi SheerID untuk b
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Browser anti-deteksi** — Kelola beberapa akun terverifikasi dengan aman tanpa banned |
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Cek IP** — Periksa alamat IP dan status proxy Anda |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Bot Telegram verifikasi otomatis |
-| [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Bot | Bot verifikasi otomatis |
+| [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 Bot | Buat akun Gmail secara otomatis |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Alat | Buat kartu mahasiswa untuk verifikasi manual |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Alat | Buat slip gaji untuk verifikasi guru |
 

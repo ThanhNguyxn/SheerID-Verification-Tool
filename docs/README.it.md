@@ -29,7 +29,7 @@ Una collezione completa di strumenti per automatizzare i workflow di verifica Sh
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Browser | **Browser anti-rilevamento** — Gestisci più account verificati senza ban |
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Controlla IP** — Verifica il tuo indirizzo IP e stato proxy |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Bot Telegram automatico |
-| [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Bot | Bot di verifica automatico |
+| [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 Bot | Crea account Gmail automaticamente |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Strumento | Creazione tessere studente |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Strumento | Generazione buste paga |
 

@@ -29,7 +29,7 @@
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 Tarayıcı | **Anti-tespit tarayıcı** — Yasaklanmadan birden fazla doğrulanmış hesabı güvenle yönetin |
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **IP Kontrol** — IP adresinizi ve proxy durumunuzu kontrol edin |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Otomatik Telegram doğrulama botu |
-| [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 Bot | Otomatik doğrulama botu |
+| [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 Bot | Otomatik Gmail hesabı oluşturma |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Araç | Manuel doğrulama için öğrenci kartları oluşturun |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Araç | Öğretmen doğrulaması için bordro oluşturun |
 

@@ -29,7 +29,7 @@ Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動�
 | [RoxyBrowser](https://roxybrowser.com?code=01045PFA) | 🦊 ブラウザ | **アンチ検出ブラウザ** — 複数の認証済みアカウントをBANなしで安全に管理 |
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 ウェブ | **IP確認** — IPアドレスとプロキシステータスを確認 |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 ボット | 自動検証Telegramボット |
-| [GPT Bot](https://t.me/vgptplusbot?start=ref_7762497789) | 🤖 ボット | 自動検証ボット |
+| [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 ボット | Gmailアカウントを自動作成 |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 ツール | 手動認証用の学生証を作成 |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 ツール | 教師認証用の給与明細を作成 |
 

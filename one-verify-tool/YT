@@ -1,0 +1,35 @@
+name: Run Python Script
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # If you have requirements.txt, prefer this:
+          if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
+          # Or install specific packages:
+          pip install httpx Pillow
+
+      - name: Run command
+        env:
+          WORKDIR: "."              # <-- change this (e.g., "one-verify-tool")
+          RUN_COMMAND: "python main.py"  # <-- change this (e.g., "python app.py" / "pytest -q")
+        run: |
+          cd "$WORKDIR"
+          $RUN_COMMAND

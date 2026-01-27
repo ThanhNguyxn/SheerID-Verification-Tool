@@ -3,7 +3,7 @@
  * Extracted from spotify-verify-tool/main.py
  */
 
-export const UNIVERSITIES = [
+const UNIVERSITIES = [
   // =========== USA - HIGH PRIORITY (15 schools) ===========
   { id: 2565, name: "Pennsylvania State University-Main Campus", domain: "psu.edu", weight: 100 },
   { id: 3499, name: "University of California, Los Angeles", domain: "ucla.edu", weight: 98 },

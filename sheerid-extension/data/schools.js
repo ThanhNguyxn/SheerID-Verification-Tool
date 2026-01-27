@@ -41,7 +41,3 @@ const MILITARY_STATUS = [
     { value: "NATIONAL_GUARD", label: "National Guard" }
 ];
 
-// Export data
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { K12_SCHOOLS, UK_SCHOOLS, MILITARY_BRANCHES, MILITARY_STATUS };
-}

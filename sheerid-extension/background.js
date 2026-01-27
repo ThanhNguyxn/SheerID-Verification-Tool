@@ -36,9 +36,17 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true; // Keep message channel open
 });
 
-// Handle extension icon click
-chrome.action.onClicked.addListener((tab) => {
+// Handle extension icon click - open side panel
+chrome.action.onClicked.addListener(async (tab) => {
     console.log('[SheerID Background] Extension icon clicked');
+
+    try {
+        // Open side panel for this tab
+        await chrome.sidePanel.open({ tabId: tab.id });
+        console.log('[SheerID Background] Side panel opened');
+    } catch (err) {
+        console.error('[SheerID Background] Failed to open side panel:', err);
+    }
 });
 
 // Handle installation

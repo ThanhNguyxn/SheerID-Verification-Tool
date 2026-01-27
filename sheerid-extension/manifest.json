@@ -1,13 +1,14 @@
 {
     "manifest_version": 3,
     "name": "SheerID Verification Tool",
-    "version": "1.0.2",
+    "version": "2.0.0",
     "description": "Unified SheerID verification tool for Spotify, YouTube, Google One, Veterans, and more",
     "author": "ThanhNguyxn",
     "permissions": [
         "storage",
         "activeTab",
-        "scripting"
+        "scripting",
+        "sidePanel"
     ],
     "host_permissions": [
         "https://*.sheerid.com/*",
@@ -43,12 +44,14 @@
         }
     ],
     "action": {
-        "default_popup": "popup.html",
         "default_icon": {
             "16": "icons/icon16.png",
             "48": "icons/icon48.png",
             "128": "icons/icon128.png"
         }
+    },
+    "side_panel": {
+        "default_path": "sidepanel.html"
     },
     "icons": {
         "16": "icons/icon16.png",

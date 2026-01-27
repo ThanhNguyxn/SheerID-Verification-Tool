@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SheerID Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #007AFF;
+            --success: #34C759;
+            --warning: #FF9500;
+            --danger: #FF3B30;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F2F2F7;
+            --text-primary: #000000;
+            --text-secondary: #8E8E93;
+            --border: #C6C6C8;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #000000;
+                --bg-secondary: #1C1C1E;
+                --text-primary: #FFFFFF;
+                --text-secondary: #8E8E93;
+                --border: #38383A;
+                --shadow: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 14px;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+        }
+
+        .toggle-row span {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .toggle {
+            position: relative;
+            width: 51px;
+            height: 31px;
+            flex-shrink: 0;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--border);
+            transition: .3s;
+            border-radius: 31px;
+        }
+
+        .toggle .slider:before {
+            position: absolute;
+            content: "";
+            height: 27px;
+            width: 27px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px var(--shadow);
+        }
+
+        .toggle input:checked + .slider {
+            background-color: var(--success);
+        }
+
+        .toggle input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        select, input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.8;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            margin-bottom: 8px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .button-grid .btn {
+            margin-bottom: 0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .stat-card.success .stat-value {
+            color: var(--success);
+        }
+
+        .stat-card.fail .stat-value {
+            color: var(--danger);
+        }
+
+        .stat-card.skip .stat-value {
+            color: var(--warning);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-message {
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-top: 12px;
+            border: 1px solid;
+            display: none;
+        }
+
+        .status-message.show {
+            display: block;
+        }
+
+        .status-message.success {
+            background: rgba(52, 199, 89, 0.1);
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .status-message.error {
+            background: rgba(255, 59, 48, 0.1);
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        .document-preview {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .document-preview.show {
+            display: block;
+        }
+
+        .document-preview img {
+            width: 100%;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .service-info {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            border: 1px solid var(--border);
+        }
+
+        .service-info strong {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .service-info div {
+            color: var(--text-secondary);
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 20px 0;
+        }
+
+        optgroup {
+            font-weight: 600;
+        }
+
+        option {
+            padding: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--border);
+            margin-top: 20px;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 13px;
+            margin: 0 12px;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            opacity: 0.7;
+        }
+
+        /* Smooth transitions */
+        * {
+            transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+        }
+
+        button, select, input, textarea {
+            transition: all 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SheerID Verification</h1>
+        <p>Automated verification made simple</p>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="toggle-row">
+                <span>Extension Enabled</span>
+                <label class="toggle">
+                    <input type="checkbox" id="pluginEnabled" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Service</label>
+            <select id="serviceType">
+                <optgroup label="🎓 Student Verification">
+                    <option value="spotify">🎵 Spotify Premium</option>
+                    <option value="youtube">🎬 YouTube Premium</option>
+                    <option value="googleone">🤖 Google One / Gemini</option>
+                    <option value="perplexity">🔍 Perplexity</option>
+                    <option value="cursor">💻 Cursor IDE</option>
+                </optgroup>
+                <optgroup label="👨‍🏫 Teacher Verification">
+                    <option value="boltnew">⚡ Bolt.new</option>
+                    <option value="canva">🎨 Canva Education</option>
+                    <option value="k12">🏫 K12 / ChatGPT</option>
+                </optgroup>
+                <optgroup label="🎖️ Military">
+                    <option value="veterans">🎖️ Veterans / ChatGPT</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="service-info" id="serviceInfo">
+            <strong>Spotify Premium</strong>
+            <div>Student verification • Auto-generates university data</div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card success">
+                <div class="stat-value" id="successCount">0</div>
+                <div class="stat-label">Success</div>
+            </div>
+            <div class="stat-card fail">
+                <div class="stat-value" id="failCount">0</div>
+                <div class="stat-label">Failed</div>
+            </div>
+            <div class="stat-card skip">
+                <div class="stat-value" id="skipCount">0</div>
+                <div class="stat-label">Pending</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Email (Optional)</label>
+            <input type="email" id="email" placeholder="Leave empty for auto-generation">
+            <p class="help-text">Auto-generates temporary .edu email if empty</p>
+        </div>
+
+        <div class="form-group" id="veteransDataGroup" style="display: none;">
+            <label>Veterans Data</label>
+            <textarea id="veteransData" placeholder="First|Last|Branch|DOB|Discharge"></textarea>
+            <p class="help-text">Format: JOHN|DOE|US ARMY|1985-01-15|2024-06-01</p>
+        </div>
+
+        <button class="btn btn-primary" id="saveBtn">
+            <span>💾</span>
+            <span>Save Configuration</span>
+        </button>
+
+        <div class="divider"></div>
+
+        <div class="card-title">Actions</div>
+
+        <button class="btn btn-secondary" id="fillBtn">
+            <span>📝</span>
+            <span>Fill Form</span>
+        </button>
+
+        <button class="btn btn-secondary" id="generateDocBtn">
+            <span>🎓</span>
+            <span>Generate Document</span>
+        </button>
+
+        <div class="document-preview" id="docPreview">
+            <img id="docImage" alt="Generated Document">
+            <button class="btn btn-primary" id="downloadDocBtn">
+                <span>⬇️</span>
+                <span>Download Document</span>
+            </button>
+        </div>
+
+        <div class="button-grid">
+            <button class="btn btn-secondary" id="exportBtn">
+                <span>📤</span>
+                <span>Export</span>
+            </button>
+            <button class="btn btn-secondary" id="importBtn">
+                <span>📥</span>
+                <span>Import</span>
+            </button>
+        </div>
+
+        <button class="btn btn-secondary" id="clearBtn">
+            <span>🗑️</span>
+            <span>Clear Stats</span>
+        </button>
+
+        <div class="status-message" id="status"></div>
+
+        <div class="footer">
+            <a href="https://github.com/ThanhNguyxn/SheerID-Verification-Tool" target="_blank">GitHub</a>
+            <a href="https://buymeacoffee.com/thanhnguyxn" target="_blank">Donate</a>
+        </div>
+    </div>
+
+    <script src="sidepanel.js"></script>
+</body>
+</html>

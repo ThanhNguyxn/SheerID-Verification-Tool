@@ -307,6 +307,10 @@
             if (jobInput) Utils.setInputValue(jobInput, data.jobTitle);
         }
 
+        // Check all required checkboxes and terms
+        await Utils.sleep(300);
+        await checkAllRequiredBoxes();
+
         // Form filled - DO NOT auto-submit, let user submit manually
         await Utils.sleep(500);
         Utils.log('✅ Form filled successfully! Please review and submit manually.');
@@ -322,6 +326,53 @@
         }
 
         return true;
+    }
+
+    // Check all required checkboxes (terms, privacy policy, consent, etc.)
+    async function checkAllRequiredBoxes() {
+        Utils.log('Checking for required checkboxes...');
+
+        // Find all unchecked checkboxes
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:not(:checked)');
+
+        let checkedCount = 0;
+        for (const checkbox of checkboxes) {
+            // Check if it's required or related to terms/consent
+            const isRequired = checkbox.hasAttribute('required') ||
+                             checkbox.getAttribute('aria-required') === 'true';
+
+            const label = checkbox.closest('label') ||
+                         document.querySelector(`label[for="${checkbox.id}"]`);
+
+            const labelText = label ? label.textContent.toLowerCase() : '';
+
+            // Check if it's a terms/consent/privacy checkbox
+            const isTermsRelated = labelText.includes('consent') ||
+                                 labelText.includes('agree') ||
+                                 labelText.includes('terms') ||
+                                 labelText.includes('privacy') ||
+                                 labelText.includes('policy') ||
+                                 labelText.includes('accept') ||
+                                 labelText.includes('acknowledge') ||
+                                 labelText.includes('verify') ||
+                                 labelText.includes('confirm');
+
+            if (isRequired || isTermsRelated) {
+                Utils.log('Checking required checkbox:', checkbox.id || 'no-id');
+                checkbox.checked = true;
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                checkbox.dispatchEvent(new Event('input', { bubbles: true }));
+                checkbox.dispatchEvent(new Event('click', { bubbles: true }));
+                checkedCount++;
+                await Utils.sleep(100);
+            }
+        }
+
+        if (checkedCount > 0) {
+            Utils.log(`✅ Checked ${checkedCount} required checkbox(es)`);
+        } else {
+            Utils.log('No required checkboxes found');
+        }
     }
 
     // Fill veterans form (special handling)
@@ -413,6 +464,10 @@
             const emailInput = document.getElementById('sid-email');
             if (emailInput) Utils.setInputValue(emailInput, data.email);
         }
+
+        // Check all required checkboxes
+        await Utils.sleep(300);
+        await checkAllRequiredBoxes();
 
         // Form filled - DO NOT auto-submit for veterans
         await Utils.sleep(500);

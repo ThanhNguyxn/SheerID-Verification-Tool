@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "SheerID Verification Tool",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Unified SheerID verification tool for Spotify, YouTube, Google One, Veterans, and more",
     "author": "ThanhNguyxn",
     "permissions": [

@@ -307,34 +307,21 @@
             if (jobInput) Utils.setInputValue(jobInput, data.jobTitle);
         }
 
-        // Submit the form
-        await Utils.sleep(1000);
+        // Form filled - DO NOT auto-submit, let user submit manually
+        await Utils.sleep(500);
+        Utils.log('✅ Form filled successfully! Please review and submit manually.');
+
+        // Highlight the submit button
         const submitBtn = document.getElementById('sid-submit-btn-collect-info') ||
                          document.querySelector('button[type="submit"]');
 
-        if (submitBtn && !submitBtn.disabled) {
-            Utils.log('Submitting form...');
-            submitBtn.click();
-
-            // Wait for response
-            await Utils.sleep(3000);
-
-            // Check result
-            if (Utils.detectSuccess()) {
-                Utils.log('Success!');
-                updateStats('success');
-                return true;
-            } else if (Utils.detectError()) {
-                Utils.log('Error after submission');
-                updateStats('fail');
-                await handleError();
-                return false;
-            } else {
-                Utils.log('Form submitted, waiting for review...');
-                updateStats('skip');
-                return true;
-            }
+        if (submitBtn) {
+            submitBtn.style.outline = '3px solid #4ade80';
+            submitBtn.style.outlineOffset = '2px';
+            submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
+
+        return true;
     }
 
     // Fill veterans form (special handling)
@@ -427,37 +414,43 @@
             if (emailInput) Utils.setInputValue(emailInput, data.email);
         }
 
-        // Submit
-        await Utils.sleep(1000);
+        // Form filled - DO NOT auto-submit for veterans
+        await Utils.sleep(500);
+        Utils.log('✅ Veterans form filled! Please review and submit manually.');
+
+        // Highlight the submit button
         const submitBtn = document.getElementById('sid-submit-btn-collect-info');
         if (submitBtn) {
-            Utils.log('Submitting veterans form...');
-            submitBtn.click();
+            submitBtn.style.outline = '3px solid #4ade80';
+            submitBtn.style.outlineOffset = '2px';
+            submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
         return true;
     }
 
-    // Handle errors and retry
+    // Handle errors - DO NOT auto-retry, just log
     async function handleError() {
-        Utils.log('Handling error...');
+        Utils.log('❌ Error detected on page. Please review and try again manually.');
+        updateStats('fail');
 
-        // Click "Try Again" if available
-        const tryAgainBtn = document.querySelector('button[type="button"]') ||
-                           document.querySelector('[class*="try-again"]') ||
-                           Array.from(document.querySelectorAll('button')).find(btn =>
-                               btn.textContent.toLowerCase().includes('try again'));
-
-        if (tryAgainBtn) {
-            Utils.log('Clicking Try Again button...');
-            tryAgainBtn.click();
-            await Utils.sleep(2000);
-        }
-
-        // If auto mode, retry
+        // Only auto-retry if explicit auto mode is enabled
         const config = await getConfig();
         if (config.autoMode) {
-            Utils.log('Auto mode: retrying...');
+            Utils.log('Auto mode enabled: will retry...');
+
+            // Click "Try Again" if available
+            const tryAgainBtn = document.querySelector('button[type="button"]') ||
+                               document.querySelector('[class*="try-again"]') ||
+                               Array.from(document.querySelectorAll('button')).find(btn =>
+                                   btn.textContent.toLowerCase().includes('try again'));
+
+            if (tryAgainBtn) {
+                Utils.log('Clicking Try Again button...');
+                tryAgainBtn.click();
+                await Utils.sleep(2000);
+            }
+
             await Utils.sleep(2000);
             window.location.reload();
         }
@@ -574,18 +567,16 @@
             window.addEventListener('load', () => setTimeout(autoFillForm, 500));
         }
 
-        // Monitor for errors
+        // Monitor for success only (since manual submission)
         const observer = new MutationObserver(async () => {
             if (!await isPluginEnabled()) {
                 observer.disconnect();
                 return;
             }
 
-            if (Utils.detectError()) {
-                Utils.log('Error detected by observer');
-                await handleError();
-            } else if (Utils.detectSuccess()) {
-                Utils.log('Success detected by observer');
+            // Only detect success, not errors (since we're manual now)
+            if (Utils.detectSuccess()) {
+                Utils.log('✅ Success detected! Verification complete!');
                 updateStats('success');
                 await chrome.storage.local.set({ pluginEnabled: false });
                 observer.disconnect();

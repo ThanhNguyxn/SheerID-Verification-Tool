@@ -200,26 +200,70 @@
             await Utils.sleep(500);
         }
 
-        // Organization/School search
-        const orgInput = document.getElementById('sid-organization-search') ||
-                        document.getElementById('sid-school-search');
+        // Organization/School search - try multiple selectors
+        let orgInput = document.getElementById('sid-organization-search') ||
+                       document.getElementById('sid-school-search') ||
+                       document.querySelector('input[placeholder*="school" i]') ||
+                       document.querySelector('input[placeholder*="university" i]') ||
+                       document.querySelector('input[name*="organization"]') ||
+                       document.querySelector('input[name*="school"]');
+
+        if (!orgInput) {
+            // Try finding by label text
+            const labels = Array.from(document.querySelectorAll('label'));
+            const schoolLabel = labels.find(label =>
+                label.textContent.toLowerCase().includes('school') ||
+                label.textContent.toLowerCase().includes('university') ||
+                label.textContent.toLowerCase().includes('organization')
+            );
+            if (schoolLabel) {
+                const labelFor = schoolLabel.getAttribute('for');
+                if (labelFor) {
+                    orgInput = document.getElementById(labelFor);
+                } else {
+                    orgInput = schoolLabel.nextElementSibling?.querySelector('input');
+                }
+            }
+        }
 
         if (orgInput && data.organization) {
-            Utils.log('Selecting organization:', data.organization.name);
+            Utils.log('Found school field:', orgInput.id || orgInput.name || 'no-id');
+            Utils.log('Filling organization:', data.organization.name);
+
+            // Focus and clear first
             orgInput.focus();
+            orgInput.value = '';
+            await Utils.sleep(200);
+
+            // Type the school name
             orgInput.value = data.organization.name;
             orgInput.dispatchEvent(new Event('input', { bubbles: true }));
+            orgInput.dispatchEvent(new Event('change', { bubbles: true }));
+            orgInput.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
 
-            // Wait for results
-            await Utils.sleep(1500);
+            // Wait for results dropdown to appear
+            Utils.log('Waiting for results dropdown...');
+            await Utils.sleep(2000);
 
-            // Click first result
-            const result = document.querySelector('[role="option"]') ||
-                          document.querySelector('.sid-search-result');
+            // Try multiple selectors for results
+            let result = document.querySelector('[role="option"]') ||
+                        document.querySelector('.sid-search-result') ||
+                        document.querySelector('[class*="option"]') ||
+                        document.querySelector('[class*="result"]') ||
+                        document.querySelector('li[tabindex]');
+
             if (result) {
+                Utils.log('Found result, clicking...');
                 result.click();
+                await Utils.sleep(800);
+            } else {
+                Utils.log('No dropdown results found - field may have autocompleted');
+                // Try pressing Enter to confirm
+                orgInput.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
                 await Utils.sleep(500);
             }
+        } else {
+            Utils.log('School field not found or no organization data');
         }
 
         // First name

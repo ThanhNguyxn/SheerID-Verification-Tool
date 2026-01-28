@@ -1,15 +1,33 @@
-# Core HTTP Libraries
+# ============================================================
+# CRITICAL DEPENDENCIES (Required for high success rate)
+# ============================================================
+
+# TLS Fingerprint Spoofing - WITHOUT THIS, SUCCESS RATE IS ~5-20%!
+# curl_cffi impersonates Chrome's TLS/JA3 signature
+# This is the MOST IMPORTANT dependency for bypassing SheerID detection
+curl_cffi>=0.5.0
+
+# ============================================================
+# Standard HTTP Libraries (fallback, less effective)
+# ============================================================
 httpx
 requests
 cloudscraper
 
-# CRITICAL: TLS Fingerprint Spoofing
-# curl_cffi impersonates Chrome's TLS signature
-curl_cffi>=0.5.0
-
+# ============================================================
 # Image/Document Processing
+# ============================================================
 Pillow
-PyMuPDF  # For PDF manipulation (optional, for canva-teacher-tool)
+PyMuPDF  # For PDF manipulation (canva-teacher, perplexity tools)
 
+# ============================================================
+# Browser Automation (for m365-verify-tool)
+# ============================================================
+playwright
+# playwright-stealth  # TODO: Add when publishing to PyPI
+
+# ============================================================
 # Optional but recommended
-colorama  # For colored terminal output
+# ============================================================
+colorama  # Colored terminal output
+numpy     # Better random delays (gamma distribution)

@@ -41,12 +41,20 @@ pip install curl_cffi cloudscraper
 
 1. **IMPORTANT**: Switch your IP to **Netherlands** (VPN/Proxy) *before* accessing Perplexity.
 2. Go to [Perplexity Settings](https://www.perplexity.ai/settings/account) or the student discount page.
-3. When the SheerID verification popup/iframe appears, open **DevTools** (press `F12`).
-4. Go to the **Network** tab.
-5. Filter by `sheerid`.
-6. Look for a request that starts with `verification` or the ID (e.g., `695a...`).
-7. Right-click the request -> **Copy URL**.
-   - The URL should look like: `https://services.sheerid.com/rest/v2/verification/695a...`
+3. When the SheerID verification popup/iframe appears, you have two options:
+
+**Option A: Use the landing URL (Easiest)**
+- Just copy the URL from the browser address bar
+- Example: `https://services.sheerid.com/verify/681d40e03e7a8077098cb1b6/?externalUserId=...`
+- The tool will automatically create a new verification session
+
+**Option B: Get verification ID from Network tab (More reliable)**
+1. Open **DevTools** (press `F12`)
+2. Go to the **Network** tab
+3. Filter by `sheerid`
+4. Look for a request that starts with `verification` or the ID (e.g., `695a...`)
+5. Right-click the request -> **Copy URL**
+   - Example: `https://services.sheerid.com/rest/v2/verification/695a...`
 
 ### Step 2: Run the Tool
 
@@ -69,11 +77,18 @@ python main.py "https://services.sheerid.com/verify/...?verificationId=..."
 
 ### "Invalid URL" Error
 
-Make sure your URL:
-- Contains `sheerid.com`
-- Has a `verificationId` parameter (e.g., `?verificationId=abc123...`)
+The tool now supports two URL formats:
+1. **Landing URL with externalUserId** - Tool auto-creates verification session
+2. **API URL with verificationId** - Direct verification
 
-If the JavaScript snippet doesn't return a URL, the SheerID iframe may not have loaded yet. Wait for the verification popup to fully load and try again.
+If you get "Invalid URL", make sure your URL contains `sheerid.com`.
+
+### "Could not create verification" Error
+
+If the tool cannot create a verification from the landing URL:
+1. Use **Option B** from above (Network tab method)
+2. Make sure you're using a Netherlands IP address
+3. The program ID may have changed - try getting a fresh URL
 
 ### "Already verified" or "Already pending"
 

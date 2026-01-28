@@ -1,5 +1,8 @@
 # 🎓 MS365 Education Verification Tool
 
+> ⚠️ **WORK IN PROGRESS** - This tool is under development and NOT fully tested yet!
+> Use at your own risk. Contributions welcome.
+
 Python tool to automate Microsoft 365 Education student verification using Playwright browser automation.
 
 ## 📋 Requirements

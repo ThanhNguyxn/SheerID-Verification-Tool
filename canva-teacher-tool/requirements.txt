@@ -1,2 +1,2 @@
-pymupdf
+playwright
 pillow

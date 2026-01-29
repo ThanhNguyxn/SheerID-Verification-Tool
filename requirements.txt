@@ -18,11 +18,12 @@ cloudscraper
 # Image/Document Processing
 # ============================================================
 Pillow
-PyMuPDF  # For PDF manipulation (canva-teacher, perplexity tools)
+PyMuPDF  # For PDF manipulation (perplexity-verify-tool)
 
 # ============================================================
-# Browser Automation (for m365-verify-tool)
+# Browser Automation (for m365-verify-tool, canva-teacher-tool)
 # ============================================================
+
 playwright
 # playwright-stealth  # TODO: Add when publishing to PyPI
 

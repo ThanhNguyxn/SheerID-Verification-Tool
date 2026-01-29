@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;600&display=swap');
+        
+        * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+        
+        body {{
+            font-family: 'Open Sans', Arial, sans-serif;
+            background: #4a4a4a;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+        }}
+        
+        .certificate {{
+            width: 500px;
+            background: #fff;
+            border: 8px solid #b8860b;
+            position: relative;
+        }}
+        
+        .inner-border {{
+            border: 2px solid #1a4a7a;
+            margin: 8px;
+            padding: 30px;
+            min-height: 650px;
+        }}
+        
+        .header {{
+            text-align: center;
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 9pt;
+            letter-spacing: 1px;
+        }}
+        
+        .title {{
+            font-family: 'Crimson Text', Georgia, serif;
+            text-align: center;
+            margin-bottom: 25px;
+        }}
+        
+        .title-main {{
+            font-size: 32pt;
+            color: #1a4a7a;
+            font-weight: 600;
+            line-height: 1.1;
+        }}
+        
+        .title-sub {{
+            font-size: 28pt;
+            color: #1a4a7a;
+            font-weight: 400;
+        }}
+        
+        .divider {{
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #1a4a7a, transparent);
+            margin: 20px 0;
+        }}
+        
+        .qts-label {{
+            text-align: center;
+            font-size: 10pt;
+            letter-spacing: 3px;
+            color: #555;
+            margin-bottom: 15px;
+        }}
+        
+        .certify-text {{
+            text-align: center;
+            font-family: 'Crimson Text', Georgia, serif;
+            font-style: italic;
+            font-size: 14pt;
+            color: #555;
+            margin-bottom: 20px;
+        }}
+        
+        .recipient-name {{
+            text-align: center;
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 26pt;
+            color: #1a4a7a;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }}
+        
+        .body-text {{
+            text-align: center;
+            font-size: 10pt;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }}
+        
+        .details-box {{
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }}
+        
+        .details-row {{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }}
+        
+        .details-label {{
+            font-size: 8pt;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }}
+        
+        .details-value {{
+            font-size: 10pt;
+            color: #1a4a7a;
+            font-weight: 600;
+        }}
+        
+        .signature-area {{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 40px;
+            padding: 0 20px;
+        }}
+        
+        .seal {{
+            width: 80px;
+            height: 80px;
+            border: 3px solid #b8860b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7pt;
+            color: #b8860b;
+            text-align: center;
+        }}
+        
+        .signature {{
+            text-align: center;
+        }}
+        
+        .signature-name {{
+            font-family: 'Crimson Text', Georgia, serif;
+            font-size: 18pt;
+            font-style: italic;
+            color: #1a4a7a;
+        }}
+        
+        .signature-title {{
+            font-size: 8pt;
+            color: #666;
+            border-top: 1px solid #999;
+            padding-top: 5px;
+            margin-top: 5px;
+        }}
+        
+        .footer {{
+            text-align: center;
+            margin-top: 20px;
+            font-size: 7pt;
+            color: #888;
+        }}
+    </style>
+</head>
+<body>
+    <div class="certificate">
+        <div class="inner-border">
+            <div class="header">UNITED KINGDOM • DEPARTMENT FOR EDUCATION</div>
+            
+            <div class="title">
+                <div class="title-main">Professional</div>
+                <div class="title-sub">Qualification</div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div class="qts-label">QUALIFIED TEACHER STATUS</div>
+            
+            <div class="certify-text">This is to certify that</div>
+            
+            <div class="recipient-name">{full_name}</div>
+            
+            <div class="body-text">
+                Having successfully completed an approved program of initial teacher training and 
+                met all the required standards, is hereby awarded the status of Qualified Teacher in 
+                accordance with the Education (School Teachers' Qualifications) (England) 
+                Regulations 2003.
+            </div>
+            
+            <div class="details-box">
+                <div class="details-row">
+                    <div>
+                        <div class="details-label">Teacher Reference Number</div>
+                        <div class="details-value">{trn}</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="details-label">Qualification Date</div>
+                        <div class="details-value">{award_date}</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="signature-area">
+                <div class="seal">DEPARTMENT<br>FOR<br>EDUCATION</div>
+                <div class="signature">
+                    <div class="signature-name">Baroness Barran</div>
+                    <div class="signature-title">Parliamentary Under-Secretary<br>Department for Education</div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                Certificate ID: QTS/{year}/{trn_short} | Verify at: teacherservices.education.gov.uk
+            </div>
+        </div>
+    </div>
+</body>
+</html>

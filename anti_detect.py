@@ -778,6 +778,141 @@ def generate_student_email(
     return random.choice(patterns)
 
 
+FRAUD_ERROR_HELP = """\
+🚨 Fraud Rule Rejection Detected (fraudRulesReject)
+
+SheerID's fraud/risk engine rejected this attempt. This is usually triggered by one or more risk signals:
+- TLS fingerprint mismatch (Python http stacks vs real browsers)
+- Datacenter / flagged IP reputation
+- Reused device fingerprint / headers / NewRelic patterns across attempts
+- High retry velocity or repeated failures from the same IP
+- Geo mismatch (IP country/region vs organization)
+
+✅ Workarounds (try these, in order):
+  1) Install curl_cffi for TLS spoofing:
+     pip install curl_cffi
+  2) Use a residential proxy instead of a datacenter proxy
+  3) Wait 24-48 hours before retrying (risk score often cools down)
+  4) Try a different university/organization (some are stricter)
+  5) Check if your IP is blacklisted (switch IP / provider if needed)
+
+Notes:
+- Retrying instantly with the same IP + fingerprint can make the block stick longer.
+- If you cannot install curl_cffi, expect a much higher fraud reject rate.
+"""
+
+
+def should_retry_fraud(retry_count: int):
+    """Decide whether to retry after a fraudRulesReject.
+
+    Implements a capped exponential backoff schedule:
+    - 30s, 60s, 120s
+    - max 3 retries
+
+    Args:
+        retry_count: Number of retries already attempted (0-based).
+
+    Returns:
+        (should_retry, delay_seconds)
+    """
+    if retry_count < 0:
+        retry_count = 0
+
+    backoff_schedule = [30, 60, 120]
+
+    if retry_count >= len(backoff_schedule):
+        return False, 0
+
+    return True, backoff_schedule[retry_count]
+
+
+def handle_fraud_rejection(
+    *,
+    retry_count: int = 0,
+    error_payload=None,
+    message: str = None,
+):
+    """Print a visible fraud banner + actionable help, then return retry guidance.
+
+    This handler is intended to be called when SheerID responds with
+    the `fraudRulesReject` error.
+
+    Args:
+        retry_count: Number of retries already attempted (0-based).
+        error_payload: Optional API error JSON payload to display (best-effort).
+        message: Optional human-readable message/context to display.
+
+    Returns:
+        (should_retry, delay_seconds)
+    """
+    # ANSI colors (no external deps). If terminal doesn't support ANSI, output is still readable.
+    red = "\x1b[31m"
+    yellow = "\x1b[33m"
+    cyan = "\x1b[36m"
+    bold = "\x1b[1m"
+    reset = "\x1b[0m"
+
+    banner = "\n".join(
+        [
+            "+--------------------------------------------------------------+",
+            "|                  !!! FRAUD DETECTION HIT !!!                 |",
+            "|                 SheerID returned fraudRulesReject             |",
+            "+--------------------------------------------------------------+",
+        ]
+    )
+
+    print(f"\n{red}{bold}{banner}{reset}")
+    print(f"{yellow}❌ Verification blocked by SheerID fraud rules.{reset}")
+
+    if message:
+        print(f"{cyan}🧾 Context:{reset} {message}")
+
+    # Best-effort extraction of useful fields without assuming a strict schema.
+    if isinstance(error_payload, dict) and error_payload:
+        interesting_keys = [
+            "code",
+            "errorCode",
+            "message",
+            "detail",
+            "details",
+            "error",
+            "errors",
+        ]
+        extracted = {}
+        for k in interesting_keys:
+            if k in error_payload and error_payload.get(k) not in (None, ""):
+                extracted[k] = error_payload.get(k)
+
+        if extracted:
+            # Keep this compact to avoid dumping huge payloads into the console.
+            print(f"{cyan}🔎 SheerID error payload (high-signal fields):{reset}")
+            for k, v in extracted.items():
+                v_str = str(v)
+                if len(v_str) > 400:
+                    v_str = v_str[:400] + "..."
+                print(f"  - {k}: {v_str}")
+
+    print("\n" + "=" * 62)
+    print(FRAUD_ERROR_HELP)
+    print("=" * 62)
+
+    should_retry, delay_seconds = should_retry_fraud(retry_count)
+    if should_retry:
+        print(
+            f"{yellow}⏳ Suggested retry:{reset} attempt #{retry_count + 1}/3 in {delay_seconds}s"
+        )
+        print(
+            f"{yellow}💡 Tip:{reset} rotate IP/fingerprint before retrying; avoid rapid-fire retries."
+        )
+    else:
+        print(f"{red}🛑 Max retries reached.{reset} Do NOT keep spamming requests.")
+        print(
+            f"{yellow}✅ Best next step:{reset} wait 24-48h and change IP/fingerprint."
+        )
+
+    return should_retry, delay_seconds
+
+
 if __name__ == "__main__":
     # Test
     print("\n" + "=" * 60)

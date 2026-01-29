@@ -15,7 +15,7 @@ Requirements:
 - curl_cffi: pip install curl_cffi (CRITICAL for TLS spoofing)
 - US IP/residential proxy recommended
 
-⚠️ WARNING: 
+⚠️ WARNING:
 US-based services have STRICT detection. Datacenter proxies often fail.
 Use residential proxies or real US IP for best results.
 """
@@ -44,6 +44,7 @@ except ImportError:
 # Try cloudscraper for Cloudflare bypass (optional but recommended)
 try:
     import cloudscraper
+
     HAS_CLOUDSCRAPER = True
 except ImportError:
     HAS_CLOUDSCRAPER = False
@@ -54,17 +55,26 @@ except ImportError:
 try:
     sys.path.insert(0, str(Path(__file__).parent.parent))
     from anti_detect import (
-        get_headers, get_fingerprint, get_random_user_agent, 
-        random_delay, create_session, check_proxy_type,
-        get_matched_ua_for_impersonate, make_request
+        get_headers,
+        get_fingerprint,
+        get_random_user_agent,
+        random_delay,
+        create_session,
+        check_proxy_type,
+        get_matched_ua_for_impersonate,
+        make_request,
+        handle_fraud_rejection,
+        should_retry_fraud,
     )
+
     HAS_ANTI_DETECT = True
     print("[INFO] Anti-detection module loaded with Chrome TLS impersonation")
 except ImportError:
     HAS_ANTI_DETECT = False
     print("[WARN] anti_detect.py not found, using basic headers")
-    print("[TIP] Install curl_cffi for better TLS fingerprinting: pip install curl_cffi")
-
+    print(
+        "[TIP] Install curl_cffi for better TLS fingerprinting: pip install curl_cffi"
+    )
 
 
 # Constants
@@ -103,7 +113,7 @@ def load_proxies(file_path: str = None) -> List[str]:
     path = Path(file_path or PROXY_FILE)
     if not path.exists():
         return []
-    
+
     proxies = []
     for line in path.read_text(encoding="utf-8").splitlines():
         line = line.strip()
@@ -125,7 +135,11 @@ def get_used_data() -> set:
     path = Path(__file__).parent / USED_FILE
     if not path.exists():
         return set()
-    return set(line.strip() for line in path.read_text(encoding="utf-8").splitlines() if line.strip())
+    return set(
+        line.strip()
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    )
 
 
 def is_data_used(first_name: str, last_name: str, dob: str) -> bool:
@@ -156,7 +170,7 @@ def generate_newrelic_headers():
     trace_id = trace_id[:32]
     span_id = uuid.uuid4().hex[:16]
     timestamp = int(time.time() * 1000)
-    
+
     payload = {
         "v": [0, 1],
         "d": {
@@ -165,25 +179,25 @@ def generate_newrelic_headers():
             "ap": "134291347",
             "id": span_id,
             "tr": trace_id,
-            "ti": timestamp
-        }
+            "ti": timestamp,
+        },
     }
-    
+
     return {
         "newrelic": base64.b64encode(json.dumps(payload).encode()).decode(),
         "traceparent": f"00-{trace_id}-{span_id}-01",
-        "tracestate": f"364029@nr=0-1-364029-134291347-{span_id}----{timestamp}"
+        "tracestate": f"364029@nr=0-1-364029-134291347-{span_id}----{timestamp}",
     }
 
 
 def match_branch(input_str):
     """Map input string to branch name"""
     normalized = input_str.upper().replace("US ", "").strip()
-    
+
     for branch in BRANCH_ORG_MAP:
         if branch.upper() == normalized:
             return branch
-    
+
     # Fuzzy matching
     if "MARINE" in normalized and "RESERVE" not in normalized:
         return "Marine Corps"
@@ -209,7 +223,7 @@ def match_branch(input_str):
         return "Coast Guard"
     if "SPACE" in normalized:
         return "Space Force"
-    
+
     return "Army"
 
 
@@ -218,23 +232,23 @@ def parse_data_line(line):
     parts = [p.strip() for p in line.split("|")]
     if len(parts) < 4:
         return None
-    
+
     branch_name = match_branch(parts[2])
     org = BRANCH_ORG_MAP.get(branch_name, BRANCH_ORG_MAP["Army"])
-    
+
     return {
         "firstName": parts[0],
         "lastName": parts[1],
         "branch": branch_name,
         "birthDate": parts[3],
         "dischargeDate": parts[4] if len(parts) > 4 else "2025-01-02",
-        "organization": org
+        "organization": org,
     }
 
 
 class EmailClient:
     """Simple IMAP email client"""
-    
+
     def __init__(self, config):
         self.server = config.get("imap_server", "imap.gmail.com")
         self.port = config.get("imap_port", 993)
@@ -242,7 +256,7 @@ class EmailClient:
         self.password = config.get("email_password", "")
         self.use_ssl = config.get("use_ssl", True)
         self.conn = None
-    
+
     def connect(self):
         try:
             if self.use_ssl:
@@ -256,26 +270,28 @@ class EmailClient:
             self.conn = None  # Reset connection on failure
             if "LOGIN failed" in str(e):
                 print("   [TIP] Check your email/password.")
-                print("         - If using Gmail/Outlook/Yahoo with 2FA, use an App Password.")
+                print(
+                    "         - If using Gmail/Outlook/Yahoo with 2FA, use an App Password."
+                )
                 print("         - Check if IMAP is enabled in your email settings.")
             return False
-    
+
     def get_latest_emails(self, count=5):
         if not self.conn:
             if not self.connect():
                 return []
-        
+
         try:
             self.conn.select("INBOX")
             _, messages = self.conn.search(None, "ALL")
             email_ids = messages[0].split()
-            
+
             if not email_ids:
                 return []
-            
+
             latest_ids = email_ids[-count:] if len(email_ids) >= count else email_ids
             latest_ids = latest_ids[::-1]
-            
+
             emails = []
             for eid in latest_ids:
                 _, msg_data = self.conn.fetch(eid, "(RFC822)")
@@ -289,7 +305,7 @@ class EmailClient:
             print(f"   [WARN] Email fetch error: {e}")
             self.conn = None
             return []
-    
+
     def _get_content(self, msg):
         content = ""
         if msg.is_multipart():
@@ -306,7 +322,7 @@ class EmailClient:
                 charset = msg.get_content_charset() or "utf-8"
                 content = payload.decode(charset, errors="ignore")
         return content
-    
+
     def close(self):
         if self.conn:
             try:
@@ -317,7 +333,7 @@ class EmailClient:
 
 class VeteransVerifier:
     """Veterans verification handler"""
-    
+
     def __init__(self, config, proxy: str = None):
         self.access_token = config.get("accessToken", "")
         self.program_id = config.get("programId", DEFAULT_PROGRAM_ID)
@@ -334,17 +350,17 @@ class VeteransVerifier:
             self.proxies = {"http": proxy, "https": proxy}
         else:
             self.proxies = None
-        
+
         # Create session for ChatGPT API (use cloudscraper if available for Cloudflare bypass)
         if HAS_CLOUDSCRAPER:
             self.session = cloudscraper.create_scraper(
-                browser={'browser': 'chrome', 'platform': 'windows', 'mobile': False}
+                browser={"browser": "chrome", "platform": "windows", "mobile": False}
             )
             print("[INFO] Using cloudscraper for Cloudflare bypass")
         else:
             self.session = requests.Session()
             print("[INFO] Using requests (no Cloudflare bypass)")
-    
+
     def _get_headers(self, sheerid=False):
         base = {
             "sec-ch-ua": '"Chromium";v="131", "Google Chrome";v="131"',
@@ -353,9 +369,9 @@ class VeteransVerifier:
             "user-agent": USER_AGENT,
             "accept": "application/json",
             "content-type": "application/json",
-            "accept-language": "en-US,en;q=0.9"
+            "accept-language": "en-US,en;q=0.9",
         }
-        
+
         if sheerid:
             nr = generate_newrelic_headers()
             return {
@@ -365,9 +381,9 @@ class VeteransVerifier:
                 "newrelic": nr["newrelic"],
                 "traceparent": nr["traceparent"],
                 "tracestate": nr["tracestate"],
-                "origin": "https://services.sheerid.com"
+                "origin": "https://services.sheerid.com",
             }
-        
+
         # Enhanced headers for ChatGPT API to bypass Cloudflare
         return {
             **base,
@@ -382,11 +398,11 @@ class VeteransVerifier:
             "oai-device-id": str(uuid.uuid4()),
             "oai-language": "en-US",
         }
-    
+
     def create_verification(self):
         """Step 1: Create verification ID from ChatGPT"""
         print("   -> Creating verification request...")
-        
+
         try:
             # Use self.session (cloudscraper if available)
             resp = self.session.post(
@@ -394,7 +410,7 @@ class VeteransVerifier:
                 headers=self._get_headers(),
                 json={"program_id": self.program_id},
                 timeout=30,
-                proxies=self.proxies
+                proxies=self.proxies,
             )
             resp.raise_for_status()
             return resp.json().get("verification_id")
@@ -417,27 +433,26 @@ class VeteransVerifier:
                 print("           Please check your accessToken in config.json")
             raise
 
-    
     def submit_military_status(self, verification_id):
         """Step 2: Submit status as VETERAN"""
         print("   -> Submitting military status (VETERAN)...")
-        
+
         resp = self.session.post(
             f"{SHEERID_API}/verification/{verification_id}/step/collectMilitaryStatus",
             headers=self._get_headers(sheerid=True),
             json={"status": "VETERAN"},
             timeout=30,
-            proxies=self.proxies
+            proxies=self.proxies,
         )
         resp.raise_for_status()
-    
+
     def submit_personal_info(self, verification_id, user_data):
         """Step 3: Submit personal information"""
         print("   -> Submitting personal info...")
-        
+
         fingerprint = generate_fingerprint()
         referer = f"https://services.sheerid.com/verify/{self.program_id}/?verificationId={verification_id}"
-        
+
         payload = {
             "firstName": user_data["firstName"],
             "lastName": user_data["lastName"],
@@ -453,115 +468,146 @@ class VeteransVerifier:
                 "marketConsentValue": False,
                 "refererUrl": referer,
                 "verificationId": verification_id,
-                "submissionOptIn": "By submitting the personal information above, I acknowledge..."
-            }
+                "submissionOptIn": "By submitting the personal information above, I acknowledge...",
+            },
         }
-        
+
         headers = self._get_headers(sheerid=True)
         headers["referer"] = referer
-        
+
         resp = self.session.post(
             f"{SHEERID_API}/verification/{verification_id}/step/collectInactiveMilitaryPersonalInfo",
             headers=headers,
             json=payload,
             timeout=30,
-            proxies=self.proxies
+            proxies=self.proxies,
         )
-        
+
         data = resp.json()
-        
-        if resp.status_code == 429 or "verificationLimitExceeded" in str(data.get("errorIds", [])):
+
+        if resp.status_code == 429 or "verificationLimitExceeded" in str(
+            data.get("errorIds", [])
+        ):
             data["_already_verified"] = True
-        
+
         return data
-    
+
     def wait_for_email(self, verification_id, max_attempts=20):
         """Step 4: Wait for verification email"""
         print("   -> Waiting for verification email...")
-        
+
         for i in range(max_attempts):
             time.sleep(3)
-            
+
             emails = self.email_client.get_latest_emails(5)
             for e in emails:
                 content = e.get("content", "")
                 if "You're almost there" in content or "Finish Verifying" in content:
-                    match = re.search(r"https://services\.sheerid\.com/verify/[^\s\"'<>]+emailToken=\d+", content)
+                    match = re.search(
+                        r"https://services\.sheerid\.com/verify/[^\s\"'<>]+emailToken=\d+",
+                        content,
+                    )
                     if match and verification_id in match.group(0):
                         return match.group(0).replace("&amp;", "&")
-            
-            print(f"      Waiting... ({i+1}/{max_attempts})")
-        
+
+            print(f"      Waiting... ({i + 1}/{max_attempts})")
+
         return None
-    
+
     def submit_email_token(self, verification_id, email_token):
         """Step 5: Submit email token"""
         print(f"   -> Submitting email token: {email_token}...")
-        
+
         resp = self.session.post(
             f"{SHEERID_API}/verification/{verification_id}/step/emailLoop",
             headers=self._get_headers(sheerid=True),
             json={
                 "emailToken": email_token,
-                "deviceFingerprintHash": generate_fingerprint()
+                "deviceFingerprintHash": generate_fingerprint(),
             },
             timeout=30,
-            proxies=self.proxies
+            proxies=self.proxies,
         )
         return resp.json()
-    
+
     def verify(self, user_data):
         """Main verification flow"""
         try:
             # Step 1
             verification_id = self.create_verification()
             print(f"   [OK] Verification ID: {verification_id}")
-            
+
             # Step 2
             self.submit_military_status(verification_id)
             print("   [OK] Status submitted")
-            
+
             # Step 3
             result = self.submit_personal_info(verification_id, user_data)
             step = result.get("currentStep")
             print(f"   [OK] Personal info submitted - Step: {step}")
-            
+
             if result.get("_already_verified"):
-                return {"success": False, "message": "Data already verified", "skip": True}
-            
+                return {
+                    "success": False,
+                    "message": "Data already verified",
+                    "skip": True,
+                }
+
             if step == "success":
                 return {"success": True, "message": "Verification successful!"}
-            
+
             if step == "docUpload":
                 return {"success": False, "message": "Document upload required"}
-            
+
             if step == "error":
-                return {"success": False, "message": f"Error: {result.get('errorIds')}"}
-            
+                error_ids = result.get("errorIds", [])
+                if "fraudRulesReject" in str(error_ids) and HAS_ANTI_DETECT:
+                    handle_fraud_rejection(
+                        retry_count=0,
+                        error_payload=result,
+                        message=f"Branch: {user_data.get('branch', 'Unknown')}",
+                    )
+                return {
+                    "success": False,
+                    "message": f"Error: {error_ids}",
+                    "is_fraud_reject": "fraudRulesReject" in str(error_ids),
+                }
+
             # Step 4: Email loop
             if step == "emailLoop":
                 link = self.wait_for_email(verification_id)
                 if not link:
                     return {"success": False, "message": "Email not received"}
-                
+
                 token_match = re.search(r"emailToken=(\d+)", link)
                 if not token_match:
                     return {"success": False, "message": "Cannot extract emailToken"}
-                
+
                 # Step 5
-                email_result = self.submit_email_token(verification_id, token_match.group(1))
+                email_result = self.submit_email_token(
+                    verification_id, token_match.group(1)
+                )
                 if email_result.get("currentStep") == "success":
                     return {"success": True, "message": "Verification successful!"}
-                
-                return {"success": False, "message": f"Email verify failed: {email_result.get('errorIds')}"}
-            
+
+                return {
+                    "success": False,
+                    "message": f"Email verify failed: {email_result.get('errorIds')}",
+                }
+
             if step == "collectInactiveMilitaryPersonalInfo":
                 if result.get("errorIds"):
-                    return {"success": False, "message": f"Error: {result.get('errorIds')}"}
-                return {"success": False, "message": "Stuck on personal info step (check data format/validity)"}
-            
+                    return {
+                        "success": False,
+                        "message": f"Error: {result.get('errorIds')}",
+                    }
+                return {
+                    "success": False,
+                    "message": "Stuck on personal info step (check data format/validity)",
+                }
+
             return {"success": False, "message": f"Unknown step: {step}"}
-            
+
         except Exception as e:
             return {"success": False, "error": str(e)}
 
@@ -570,32 +616,36 @@ def main():
     # Parse arguments
     parser = argparse.ArgumentParser(description="Veterans Verification Tool")
     parser.add_argument("--proxy", type=str, help="Use specific proxy (host:port)")
-    parser.add_argument("--no-dedup", action="store_true", help="Disable deduplication check")
+    parser.add_argument(
+        "--no-dedup", action="store_true", help="Disable deduplication check"
+    )
     args = parser.parse_args()
-    
+
     print()
     print("=" * 55)
     print("  Veterans Verification Tool")
     print("  ChatGPT Plus - US Veterans Verification")
     print("=" * 55)
     print()
-    
+
     # Load config
     config_path = Path(__file__).parent / "config.json"
     if not config_path.exists():
         print("[ERROR] config.json not found!")
-        print("        Copy config.example.json to config.json and fill in your details")
+        print(
+            "        Copy config.example.json to config.json and fill in your details"
+        )
         return
-    
+
     config = json.loads(config_path.read_text(encoding="utf-8"))
-    
+
     if not config.get("accessToken"):
         print("[ERROR] accessToken missing in config.json!")
         print("        1. Login to https://chatgpt.com")
         print("        2. Visit https://chatgpt.com/api/auth/session")
         print("        3. Copy the accessToken value")
         return
-    
+
     # Load proxies
     proxies = []
     if args.proxy:
@@ -604,53 +654,59 @@ def main():
         proxies = load_proxies(str(Path(__file__).parent / PROXY_FILE))
     if proxies:
         print(f"[INFO] Loaded {len(proxies)} proxies")
-    
+
     # Load data from data.txt
     data_path = Path(__file__).parent / "data.txt"
     if not data_path.exists():
         print("[ERROR] data.txt not found!")
         print("        Copy data.example.txt to data.txt and add your data")
         return
-    
-    lines = [l.strip() for l in data_path.read_text(encoding="utf-8").split("\n")
-             if l.strip() and not l.startswith("#")]
-    
+
+    lines = [
+        l.strip()
+        for l in data_path.read_text(encoding="utf-8").split("\n")
+        if l.strip() and not l.startswith("#")
+    ]
+
     if not lines:
         print("[ERROR] data.txt is empty!")
         return
-    
+
     print(f"[INFO] Loaded {len(lines)} records")
     print()
 
-    
     verifier = VeteransVerifier(config, proxy=proxies[0] if proxies else None)
-    
+
     success = 0
     fail = 0
     skip = 0
-    
+
     for i, line in enumerate(lines):
         user_data = parse_data_line(line)
         if not user_data:
-            print(f"[{i+1}/{len(lines)}] Invalid format, skipping")
+            print(f"[{i + 1}/{len(lines)}] Invalid format, skipping")
             continue
-        
+
         name = f"{user_data['firstName']} {user_data['lastName']}"
-        
+
         # Check deduplication
-        if not args.no_dedup and is_data_used(user_data['firstName'], user_data['lastName'], user_data['birthDate']):
-            print(f"[{i+1}/{len(lines)}] {name} - Already used, skipping")
+        if not args.no_dedup and is_data_used(
+            user_data["firstName"], user_data["lastName"], user_data["birthDate"]
+        ):
+            print(f"[{i + 1}/{len(lines)}] {name} - Already used, skipping")
             skip += 1
             continue
-        
-        print(f"[{i+1}/{len(lines)}] {name} ({user_data['branch']})")
-        
+
+        print(f"[{i + 1}/{len(lines)}] {name} ({user_data['branch']})")
+
         result = verifier.verify(user_data)
-        
+
         # Mark as used regardless of result
         if not args.no_dedup:
-            mark_data_used(user_data['firstName'], user_data['lastName'], user_data['birthDate'])
-        
+            mark_data_used(
+                user_data["firstName"], user_data["lastName"], user_data["birthDate"]
+            )
+
         if result.get("success"):
             success += 1
             print(f"   [SUCCESS]\n")
@@ -664,12 +720,12 @@ def main():
         else:
             fail += 1
             print(f"   [FAIL] {result.get('message') or result.get('error')}\n")
-        
+
         if i < len(lines) - 1:
             time.sleep(2)
-    
+
     verifier.email_client.close()
-    
+
     print()
     print("-" * 55)
     print(f"  Done! Success: {success} | Skip: {skip} | Fail: {fail}")

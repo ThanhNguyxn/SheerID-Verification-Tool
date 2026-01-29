@@ -55,6 +55,8 @@ try:
         create_session,
         get_matched_ua_for_impersonate,
         make_request,
+        handle_fraud_rejection,
+        should_retry_fraud,
     )
 
     HAS_ANTI_DETECT = True
@@ -916,10 +918,20 @@ class GeminiVerifier:
                     }
 
                 if data.get("currentStep") == "error":
+                    error_ids = data.get("errorIds", [])
+                    # Check for fraud rejection
+                    if "fraudRulesReject" in str(error_ids):
+                        if HAS_ANTI_DETECT:
+                            handle_fraud_rejection(
+                                retry_count=0,
+                                error_payload=data,
+                                message=f"University: {self.org['name']}",
+                            )
                     stats.record(self.org["name"], False)
                     return {
                         "success": False,
-                        "error": f"Error: {data.get('errorIds', [])}",
+                        "error": f"Error: {error_ids}",
+                        "is_fraud_reject": "fraudRulesReject" in str(error_ids),
                     }
 
                 print(f"     📍 Current step: {data.get('currentStep')}")

@@ -127,18 +127,69 @@ New `doc_generator.py` provides anti-detection for generated documents:
     pip install httpx Pillow
     ```
 
-3.  **[Optional] Enhanced Anti-Detection:**
+3.  **🚨 REQUIRED: TLS Fingerprint Spoofing:**
     ```bash
-    pip install curl_cffi cloudscraper
+    pip install curl_cffi
     ```
-    - `curl_cffi`: Spoofs TLS fingerprint (JA3/JA4) to look like real Chrome
-    - `cloudscraper`: Bypasses Cloudflare protection
+    > ⚠️ **Without `curl_cffi`, success rate drops from ~60-80% to ~5-20%!**
+    > SheerID detects Python's TLS fingerprint and will reject most requests.
 
-4.  **Run a tool (e.g., Spotify):**
+4.  **[Optional] Cloudflare Bypass:**
+    ```bash
+    pip install cloudscraper
+    ```
+
+4.  **[Optional] Cloudflare Bypass:**
+    ```bash
+    pip install cloudscraper
+    ```
+
+5.  **Run a tool (e.g., Spotify):**
     ```bash
     cd spotify-verify-tool
     python main.py "YOUR_SHEERID_URL"
     ```
+
+---
+
+## 🔧 Troubleshooting: `fraudRulesReject` Error
+
+This is the **#1 issue** users face. SheerID's fraud detection blocked your request.
+
+### Why It Happens
+
+| Cause | Description |
+|-------|-------------|
+| **TLS Fingerprint** | Python's HTTP libraries have detectable signatures |
+| **Datacenter IP** | VPN/datacenter IPs are often blacklisted |
+| **Request Frequency** | Too many requests from same IP |
+| **Data Patterns** | Generated data looks automated |
+
+### Solutions (in order of importance)
+
+| Priority | Solution | Command/Action |
+|----------|----------|----------------|
+| 🔴 **CRITICAL** | Install `curl_cffi` | `pip install curl_cffi` |
+| 🟠 **HIGH** | Use residential proxy | `--proxy http://user:pass@residential-ip:port` |
+| 🟡 **MEDIUM** | Wait before retry | Wait 24-48 hours between attempts |
+| 🟢 **LOW** | Try different university | Tool auto-rotates, or specify manually |
+| 🟢 **LOW** | Rotate fingerprint | Each attempt generates new fingerprint |
+
+### Quick Fix Checklist
+
+```bash
+# 1. Install curl_cffi (REQUIRED!)
+pip install curl_cffi
+
+# 2. Verify it's working
+python -c "from curl_cffi import requests; print('✅ curl_cffi OK')"
+
+# 3. Run with residential proxy
+python main.py "URL" --proxy http://user:pass@residential.proxy.com:8080
+```
+
+> [!TIP]
+> If you don't have a residential proxy, try [RoxyBrowser](https://roxybrowser.com?code=01045PFA) which provides anti-detect browser with residential IPs.
 
 ---
 

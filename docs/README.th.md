@@ -30,6 +30,7 @@
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 เว็บ | **ตรวจสอบ IP** |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 บอท | บอท Telegram |
 | [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 บอท | สร้างบัญชี Gmail อัตโนมัติ |
+| [GitHub Bot](https://t.me/AutoGHS_Bot?start=7762497789) | 🤖 บอท | บริการดาว GitHub อัตโนมัติ |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 เครื่องมือ | สร้างบัตรนักศึกษา |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 เครื่องมือ | สร้างสลิปเงินเดือน |
 

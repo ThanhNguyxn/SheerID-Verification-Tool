@@ -30,6 +30,7 @@ Spotify、YouTube、Google OneなどのSheerID認証ワークフローを自動�
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 ウェブ | **IP確認** — IPアドレスとプロキシステータスを確認 |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 ボット | 自動検証Telegramボット |
 | [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 ボット | Gmailアカウントを自動作成 |
+| [GitHub Bot](https://t.me/AutoGHS_Bot?start=7762497789) | 🤖 ボット | 自動GitHubスター&エンゲージメントサービス |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 ツール | 手動認証用の学生証を作成 |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 ツール | 教師認証用の給与明細を作成 |
 

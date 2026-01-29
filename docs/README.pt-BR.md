@@ -30,6 +30,7 @@ Uma coleção abrangente de ferramentas para automatizar fluxos de trabalho de v
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Verificar IP** — Verifique seu endereço IP e status do proxy |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Bot do Telegram de verificação automatizada |
 | [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 Bot | Criar contas Gmail automaticamente |
+| [GitHub Bot](https://t.me/AutoGHS_Bot?start=7762497789) | 🤖 Bot | Serviço automático de estrelas GitHub |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Ferramenta | Criar carteiras de estudante para verificação manual |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Ferramenta | Gerar contracheques para verificação de professores |
 

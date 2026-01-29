@@ -30,6 +30,7 @@
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 वेब | **IP जांचें** — अपना IP पता और प्रॉक्सी स्थिति जांचें |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 बॉट | स्वचालित Telegram सत्यापन बॉट |
 | [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 बॉट | Gmail खाते स्वचालित रूप से बनाएं |
+| [GitHub Bot](https://t.me/AutoGHS_Bot?start=7762497789) | 🤖 बॉट | स्वचालित GitHub स्टार सेवा |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 उपकरण | मैनुअल सत्यापन के लिए छात्र कार्ड बनाएं |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 उपकरण | शिक्षक सत्यापन के लिए वेतन पर्ची बनाएं |
 

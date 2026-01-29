@@ -30,6 +30,7 @@
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 ويب | **فحص IP** — تحقق من عنوان IP الخاص بك وحالة البروكسي |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 بوت | بوت تيليجرام للتحقق الآلي |
 | [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 بوت | إنشاء حسابات Gmail تلقائياً |
+| [GitHub Bot](https://t.me/AutoGHS_Bot?start=7762497789) | 🤖 بوت | خدمة نجوم GitHub تلقائية |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 أداة | إنشاء بطاقات طلابية للتحقق اليدوي |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 أداة | إنشاء قسائم الرواتب للتحقق من المعلمين |
 

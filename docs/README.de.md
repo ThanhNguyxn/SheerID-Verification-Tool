@@ -30,6 +30,7 @@ Eine umfassende Sammlung von Tools zur Automatisierung von SheerID-Verifizierung
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **IP prüfen** — Überprüfen Sie Ihre IP-Adresse und Proxy-Status |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Automatisierter Telegram-Verifizierungsbot |
 | [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 Bot | Gmail-Konten automatisch erstellen |
+| [GitHub Bot](https://t.me/AutoGHS_Bot?start=7762497789) | 🤖 Bot | Automatischer GitHub-Sterne-Service |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Erstellen von Studentenausweisen für manuelle Verifizierung |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Erstellen von Gehaltsabrechnungen für Lehrerverifizierung |
 

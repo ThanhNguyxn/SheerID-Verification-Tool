@@ -30,6 +30,7 @@
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 网页 | **IP 检查** — 检查您的 IP 地址和代理状态 |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 机器人 | 自动验证 Telegram 机器人 |
 | [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 机器人 | 自动创建Gmail账户 |
+| [GitHub Bot](https://t.me/AutoGHS_Bot?start=7762497789) | 🤖 机器人 | 自动GitHub加星服务 |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 工具 | 创建用于手动验证的学生证 |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 工具 | 生成用于教师验证的工资单 |
 

@@ -30,6 +30,7 @@
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 웹 | **IP 확인** — IP 주소 및 프록시 상태 확인 |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 봇 | 자동 인증 텔레그램 봇 |
 | [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 봇 | Gmail 계정 자동 생성 |
+| [GitHub Bot](https://t.me/AutoGHS_Bot?start=7762497789) | 🤖 봇 | 자동 GitHub 스타 및 참여 서비스 |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 도구 | 수동 인증용 학생증 생성 |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 도구 | 교사 인증용 급여 명세서 생성 |
 

@@ -30,6 +30,7 @@ Một bộ công cụ toàn diện để tự động hóa quy trình xác minh 
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **Kiểm tra IP** — Kiểm tra địa chỉ IP và trạng thái proxy |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Bot Telegram xác minh tự động |
 | [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 Bot | Tạo tài khoản Gmail tự động |
+| [GitHub Bot](https://t.me/AutoGHS_Bot?start=7762497789) | 🤖 Bot | Dịch vụ tăng sao GitHub tự động |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Tool | Tạo thẻ sinh viên để xác minh thủ công |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Tool | Tạo phiếu lương cho xác minh giáo viên |
 

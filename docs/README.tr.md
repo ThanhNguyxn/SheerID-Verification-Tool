@@ -30,6 +30,7 @@
 | [Check IP](https://ip123.in/en?code=01045PFA) | 🌐 Web | **IP Kontrol** — IP adresinizi ve proxy durumunuzu kontrol edin |
 | [SheerID Verification Bot](https://t.me/SheerID_Verification_bot?start=ref_LdPKPES3Ej) | 🤖 Bot | Otomatik Telegram doğrulama botu |
 | [Gmail Farmer Bot](https://t.me/GmailFarmerBot?start=7762497789) | 🤖 Bot | Otomatik Gmail hesabı oluşturma |
+| [GitHub Bot](https://t.me/AutoGHS_Bot?start=7762497789) | 🤖 Bot | Otomatik GitHub yıldız servisi |
 | [Student Card Generator](https://thanhnguyxn.github.io/student-card-generator/) | 🎓 Araç | Manuel doğrulama için öğrenci kartları oluşturun |
 | [Payslip Generator](https://thanhnguyxn.github.io/payslip-generator/) | 💰 Araç | Öğretmen doğrulaması için bordro oluşturun |
 

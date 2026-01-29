@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;600&display=swap');
+        
+        * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+        
+        body {{
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: #333;
+            background: #fff;
+            padding: 50px 60px;
+            width: 595px;
+            min-height: 842px;
+        }}
+        
+        .header {{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #1a4a7a;
+        }}
+        
+        .logo-area {{
+            color: #999;
+            font-size: 10pt;
+        }}
+        
+        .school-info {{
+            text-align: right;
+            font-size: 10pt;
+        }}
+        
+        .school-name {{
+            font-size: 18pt;
+            font-weight: 600;
+            color: #1a4a7a;
+            margin-bottom: 8px;
+        }}
+        
+        .school-address {{
+            color: #555;
+            line-height: 1.4;
+        }}
+        
+        .date-section {{
+            display: flex;
+            justify-content: space-between;
+            margin: 25px 0;
+        }}
+        
+        .confidential {{
+            font-weight: 600;
+            color: #333;
+        }}
+        
+        .date {{
+            color: #1a4a7a;
+            font-weight: 600;
+        }}
+        
+        .ref-section {{
+            text-align: right;
+            font-size: 9pt;
+            color: #666;
+            margin-bottom: 20px;
+        }}
+        
+        .recipient {{
+            margin-bottom: 25px;
+        }}
+        
+        .subject {{
+            font-weight: 600;
+            text-decoration: underline;
+            margin-bottom: 20px;
+            font-size: 12pt;
+        }}
+        
+        .body-text {{
+            margin-bottom: 15px;
+            text-align: justify;
+        }}
+        
+        .details-box {{
+            background: #f8f9fa;
+            border-left: 4px solid #1a4a7a;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }}
+        
+        .detail-row {{
+            display: flex;
+            margin-bottom: 8px;
+        }}
+        
+        .detail-label {{
+            color: #1a4a7a;
+            font-weight: 600;
+            width: 130px;
+        }}
+        
+        .detail-value {{
+            color: #333;
+        }}
+        
+        .signature-section {{
+            margin-top: 40px;
+        }}
+        
+        .signature-name {{
+            font-family: 'Great Vibes', cursive;
+            font-size: 28pt;
+            color: #1a4a7a;
+            margin-bottom: 5px;
+            display: inline-block;
+        }}
+        
+        .signature-title {{
+            font-size: 10pt;
+            color: #555;
+        }}
+        
+        .footer {{
+            margin-top: 60px;
+            font-size: 8pt;
+            color: #888;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-area">LOGO</div>
+        <div class="school-info">
+            <div class="school-name">{school_name}</div>
+            <div class="school-address">
+                {address_line1}<br>
+                {address_line2}
+                {town} {postcode}<br>
+                Tel: {phone}
+            </div>
+        </div>
+    </div>
+    
+    <div class="date-section">
+        <div class="confidential">PRIVATE &amp; CONFIDENTIAL</div>
+        <div class="date">{current_date}</div>
+    </div>
+    
+    <div class="ref-section">
+        Your Ref: N/A<br>
+        Our Ref: REF/{year}/HR/{staff_id}
+    </div>
+    
+    <div class="recipient">To Whom It May Concern</div>
+    
+    <div class="subject">CONFIRMATION OF POST: {full_name_upper}</div>
+    
+    <div class="body-text">
+        I am writing in my capacity as Headteacher of {school_name} to confirm the details of 
+        current employment for the above-named individual.
+    </div>
+    
+    <div class="body-text">
+        We confirm that <strong>{full_name}</strong> is employed by our institution on a permanent full-time 
+        contract. They commenced their employment on <strong>{start_date}</strong> and continue to be a valued 
+        member of our teaching staff.
+    </div>
+    
+    <div class="details-box">
+        <div class="detail-row">
+            <span class="detail-label">Position Held:</span>
+            <span class="detail-value">{position}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Department:</span>
+            <span class="detail-value">{department}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">QTS Status:</span>
+            <span class="detail-value">Active / Qualified</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Employee ID:</span>
+            <span class="detail-value">{staff_id}</span>
+        </div>
+    </div>
+    
+    <div class="body-text">
+        During their tenure, they have demonstrated high professional standards and integrity. They have 
+        undergone all necessary background checks including an Enhanced DBS check (Disclosure and 
+        Barring Service), which is a mandatory requirement for all staff working with children in the 
+        United Kingdom.
+    </div>
+    
+    <div class="body-text">
+        Should you require any further information regarding this verification of employment, please do 
+        not hesitate to contact our administrative office directly.
+    </div>
+    
+    <div class="body-text" style="margin-top: 25px;">
+        Yours faithfully,
+    </div>
+    
+    <div class="signature-section">
+        <div class="signature-name" style="transform: rotate({signature_rotation}deg)">Dr. A. Richardson</div>
+        <div class="signature-title">Headteacher<br>{school_name}</div>
+    </div>
+    
+    <div class="footer">
+        {school_name} is a registered educational institution in the United Kingdom.<br>
+        Registered Address: {address_full}, {town} {postcode} | Data Controller No: {data_controller}
+    </div>
+</body>
+</html>

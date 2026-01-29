@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+        
+        * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+        
+        body {{
+            font-family: 'Open Sans', Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }}
+        
+        .card {{
+            width: 340px;
+            height: 215px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }}
+        
+        .card-header {{
+            background: linear-gradient(135deg, #1a4a7a 0%, #2d6da8 100%);
+            color: white;
+            padding: 8px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }}
+        
+        .school-name {{
+            font-size: 11pt;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }}
+        
+        .logo-placeholder {{
+            font-size: 10pt;
+            opacity: 0.8;
+        }}
+        
+        .card-body {{
+            display: flex;
+            padding: 12px 15px;
+            gap: 15px;
+        }}
+        
+        .photo-area {{
+            width: 80px;
+            height: 100px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+        }}
+        
+        .info-area {{
+            flex: 1;
+        }}
+        
+        .chip-area {{
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }}
+        
+        .chip-area img {{
+            width: 35px;
+            height: auto;
+        }}
+        
+        .teacher-name {{
+            font-size: 14pt;
+            font-weight: 700;
+            color: #1a4a7a;
+            margin-bottom: 3px;
+        }}
+        
+        .position-badge {{
+            display: inline-block;
+            background: #1a4a7a;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 3px;
+            font-size: 8pt;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }}
+        
+        .info-grid {{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px 15px;
+            font-size: 8pt;
+        }}
+        
+        .info-label {{
+            color: #888;
+            text-transform: uppercase;
+            font-size: 6pt;
+            letter-spacing: 0.5px;
+        }}
+        
+        .info-value {{
+            color: #333;
+            font-weight: 600;
+        }}
+        
+        .card-footer {{
+            background: #f8f9fa;
+            padding: 6px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 7pt;
+            border-top: 1px solid #eee;
+        }}
+        
+        .id-number {{
+            color: #555;
+        }}
+        
+        .expiry {{
+            color: #c0392b;
+            font-weight: 600;
+        }}
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <span class="school-name">{school_name_upper}</span>
+            <span class="logo-placeholder">STAFF ID</span>
+        </div>
+        
+        <div class="card-body">
+            <div class="photo-area">{photo_html}</div>
+            <div class="info-area">
+                <div class="teacher-name">{full_name_upper}</div>
+                <div class="position-badge">{position_short}</div>
+                
+                <div class="info-grid">
+                    <div>
+                        <div class="info-label">Department</div>
+                        <div class="info-value">Teaching Staff</div>
+                    </div>
+                    <div>
+                        <div class="info-label">DBS Status</div>
+                        <div class="info-value">Enhanced Check</div>
+                    </div>
+                    <div>
+                        <div class="info-label">Date of Birth</div>
+                        <div class="info-value">{dob}</div>
+                    </div>
+                    <div>
+                        <div class="info-label">Issue Date</div>
+                        <div class="info-value">{issue_date}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="chip-area">{chip_html}</div>
+        </div>
+        
+        <div class="card-footer">
+            <span class="id-number">ID: {staff_id} | Property of {lea}</span>
+            <span class="expiry">EXP: {expiry_date}</span>
+        </div>
+    </div>
+</body>
+</html>

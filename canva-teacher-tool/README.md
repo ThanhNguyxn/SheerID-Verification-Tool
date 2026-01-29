@@ -36,7 +36,8 @@ Based on [Issue #49](https://github.com/ThanhNguyxn/SheerID-Verification-Tool/is
 ## Requirements
 
 ```bash
-pip install pymupdf pillow
+pip install playwright pillow
+playwright install chromium
 ```
 
 ## Usage
@@ -72,7 +73,8 @@ Documents saved to `./output/` folder as PNG files.
 
 ## Credits
 
-- Templates: [cruzzzdev](https://github.com/cruzzzdev) (Issue #49)
+- Original PDF templates: [cruzzzdev](https://github.com/cruzzzdev) (Issue #49)
+- HTML template rewrite: Refactored for reliability
 - Workflow research: Issue #55
 - Tool: [ThanhNguyxn](https://github.com/ThanhNguyxn)
 
